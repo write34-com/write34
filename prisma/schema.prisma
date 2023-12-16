@@ -1,0 +1,103 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  // Generate into custom location because this repo has multiple prisma schemas
+  output   = "./client"
+}
+
+generator pothos {
+  provider     = "prisma-pothos-types"
+  output       = "./pothos-types.ts"
+  // Match client output location from above
+  clientOutput = "./client"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:../seanario.sqlite"
+}
+
+model Prompts {
+  id              String  @id @default(uuid())
+  aetherId        Int?
+  authorsNote     String?
+  description     String?
+  memory          String?
+  nsfw            Int
+  parentId        String?
+  promptContent   String
+  publishDate     String?
+  quests          String?
+  tags            String
+  title           String
+  scriptZip       Bytes?
+  novelAiScenario String?
+  holoAiScenario  String?
+  correlationId   String
+  dateCreated     String
+  dateEdited      String?
+
+  worldInfos WorldInfos[] @relation("PromptWorldInfo")
+
+  @@index([aetherId], name: "IX_Prompts_AetherId")
+  @@index([correlationId], name: "IX_Prompts_CorrelationId")
+  @@index([parentId], name: "IX_Prompts_ParentId")
+}
+
+model WorldInfos {
+  id            String  @id @default(uuid())
+  aetherId      Int?
+  entry         String
+  keys          String
+  promptId      String
+  correlationId String
+  dateCreated   String
+  dateEdited    String?
+
+  prompts Prompts @relation("PromptWorldInfo", fields: [promptId], references: [id], onDelete: Cascade)
+
+  @@index([aetherId], name: "IX_WorldInfos_AetherId")
+  @@index([correlationId], name: "IX_WorldInfos_CorrelationId")
+  @@index([promptId], name: "IX_WorldInfos_PromptId")
+}
+
+model AetherPrompts {
+  id              Int     @id @default(autoincrement())
+  authorsNote     String?
+  description     String?
+  memory          String?
+  nsfw            Int
+  parentId        String?
+  promptContent   String
+  publishDate     String?
+  quests          String?
+  tags            String
+  title           String
+  scriptZip       Bytes?
+  novelAiScenario String?
+  holoAiScenario  String?
+  correlationId   String
+  dateCreated     String
+  dateEdited      String?
+
+  worldInfos AetherWorldInfos[] @relation("AetherPromptWorldInfo")
+
+  @@index([correlationId], name: "IX_AetherPrompts_CorrelationId")
+}
+
+model AetherWorldInfos {
+  id            Int     @id @default(autoincrement())
+  entry         String
+  keys          String
+  promptId      Int
+  correlationId String
+  dateCreated   String
+  dateEdited    String?
+
+  prompts AetherPrompts @relation("AetherPromptWorldInfo", fields: [promptId], references: [id], onDelete: Cascade)
+
+  @@index([correlationId], name: "IX_AetherWorldInfos_CorrelationId")
+  @@index([promptId], name: "IX_AetherWorldInfos_PromptId")
+}

@@ -1,0 +1,82 @@
+"""
+A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
+"""
+scalar Date
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+interface Node {
+  id: ID!
+}
+
+type PageInfo {
+  endCursor: String
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+}
+
+type Prompts implements Node {
+  aetherId: Int
+  authorsNote: String
+  correlationId: String!
+  dateCreated: String!
+  dateEdited: String
+  description: String
+  holoAiScenario: String
+  id: ID!
+  memory: String
+  novelAiScenario: String
+  nsfw: Boolean!
+  parentId: ID
+  promptContent: String!
+  publishDate: String
+  quests: String
+  tags: String!
+  title: String!
+  worldInfos: [WorldInfos!]!
+}
+
+type Query {
+  node(id: ID!): Node
+  nodes(ids: [ID!]!): [Node]!
+  prompt(id: ID!): Prompts
+  promptById(id: String!): Prompts
+  prompts(after: ID, before: ID, first: Int, last: Int): QueryPromptsConnection!
+  worldInfo(id: ID!): WorldInfos
+  worldInfos(after: ID, before: ID, first: Int, last: Int): QueryWorldInfosConnection!
+}
+
+type QueryPromptsConnection {
+  edges: [QueryPromptsConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type QueryPromptsConnectionEdge {
+  cursor: String!
+  node: Prompts!
+}
+
+type QueryWorldInfosConnection {
+  edges: [QueryWorldInfosConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type QueryWorldInfosConnectionEdge {
+  cursor: String!
+  node: WorldInfos!
+}
+
+type WorldInfos implements Node {
+  aetherId: Int
+  correlationId: String!
+  dateCreated: String!
+  dateEdited: String
+  entry: String!
+  id: ID!
+  keys: String!
+  promptId: ID!
+}

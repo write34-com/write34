@@ -1,0 +1,6 @@
+{
+  "watch": ["**/*.tsx", "**/*.ts", "**/*.prisma"],
+  "ext": "ts,tsx,prisma",
+  "ignore": ["node_modules", ".next", ".git", "src/__generated__", "prisma/client", "prisma/pothos-types.ts", "prisma/migrations"],
+  "exec": "npm run generate"
+}

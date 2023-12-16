@@ -5,23 +5,55 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "generate": "npx prisma generate; graphql-codegen; npm run relay",
+    "relay": "relay-compiler",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint-fix": "next lint --fix",
+    "watch": "nodemon"
   },
   "dependencies": {
+    "@heroicons/react": "^2.0.18",
+    "@pothos/plugin-prisma": "^3.62.0",
+    "@pothos/plugin-relay": "^3.45.1",
+    "@prisma/client": "^5.7.0",
+    "better-sqlite3": "^9.2.2",
+    "classnames": "^2.3.2",
+    "graphql-scalars": "^1.22.4",
+    "graphql-yoga": "^5.0.2",
+    "next": "14.0.4",
+    "next-themes": "^0.2.1",
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.0.4"
+    "relay-nextjs": "^3.0.1",
+    "relay-runtime": "^16.1.0",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@graphql-codegen/cli": "^5.0.0",
+    "@graphql-codegen/client-preset": "^4.1.0",
+    "@graphql-codegen/schema-ast": "^4.0.0",
+    "@types/better-sqlite3": "^7.6.8",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/react-relay": "^16.0.5",
+    "@types/relay-runtime": "^14.1.20",
+    "@types/uuid": "^9.0.7",
     "autoprefixer": "^10.0.1",
-    "postcss": "^8",
-    "tailwindcss": "^3.3.0",
+    "better-sqlite3": "^9.2.2",
+    "daisyui": "^4.4.20",
     "eslint": "^8",
-    "eslint-config-next": "14.0.4"
+    "eslint-config-next": "14.0.4",
+    "graphql": "^16.8.1",
+    "i": "^0.3.7",
+    "nodemon": "^3.0.2",
+    "npm": "^10.2.5",
+    "postcss": "^8",
+    "prisma": "^5.7.0",
+    "react-relay": "^0.0.0-main-fdf847e9",
+    "relay-compiler": "^0.0.0-main-fdf847e9",
+    "tailwindcss": "^3.3.0",
+    "typescript": "^5"
   }
 }

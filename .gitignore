@@ -34,3 +34,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+test-scenarios/
+seanario.sqlite
+seanario2.sqlite
+
