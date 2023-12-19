@@ -1,13 +1,13 @@
-"use client";
-import {Suspense} from "react";
-import {SerializablePreloadedQuery} from "@/relay/loadSerializableQuery";
+'use client';
+import {Suspense} from 'react';
+import {SerializablePreloadedQuery} from '@/relay/loadSerializableQuery';
 import MainViewQueryNode, {
     MainViewQuery,
-} from "@/__generated__/MainViewQuery.graphql";
-import {getCurrentEnvironment} from "@/relay/clientEnvironment";
-import useSerializablePreloadedQuery from "@/relay/useSerializablePreloadedQuery";
-import {RelayEnvironmentProvider} from "react-relay/hooks";
-import MainView from "@/app/MainView";
+} from '@/__generated__/MainViewQuery.graphql';
+import {getCurrentEnvironment} from '@/relay/clientEnvironment';
+import useSerializablePreloadedQuery from '@/relay/useSerializablePreloadedQuery';
+import {RelayEnvironmentProvider} from 'react-relay/hooks';
+import MainView from '@/app/MainView';
 
 
 const MainViewClientComponent = (props: {
