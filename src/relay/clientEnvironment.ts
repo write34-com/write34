@@ -18,7 +18,9 @@ export async function networkFetch(
     variables: Variables
 ): Promise<GraphQLResponse> {
 
-    const resp = await fetch('http://localhost:3000/api/graphql', {
+    const baseurl = process.env.NEXTAUTH_URL;
+
+    const resp = await fetch(baseurl + '/api/graphql', {
         method: "POST",
         headers: {
             Accept: "application/json",
@@ -71,7 +73,8 @@ export function fetchQuery(
             return Promise.resolve(fromCache);
         }
     }
-    return fetch('http://localhost:3000/api/graphql', {
+
+    return fetch('/api/graphql', {
         method: 'POST',
         headers: {
             // Add authentication and other headers here

@@ -14,7 +14,9 @@ export function fetchQuery(
     cacheConfig: CacheConfig
     // uploadables,
 ) {
-    return fetch('http://localhost:3000/api/graphql', {
+    const baseurl = process.env.NEXTAUTH_URL;
+
+    return fetch(baseurl + '/api/graphql', {
         method: 'POST',
         headers: {
             // Add authentication and other headers here

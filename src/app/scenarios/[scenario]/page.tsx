@@ -6,16 +6,16 @@ import scenarioComponentViewQueryGraphql, {
     scenarioComponentViewQuery
 } from "@/__generated__/scenarioComponentViewQuery.graphql";
 
-export const generateStaticParams = (async () => {
-
-    const dbScenarios = await db.prompts.findMany({
-        take: 100000,
-    });
-
-    return dbScenarios.map(scenario => ({
-        scenario: scenario.id
-    }));
-});
+// export const generateStaticParams = (async () => {
+//
+//     const dbScenarios = await db.prompts.findMany({
+//         take: 100000,
+//     });
+//
+//     return dbScenarios.map(scenario => ({
+//         scenario: scenario.id
+//     }));
+// });
 
 export default async function ScenarioPage({ params }: {
     params: { scenario: string };
@@ -30,5 +30,5 @@ export default async function ScenarioPage({ params }: {
     return <ScenarioClientComponent preloadedQuery={preloadedQuery} />;
 }
 
-export const runtime = 'edge';
+// export const runtime = 'edge';
 
