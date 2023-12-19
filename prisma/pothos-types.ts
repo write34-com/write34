@@ -1,5 +1,5 @@
 /* eslint-disable */
-import type { Prisma, Prompts, WorldInfos, PromptSearch, WorldInfoSearch, User } from "./client";
+import type { Prisma, Prompts, WorldInfos, AetherPrompts, AetherWorldInfos, PromptSearch, WorldInfoSearch, User } from "./client";
 export default interface PrismaTypes {
     Prompts: {
         Name: "Prompts";
@@ -36,6 +36,44 @@ export default interface PrismaTypes {
             prompts: {
                 Shape: Prompts;
                 Name: "Prompts";
+            };
+        };
+    };
+    AetherPrompts: {
+        Name: "AetherPrompts";
+        Shape: AetherPrompts;
+        Include: Prisma.AetherPromptsInclude;
+        Select: Prisma.AetherPromptsSelect;
+        OrderBy: Prisma.AetherPromptsOrderByWithRelationInput;
+        WhereUnique: Prisma.AetherPromptsWhereUniqueInput;
+        Where: Prisma.AetherPromptsWhereInput;
+        Create: {};
+        Update: {};
+        RelationName: "worldInfos";
+        ListRelations: "worldInfos";
+        Relations: {
+            worldInfos: {
+                Shape: AetherWorldInfos[];
+                Name: "AetherWorldInfos";
+            };
+        };
+    };
+    AetherWorldInfos: {
+        Name: "AetherWorldInfos";
+        Shape: AetherWorldInfos;
+        Include: Prisma.AetherWorldInfosInclude;
+        Select: Prisma.AetherWorldInfosSelect;
+        OrderBy: Prisma.AetherWorldInfosOrderByWithRelationInput;
+        WhereUnique: Prisma.AetherWorldInfosWhereUniqueInput;
+        Where: Prisma.AetherWorldInfosWhereInput;
+        Create: {};
+        Update: {};
+        RelationName: "prompts";
+        ListRelations: never;
+        Relations: {
+            prompts: {
+                Shape: AetherPrompts;
+                Name: "AetherPrompts";
             };
         };
     };
