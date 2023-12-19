@@ -109,25 +109,25 @@ CREATE VIRTUAL TABLE promptSearch USING fts5
     content_rowid='rowid'
 );
 
-CREATE TRIGGER promptSearch_ai AFTER INSERT ON Prompts
-BEGIN
-    INSERT INTO promptSearch (id, description, memory, promptContent, tags, title)
-    VALUES (new.id, new.description, new.memory, new.promptContent, new.tags, new.title);
-END;
-
-CREATE TRIGGER promptSearch_ad AFTER DELETE ON Prompts
-BEGIN
-    INSERT INTO promptSearch (promptSearch, id, description, memory, promptContent, tags, title)
-    VALUES ('delete', old.id, old.description, old.memory, old.promptContent, old.tags, old.title);
-END;
-
-CREATE TRIGGER promptSearch_au AFTER UPDATE ON Prompts
-BEGIN
-    INSERT INTO promptSearch (promptSearch, id, description, memory, promptContent, tags, title)
-    VALUES ('delete', old.id, old.description, old.memory, old.promptContent, old.tags, old.title);
-    INSERT INTO promptSearch (id, description, memory, promptContent, tags, title)
-    VALUES (new.id, new.description, new.memory, new.promptContent, new.tags, new.title);
-END;
+-- CREATE TRIGGER promptSearch_ai AFTER INSERT ON Prompts
+-- BEGIN
+--     INSERT INTO promptSearch (id, description, memory, promptContent, tags, title)
+--     VALUES (new.id, new.description, new.memory, new.promptContent, new.tags, new.title);
+-- END;
+--
+-- CREATE TRIGGER promptSearch_ad AFTER DELETE ON Prompts
+-- BEGIN
+--     INSERT INTO promptSearch (promptSearch, id, description, memory, promptContent, tags, title)
+--     VALUES ('delete', old.id, old.description, old.memory, old.promptContent, old.tags, old.title);
+-- END;
+--
+-- CREATE TRIGGER promptSearch_au AFTER UPDATE ON Prompts
+-- BEGIN
+--     INSERT INTO promptSearch (promptSearch, id, description, memory, promptContent, tags, title)
+--     VALUES ('delete', old.id, old.description, old.memory, old.promptContent, old.tags, old.title);
+--     INSERT INTO promptSearch (id, description, memory, promptContent, tags, title)
+--     VALUES (new.id, new.description, new.memory, new.promptContent, new.tags, new.title);
+-- END;
 
 CREATE VIRTUAL TABLE worldInfoSearch USING fts5
 (

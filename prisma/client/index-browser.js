@@ -136,34 +136,22 @@ exports.Prisma.WorldInfosScalarFieldEnum = {
   dateEdited: 'dateEdited'
 };
 
-exports.Prisma.AetherPromptsScalarFieldEnum = {
+exports.Prisma.PromptSearchScalarFieldEnum = {
   id: 'id',
-  authorsNote: 'authorsNote',
-  description: 'description',
-  memory: 'memory',
-  nsfw: 'nsfw',
-  parentId: 'parentId',
-  promptContent: 'promptContent',
-  publishDate: 'publishDate',
-  quests: 'quests',
-  tags: 'tags',
-  title: 'title',
-  scriptZip: 'scriptZip',
-  novelAiScenario: 'novelAiScenario',
-  holoAiScenario: 'holoAiScenario',
-  correlationId: 'correlationId',
-  dateCreated: 'dateCreated',
-  dateEdited: 'dateEdited'
+  text: 'text'
 };
 
-exports.Prisma.AetherWorldInfosScalarFieldEnum = {
+exports.Prisma.WorldInfoSearchScalarFieldEnum = {
   id: 'id',
-  entry: 'entry',
-  keys: 'keys',
-  promptId: 'promptId',
-  correlationId: 'correlationId',
+  text: 'text'
+};
+
+exports.Prisma.UserScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  name: 'name',
   dateCreated: 'dateCreated',
-  dateEdited: 'dateEdited'
+  lastLoggedIn: 'lastLoggedIn'
 };
 
 exports.Prisma.SortOrder = {
@@ -180,8 +168,9 @@ exports.Prisma.NullsOrder = {
 exports.Prisma.ModelName = {
   Prompts: 'Prompts',
   WorldInfos: 'WorldInfos',
-  AetherPrompts: 'AetherPrompts',
-  AetherWorldInfos: 'AetherWorldInfos'
+  PromptSearch: 'PromptSearch',
+  WorldInfoSearch: 'WorldInfoSearch',
+  User: 'User'
 };
 
 /**

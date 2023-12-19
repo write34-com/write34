@@ -1,3 +1,5 @@
+// TODO: Probably move the home page to this route and then write a home page.
+
 const posts = [
     {
         id: 1,

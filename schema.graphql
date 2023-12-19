@@ -40,14 +40,25 @@ type Prompts implements Node {
   worldInfos: [WorldInfos!]!
 }
 
+type PromptsSearch implements Node {
+  description: String
+  id: ID!
+  memory: String
+  promptContent: String!
+  tags: String!
+  title: String!
+}
+
 type Query {
+  me: User!
   node(id: ID!): Node
   nodes(ids: [ID!]!): [Node]!
   prompt(id: ID!): Prompts
   promptById(id: String!): Prompts
-  prompts(after: ID, before: ID, first: Int, last: Int): QueryPromptsConnection!
+  prompts(after: String, before: String, first: Int, last: Int): QueryPromptsConnection!
+  search: Search!
   worldInfo(id: ID!): WorldInfos
-  worldInfos(after: ID, before: ID, first: Int, last: Int): QueryWorldInfosConnection!
+  worldInfos(after: String, before: String, first: Int, last: Int): QueryWorldInfosConnection!
 }
 
 type QueryPromptsConnection {
@@ -68,6 +79,28 @@ type QueryWorldInfosConnection {
 type QueryWorldInfosConnectionEdge {
   cursor: String!
   node: WorldInfos!
+}
+
+"""Search results"""
+type Search {
+  prompts(after: String, before: String, first: Int, last: Int, query: String!): SearchPromptsConnection!
+}
+
+type SearchPromptsConnection {
+  edges: [SearchPromptsConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type SearchPromptsConnectionEdge {
+  cursor: String!
+  node: PromptsSearch!
+}
+
+type User implements Node {
+  dateCreated: String!
+  email: String!
+  id: ID!
+  name: String!
 }
 
 type WorldInfos implements Node {

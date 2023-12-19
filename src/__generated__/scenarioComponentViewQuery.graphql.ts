@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<05900aea646e980ada156101d52bb3a9>>
+ * @generated SignedSource<<55bb296d0709dcb098b779df0b9b2e54>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -21,6 +21,7 @@ export type scenarioComponentViewQuery$data = {
     readonly id: string;
     readonly memory: string | null | undefined;
     readonly nsfw: boolean;
+    readonly promptContent: string;
     readonly publishDate: string | null | undefined;
     readonly tags: string;
     readonly title: string;
@@ -106,6 +107,13 @@ v2 = [
         "alias": null,
         "args": null,
         "kind": "ScalarField",
+        "name": "promptContent",
+        "storageKey": null
+      },
+      {
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
         "name": "nsfw",
         "storageKey": null
       },
@@ -178,16 +186,16 @@ return {
     "selections": (v2/*: any*/)
   },
   "params": {
-    "cacheID": "0287d96a6b378b6076059170506999e8",
+    "cacheID": "faefff80e75262b8ada8b292bc561013",
     "id": null,
     "metadata": {},
     "name": "scenarioComponentViewQuery",
     "operationKind": "query",
-    "text": "query scenarioComponentViewQuery(\n  $scenario: ID!\n) {\n  prompt(id: $scenario) {\n    id\n    title\n    description\n    dateCreated\n    dateEdited\n    publishDate\n    nsfw\n    tags\n    authorsNote\n    memory\n    worldInfos {\n      id\n      entry\n      keys\n    }\n  }\n}\n"
+    "text": "query scenarioComponentViewQuery(\n  $scenario: ID!\n) {\n  prompt(id: $scenario) {\n    id\n    title\n    description\n    dateCreated\n    dateEdited\n    publishDate\n    promptContent\n    nsfw\n    tags\n    authorsNote\n    memory\n    worldInfos {\n      id\n      entry\n      keys\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "e33a0919e182c91954cc47d65c061a15";
+(node as any).hash = "8fd4fce6c75ab25185d36f946f2d2115";
 
 export default node;

@@ -24,15 +24,20 @@ export type Prompts = $Result.DefaultSelection<Prisma.$PromptsPayload>
  */
 export type WorldInfos = $Result.DefaultSelection<Prisma.$WorldInfosPayload>
 /**
- * Model AetherPrompts
+ * Model PromptSearch
  * 
  */
-export type AetherPrompts = $Result.DefaultSelection<Prisma.$AetherPromptsPayload>
+export type PromptSearch = $Result.DefaultSelection<Prisma.$PromptSearchPayload>
 /**
- * Model AetherWorldInfos
+ * Model WorldInfoSearch
  * 
  */
-export type AetherWorldInfos = $Result.DefaultSelection<Prisma.$AetherWorldInfosPayload>
+export type WorldInfoSearch = $Result.DefaultSelection<Prisma.$WorldInfoSearchPayload>
+/**
+ * Model User
+ * 
+ */
+export type User = $Result.DefaultSelection<Prisma.$UserPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -177,24 +182,34 @@ export class PrismaClient<
   get worldInfos(): Prisma.WorldInfosDelegate<ExtArgs>;
 
   /**
-   * `prisma.aetherPrompts`: Exposes CRUD operations for the **AetherPrompts** model.
+   * `prisma.promptSearch`: Exposes CRUD operations for the **PromptSearch** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more AetherPrompts
-    * const aetherPrompts = await prisma.aetherPrompts.findMany()
+    * // Fetch zero or more PromptSearches
+    * const promptSearches = await prisma.promptSearch.findMany()
     * ```
     */
-  get aetherPrompts(): Prisma.AetherPromptsDelegate<ExtArgs>;
+  get promptSearch(): Prisma.PromptSearchDelegate<ExtArgs>;
 
   /**
-   * `prisma.aetherWorldInfos`: Exposes CRUD operations for the **AetherWorldInfos** model.
+   * `prisma.worldInfoSearch`: Exposes CRUD operations for the **WorldInfoSearch** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more AetherWorldInfos
-    * const aetherWorldInfos = await prisma.aetherWorldInfos.findMany()
+    * // Fetch zero or more WorldInfoSearches
+    * const worldInfoSearches = await prisma.worldInfoSearch.findMany()
     * ```
     */
-  get aetherWorldInfos(): Prisma.AetherWorldInfosDelegate<ExtArgs>;
+  get worldInfoSearch(): Prisma.WorldInfoSearchDelegate<ExtArgs>;
+
+  /**
+   * `prisma.user`: Exposes CRUD operations for the **User** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Users
+    * const users = await prisma.user.findMany()
+    * ```
+    */
+  get user(): Prisma.UserDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -667,8 +682,9 @@ export namespace Prisma {
   export const ModelName: {
     Prompts: 'Prompts',
     WorldInfos: 'WorldInfos',
-    AetherPrompts: 'AetherPrompts',
-    AetherWorldInfos: 'AetherWorldInfos'
+    PromptSearch: 'PromptSearch',
+    WorldInfoSearch: 'WorldInfoSearch',
+    User: 'User'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -685,7 +701,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     meta: {
-      modelProps: 'prompts' | 'worldInfos' | 'aetherPrompts' | 'aetherWorldInfos'
+      modelProps: 'prompts' | 'worldInfos' | 'promptSearch' | 'worldInfoSearch' | 'user'
       txIsolationLevel: Prisma.TransactionIsolationLevel
     },
     model: {
@@ -813,127 +829,189 @@ export namespace Prisma {
           }
         }
       }
-      AetherPrompts: {
-        payload: Prisma.$AetherPromptsPayload<ExtArgs>
-        fields: Prisma.AetherPromptsFieldRefs
+      PromptSearch: {
+        payload: Prisma.$PromptSearchPayload<ExtArgs>
+        fields: Prisma.PromptSearchFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.AetherPromptsFindUniqueArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$AetherPromptsPayload> | null
+            args: Prisma.PromptSearchFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PromptSearchPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.AetherPromptsFindUniqueOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$AetherPromptsPayload>
+            args: Prisma.PromptSearchFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PromptSearchPayload>
           }
           findFirst: {
-            args: Prisma.AetherPromptsFindFirstArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$AetherPromptsPayload> | null
+            args: Prisma.PromptSearchFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PromptSearchPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.AetherPromptsFindFirstOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$AetherPromptsPayload>
+            args: Prisma.PromptSearchFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PromptSearchPayload>
           }
           findMany: {
-            args: Prisma.AetherPromptsFindManyArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$AetherPromptsPayload>[]
+            args: Prisma.PromptSearchFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PromptSearchPayload>[]
           }
           create: {
-            args: Prisma.AetherPromptsCreateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$AetherPromptsPayload>
+            args: Prisma.PromptSearchCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PromptSearchPayload>
           }
           delete: {
-            args: Prisma.AetherPromptsDeleteArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$AetherPromptsPayload>
+            args: Prisma.PromptSearchDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PromptSearchPayload>
           }
           update: {
-            args: Prisma.AetherPromptsUpdateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$AetherPromptsPayload>
+            args: Prisma.PromptSearchUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PromptSearchPayload>
           }
           deleteMany: {
-            args: Prisma.AetherPromptsDeleteManyArgs<ExtArgs>,
+            args: Prisma.PromptSearchDeleteManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           updateMany: {
-            args: Prisma.AetherPromptsUpdateManyArgs<ExtArgs>,
+            args: Prisma.PromptSearchUpdateManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           upsert: {
-            args: Prisma.AetherPromptsUpsertArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$AetherPromptsPayload>
+            args: Prisma.PromptSearchUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PromptSearchPayload>
           }
           aggregate: {
-            args: Prisma.AetherPromptsAggregateArgs<ExtArgs>,
-            result: $Utils.Optional<AggregateAetherPrompts>
+            args: Prisma.PromptSearchAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregatePromptSearch>
           }
           groupBy: {
-            args: Prisma.AetherPromptsGroupByArgs<ExtArgs>,
-            result: $Utils.Optional<AetherPromptsGroupByOutputType>[]
+            args: Prisma.PromptSearchGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<PromptSearchGroupByOutputType>[]
           }
           count: {
-            args: Prisma.AetherPromptsCountArgs<ExtArgs>,
-            result: $Utils.Optional<AetherPromptsCountAggregateOutputType> | number
+            args: Prisma.PromptSearchCountArgs<ExtArgs>,
+            result: $Utils.Optional<PromptSearchCountAggregateOutputType> | number
           }
         }
       }
-      AetherWorldInfos: {
-        payload: Prisma.$AetherWorldInfosPayload<ExtArgs>
-        fields: Prisma.AetherWorldInfosFieldRefs
+      WorldInfoSearch: {
+        payload: Prisma.$WorldInfoSearchPayload<ExtArgs>
+        fields: Prisma.WorldInfoSearchFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.AetherWorldInfosFindUniqueArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$AetherWorldInfosPayload> | null
+            args: Prisma.WorldInfoSearchFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$WorldInfoSearchPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.AetherWorldInfosFindUniqueOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$AetherWorldInfosPayload>
+            args: Prisma.WorldInfoSearchFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$WorldInfoSearchPayload>
           }
           findFirst: {
-            args: Prisma.AetherWorldInfosFindFirstArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$AetherWorldInfosPayload> | null
+            args: Prisma.WorldInfoSearchFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$WorldInfoSearchPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.AetherWorldInfosFindFirstOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$AetherWorldInfosPayload>
+            args: Prisma.WorldInfoSearchFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$WorldInfoSearchPayload>
           }
           findMany: {
-            args: Prisma.AetherWorldInfosFindManyArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$AetherWorldInfosPayload>[]
+            args: Prisma.WorldInfoSearchFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$WorldInfoSearchPayload>[]
           }
           create: {
-            args: Prisma.AetherWorldInfosCreateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$AetherWorldInfosPayload>
+            args: Prisma.WorldInfoSearchCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$WorldInfoSearchPayload>
           }
           delete: {
-            args: Prisma.AetherWorldInfosDeleteArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$AetherWorldInfosPayload>
+            args: Prisma.WorldInfoSearchDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$WorldInfoSearchPayload>
           }
           update: {
-            args: Prisma.AetherWorldInfosUpdateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$AetherWorldInfosPayload>
+            args: Prisma.WorldInfoSearchUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$WorldInfoSearchPayload>
           }
           deleteMany: {
-            args: Prisma.AetherWorldInfosDeleteManyArgs<ExtArgs>,
+            args: Prisma.WorldInfoSearchDeleteManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           updateMany: {
-            args: Prisma.AetherWorldInfosUpdateManyArgs<ExtArgs>,
+            args: Prisma.WorldInfoSearchUpdateManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           upsert: {
-            args: Prisma.AetherWorldInfosUpsertArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$AetherWorldInfosPayload>
+            args: Prisma.WorldInfoSearchUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$WorldInfoSearchPayload>
           }
           aggregate: {
-            args: Prisma.AetherWorldInfosAggregateArgs<ExtArgs>,
-            result: $Utils.Optional<AggregateAetherWorldInfos>
+            args: Prisma.WorldInfoSearchAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateWorldInfoSearch>
           }
           groupBy: {
-            args: Prisma.AetherWorldInfosGroupByArgs<ExtArgs>,
-            result: $Utils.Optional<AetherWorldInfosGroupByOutputType>[]
+            args: Prisma.WorldInfoSearchGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<WorldInfoSearchGroupByOutputType>[]
           }
           count: {
-            args: Prisma.AetherWorldInfosCountArgs<ExtArgs>,
-            result: $Utils.Optional<AetherWorldInfosCountAggregateOutputType> | number
+            args: Prisma.WorldInfoSearchCountArgs<ExtArgs>,
+            result: $Utils.Optional<WorldInfoSearchCountAggregateOutputType> | number
+          }
+        }
+      }
+      User: {
+        payload: Prisma.$UserPayload<ExtArgs>
+        fields: Prisma.UserFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.UserFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$UserPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.UserFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
+          }
+          findFirst: {
+            args: Prisma.UserFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$UserPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.UserFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
+          }
+          findMany: {
+            args: Prisma.UserFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>[]
+          }
+          create: {
+            args: Prisma.UserCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
+          }
+          delete: {
+            args: Prisma.UserDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
+          }
+          update: {
+            args: Prisma.UserUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
+          }
+          deleteMany: {
+            args: Prisma.UserDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.UserUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.UserUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
+          }
+          aggregate: {
+            args: Prisma.UserAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateUser>
+          }
+          groupBy: {
+            args: Prisma.UserGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<UserGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.UserCountArgs<ExtArgs>,
+            result: $Utils.Optional<UserCountAggregateOutputType> | number
           }
         }
       }
@@ -1111,40 +1189,6 @@ export namespace Prisma {
    */
   export type PromptsCountOutputTypeCountWorldInfosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: WorldInfosWhereInput
-  }
-
-
-
-  /**
-   * Count Type AetherPromptsCountOutputType
-   */
-
-  export type AetherPromptsCountOutputType = {
-    worldInfos: number
-  }
-
-  export type AetherPromptsCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    worldInfos?: boolean | AetherPromptsCountOutputTypeCountWorldInfosArgs
-  }
-
-  // Custom InputTypes
-
-  /**
-   * AetherPromptsCountOutputType without action
-   */
-  export type AetherPromptsCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the AetherPromptsCountOutputType
-     */
-    select?: AetherPromptsCountOutputTypeSelect<ExtArgs> | null
-  }
-
-
-  /**
-   * AetherPromptsCountOutputType without action
-   */
-  export type AetherPromptsCountOutputTypeCountWorldInfosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: AetherWorldInfosWhereInput
   }
 
 
@@ -3205,494 +3249,331 @@ export namespace Prisma {
 
 
   /**
-   * Model AetherPrompts
+   * Model PromptSearch
    */
 
-  export type AggregateAetherPrompts = {
-    _count: AetherPromptsCountAggregateOutputType | null
-    _avg: AetherPromptsAvgAggregateOutputType | null
-    _sum: AetherPromptsSumAggregateOutputType | null
-    _min: AetherPromptsMinAggregateOutputType | null
-    _max: AetherPromptsMaxAggregateOutputType | null
+  export type AggregatePromptSearch = {
+    _count: PromptSearchCountAggregateOutputType | null
+    _avg: PromptSearchAvgAggregateOutputType | null
+    _sum: PromptSearchSumAggregateOutputType | null
+    _min: PromptSearchMinAggregateOutputType | null
+    _max: PromptSearchMaxAggregateOutputType | null
   }
 
-  export type AetherPromptsAvgAggregateOutputType = {
+  export type PromptSearchAvgAggregateOutputType = {
     id: number | null
-    nsfw: number | null
   }
 
-  export type AetherPromptsSumAggregateOutputType = {
+  export type PromptSearchSumAggregateOutputType = {
     id: number | null
-    nsfw: number | null
   }
 
-  export type AetherPromptsMinAggregateOutputType = {
+  export type PromptSearchMinAggregateOutputType = {
     id: number | null
-    authorsNote: string | null
-    description: string | null
-    memory: string | null
-    nsfw: number | null
-    parentId: string | null
-    promptContent: string | null
-    publishDate: string | null
-    quests: string | null
-    tags: string | null
-    title: string | null
-    scriptZip: Buffer | null
-    novelAiScenario: string | null
-    holoAiScenario: string | null
-    correlationId: string | null
-    dateCreated: string | null
-    dateEdited: string | null
+    text: string | null
   }
 
-  export type AetherPromptsMaxAggregateOutputType = {
+  export type PromptSearchMaxAggregateOutputType = {
     id: number | null
-    authorsNote: string | null
-    description: string | null
-    memory: string | null
-    nsfw: number | null
-    parentId: string | null
-    promptContent: string | null
-    publishDate: string | null
-    quests: string | null
-    tags: string | null
-    title: string | null
-    scriptZip: Buffer | null
-    novelAiScenario: string | null
-    holoAiScenario: string | null
-    correlationId: string | null
-    dateCreated: string | null
-    dateEdited: string | null
+    text: string | null
   }
 
-  export type AetherPromptsCountAggregateOutputType = {
+  export type PromptSearchCountAggregateOutputType = {
     id: number
-    authorsNote: number
-    description: number
-    memory: number
-    nsfw: number
-    parentId: number
-    promptContent: number
-    publishDate: number
-    quests: number
-    tags: number
-    title: number
-    scriptZip: number
-    novelAiScenario: number
-    holoAiScenario: number
-    correlationId: number
-    dateCreated: number
-    dateEdited: number
+    text: number
     _all: number
   }
 
 
-  export type AetherPromptsAvgAggregateInputType = {
+  export type PromptSearchAvgAggregateInputType = {
     id?: true
-    nsfw?: true
   }
 
-  export type AetherPromptsSumAggregateInputType = {
+  export type PromptSearchSumAggregateInputType = {
     id?: true
-    nsfw?: true
   }
 
-  export type AetherPromptsMinAggregateInputType = {
+  export type PromptSearchMinAggregateInputType = {
     id?: true
-    authorsNote?: true
-    description?: true
-    memory?: true
-    nsfw?: true
-    parentId?: true
-    promptContent?: true
-    publishDate?: true
-    quests?: true
-    tags?: true
-    title?: true
-    scriptZip?: true
-    novelAiScenario?: true
-    holoAiScenario?: true
-    correlationId?: true
-    dateCreated?: true
-    dateEdited?: true
+    text?: true
   }
 
-  export type AetherPromptsMaxAggregateInputType = {
+  export type PromptSearchMaxAggregateInputType = {
     id?: true
-    authorsNote?: true
-    description?: true
-    memory?: true
-    nsfw?: true
-    parentId?: true
-    promptContent?: true
-    publishDate?: true
-    quests?: true
-    tags?: true
-    title?: true
-    scriptZip?: true
-    novelAiScenario?: true
-    holoAiScenario?: true
-    correlationId?: true
-    dateCreated?: true
-    dateEdited?: true
+    text?: true
   }
 
-  export type AetherPromptsCountAggregateInputType = {
+  export type PromptSearchCountAggregateInputType = {
     id?: true
-    authorsNote?: true
-    description?: true
-    memory?: true
-    nsfw?: true
-    parentId?: true
-    promptContent?: true
-    publishDate?: true
-    quests?: true
-    tags?: true
-    title?: true
-    scriptZip?: true
-    novelAiScenario?: true
-    holoAiScenario?: true
-    correlationId?: true
-    dateCreated?: true
-    dateEdited?: true
+    text?: true
     _all?: true
   }
 
-  export type AetherPromptsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PromptSearchAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which AetherPrompts to aggregate.
+     * Filter which PromptSearch to aggregate.
      */
-    where?: AetherPromptsWhereInput
+    where?: PromptSearchWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of AetherPrompts to fetch.
+     * Determine the order of PromptSearches to fetch.
      */
-    orderBy?: AetherPromptsOrderByWithRelationInput | AetherPromptsOrderByWithRelationInput[]
+    orderBy?: PromptSearchOrderByWithRelationInput | PromptSearchOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: AetherPromptsWhereUniqueInput
+    cursor?: PromptSearchWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` AetherPrompts from the position of the cursor.
+     * Take `±n` PromptSearches from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` AetherPrompts.
+     * Skip the first `n` PromptSearches.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned AetherPrompts
+     * Count returned PromptSearches
     **/
-    _count?: true | AetherPromptsCountAggregateInputType
+    _count?: true | PromptSearchCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to average
     **/
-    _avg?: AetherPromptsAvgAggregateInputType
+    _avg?: PromptSearchAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to sum
     **/
-    _sum?: AetherPromptsSumAggregateInputType
+    _sum?: PromptSearchSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: AetherPromptsMinAggregateInputType
+    _min?: PromptSearchMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: AetherPromptsMaxAggregateInputType
+    _max?: PromptSearchMaxAggregateInputType
   }
 
-  export type GetAetherPromptsAggregateType<T extends AetherPromptsAggregateArgs> = {
-        [P in keyof T & keyof AggregateAetherPrompts]: P extends '_count' | 'count'
+  export type GetPromptSearchAggregateType<T extends PromptSearchAggregateArgs> = {
+        [P in keyof T & keyof AggregatePromptSearch]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateAetherPrompts[P]>
-      : GetScalarType<T[P], AggregateAetherPrompts[P]>
+        : GetScalarType<T[P], AggregatePromptSearch[P]>
+      : GetScalarType<T[P], AggregatePromptSearch[P]>
   }
 
 
 
 
-  export type AetherPromptsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: AetherPromptsWhereInput
-    orderBy?: AetherPromptsOrderByWithAggregationInput | AetherPromptsOrderByWithAggregationInput[]
-    by: AetherPromptsScalarFieldEnum[] | AetherPromptsScalarFieldEnum
-    having?: AetherPromptsScalarWhereWithAggregatesInput
+  export type PromptSearchGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PromptSearchWhereInput
+    orderBy?: PromptSearchOrderByWithAggregationInput | PromptSearchOrderByWithAggregationInput[]
+    by: PromptSearchScalarFieldEnum[] | PromptSearchScalarFieldEnum
+    having?: PromptSearchScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: AetherPromptsCountAggregateInputType | true
-    _avg?: AetherPromptsAvgAggregateInputType
-    _sum?: AetherPromptsSumAggregateInputType
-    _min?: AetherPromptsMinAggregateInputType
-    _max?: AetherPromptsMaxAggregateInputType
+    _count?: PromptSearchCountAggregateInputType | true
+    _avg?: PromptSearchAvgAggregateInputType
+    _sum?: PromptSearchSumAggregateInputType
+    _min?: PromptSearchMinAggregateInputType
+    _max?: PromptSearchMaxAggregateInputType
   }
 
-  export type AetherPromptsGroupByOutputType = {
+  export type PromptSearchGroupByOutputType = {
     id: number
-    authorsNote: string | null
-    description: string | null
-    memory: string | null
-    nsfw: number
-    parentId: string | null
-    promptContent: string
-    publishDate: string | null
-    quests: string | null
-    tags: string
-    title: string
-    scriptZip: Buffer | null
-    novelAiScenario: string | null
-    holoAiScenario: string | null
-    correlationId: string
-    dateCreated: string
-    dateEdited: string | null
-    _count: AetherPromptsCountAggregateOutputType | null
-    _avg: AetherPromptsAvgAggregateOutputType | null
-    _sum: AetherPromptsSumAggregateOutputType | null
-    _min: AetherPromptsMinAggregateOutputType | null
-    _max: AetherPromptsMaxAggregateOutputType | null
+    text: string
+    _count: PromptSearchCountAggregateOutputType | null
+    _avg: PromptSearchAvgAggregateOutputType | null
+    _sum: PromptSearchSumAggregateOutputType | null
+    _min: PromptSearchMinAggregateOutputType | null
+    _max: PromptSearchMaxAggregateOutputType | null
   }
 
-  type GetAetherPromptsGroupByPayload<T extends AetherPromptsGroupByArgs> = Prisma.PrismaPromise<
+  type GetPromptSearchGroupByPayload<T extends PromptSearchGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<AetherPromptsGroupByOutputType, T['by']> &
+      PickEnumerable<PromptSearchGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof AetherPromptsGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof PromptSearchGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], AetherPromptsGroupByOutputType[P]>
-            : GetScalarType<T[P], AetherPromptsGroupByOutputType[P]>
+              : GetScalarType<T[P], PromptSearchGroupByOutputType[P]>
+            : GetScalarType<T[P], PromptSearchGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type AetherPromptsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type PromptSearchSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    authorsNote?: boolean
-    description?: boolean
-    memory?: boolean
-    nsfw?: boolean
-    parentId?: boolean
-    promptContent?: boolean
-    publishDate?: boolean
-    quests?: boolean
-    tags?: boolean
-    title?: boolean
-    scriptZip?: boolean
-    novelAiScenario?: boolean
-    holoAiScenario?: boolean
-    correlationId?: boolean
-    dateCreated?: boolean
-    dateEdited?: boolean
-    worldInfos?: boolean | AetherPrompts$worldInfosArgs<ExtArgs>
-    _count?: boolean | AetherPromptsCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["aetherPrompts"]>
+    text?: boolean
+  }, ExtArgs["result"]["promptSearch"]>
 
-  export type AetherPromptsSelectScalar = {
+  export type PromptSearchSelectScalar = {
     id?: boolean
-    authorsNote?: boolean
-    description?: boolean
-    memory?: boolean
-    nsfw?: boolean
-    parentId?: boolean
-    promptContent?: boolean
-    publishDate?: boolean
-    quests?: boolean
-    tags?: boolean
-    title?: boolean
-    scriptZip?: boolean
-    novelAiScenario?: boolean
-    holoAiScenario?: boolean
-    correlationId?: boolean
-    dateCreated?: boolean
-    dateEdited?: boolean
-  }
-
-  export type AetherPromptsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    worldInfos?: boolean | AetherPrompts$worldInfosArgs<ExtArgs>
-    _count?: boolean | AetherPromptsCountOutputTypeDefaultArgs<ExtArgs>
+    text?: boolean
   }
 
 
-  export type $AetherPromptsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "AetherPrompts"
-    objects: {
-      worldInfos: Prisma.$AetherWorldInfosPayload<ExtArgs>[]
-    }
+  export type $PromptSearchPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "PromptSearch"
+    objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      authorsNote: string | null
-      description: string | null
-      memory: string | null
-      nsfw: number
-      parentId: string | null
-      promptContent: string
-      publishDate: string | null
-      quests: string | null
-      tags: string
-      title: string
-      scriptZip: Buffer | null
-      novelAiScenario: string | null
-      holoAiScenario: string | null
-      correlationId: string
-      dateCreated: string
-      dateEdited: string | null
-    }, ExtArgs["result"]["aetherPrompts"]>
+      text: string
+    }, ExtArgs["result"]["promptSearch"]>
     composites: {}
   }
 
 
-  type AetherPromptsGetPayload<S extends boolean | null | undefined | AetherPromptsDefaultArgs> = $Result.GetResult<Prisma.$AetherPromptsPayload, S>
+  type PromptSearchGetPayload<S extends boolean | null | undefined | PromptSearchDefaultArgs> = $Result.GetResult<Prisma.$PromptSearchPayload, S>
 
-  type AetherPromptsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<AetherPromptsFindManyArgs, 'select' | 'include' | 'distinct' > & {
-      select?: AetherPromptsCountAggregateInputType | true
+  type PromptSearchCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<PromptSearchFindManyArgs, 'select' | 'include' | 'distinct' > & {
+      select?: PromptSearchCountAggregateInputType | true
     }
 
-  export interface AetherPromptsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AetherPrompts'], meta: { name: 'AetherPrompts' } }
+  export interface PromptSearchDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PromptSearch'], meta: { name: 'PromptSearch' } }
     /**
-     * Find zero or one AetherPrompts that matches the filter.
-     * @param {AetherPromptsFindUniqueArgs} args - Arguments to find a AetherPrompts
+     * Find zero or one PromptSearch that matches the filter.
+     * @param {PromptSearchFindUniqueArgs} args - Arguments to find a PromptSearch
      * @example
-     * // Get one AetherPrompts
-     * const aetherPrompts = await prisma.aetherPrompts.findUnique({
+     * // Get one PromptSearch
+     * const promptSearch = await prisma.promptSearch.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findUnique<T extends AetherPromptsFindUniqueArgs<ExtArgs>>(
-      args: SelectSubset<T, AetherPromptsFindUniqueArgs<ExtArgs>>
-    ): Prisma__AetherPromptsClient<$Result.GetResult<Prisma.$AetherPromptsPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+    findUnique<T extends PromptSearchFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, PromptSearchFindUniqueArgs<ExtArgs>>
+    ): Prisma__PromptSearchClient<$Result.GetResult<Prisma.$PromptSearchPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
 
     /**
-     * Find one AetherPrompts that matches the filter or throw an error  with `error.code='P2025'` 
+     * Find one PromptSearch that matches the filter or throw an error  with `error.code='P2025'` 
      *     if no matches were found.
-     * @param {AetherPromptsFindUniqueOrThrowArgs} args - Arguments to find a AetherPrompts
+     * @param {PromptSearchFindUniqueOrThrowArgs} args - Arguments to find a PromptSearch
      * @example
-     * // Get one AetherPrompts
-     * const aetherPrompts = await prisma.aetherPrompts.findUniqueOrThrow({
+     * // Get one PromptSearch
+     * const promptSearch = await prisma.promptSearch.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findUniqueOrThrow<T extends AetherPromptsFindUniqueOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, AetherPromptsFindUniqueOrThrowArgs<ExtArgs>>
-    ): Prisma__AetherPromptsClient<$Result.GetResult<Prisma.$AetherPromptsPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+    findUniqueOrThrow<T extends PromptSearchFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, PromptSearchFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__PromptSearchClient<$Result.GetResult<Prisma.$PromptSearchPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
 
     /**
-     * Find the first AetherPrompts that matches the filter.
+     * Find the first PromptSearch that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {AetherPromptsFindFirstArgs} args - Arguments to find a AetherPrompts
+     * @param {PromptSearchFindFirstArgs} args - Arguments to find a PromptSearch
      * @example
-     * // Get one AetherPrompts
-     * const aetherPrompts = await prisma.aetherPrompts.findFirst({
+     * // Get one PromptSearch
+     * const promptSearch = await prisma.promptSearch.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findFirst<T extends AetherPromptsFindFirstArgs<ExtArgs>>(
-      args?: SelectSubset<T, AetherPromptsFindFirstArgs<ExtArgs>>
-    ): Prisma__AetherPromptsClient<$Result.GetResult<Prisma.$AetherPromptsPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+    findFirst<T extends PromptSearchFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, PromptSearchFindFirstArgs<ExtArgs>>
+    ): Prisma__PromptSearchClient<$Result.GetResult<Prisma.$PromptSearchPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
 
     /**
-     * Find the first AetherPrompts that matches the filter or
+     * Find the first PromptSearch that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {AetherPromptsFindFirstOrThrowArgs} args - Arguments to find a AetherPrompts
+     * @param {PromptSearchFindFirstOrThrowArgs} args - Arguments to find a PromptSearch
      * @example
-     * // Get one AetherPrompts
-     * const aetherPrompts = await prisma.aetherPrompts.findFirstOrThrow({
+     * // Get one PromptSearch
+     * const promptSearch = await prisma.promptSearch.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findFirstOrThrow<T extends AetherPromptsFindFirstOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, AetherPromptsFindFirstOrThrowArgs<ExtArgs>>
-    ): Prisma__AetherPromptsClient<$Result.GetResult<Prisma.$AetherPromptsPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+    findFirstOrThrow<T extends PromptSearchFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, PromptSearchFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__PromptSearchClient<$Result.GetResult<Prisma.$PromptSearchPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
 
     /**
-     * Find zero or more AetherPrompts that matches the filter.
+     * Find zero or more PromptSearches that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {AetherPromptsFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @param {PromptSearchFindManyArgs=} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all AetherPrompts
-     * const aetherPrompts = await prisma.aetherPrompts.findMany()
+     * // Get all PromptSearches
+     * const promptSearches = await prisma.promptSearch.findMany()
      * 
-     * // Get first 10 AetherPrompts
-     * const aetherPrompts = await prisma.aetherPrompts.findMany({ take: 10 })
+     * // Get first 10 PromptSearches
+     * const promptSearches = await prisma.promptSearch.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const aetherPromptsWithIdOnly = await prisma.aetherPrompts.findMany({ select: { id: true } })
+     * const promptSearchWithIdOnly = await prisma.promptSearch.findMany({ select: { id: true } })
      * 
     **/
-    findMany<T extends AetherPromptsFindManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, AetherPromptsFindManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AetherPromptsPayload<ExtArgs>, T, 'findMany'>>
+    findMany<T extends PromptSearchFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, PromptSearchFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PromptSearchPayload<ExtArgs>, T, 'findMany'>>
 
     /**
-     * Create a AetherPrompts.
-     * @param {AetherPromptsCreateArgs} args - Arguments to create a AetherPrompts.
+     * Create a PromptSearch.
+     * @param {PromptSearchCreateArgs} args - Arguments to create a PromptSearch.
      * @example
-     * // Create one AetherPrompts
-     * const AetherPrompts = await prisma.aetherPrompts.create({
+     * // Create one PromptSearch
+     * const PromptSearch = await prisma.promptSearch.create({
      *   data: {
-     *     // ... data to create a AetherPrompts
+     *     // ... data to create a PromptSearch
      *   }
      * })
      * 
     **/
-    create<T extends AetherPromptsCreateArgs<ExtArgs>>(
-      args: SelectSubset<T, AetherPromptsCreateArgs<ExtArgs>>
-    ): Prisma__AetherPromptsClient<$Result.GetResult<Prisma.$AetherPromptsPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+    create<T extends PromptSearchCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, PromptSearchCreateArgs<ExtArgs>>
+    ): Prisma__PromptSearchClient<$Result.GetResult<Prisma.$PromptSearchPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
 
     /**
-     * Delete a AetherPrompts.
-     * @param {AetherPromptsDeleteArgs} args - Arguments to delete one AetherPrompts.
+     * Delete a PromptSearch.
+     * @param {PromptSearchDeleteArgs} args - Arguments to delete one PromptSearch.
      * @example
-     * // Delete one AetherPrompts
-     * const AetherPrompts = await prisma.aetherPrompts.delete({
+     * // Delete one PromptSearch
+     * const PromptSearch = await prisma.promptSearch.delete({
      *   where: {
-     *     // ... filter to delete one AetherPrompts
+     *     // ... filter to delete one PromptSearch
      *   }
      * })
      * 
     **/
-    delete<T extends AetherPromptsDeleteArgs<ExtArgs>>(
-      args: SelectSubset<T, AetherPromptsDeleteArgs<ExtArgs>>
-    ): Prisma__AetherPromptsClient<$Result.GetResult<Prisma.$AetherPromptsPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+    delete<T extends PromptSearchDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, PromptSearchDeleteArgs<ExtArgs>>
+    ): Prisma__PromptSearchClient<$Result.GetResult<Prisma.$PromptSearchPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
 
     /**
-     * Update one AetherPrompts.
-     * @param {AetherPromptsUpdateArgs} args - Arguments to update one AetherPrompts.
+     * Update one PromptSearch.
+     * @param {PromptSearchUpdateArgs} args - Arguments to update one PromptSearch.
      * @example
-     * // Update one AetherPrompts
-     * const aetherPrompts = await prisma.aetherPrompts.update({
+     * // Update one PromptSearch
+     * const promptSearch = await prisma.promptSearch.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -3702,34 +3583,34 @@ export namespace Prisma {
      * })
      * 
     **/
-    update<T extends AetherPromptsUpdateArgs<ExtArgs>>(
-      args: SelectSubset<T, AetherPromptsUpdateArgs<ExtArgs>>
-    ): Prisma__AetherPromptsClient<$Result.GetResult<Prisma.$AetherPromptsPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+    update<T extends PromptSearchUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, PromptSearchUpdateArgs<ExtArgs>>
+    ): Prisma__PromptSearchClient<$Result.GetResult<Prisma.$PromptSearchPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
 
     /**
-     * Delete zero or more AetherPrompts.
-     * @param {AetherPromptsDeleteManyArgs} args - Arguments to filter AetherPrompts to delete.
+     * Delete zero or more PromptSearches.
+     * @param {PromptSearchDeleteManyArgs} args - Arguments to filter PromptSearches to delete.
      * @example
-     * // Delete a few AetherPrompts
-     * const { count } = await prisma.aetherPrompts.deleteMany({
+     * // Delete a few PromptSearches
+     * const { count } = await prisma.promptSearch.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
     **/
-    deleteMany<T extends AetherPromptsDeleteManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, AetherPromptsDeleteManyArgs<ExtArgs>>
+    deleteMany<T extends PromptSearchDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, PromptSearchDeleteManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more AetherPrompts.
+     * Update zero or more PromptSearches.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {AetherPromptsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {PromptSearchUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many AetherPrompts
-     * const aetherPrompts = await prisma.aetherPrompts.updateMany({
+     * // Update many PromptSearches
+     * const promptSearch = await prisma.promptSearch.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -3739,59 +3620,59 @@ export namespace Prisma {
      * })
      * 
     **/
-    updateMany<T extends AetherPromptsUpdateManyArgs<ExtArgs>>(
-      args: SelectSubset<T, AetherPromptsUpdateManyArgs<ExtArgs>>
+    updateMany<T extends PromptSearchUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, PromptSearchUpdateManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create or update one AetherPrompts.
-     * @param {AetherPromptsUpsertArgs} args - Arguments to update or create a AetherPrompts.
+     * Create or update one PromptSearch.
+     * @param {PromptSearchUpsertArgs} args - Arguments to update or create a PromptSearch.
      * @example
-     * // Update or create a AetherPrompts
-     * const aetherPrompts = await prisma.aetherPrompts.upsert({
+     * // Update or create a PromptSearch
+     * const promptSearch = await prisma.promptSearch.upsert({
      *   create: {
-     *     // ... data to create a AetherPrompts
+     *     // ... data to create a PromptSearch
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the AetherPrompts we want to update
+     *     // ... the filter for the PromptSearch we want to update
      *   }
      * })
     **/
-    upsert<T extends AetherPromptsUpsertArgs<ExtArgs>>(
-      args: SelectSubset<T, AetherPromptsUpsertArgs<ExtArgs>>
-    ): Prisma__AetherPromptsClient<$Result.GetResult<Prisma.$AetherPromptsPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+    upsert<T extends PromptSearchUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, PromptSearchUpsertArgs<ExtArgs>>
+    ): Prisma__PromptSearchClient<$Result.GetResult<Prisma.$PromptSearchPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
 
     /**
-     * Count the number of AetherPrompts.
+     * Count the number of PromptSearches.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {AetherPromptsCountArgs} args - Arguments to filter AetherPrompts to count.
+     * @param {PromptSearchCountArgs} args - Arguments to filter PromptSearches to count.
      * @example
-     * // Count the number of AetherPrompts
-     * const count = await prisma.aetherPrompts.count({
+     * // Count the number of PromptSearches
+     * const count = await prisma.promptSearch.count({
      *   where: {
-     *     // ... the filter for the AetherPrompts we want to count
+     *     // ... the filter for the PromptSearches we want to count
      *   }
      * })
     **/
-    count<T extends AetherPromptsCountArgs>(
-      args?: Subset<T, AetherPromptsCountArgs>,
+    count<T extends PromptSearchCountArgs>(
+      args?: Subset<T, PromptSearchCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], AetherPromptsCountAggregateOutputType>
+          : GetScalarType<T['select'], PromptSearchCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a AetherPrompts.
+     * Allows you to perform aggregations operations on a PromptSearch.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {AetherPromptsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {PromptSearchAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -3811,13 +3692,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends AetherPromptsAggregateArgs>(args: Subset<T, AetherPromptsAggregateArgs>): Prisma.PrismaPromise<GetAetherPromptsAggregateType<T>>
+    aggregate<T extends PromptSearchAggregateArgs>(args: Subset<T, PromptSearchAggregateArgs>): Prisma.PrismaPromise<GetPromptSearchAggregateType<T>>
 
     /**
-     * Group by AetherPrompts.
+     * Group by PromptSearch.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {AetherPromptsGroupByArgs} args - Group by arguments.
+     * @param {PromptSearchGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -3832,14 +3713,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends AetherPromptsGroupByArgs,
+      T extends PromptSearchGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: AetherPromptsGroupByArgs['orderBy'] }
-        : { orderBy?: AetherPromptsGroupByArgs['orderBy'] },
+        ? { orderBy: PromptSearchGroupByArgs['orderBy'] }
+        : { orderBy?: PromptSearchGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -3888,23 +3769,22 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, AetherPromptsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAetherPromptsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, PromptSearchGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPromptSearchGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the AetherPrompts model
+   * Fields of the PromptSearch model
    */
-  readonly fields: AetherPromptsFieldRefs;
+  readonly fields: PromptSearchFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for AetherPrompts.
+   * The delegate class that acts as a "Promise-like" for PromptSearch.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__AetherPromptsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__PromptSearchClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    worldInfos<T extends AetherPrompts$worldInfosArgs<ExtArgs> = {}>(args?: Subset<T, AetherPrompts$worldInfosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AetherWorldInfosPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -3931,749 +3811,612 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the AetherPrompts model
+   * Fields of the PromptSearch model
    */ 
-  interface AetherPromptsFieldRefs {
-    readonly id: FieldRef<"AetherPrompts", 'Int'>
-    readonly authorsNote: FieldRef<"AetherPrompts", 'String'>
-    readonly description: FieldRef<"AetherPrompts", 'String'>
-    readonly memory: FieldRef<"AetherPrompts", 'String'>
-    readonly nsfw: FieldRef<"AetherPrompts", 'Int'>
-    readonly parentId: FieldRef<"AetherPrompts", 'String'>
-    readonly promptContent: FieldRef<"AetherPrompts", 'String'>
-    readonly publishDate: FieldRef<"AetherPrompts", 'String'>
-    readonly quests: FieldRef<"AetherPrompts", 'String'>
-    readonly tags: FieldRef<"AetherPrompts", 'String'>
-    readonly title: FieldRef<"AetherPrompts", 'String'>
-    readonly scriptZip: FieldRef<"AetherPrompts", 'Bytes'>
-    readonly novelAiScenario: FieldRef<"AetherPrompts", 'String'>
-    readonly holoAiScenario: FieldRef<"AetherPrompts", 'String'>
-    readonly correlationId: FieldRef<"AetherPrompts", 'String'>
-    readonly dateCreated: FieldRef<"AetherPrompts", 'String'>
-    readonly dateEdited: FieldRef<"AetherPrompts", 'String'>
+  interface PromptSearchFieldRefs {
+    readonly id: FieldRef<"PromptSearch", 'Int'>
+    readonly text: FieldRef<"PromptSearch", 'String'>
   }
     
 
   // Custom InputTypes
 
   /**
-   * AetherPrompts findUnique
+   * PromptSearch findUnique
    */
-  export type AetherPromptsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PromptSearchFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AetherPrompts
+     * Select specific fields to fetch from the PromptSearch
      */
-    select?: AetherPromptsSelect<ExtArgs> | null
+    select?: PromptSearchSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Filter, which PromptSearch to fetch.
      */
-    include?: AetherPromptsInclude<ExtArgs> | null
-    /**
-     * Filter, which AetherPrompts to fetch.
-     */
-    where: AetherPromptsWhereUniqueInput
+    where: PromptSearchWhereUniqueInput
   }
 
 
   /**
-   * AetherPrompts findUniqueOrThrow
+   * PromptSearch findUniqueOrThrow
    */
-  export type AetherPromptsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PromptSearchFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AetherPrompts
+     * Select specific fields to fetch from the PromptSearch
      */
-    select?: AetherPromptsSelect<ExtArgs> | null
+    select?: PromptSearchSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Filter, which PromptSearch to fetch.
      */
-    include?: AetherPromptsInclude<ExtArgs> | null
-    /**
-     * Filter, which AetherPrompts to fetch.
-     */
-    where: AetherPromptsWhereUniqueInput
+    where: PromptSearchWhereUniqueInput
   }
 
 
   /**
-   * AetherPrompts findFirst
+   * PromptSearch findFirst
    */
-  export type AetherPromptsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PromptSearchFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AetherPrompts
+     * Select specific fields to fetch from the PromptSearch
      */
-    select?: AetherPromptsSelect<ExtArgs> | null
+    select?: PromptSearchSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Filter, which PromptSearch to fetch.
      */
-    include?: AetherPromptsInclude<ExtArgs> | null
-    /**
-     * Filter, which AetherPrompts to fetch.
-     */
-    where?: AetherPromptsWhereInput
+    where?: PromptSearchWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of AetherPrompts to fetch.
+     * Determine the order of PromptSearches to fetch.
      */
-    orderBy?: AetherPromptsOrderByWithRelationInput | AetherPromptsOrderByWithRelationInput[]
+    orderBy?: PromptSearchOrderByWithRelationInput | PromptSearchOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for AetherPrompts.
+     * Sets the position for searching for PromptSearches.
      */
-    cursor?: AetherPromptsWhereUniqueInput
+    cursor?: PromptSearchWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` AetherPrompts from the position of the cursor.
+     * Take `±n` PromptSearches from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` AetherPrompts.
+     * Skip the first `n` PromptSearches.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of AetherPrompts.
+     * Filter by unique combinations of PromptSearches.
      */
-    distinct?: AetherPromptsScalarFieldEnum | AetherPromptsScalarFieldEnum[]
+    distinct?: PromptSearchScalarFieldEnum | PromptSearchScalarFieldEnum[]
   }
 
 
   /**
-   * AetherPrompts findFirstOrThrow
+   * PromptSearch findFirstOrThrow
    */
-  export type AetherPromptsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PromptSearchFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AetherPrompts
+     * Select specific fields to fetch from the PromptSearch
      */
-    select?: AetherPromptsSelect<ExtArgs> | null
+    select?: PromptSearchSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Filter, which PromptSearch to fetch.
      */
-    include?: AetherPromptsInclude<ExtArgs> | null
-    /**
-     * Filter, which AetherPrompts to fetch.
-     */
-    where?: AetherPromptsWhereInput
+    where?: PromptSearchWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of AetherPrompts to fetch.
+     * Determine the order of PromptSearches to fetch.
      */
-    orderBy?: AetherPromptsOrderByWithRelationInput | AetherPromptsOrderByWithRelationInput[]
+    orderBy?: PromptSearchOrderByWithRelationInput | PromptSearchOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for AetherPrompts.
+     * Sets the position for searching for PromptSearches.
      */
-    cursor?: AetherPromptsWhereUniqueInput
+    cursor?: PromptSearchWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` AetherPrompts from the position of the cursor.
+     * Take `±n` PromptSearches from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` AetherPrompts.
+     * Skip the first `n` PromptSearches.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of AetherPrompts.
+     * Filter by unique combinations of PromptSearches.
      */
-    distinct?: AetherPromptsScalarFieldEnum | AetherPromptsScalarFieldEnum[]
+    distinct?: PromptSearchScalarFieldEnum | PromptSearchScalarFieldEnum[]
   }
 
 
   /**
-   * AetherPrompts findMany
+   * PromptSearch findMany
    */
-  export type AetherPromptsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PromptSearchFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AetherPrompts
+     * Select specific fields to fetch from the PromptSearch
      */
-    select?: AetherPromptsSelect<ExtArgs> | null
+    select?: PromptSearchSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Filter, which PromptSearches to fetch.
      */
-    include?: AetherPromptsInclude<ExtArgs> | null
-    /**
-     * Filter, which AetherPrompts to fetch.
-     */
-    where?: AetherPromptsWhereInput
+    where?: PromptSearchWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of AetherPrompts to fetch.
+     * Determine the order of PromptSearches to fetch.
      */
-    orderBy?: AetherPromptsOrderByWithRelationInput | AetherPromptsOrderByWithRelationInput[]
+    orderBy?: PromptSearchOrderByWithRelationInput | PromptSearchOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing AetherPrompts.
+     * Sets the position for listing PromptSearches.
      */
-    cursor?: AetherPromptsWhereUniqueInput
+    cursor?: PromptSearchWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` AetherPrompts from the position of the cursor.
+     * Take `±n` PromptSearches from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` AetherPrompts.
+     * Skip the first `n` PromptSearches.
      */
     skip?: number
-    distinct?: AetherPromptsScalarFieldEnum | AetherPromptsScalarFieldEnum[]
+    distinct?: PromptSearchScalarFieldEnum | PromptSearchScalarFieldEnum[]
   }
 
 
   /**
-   * AetherPrompts create
+   * PromptSearch create
    */
-  export type AetherPromptsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PromptSearchCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AetherPrompts
+     * Select specific fields to fetch from the PromptSearch
      */
-    select?: AetherPromptsSelect<ExtArgs> | null
+    select?: PromptSearchSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * The data needed to create a PromptSearch.
      */
-    include?: AetherPromptsInclude<ExtArgs> | null
-    /**
-     * The data needed to create a AetherPrompts.
-     */
-    data: XOR<AetherPromptsCreateInput, AetherPromptsUncheckedCreateInput>
+    data: XOR<PromptSearchCreateInput, PromptSearchUncheckedCreateInput>
   }
 
 
   /**
-   * AetherPrompts update
+   * PromptSearch update
    */
-  export type AetherPromptsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PromptSearchUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AetherPrompts
+     * Select specific fields to fetch from the PromptSearch
      */
-    select?: AetherPromptsSelect<ExtArgs> | null
+    select?: PromptSearchSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * The data needed to update a PromptSearch.
      */
-    include?: AetherPromptsInclude<ExtArgs> | null
+    data: XOR<PromptSearchUpdateInput, PromptSearchUncheckedUpdateInput>
     /**
-     * The data needed to update a AetherPrompts.
+     * Choose, which PromptSearch to update.
      */
-    data: XOR<AetherPromptsUpdateInput, AetherPromptsUncheckedUpdateInput>
-    /**
-     * Choose, which AetherPrompts to update.
-     */
-    where: AetherPromptsWhereUniqueInput
+    where: PromptSearchWhereUniqueInput
   }
 
 
   /**
-   * AetherPrompts updateMany
+   * PromptSearch updateMany
    */
-  export type AetherPromptsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PromptSearchUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update AetherPrompts.
+     * The data used to update PromptSearches.
      */
-    data: XOR<AetherPromptsUpdateManyMutationInput, AetherPromptsUncheckedUpdateManyInput>
+    data: XOR<PromptSearchUpdateManyMutationInput, PromptSearchUncheckedUpdateManyInput>
     /**
-     * Filter which AetherPrompts to update
+     * Filter which PromptSearches to update
      */
-    where?: AetherPromptsWhereInput
+    where?: PromptSearchWhereInput
   }
 
 
   /**
-   * AetherPrompts upsert
+   * PromptSearch upsert
    */
-  export type AetherPromptsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PromptSearchUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AetherPrompts
+     * Select specific fields to fetch from the PromptSearch
      */
-    select?: AetherPromptsSelect<ExtArgs> | null
+    select?: PromptSearchSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * The filter to search for the PromptSearch to update in case it exists.
      */
-    include?: AetherPromptsInclude<ExtArgs> | null
+    where: PromptSearchWhereUniqueInput
     /**
-     * The filter to search for the AetherPrompts to update in case it exists.
+     * In case the PromptSearch found by the `where` argument doesn't exist, create a new PromptSearch with this data.
      */
-    where: AetherPromptsWhereUniqueInput
+    create: XOR<PromptSearchCreateInput, PromptSearchUncheckedCreateInput>
     /**
-     * In case the AetherPrompts found by the `where` argument doesn't exist, create a new AetherPrompts with this data.
+     * In case the PromptSearch was found with the provided `where` argument, update it with this data.
      */
-    create: XOR<AetherPromptsCreateInput, AetherPromptsUncheckedCreateInput>
-    /**
-     * In case the AetherPrompts was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<AetherPromptsUpdateInput, AetherPromptsUncheckedUpdateInput>
+    update: XOR<PromptSearchUpdateInput, PromptSearchUncheckedUpdateInput>
   }
 
 
   /**
-   * AetherPrompts delete
+   * PromptSearch delete
    */
-  export type AetherPromptsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PromptSearchDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AetherPrompts
+     * Select specific fields to fetch from the PromptSearch
      */
-    select?: AetherPromptsSelect<ExtArgs> | null
+    select?: PromptSearchSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Filter which PromptSearch to delete.
      */
-    include?: AetherPromptsInclude<ExtArgs> | null
-    /**
-     * Filter which AetherPrompts to delete.
-     */
-    where: AetherPromptsWhereUniqueInput
+    where: PromptSearchWhereUniqueInput
   }
 
 
   /**
-   * AetherPrompts deleteMany
+   * PromptSearch deleteMany
    */
-  export type AetherPromptsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PromptSearchDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which AetherPrompts to delete
+     * Filter which PromptSearches to delete
      */
-    where?: AetherPromptsWhereInput
+    where?: PromptSearchWhereInput
   }
 
 
   /**
-   * AetherPrompts.worldInfos
+   * PromptSearch without action
    */
-  export type AetherPrompts$worldInfosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PromptSearchDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AetherWorldInfos
+     * Select specific fields to fetch from the PromptSearch
      */
-    select?: AetherWorldInfosSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: AetherWorldInfosInclude<ExtArgs> | null
-    where?: AetherWorldInfosWhereInput
-    orderBy?: AetherWorldInfosOrderByWithRelationInput | AetherWorldInfosOrderByWithRelationInput[]
-    cursor?: AetherWorldInfosWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: AetherWorldInfosScalarFieldEnum | AetherWorldInfosScalarFieldEnum[]
-  }
-
-
-  /**
-   * AetherPrompts without action
-   */
-  export type AetherPromptsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the AetherPrompts
-     */
-    select?: AetherPromptsSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: AetherPromptsInclude<ExtArgs> | null
+    select?: PromptSearchSelect<ExtArgs> | null
   }
 
 
 
   /**
-   * Model AetherWorldInfos
+   * Model WorldInfoSearch
    */
 
-  export type AggregateAetherWorldInfos = {
-    _count: AetherWorldInfosCountAggregateOutputType | null
-    _avg: AetherWorldInfosAvgAggregateOutputType | null
-    _sum: AetherWorldInfosSumAggregateOutputType | null
-    _min: AetherWorldInfosMinAggregateOutputType | null
-    _max: AetherWorldInfosMaxAggregateOutputType | null
+  export type AggregateWorldInfoSearch = {
+    _count: WorldInfoSearchCountAggregateOutputType | null
+    _avg: WorldInfoSearchAvgAggregateOutputType | null
+    _sum: WorldInfoSearchSumAggregateOutputType | null
+    _min: WorldInfoSearchMinAggregateOutputType | null
+    _max: WorldInfoSearchMaxAggregateOutputType | null
   }
 
-  export type AetherWorldInfosAvgAggregateOutputType = {
+  export type WorldInfoSearchAvgAggregateOutputType = {
     id: number | null
-    promptId: number | null
   }
 
-  export type AetherWorldInfosSumAggregateOutputType = {
+  export type WorldInfoSearchSumAggregateOutputType = {
     id: number | null
-    promptId: number | null
   }
 
-  export type AetherWorldInfosMinAggregateOutputType = {
+  export type WorldInfoSearchMinAggregateOutputType = {
     id: number | null
-    entry: string | null
-    keys: string | null
-    promptId: number | null
-    correlationId: string | null
-    dateCreated: string | null
-    dateEdited: string | null
+    text: string | null
   }
 
-  export type AetherWorldInfosMaxAggregateOutputType = {
+  export type WorldInfoSearchMaxAggregateOutputType = {
     id: number | null
-    entry: string | null
-    keys: string | null
-    promptId: number | null
-    correlationId: string | null
-    dateCreated: string | null
-    dateEdited: string | null
+    text: string | null
   }
 
-  export type AetherWorldInfosCountAggregateOutputType = {
+  export type WorldInfoSearchCountAggregateOutputType = {
     id: number
-    entry: number
-    keys: number
-    promptId: number
-    correlationId: number
-    dateCreated: number
-    dateEdited: number
+    text: number
     _all: number
   }
 
 
-  export type AetherWorldInfosAvgAggregateInputType = {
+  export type WorldInfoSearchAvgAggregateInputType = {
     id?: true
-    promptId?: true
   }
 
-  export type AetherWorldInfosSumAggregateInputType = {
+  export type WorldInfoSearchSumAggregateInputType = {
     id?: true
-    promptId?: true
   }
 
-  export type AetherWorldInfosMinAggregateInputType = {
+  export type WorldInfoSearchMinAggregateInputType = {
     id?: true
-    entry?: true
-    keys?: true
-    promptId?: true
-    correlationId?: true
-    dateCreated?: true
-    dateEdited?: true
+    text?: true
   }
 
-  export type AetherWorldInfosMaxAggregateInputType = {
+  export type WorldInfoSearchMaxAggregateInputType = {
     id?: true
-    entry?: true
-    keys?: true
-    promptId?: true
-    correlationId?: true
-    dateCreated?: true
-    dateEdited?: true
+    text?: true
   }
 
-  export type AetherWorldInfosCountAggregateInputType = {
+  export type WorldInfoSearchCountAggregateInputType = {
     id?: true
-    entry?: true
-    keys?: true
-    promptId?: true
-    correlationId?: true
-    dateCreated?: true
-    dateEdited?: true
+    text?: true
     _all?: true
   }
 
-  export type AetherWorldInfosAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type WorldInfoSearchAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which AetherWorldInfos to aggregate.
+     * Filter which WorldInfoSearch to aggregate.
      */
-    where?: AetherWorldInfosWhereInput
+    where?: WorldInfoSearchWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of AetherWorldInfos to fetch.
+     * Determine the order of WorldInfoSearches to fetch.
      */
-    orderBy?: AetherWorldInfosOrderByWithRelationInput | AetherWorldInfosOrderByWithRelationInput[]
+    orderBy?: WorldInfoSearchOrderByWithRelationInput | WorldInfoSearchOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: AetherWorldInfosWhereUniqueInput
+    cursor?: WorldInfoSearchWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` AetherWorldInfos from the position of the cursor.
+     * Take `±n` WorldInfoSearches from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` AetherWorldInfos.
+     * Skip the first `n` WorldInfoSearches.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned AetherWorldInfos
+     * Count returned WorldInfoSearches
     **/
-    _count?: true | AetherWorldInfosCountAggregateInputType
+    _count?: true | WorldInfoSearchCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to average
     **/
-    _avg?: AetherWorldInfosAvgAggregateInputType
+    _avg?: WorldInfoSearchAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to sum
     **/
-    _sum?: AetherWorldInfosSumAggregateInputType
+    _sum?: WorldInfoSearchSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: AetherWorldInfosMinAggregateInputType
+    _min?: WorldInfoSearchMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: AetherWorldInfosMaxAggregateInputType
+    _max?: WorldInfoSearchMaxAggregateInputType
   }
 
-  export type GetAetherWorldInfosAggregateType<T extends AetherWorldInfosAggregateArgs> = {
-        [P in keyof T & keyof AggregateAetherWorldInfos]: P extends '_count' | 'count'
+  export type GetWorldInfoSearchAggregateType<T extends WorldInfoSearchAggregateArgs> = {
+        [P in keyof T & keyof AggregateWorldInfoSearch]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateAetherWorldInfos[P]>
-      : GetScalarType<T[P], AggregateAetherWorldInfos[P]>
+        : GetScalarType<T[P], AggregateWorldInfoSearch[P]>
+      : GetScalarType<T[P], AggregateWorldInfoSearch[P]>
   }
 
 
 
 
-  export type AetherWorldInfosGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: AetherWorldInfosWhereInput
-    orderBy?: AetherWorldInfosOrderByWithAggregationInput | AetherWorldInfosOrderByWithAggregationInput[]
-    by: AetherWorldInfosScalarFieldEnum[] | AetherWorldInfosScalarFieldEnum
-    having?: AetherWorldInfosScalarWhereWithAggregatesInput
+  export type WorldInfoSearchGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: WorldInfoSearchWhereInput
+    orderBy?: WorldInfoSearchOrderByWithAggregationInput | WorldInfoSearchOrderByWithAggregationInput[]
+    by: WorldInfoSearchScalarFieldEnum[] | WorldInfoSearchScalarFieldEnum
+    having?: WorldInfoSearchScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: AetherWorldInfosCountAggregateInputType | true
-    _avg?: AetherWorldInfosAvgAggregateInputType
-    _sum?: AetherWorldInfosSumAggregateInputType
-    _min?: AetherWorldInfosMinAggregateInputType
-    _max?: AetherWorldInfosMaxAggregateInputType
+    _count?: WorldInfoSearchCountAggregateInputType | true
+    _avg?: WorldInfoSearchAvgAggregateInputType
+    _sum?: WorldInfoSearchSumAggregateInputType
+    _min?: WorldInfoSearchMinAggregateInputType
+    _max?: WorldInfoSearchMaxAggregateInputType
   }
 
-  export type AetherWorldInfosGroupByOutputType = {
+  export type WorldInfoSearchGroupByOutputType = {
     id: number
-    entry: string
-    keys: string
-    promptId: number
-    correlationId: string
-    dateCreated: string
-    dateEdited: string | null
-    _count: AetherWorldInfosCountAggregateOutputType | null
-    _avg: AetherWorldInfosAvgAggregateOutputType | null
-    _sum: AetherWorldInfosSumAggregateOutputType | null
-    _min: AetherWorldInfosMinAggregateOutputType | null
-    _max: AetherWorldInfosMaxAggregateOutputType | null
+    text: string
+    _count: WorldInfoSearchCountAggregateOutputType | null
+    _avg: WorldInfoSearchAvgAggregateOutputType | null
+    _sum: WorldInfoSearchSumAggregateOutputType | null
+    _min: WorldInfoSearchMinAggregateOutputType | null
+    _max: WorldInfoSearchMaxAggregateOutputType | null
   }
 
-  type GetAetherWorldInfosGroupByPayload<T extends AetherWorldInfosGroupByArgs> = Prisma.PrismaPromise<
+  type GetWorldInfoSearchGroupByPayload<T extends WorldInfoSearchGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<AetherWorldInfosGroupByOutputType, T['by']> &
+      PickEnumerable<WorldInfoSearchGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof AetherWorldInfosGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof WorldInfoSearchGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], AetherWorldInfosGroupByOutputType[P]>
-            : GetScalarType<T[P], AetherWorldInfosGroupByOutputType[P]>
+              : GetScalarType<T[P], WorldInfoSearchGroupByOutputType[P]>
+            : GetScalarType<T[P], WorldInfoSearchGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type AetherWorldInfosSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type WorldInfoSearchSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    entry?: boolean
-    keys?: boolean
-    promptId?: boolean
-    correlationId?: boolean
-    dateCreated?: boolean
-    dateEdited?: boolean
-    prompts?: boolean | AetherPromptsDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["aetherWorldInfos"]>
+    text?: boolean
+  }, ExtArgs["result"]["worldInfoSearch"]>
 
-  export type AetherWorldInfosSelectScalar = {
+  export type WorldInfoSearchSelectScalar = {
     id?: boolean
-    entry?: boolean
-    keys?: boolean
-    promptId?: boolean
-    correlationId?: boolean
-    dateCreated?: boolean
-    dateEdited?: boolean
-  }
-
-  export type AetherWorldInfosInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    prompts?: boolean | AetherPromptsDefaultArgs<ExtArgs>
+    text?: boolean
   }
 
 
-  export type $AetherWorldInfosPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "AetherWorldInfos"
-    objects: {
-      prompts: Prisma.$AetherPromptsPayload<ExtArgs>
-    }
+  export type $WorldInfoSearchPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "WorldInfoSearch"
+    objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      entry: string
-      keys: string
-      promptId: number
-      correlationId: string
-      dateCreated: string
-      dateEdited: string | null
-    }, ExtArgs["result"]["aetherWorldInfos"]>
+      text: string
+    }, ExtArgs["result"]["worldInfoSearch"]>
     composites: {}
   }
 
 
-  type AetherWorldInfosGetPayload<S extends boolean | null | undefined | AetherWorldInfosDefaultArgs> = $Result.GetResult<Prisma.$AetherWorldInfosPayload, S>
+  type WorldInfoSearchGetPayload<S extends boolean | null | undefined | WorldInfoSearchDefaultArgs> = $Result.GetResult<Prisma.$WorldInfoSearchPayload, S>
 
-  type AetherWorldInfosCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<AetherWorldInfosFindManyArgs, 'select' | 'include' | 'distinct' > & {
-      select?: AetherWorldInfosCountAggregateInputType | true
+  type WorldInfoSearchCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<WorldInfoSearchFindManyArgs, 'select' | 'include' | 'distinct' > & {
+      select?: WorldInfoSearchCountAggregateInputType | true
     }
 
-  export interface AetherWorldInfosDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AetherWorldInfos'], meta: { name: 'AetherWorldInfos' } }
+  export interface WorldInfoSearchDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['WorldInfoSearch'], meta: { name: 'WorldInfoSearch' } }
     /**
-     * Find zero or one AetherWorldInfos that matches the filter.
-     * @param {AetherWorldInfosFindUniqueArgs} args - Arguments to find a AetherWorldInfos
+     * Find zero or one WorldInfoSearch that matches the filter.
+     * @param {WorldInfoSearchFindUniqueArgs} args - Arguments to find a WorldInfoSearch
      * @example
-     * // Get one AetherWorldInfos
-     * const aetherWorldInfos = await prisma.aetherWorldInfos.findUnique({
+     * // Get one WorldInfoSearch
+     * const worldInfoSearch = await prisma.worldInfoSearch.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findUnique<T extends AetherWorldInfosFindUniqueArgs<ExtArgs>>(
-      args: SelectSubset<T, AetherWorldInfosFindUniqueArgs<ExtArgs>>
-    ): Prisma__AetherWorldInfosClient<$Result.GetResult<Prisma.$AetherWorldInfosPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+    findUnique<T extends WorldInfoSearchFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, WorldInfoSearchFindUniqueArgs<ExtArgs>>
+    ): Prisma__WorldInfoSearchClient<$Result.GetResult<Prisma.$WorldInfoSearchPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
 
     /**
-     * Find one AetherWorldInfos that matches the filter or throw an error  with `error.code='P2025'` 
+     * Find one WorldInfoSearch that matches the filter or throw an error  with `error.code='P2025'` 
      *     if no matches were found.
-     * @param {AetherWorldInfosFindUniqueOrThrowArgs} args - Arguments to find a AetherWorldInfos
+     * @param {WorldInfoSearchFindUniqueOrThrowArgs} args - Arguments to find a WorldInfoSearch
      * @example
-     * // Get one AetherWorldInfos
-     * const aetherWorldInfos = await prisma.aetherWorldInfos.findUniqueOrThrow({
+     * // Get one WorldInfoSearch
+     * const worldInfoSearch = await prisma.worldInfoSearch.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findUniqueOrThrow<T extends AetherWorldInfosFindUniqueOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, AetherWorldInfosFindUniqueOrThrowArgs<ExtArgs>>
-    ): Prisma__AetherWorldInfosClient<$Result.GetResult<Prisma.$AetherWorldInfosPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+    findUniqueOrThrow<T extends WorldInfoSearchFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, WorldInfoSearchFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__WorldInfoSearchClient<$Result.GetResult<Prisma.$WorldInfoSearchPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
 
     /**
-     * Find the first AetherWorldInfos that matches the filter.
+     * Find the first WorldInfoSearch that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {AetherWorldInfosFindFirstArgs} args - Arguments to find a AetherWorldInfos
+     * @param {WorldInfoSearchFindFirstArgs} args - Arguments to find a WorldInfoSearch
      * @example
-     * // Get one AetherWorldInfos
-     * const aetherWorldInfos = await prisma.aetherWorldInfos.findFirst({
+     * // Get one WorldInfoSearch
+     * const worldInfoSearch = await prisma.worldInfoSearch.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findFirst<T extends AetherWorldInfosFindFirstArgs<ExtArgs>>(
-      args?: SelectSubset<T, AetherWorldInfosFindFirstArgs<ExtArgs>>
-    ): Prisma__AetherWorldInfosClient<$Result.GetResult<Prisma.$AetherWorldInfosPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+    findFirst<T extends WorldInfoSearchFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, WorldInfoSearchFindFirstArgs<ExtArgs>>
+    ): Prisma__WorldInfoSearchClient<$Result.GetResult<Prisma.$WorldInfoSearchPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
 
     /**
-     * Find the first AetherWorldInfos that matches the filter or
+     * Find the first WorldInfoSearch that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {AetherWorldInfosFindFirstOrThrowArgs} args - Arguments to find a AetherWorldInfos
+     * @param {WorldInfoSearchFindFirstOrThrowArgs} args - Arguments to find a WorldInfoSearch
      * @example
-     * // Get one AetherWorldInfos
-     * const aetherWorldInfos = await prisma.aetherWorldInfos.findFirstOrThrow({
+     * // Get one WorldInfoSearch
+     * const worldInfoSearch = await prisma.worldInfoSearch.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findFirstOrThrow<T extends AetherWorldInfosFindFirstOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, AetherWorldInfosFindFirstOrThrowArgs<ExtArgs>>
-    ): Prisma__AetherWorldInfosClient<$Result.GetResult<Prisma.$AetherWorldInfosPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+    findFirstOrThrow<T extends WorldInfoSearchFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, WorldInfoSearchFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__WorldInfoSearchClient<$Result.GetResult<Prisma.$WorldInfoSearchPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
 
     /**
-     * Find zero or more AetherWorldInfos that matches the filter.
+     * Find zero or more WorldInfoSearches that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {AetherWorldInfosFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @param {WorldInfoSearchFindManyArgs=} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all AetherWorldInfos
-     * const aetherWorldInfos = await prisma.aetherWorldInfos.findMany()
+     * // Get all WorldInfoSearches
+     * const worldInfoSearches = await prisma.worldInfoSearch.findMany()
      * 
-     * // Get first 10 AetherWorldInfos
-     * const aetherWorldInfos = await prisma.aetherWorldInfos.findMany({ take: 10 })
+     * // Get first 10 WorldInfoSearches
+     * const worldInfoSearches = await prisma.worldInfoSearch.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const aetherWorldInfosWithIdOnly = await prisma.aetherWorldInfos.findMany({ select: { id: true } })
+     * const worldInfoSearchWithIdOnly = await prisma.worldInfoSearch.findMany({ select: { id: true } })
      * 
     **/
-    findMany<T extends AetherWorldInfosFindManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, AetherWorldInfosFindManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AetherWorldInfosPayload<ExtArgs>, T, 'findMany'>>
+    findMany<T extends WorldInfoSearchFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, WorldInfoSearchFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WorldInfoSearchPayload<ExtArgs>, T, 'findMany'>>
 
     /**
-     * Create a AetherWorldInfos.
-     * @param {AetherWorldInfosCreateArgs} args - Arguments to create a AetherWorldInfos.
+     * Create a WorldInfoSearch.
+     * @param {WorldInfoSearchCreateArgs} args - Arguments to create a WorldInfoSearch.
      * @example
-     * // Create one AetherWorldInfos
-     * const AetherWorldInfos = await prisma.aetherWorldInfos.create({
+     * // Create one WorldInfoSearch
+     * const WorldInfoSearch = await prisma.worldInfoSearch.create({
      *   data: {
-     *     // ... data to create a AetherWorldInfos
+     *     // ... data to create a WorldInfoSearch
      *   }
      * })
      * 
     **/
-    create<T extends AetherWorldInfosCreateArgs<ExtArgs>>(
-      args: SelectSubset<T, AetherWorldInfosCreateArgs<ExtArgs>>
-    ): Prisma__AetherWorldInfosClient<$Result.GetResult<Prisma.$AetherWorldInfosPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+    create<T extends WorldInfoSearchCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, WorldInfoSearchCreateArgs<ExtArgs>>
+    ): Prisma__WorldInfoSearchClient<$Result.GetResult<Prisma.$WorldInfoSearchPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
 
     /**
-     * Delete a AetherWorldInfos.
-     * @param {AetherWorldInfosDeleteArgs} args - Arguments to delete one AetherWorldInfos.
+     * Delete a WorldInfoSearch.
+     * @param {WorldInfoSearchDeleteArgs} args - Arguments to delete one WorldInfoSearch.
      * @example
-     * // Delete one AetherWorldInfos
-     * const AetherWorldInfos = await prisma.aetherWorldInfos.delete({
+     * // Delete one WorldInfoSearch
+     * const WorldInfoSearch = await prisma.worldInfoSearch.delete({
      *   where: {
-     *     // ... filter to delete one AetherWorldInfos
+     *     // ... filter to delete one WorldInfoSearch
      *   }
      * })
      * 
     **/
-    delete<T extends AetherWorldInfosDeleteArgs<ExtArgs>>(
-      args: SelectSubset<T, AetherWorldInfosDeleteArgs<ExtArgs>>
-    ): Prisma__AetherWorldInfosClient<$Result.GetResult<Prisma.$AetherWorldInfosPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+    delete<T extends WorldInfoSearchDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, WorldInfoSearchDeleteArgs<ExtArgs>>
+    ): Prisma__WorldInfoSearchClient<$Result.GetResult<Prisma.$WorldInfoSearchPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
 
     /**
-     * Update one AetherWorldInfos.
-     * @param {AetherWorldInfosUpdateArgs} args - Arguments to update one AetherWorldInfos.
+     * Update one WorldInfoSearch.
+     * @param {WorldInfoSearchUpdateArgs} args - Arguments to update one WorldInfoSearch.
      * @example
-     * // Update one AetherWorldInfos
-     * const aetherWorldInfos = await prisma.aetherWorldInfos.update({
+     * // Update one WorldInfoSearch
+     * const worldInfoSearch = await prisma.worldInfoSearch.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -4683,34 +4426,34 @@ export namespace Prisma {
      * })
      * 
     **/
-    update<T extends AetherWorldInfosUpdateArgs<ExtArgs>>(
-      args: SelectSubset<T, AetherWorldInfosUpdateArgs<ExtArgs>>
-    ): Prisma__AetherWorldInfosClient<$Result.GetResult<Prisma.$AetherWorldInfosPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+    update<T extends WorldInfoSearchUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, WorldInfoSearchUpdateArgs<ExtArgs>>
+    ): Prisma__WorldInfoSearchClient<$Result.GetResult<Prisma.$WorldInfoSearchPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
 
     /**
-     * Delete zero or more AetherWorldInfos.
-     * @param {AetherWorldInfosDeleteManyArgs} args - Arguments to filter AetherWorldInfos to delete.
+     * Delete zero or more WorldInfoSearches.
+     * @param {WorldInfoSearchDeleteManyArgs} args - Arguments to filter WorldInfoSearches to delete.
      * @example
-     * // Delete a few AetherWorldInfos
-     * const { count } = await prisma.aetherWorldInfos.deleteMany({
+     * // Delete a few WorldInfoSearches
+     * const { count } = await prisma.worldInfoSearch.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
     **/
-    deleteMany<T extends AetherWorldInfosDeleteManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, AetherWorldInfosDeleteManyArgs<ExtArgs>>
+    deleteMany<T extends WorldInfoSearchDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, WorldInfoSearchDeleteManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more AetherWorldInfos.
+     * Update zero or more WorldInfoSearches.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {AetherWorldInfosUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {WorldInfoSearchUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many AetherWorldInfos
-     * const aetherWorldInfos = await prisma.aetherWorldInfos.updateMany({
+     * // Update many WorldInfoSearches
+     * const worldInfoSearch = await prisma.worldInfoSearch.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -4720,59 +4463,59 @@ export namespace Prisma {
      * })
      * 
     **/
-    updateMany<T extends AetherWorldInfosUpdateManyArgs<ExtArgs>>(
-      args: SelectSubset<T, AetherWorldInfosUpdateManyArgs<ExtArgs>>
+    updateMany<T extends WorldInfoSearchUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, WorldInfoSearchUpdateManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create or update one AetherWorldInfos.
-     * @param {AetherWorldInfosUpsertArgs} args - Arguments to update or create a AetherWorldInfos.
+     * Create or update one WorldInfoSearch.
+     * @param {WorldInfoSearchUpsertArgs} args - Arguments to update or create a WorldInfoSearch.
      * @example
-     * // Update or create a AetherWorldInfos
-     * const aetherWorldInfos = await prisma.aetherWorldInfos.upsert({
+     * // Update or create a WorldInfoSearch
+     * const worldInfoSearch = await prisma.worldInfoSearch.upsert({
      *   create: {
-     *     // ... data to create a AetherWorldInfos
+     *     // ... data to create a WorldInfoSearch
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the AetherWorldInfos we want to update
+     *     // ... the filter for the WorldInfoSearch we want to update
      *   }
      * })
     **/
-    upsert<T extends AetherWorldInfosUpsertArgs<ExtArgs>>(
-      args: SelectSubset<T, AetherWorldInfosUpsertArgs<ExtArgs>>
-    ): Prisma__AetherWorldInfosClient<$Result.GetResult<Prisma.$AetherWorldInfosPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+    upsert<T extends WorldInfoSearchUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, WorldInfoSearchUpsertArgs<ExtArgs>>
+    ): Prisma__WorldInfoSearchClient<$Result.GetResult<Prisma.$WorldInfoSearchPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
 
     /**
-     * Count the number of AetherWorldInfos.
+     * Count the number of WorldInfoSearches.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {AetherWorldInfosCountArgs} args - Arguments to filter AetherWorldInfos to count.
+     * @param {WorldInfoSearchCountArgs} args - Arguments to filter WorldInfoSearches to count.
      * @example
-     * // Count the number of AetherWorldInfos
-     * const count = await prisma.aetherWorldInfos.count({
+     * // Count the number of WorldInfoSearches
+     * const count = await prisma.worldInfoSearch.count({
      *   where: {
-     *     // ... the filter for the AetherWorldInfos we want to count
+     *     // ... the filter for the WorldInfoSearches we want to count
      *   }
      * })
     **/
-    count<T extends AetherWorldInfosCountArgs>(
-      args?: Subset<T, AetherWorldInfosCountArgs>,
+    count<T extends WorldInfoSearchCountArgs>(
+      args?: Subset<T, WorldInfoSearchCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], AetherWorldInfosCountAggregateOutputType>
+          : GetScalarType<T['select'], WorldInfoSearchCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a AetherWorldInfos.
+     * Allows you to perform aggregations operations on a WorldInfoSearch.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {AetherWorldInfosAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {WorldInfoSearchAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -4792,13 +4535,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends AetherWorldInfosAggregateArgs>(args: Subset<T, AetherWorldInfosAggregateArgs>): Prisma.PrismaPromise<GetAetherWorldInfosAggregateType<T>>
+    aggregate<T extends WorldInfoSearchAggregateArgs>(args: Subset<T, WorldInfoSearchAggregateArgs>): Prisma.PrismaPromise<GetWorldInfoSearchAggregateType<T>>
 
     /**
-     * Group by AetherWorldInfos.
+     * Group by WorldInfoSearch.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {AetherWorldInfosGroupByArgs} args - Group by arguments.
+     * @param {WorldInfoSearchGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -4813,14 +4556,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends AetherWorldInfosGroupByArgs,
+      T extends WorldInfoSearchGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: AetherWorldInfosGroupByArgs['orderBy'] }
-        : { orderBy?: AetherWorldInfosGroupByArgs['orderBy'] },
+        ? { orderBy: WorldInfoSearchGroupByArgs['orderBy'] }
+        : { orderBy?: WorldInfoSearchGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -4869,23 +4612,22 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, AetherWorldInfosGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAetherWorldInfosGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, WorldInfoSearchGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetWorldInfoSearchGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the AetherWorldInfos model
+   * Fields of the WorldInfoSearch model
    */
-  readonly fields: AetherWorldInfosFieldRefs;
+  readonly fields: WorldInfoSearchFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for AetherWorldInfos.
+   * The delegate class that acts as a "Promise-like" for WorldInfoSearch.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__AetherWorldInfosClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__WorldInfoSearchClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    prompts<T extends AetherPromptsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AetherPromptsDefaultArgs<ExtArgs>>): Prisma__AetherPromptsClient<$Result.GetResult<Prisma.$AetherPromptsPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -4912,327 +4654,1124 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the AetherWorldInfos model
+   * Fields of the WorldInfoSearch model
    */ 
-  interface AetherWorldInfosFieldRefs {
-    readonly id: FieldRef<"AetherWorldInfos", 'Int'>
-    readonly entry: FieldRef<"AetherWorldInfos", 'String'>
-    readonly keys: FieldRef<"AetherWorldInfos", 'String'>
-    readonly promptId: FieldRef<"AetherWorldInfos", 'Int'>
-    readonly correlationId: FieldRef<"AetherWorldInfos", 'String'>
-    readonly dateCreated: FieldRef<"AetherWorldInfos", 'String'>
-    readonly dateEdited: FieldRef<"AetherWorldInfos", 'String'>
+  interface WorldInfoSearchFieldRefs {
+    readonly id: FieldRef<"WorldInfoSearch", 'Int'>
+    readonly text: FieldRef<"WorldInfoSearch", 'String'>
   }
     
 
   // Custom InputTypes
 
   /**
-   * AetherWorldInfos findUnique
+   * WorldInfoSearch findUnique
    */
-  export type AetherWorldInfosFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type WorldInfoSearchFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AetherWorldInfos
+     * Select specific fields to fetch from the WorldInfoSearch
      */
-    select?: AetherWorldInfosSelect<ExtArgs> | null
+    select?: WorldInfoSearchSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Filter, which WorldInfoSearch to fetch.
      */
-    include?: AetherWorldInfosInclude<ExtArgs> | null
-    /**
-     * Filter, which AetherWorldInfos to fetch.
-     */
-    where: AetherWorldInfosWhereUniqueInput
+    where: WorldInfoSearchWhereUniqueInput
   }
 
 
   /**
-   * AetherWorldInfos findUniqueOrThrow
+   * WorldInfoSearch findUniqueOrThrow
    */
-  export type AetherWorldInfosFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type WorldInfoSearchFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AetherWorldInfos
+     * Select specific fields to fetch from the WorldInfoSearch
      */
-    select?: AetherWorldInfosSelect<ExtArgs> | null
+    select?: WorldInfoSearchSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Filter, which WorldInfoSearch to fetch.
      */
-    include?: AetherWorldInfosInclude<ExtArgs> | null
-    /**
-     * Filter, which AetherWorldInfos to fetch.
-     */
-    where: AetherWorldInfosWhereUniqueInput
+    where: WorldInfoSearchWhereUniqueInput
   }
 
 
   /**
-   * AetherWorldInfos findFirst
+   * WorldInfoSearch findFirst
    */
-  export type AetherWorldInfosFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type WorldInfoSearchFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AetherWorldInfos
+     * Select specific fields to fetch from the WorldInfoSearch
      */
-    select?: AetherWorldInfosSelect<ExtArgs> | null
+    select?: WorldInfoSearchSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Filter, which WorldInfoSearch to fetch.
      */
-    include?: AetherWorldInfosInclude<ExtArgs> | null
-    /**
-     * Filter, which AetherWorldInfos to fetch.
-     */
-    where?: AetherWorldInfosWhereInput
+    where?: WorldInfoSearchWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of AetherWorldInfos to fetch.
+     * Determine the order of WorldInfoSearches to fetch.
      */
-    orderBy?: AetherWorldInfosOrderByWithRelationInput | AetherWorldInfosOrderByWithRelationInput[]
+    orderBy?: WorldInfoSearchOrderByWithRelationInput | WorldInfoSearchOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for AetherWorldInfos.
+     * Sets the position for searching for WorldInfoSearches.
      */
-    cursor?: AetherWorldInfosWhereUniqueInput
+    cursor?: WorldInfoSearchWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` AetherWorldInfos from the position of the cursor.
+     * Take `±n` WorldInfoSearches from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` AetherWorldInfos.
+     * Skip the first `n` WorldInfoSearches.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of AetherWorldInfos.
+     * Filter by unique combinations of WorldInfoSearches.
      */
-    distinct?: AetherWorldInfosScalarFieldEnum | AetherWorldInfosScalarFieldEnum[]
+    distinct?: WorldInfoSearchScalarFieldEnum | WorldInfoSearchScalarFieldEnum[]
   }
 
 
   /**
-   * AetherWorldInfos findFirstOrThrow
+   * WorldInfoSearch findFirstOrThrow
    */
-  export type AetherWorldInfosFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type WorldInfoSearchFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AetherWorldInfos
+     * Select specific fields to fetch from the WorldInfoSearch
      */
-    select?: AetherWorldInfosSelect<ExtArgs> | null
+    select?: WorldInfoSearchSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Filter, which WorldInfoSearch to fetch.
      */
-    include?: AetherWorldInfosInclude<ExtArgs> | null
-    /**
-     * Filter, which AetherWorldInfos to fetch.
-     */
-    where?: AetherWorldInfosWhereInput
+    where?: WorldInfoSearchWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of AetherWorldInfos to fetch.
+     * Determine the order of WorldInfoSearches to fetch.
      */
-    orderBy?: AetherWorldInfosOrderByWithRelationInput | AetherWorldInfosOrderByWithRelationInput[]
+    orderBy?: WorldInfoSearchOrderByWithRelationInput | WorldInfoSearchOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for AetherWorldInfos.
+     * Sets the position for searching for WorldInfoSearches.
      */
-    cursor?: AetherWorldInfosWhereUniqueInput
+    cursor?: WorldInfoSearchWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` AetherWorldInfos from the position of the cursor.
+     * Take `±n` WorldInfoSearches from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` AetherWorldInfos.
+     * Skip the first `n` WorldInfoSearches.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of AetherWorldInfos.
+     * Filter by unique combinations of WorldInfoSearches.
      */
-    distinct?: AetherWorldInfosScalarFieldEnum | AetherWorldInfosScalarFieldEnum[]
+    distinct?: WorldInfoSearchScalarFieldEnum | WorldInfoSearchScalarFieldEnum[]
   }
 
 
   /**
-   * AetherWorldInfos findMany
+   * WorldInfoSearch findMany
    */
-  export type AetherWorldInfosFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type WorldInfoSearchFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AetherWorldInfos
+     * Select specific fields to fetch from the WorldInfoSearch
      */
-    select?: AetherWorldInfosSelect<ExtArgs> | null
+    select?: WorldInfoSearchSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Filter, which WorldInfoSearches to fetch.
      */
-    include?: AetherWorldInfosInclude<ExtArgs> | null
-    /**
-     * Filter, which AetherWorldInfos to fetch.
-     */
-    where?: AetherWorldInfosWhereInput
+    where?: WorldInfoSearchWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of AetherWorldInfos to fetch.
+     * Determine the order of WorldInfoSearches to fetch.
      */
-    orderBy?: AetherWorldInfosOrderByWithRelationInput | AetherWorldInfosOrderByWithRelationInput[]
+    orderBy?: WorldInfoSearchOrderByWithRelationInput | WorldInfoSearchOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing AetherWorldInfos.
+     * Sets the position for listing WorldInfoSearches.
      */
-    cursor?: AetherWorldInfosWhereUniqueInput
+    cursor?: WorldInfoSearchWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` AetherWorldInfos from the position of the cursor.
+     * Take `±n` WorldInfoSearches from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` AetherWorldInfos.
+     * Skip the first `n` WorldInfoSearches.
      */
     skip?: number
-    distinct?: AetherWorldInfosScalarFieldEnum | AetherWorldInfosScalarFieldEnum[]
+    distinct?: WorldInfoSearchScalarFieldEnum | WorldInfoSearchScalarFieldEnum[]
   }
 
 
   /**
-   * AetherWorldInfos create
+   * WorldInfoSearch create
    */
-  export type AetherWorldInfosCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type WorldInfoSearchCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AetherWorldInfos
+     * Select specific fields to fetch from the WorldInfoSearch
      */
-    select?: AetherWorldInfosSelect<ExtArgs> | null
+    select?: WorldInfoSearchSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * The data needed to create a WorldInfoSearch.
      */
-    include?: AetherWorldInfosInclude<ExtArgs> | null
-    /**
-     * The data needed to create a AetherWorldInfos.
-     */
-    data: XOR<AetherWorldInfosCreateInput, AetherWorldInfosUncheckedCreateInput>
+    data: XOR<WorldInfoSearchCreateInput, WorldInfoSearchUncheckedCreateInput>
   }
 
 
   /**
-   * AetherWorldInfos update
+   * WorldInfoSearch update
    */
-  export type AetherWorldInfosUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type WorldInfoSearchUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AetherWorldInfos
+     * Select specific fields to fetch from the WorldInfoSearch
      */
-    select?: AetherWorldInfosSelect<ExtArgs> | null
+    select?: WorldInfoSearchSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * The data needed to update a WorldInfoSearch.
      */
-    include?: AetherWorldInfosInclude<ExtArgs> | null
+    data: XOR<WorldInfoSearchUpdateInput, WorldInfoSearchUncheckedUpdateInput>
     /**
-     * The data needed to update a AetherWorldInfos.
+     * Choose, which WorldInfoSearch to update.
      */
-    data: XOR<AetherWorldInfosUpdateInput, AetherWorldInfosUncheckedUpdateInput>
-    /**
-     * Choose, which AetherWorldInfos to update.
-     */
-    where: AetherWorldInfosWhereUniqueInput
+    where: WorldInfoSearchWhereUniqueInput
   }
 
 
   /**
-   * AetherWorldInfos updateMany
+   * WorldInfoSearch updateMany
    */
-  export type AetherWorldInfosUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type WorldInfoSearchUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update AetherWorldInfos.
+     * The data used to update WorldInfoSearches.
      */
-    data: XOR<AetherWorldInfosUpdateManyMutationInput, AetherWorldInfosUncheckedUpdateManyInput>
+    data: XOR<WorldInfoSearchUpdateManyMutationInput, WorldInfoSearchUncheckedUpdateManyInput>
     /**
-     * Filter which AetherWorldInfos to update
+     * Filter which WorldInfoSearches to update
      */
-    where?: AetherWorldInfosWhereInput
+    where?: WorldInfoSearchWhereInput
   }
 
 
   /**
-   * AetherWorldInfos upsert
+   * WorldInfoSearch upsert
    */
-  export type AetherWorldInfosUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type WorldInfoSearchUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AetherWorldInfos
+     * Select specific fields to fetch from the WorldInfoSearch
      */
-    select?: AetherWorldInfosSelect<ExtArgs> | null
+    select?: WorldInfoSearchSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * The filter to search for the WorldInfoSearch to update in case it exists.
      */
-    include?: AetherWorldInfosInclude<ExtArgs> | null
+    where: WorldInfoSearchWhereUniqueInput
     /**
-     * The filter to search for the AetherWorldInfos to update in case it exists.
+     * In case the WorldInfoSearch found by the `where` argument doesn't exist, create a new WorldInfoSearch with this data.
      */
-    where: AetherWorldInfosWhereUniqueInput
+    create: XOR<WorldInfoSearchCreateInput, WorldInfoSearchUncheckedCreateInput>
     /**
-     * In case the AetherWorldInfos found by the `where` argument doesn't exist, create a new AetherWorldInfos with this data.
+     * In case the WorldInfoSearch was found with the provided `where` argument, update it with this data.
      */
-    create: XOR<AetherWorldInfosCreateInput, AetherWorldInfosUncheckedCreateInput>
-    /**
-     * In case the AetherWorldInfos was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<AetherWorldInfosUpdateInput, AetherWorldInfosUncheckedUpdateInput>
+    update: XOR<WorldInfoSearchUpdateInput, WorldInfoSearchUncheckedUpdateInput>
   }
 
 
   /**
-   * AetherWorldInfos delete
+   * WorldInfoSearch delete
    */
-  export type AetherWorldInfosDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type WorldInfoSearchDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AetherWorldInfos
+     * Select specific fields to fetch from the WorldInfoSearch
      */
-    select?: AetherWorldInfosSelect<ExtArgs> | null
+    select?: WorldInfoSearchSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Filter which WorldInfoSearch to delete.
      */
-    include?: AetherWorldInfosInclude<ExtArgs> | null
-    /**
-     * Filter which AetherWorldInfos to delete.
-     */
-    where: AetherWorldInfosWhereUniqueInput
+    where: WorldInfoSearchWhereUniqueInput
   }
 
 
   /**
-   * AetherWorldInfos deleteMany
+   * WorldInfoSearch deleteMany
    */
-  export type AetherWorldInfosDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type WorldInfoSearchDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which AetherWorldInfos to delete
+     * Filter which WorldInfoSearches to delete
      */
-    where?: AetherWorldInfosWhereInput
+    where?: WorldInfoSearchWhereInput
   }
 
 
   /**
-   * AetherWorldInfos without action
+   * WorldInfoSearch without action
    */
-  export type AetherWorldInfosDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type WorldInfoSearchDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AetherWorldInfos
+     * Select specific fields to fetch from the WorldInfoSearch
      */
-    select?: AetherWorldInfosSelect<ExtArgs> | null
+    select?: WorldInfoSearchSelect<ExtArgs> | null
+  }
+
+
+
+  /**
+   * Model User
+   */
+
+  export type AggregateUser = {
+    _count: UserCountAggregateOutputType | null
+    _min: UserMinAggregateOutputType | null
+    _max: UserMaxAggregateOutputType | null
+  }
+
+  export type UserMinAggregateOutputType = {
+    id: string | null
+    email: string | null
+    name: string | null
+    dateCreated: string | null
+    lastLoggedIn: string | null
+  }
+
+  export type UserMaxAggregateOutputType = {
+    id: string | null
+    email: string | null
+    name: string | null
+    dateCreated: string | null
+    lastLoggedIn: string | null
+  }
+
+  export type UserCountAggregateOutputType = {
+    id: number
+    email: number
+    name: number
+    dateCreated: number
+    lastLoggedIn: number
+    _all: number
+  }
+
+
+  export type UserMinAggregateInputType = {
+    id?: true
+    email?: true
+    name?: true
+    dateCreated?: true
+    lastLoggedIn?: true
+  }
+
+  export type UserMaxAggregateInputType = {
+    id?: true
+    email?: true
+    name?: true
+    dateCreated?: true
+    lastLoggedIn?: true
+  }
+
+  export type UserCountAggregateInputType = {
+    id?: true
+    email?: true
+    name?: true
+    dateCreated?: true
+    lastLoggedIn?: true
+    _all?: true
+  }
+
+  export type UserAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Choose, which related nodes to fetch as well.
+     * Filter which User to aggregate.
      */
-    include?: AetherWorldInfosInclude<ExtArgs> | null
+    where?: UserWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Users to fetch.
+     */
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: UserWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Users from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Users.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Users
+    **/
+    _count?: true | UserCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: UserMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: UserMaxAggregateInputType
+  }
+
+  export type GetUserAggregateType<T extends UserAggregateArgs> = {
+        [P in keyof T & keyof AggregateUser]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateUser[P]>
+      : GetScalarType<T[P], AggregateUser[P]>
+  }
+
+
+
+
+  export type UserGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserWhereInput
+    orderBy?: UserOrderByWithAggregationInput | UserOrderByWithAggregationInput[]
+    by: UserScalarFieldEnum[] | UserScalarFieldEnum
+    having?: UserScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: UserCountAggregateInputType | true
+    _min?: UserMinAggregateInputType
+    _max?: UserMaxAggregateInputType
+  }
+
+  export type UserGroupByOutputType = {
+    id: string
+    email: string
+    name: string
+    dateCreated: string
+    lastLoggedIn: string | null
+    _count: UserCountAggregateOutputType | null
+    _min: UserMinAggregateOutputType | null
+    _max: UserMaxAggregateOutputType | null
+  }
+
+  type GetUserGroupByPayload<T extends UserGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<UserGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof UserGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], UserGroupByOutputType[P]>
+            : GetScalarType<T[P], UserGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type UserSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    email?: boolean
+    name?: boolean
+    dateCreated?: boolean
+    lastLoggedIn?: boolean
+  }, ExtArgs["result"]["user"]>
+
+  export type UserSelectScalar = {
+    id?: boolean
+    email?: boolean
+    name?: boolean
+    dateCreated?: boolean
+    lastLoggedIn?: boolean
+  }
+
+
+  export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "User"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      email: string
+      name: string
+      dateCreated: string
+      lastLoggedIn: string | null
+    }, ExtArgs["result"]["user"]>
+    composites: {}
+  }
+
+
+  type UserGetPayload<S extends boolean | null | undefined | UserDefaultArgs> = $Result.GetResult<Prisma.$UserPayload, S>
+
+  type UserCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<UserFindManyArgs, 'select' | 'include' | 'distinct' > & {
+      select?: UserCountAggregateInputType | true
+    }
+
+  export interface UserDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['User'], meta: { name: 'User' } }
+    /**
+     * Find zero or one User that matches the filter.
+     * @param {UserFindUniqueArgs} args - Arguments to find a User
+     * @example
+     * // Get one User
+     * const user = await prisma.user.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends UserFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, UserFindUniqueArgs<ExtArgs>>
+    ): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one User that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {UserFindUniqueOrThrowArgs} args - Arguments to find a User
+     * @example
+     * // Get one User
+     * const user = await prisma.user.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends UserFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, UserFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first User that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserFindFirstArgs} args - Arguments to find a User
+     * @example
+     * // Get one User
+     * const user = await prisma.user.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends UserFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, UserFindFirstArgs<ExtArgs>>
+    ): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first User that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserFindFirstOrThrowArgs} args - Arguments to find a User
+     * @example
+     * // Get one User
+     * const user = await prisma.user.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends UserFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, UserFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more Users that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Users
+     * const users = await prisma.user.findMany()
+     * 
+     * // Get first 10 Users
+     * const users = await prisma.user.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const userWithIdOnly = await prisma.user.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends UserFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, UserFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a User.
+     * @param {UserCreateArgs} args - Arguments to create a User.
+     * @example
+     * // Create one User
+     * const User = await prisma.user.create({
+     *   data: {
+     *     // ... data to create a User
+     *   }
+     * })
+     * 
+    **/
+    create<T extends UserCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, UserCreateArgs<ExtArgs>>
+    ): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Delete a User.
+     * @param {UserDeleteArgs} args - Arguments to delete one User.
+     * @example
+     * // Delete one User
+     * const User = await prisma.user.delete({
+     *   where: {
+     *     // ... filter to delete one User
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends UserDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, UserDeleteArgs<ExtArgs>>
+    ): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one User.
+     * @param {UserUpdateArgs} args - Arguments to update one User.
+     * @example
+     * // Update one User
+     * const user = await prisma.user.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends UserUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, UserUpdateArgs<ExtArgs>>
+    ): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more Users.
+     * @param {UserDeleteManyArgs} args - Arguments to filter Users to delete.
+     * @example
+     * // Delete a few Users
+     * const { count } = await prisma.user.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends UserDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, UserDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Users.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Users
+     * const user = await prisma.user.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends UserUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, UserUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one User.
+     * @param {UserUpsertArgs} args - Arguments to update or create a User.
+     * @example
+     * // Update or create a User
+     * const user = await prisma.user.upsert({
+     *   create: {
+     *     // ... data to create a User
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the User we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends UserUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, UserUpsertArgs<ExtArgs>>
+    ): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of Users.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserCountArgs} args - Arguments to filter Users to count.
+     * @example
+     * // Count the number of Users
+     * const count = await prisma.user.count({
+     *   where: {
+     *     // ... the filter for the Users we want to count
+     *   }
+     * })
+    **/
+    count<T extends UserCountArgs>(
+      args?: Subset<T, UserCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], UserCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a User.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends UserAggregateArgs>(args: Subset<T, UserAggregateArgs>): Prisma.PrismaPromise<GetUserAggregateType<T>>
+
+    /**
+     * Group by User.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends UserGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: UserGroupByArgs['orderBy'] }
+        : { orderBy?: UserGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, UserGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUserGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the User model
+   */
+  readonly fields: UserFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for User.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the User model
+   */ 
+  interface UserFieldRefs {
+    readonly id: FieldRef<"User", 'String'>
+    readonly email: FieldRef<"User", 'String'>
+    readonly name: FieldRef<"User", 'String'>
+    readonly dateCreated: FieldRef<"User", 'String'>
+    readonly lastLoggedIn: FieldRef<"User", 'String'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * User findUnique
+   */
+  export type UserFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Filter, which User to fetch.
+     */
+    where: UserWhereUniqueInput
+  }
+
+
+  /**
+   * User findUniqueOrThrow
+   */
+  export type UserFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Filter, which User to fetch.
+     */
+    where: UserWhereUniqueInput
+  }
+
+
+  /**
+   * User findFirst
+   */
+  export type UserFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Filter, which User to fetch.
+     */
+    where?: UserWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Users to fetch.
+     */
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Users.
+     */
+    cursor?: UserWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Users from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Users.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Users.
+     */
+    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
+  }
+
+
+  /**
+   * User findFirstOrThrow
+   */
+  export type UserFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Filter, which User to fetch.
+     */
+    where?: UserWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Users to fetch.
+     */
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Users.
+     */
+    cursor?: UserWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Users from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Users.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Users.
+     */
+    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
+  }
+
+
+  /**
+   * User findMany
+   */
+  export type UserFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Filter, which Users to fetch.
+     */
+    where?: UserWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Users to fetch.
+     */
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Users.
+     */
+    cursor?: UserWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Users from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Users.
+     */
+    skip?: number
+    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
+  }
+
+
+  /**
+   * User create
+   */
+  export type UserCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * The data needed to create a User.
+     */
+    data: XOR<UserCreateInput, UserUncheckedCreateInput>
+  }
+
+
+  /**
+   * User update
+   */
+  export type UserUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * The data needed to update a User.
+     */
+    data: XOR<UserUpdateInput, UserUncheckedUpdateInput>
+    /**
+     * Choose, which User to update.
+     */
+    where: UserWhereUniqueInput
+  }
+
+
+  /**
+   * User updateMany
+   */
+  export type UserUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Users.
+     */
+    data: XOR<UserUpdateManyMutationInput, UserUncheckedUpdateManyInput>
+    /**
+     * Filter which Users to update
+     */
+    where?: UserWhereInput
+  }
+
+
+  /**
+   * User upsert
+   */
+  export type UserUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * The filter to search for the User to update in case it exists.
+     */
+    where: UserWhereUniqueInput
+    /**
+     * In case the User found by the `where` argument doesn't exist, create a new User with this data.
+     */
+    create: XOR<UserCreateInput, UserUncheckedCreateInput>
+    /**
+     * In case the User was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<UserUpdateInput, UserUncheckedUpdateInput>
+  }
+
+
+  /**
+   * User delete
+   */
+  export type UserDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Filter which User to delete.
+     */
+    where: UserWhereUniqueInput
+  }
+
+
+  /**
+   * User deleteMany
+   */
+  export type UserDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Users to delete
+     */
+    where?: UserWhereInput
+  }
+
+
+  /**
+   * User without action
+   */
+  export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
   }
 
 
@@ -5286,40 +5825,31 @@ export namespace Prisma {
   export type WorldInfosScalarFieldEnum = (typeof WorldInfosScalarFieldEnum)[keyof typeof WorldInfosScalarFieldEnum]
 
 
-  export const AetherPromptsScalarFieldEnum: {
+  export const PromptSearchScalarFieldEnum: {
     id: 'id',
-    authorsNote: 'authorsNote',
-    description: 'description',
-    memory: 'memory',
-    nsfw: 'nsfw',
-    parentId: 'parentId',
-    promptContent: 'promptContent',
-    publishDate: 'publishDate',
-    quests: 'quests',
-    tags: 'tags',
-    title: 'title',
-    scriptZip: 'scriptZip',
-    novelAiScenario: 'novelAiScenario',
-    holoAiScenario: 'holoAiScenario',
-    correlationId: 'correlationId',
-    dateCreated: 'dateCreated',
-    dateEdited: 'dateEdited'
+    text: 'text'
   };
 
-  export type AetherPromptsScalarFieldEnum = (typeof AetherPromptsScalarFieldEnum)[keyof typeof AetherPromptsScalarFieldEnum]
+  export type PromptSearchScalarFieldEnum = (typeof PromptSearchScalarFieldEnum)[keyof typeof PromptSearchScalarFieldEnum]
 
 
-  export const AetherWorldInfosScalarFieldEnum: {
+  export const WorldInfoSearchScalarFieldEnum: {
     id: 'id',
-    entry: 'entry',
-    keys: 'keys',
-    promptId: 'promptId',
-    correlationId: 'correlationId',
-    dateCreated: 'dateCreated',
-    dateEdited: 'dateEdited'
+    text: 'text'
   };
 
-  export type AetherWorldInfosScalarFieldEnum = (typeof AetherWorldInfosScalarFieldEnum)[keyof typeof AetherWorldInfosScalarFieldEnum]
+  export type WorldInfoSearchScalarFieldEnum = (typeof WorldInfoSearchScalarFieldEnum)[keyof typeof WorldInfoSearchScalarFieldEnum]
+
+
+  export const UserScalarFieldEnum: {
+    id: 'id',
+    email: 'email',
+    name: 'name',
+    dateCreated: 'dateCreated',
+    lastLoggedIn: 'lastLoggedIn'
+  };
+
+  export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -5568,188 +6098,134 @@ export namespace Prisma {
     dateEdited?: StringNullableWithAggregatesFilter<"WorldInfos"> | string | null
   }
 
-  export type AetherPromptsWhereInput = {
-    AND?: AetherPromptsWhereInput | AetherPromptsWhereInput[]
-    OR?: AetherPromptsWhereInput[]
-    NOT?: AetherPromptsWhereInput | AetherPromptsWhereInput[]
-    id?: IntFilter<"AetherPrompts"> | number
-    authorsNote?: StringNullableFilter<"AetherPrompts"> | string | null
-    description?: StringNullableFilter<"AetherPrompts"> | string | null
-    memory?: StringNullableFilter<"AetherPrompts"> | string | null
-    nsfw?: IntFilter<"AetherPrompts"> | number
-    parentId?: StringNullableFilter<"AetherPrompts"> | string | null
-    promptContent?: StringFilter<"AetherPrompts"> | string
-    publishDate?: StringNullableFilter<"AetherPrompts"> | string | null
-    quests?: StringNullableFilter<"AetherPrompts"> | string | null
-    tags?: StringFilter<"AetherPrompts"> | string
-    title?: StringFilter<"AetherPrompts"> | string
-    scriptZip?: BytesNullableFilter<"AetherPrompts"> | Buffer | null
-    novelAiScenario?: StringNullableFilter<"AetherPrompts"> | string | null
-    holoAiScenario?: StringNullableFilter<"AetherPrompts"> | string | null
-    correlationId?: StringFilter<"AetherPrompts"> | string
-    dateCreated?: StringFilter<"AetherPrompts"> | string
-    dateEdited?: StringNullableFilter<"AetherPrompts"> | string | null
-    worldInfos?: AetherWorldInfosListRelationFilter
+  export type PromptSearchWhereInput = {
+    AND?: PromptSearchWhereInput | PromptSearchWhereInput[]
+    OR?: PromptSearchWhereInput[]
+    NOT?: PromptSearchWhereInput | PromptSearchWhereInput[]
+    id?: IntFilter<"PromptSearch"> | number
+    text?: StringFilter<"PromptSearch"> | string
   }
 
-  export type AetherPromptsOrderByWithRelationInput = {
+  export type PromptSearchOrderByWithRelationInput = {
     id?: SortOrder
-    authorsNote?: SortOrderInput | SortOrder
-    description?: SortOrderInput | SortOrder
-    memory?: SortOrderInput | SortOrder
-    nsfw?: SortOrder
-    parentId?: SortOrderInput | SortOrder
-    promptContent?: SortOrder
-    publishDate?: SortOrderInput | SortOrder
-    quests?: SortOrderInput | SortOrder
-    tags?: SortOrder
-    title?: SortOrder
-    scriptZip?: SortOrderInput | SortOrder
-    novelAiScenario?: SortOrderInput | SortOrder
-    holoAiScenario?: SortOrderInput | SortOrder
-    correlationId?: SortOrder
-    dateCreated?: SortOrder
-    dateEdited?: SortOrderInput | SortOrder
-    worldInfos?: AetherWorldInfosOrderByRelationAggregateInput
+    text?: SortOrder
   }
 
-  export type AetherPromptsWhereUniqueInput = Prisma.AtLeast<{
+  export type PromptSearchWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    AND?: AetherPromptsWhereInput | AetherPromptsWhereInput[]
-    OR?: AetherPromptsWhereInput[]
-    NOT?: AetherPromptsWhereInput | AetherPromptsWhereInput[]
-    authorsNote?: StringNullableFilter<"AetherPrompts"> | string | null
-    description?: StringNullableFilter<"AetherPrompts"> | string | null
-    memory?: StringNullableFilter<"AetherPrompts"> | string | null
-    nsfw?: IntFilter<"AetherPrompts"> | number
-    parentId?: StringNullableFilter<"AetherPrompts"> | string | null
-    promptContent?: StringFilter<"AetherPrompts"> | string
-    publishDate?: StringNullableFilter<"AetherPrompts"> | string | null
-    quests?: StringNullableFilter<"AetherPrompts"> | string | null
-    tags?: StringFilter<"AetherPrompts"> | string
-    title?: StringFilter<"AetherPrompts"> | string
-    scriptZip?: BytesNullableFilter<"AetherPrompts"> | Buffer | null
-    novelAiScenario?: StringNullableFilter<"AetherPrompts"> | string | null
-    holoAiScenario?: StringNullableFilter<"AetherPrompts"> | string | null
-    correlationId?: StringFilter<"AetherPrompts"> | string
-    dateCreated?: StringFilter<"AetherPrompts"> | string
-    dateEdited?: StringNullableFilter<"AetherPrompts"> | string | null
-    worldInfos?: AetherWorldInfosListRelationFilter
+    AND?: PromptSearchWhereInput | PromptSearchWhereInput[]
+    OR?: PromptSearchWhereInput[]
+    NOT?: PromptSearchWhereInput | PromptSearchWhereInput[]
+    text?: StringFilter<"PromptSearch"> | string
   }, "id">
 
-  export type AetherPromptsOrderByWithAggregationInput = {
+  export type PromptSearchOrderByWithAggregationInput = {
     id?: SortOrder
-    authorsNote?: SortOrderInput | SortOrder
-    description?: SortOrderInput | SortOrder
-    memory?: SortOrderInput | SortOrder
-    nsfw?: SortOrder
-    parentId?: SortOrderInput | SortOrder
-    promptContent?: SortOrder
-    publishDate?: SortOrderInput | SortOrder
-    quests?: SortOrderInput | SortOrder
-    tags?: SortOrder
-    title?: SortOrder
-    scriptZip?: SortOrderInput | SortOrder
-    novelAiScenario?: SortOrderInput | SortOrder
-    holoAiScenario?: SortOrderInput | SortOrder
-    correlationId?: SortOrder
-    dateCreated?: SortOrder
-    dateEdited?: SortOrderInput | SortOrder
-    _count?: AetherPromptsCountOrderByAggregateInput
-    _avg?: AetherPromptsAvgOrderByAggregateInput
-    _max?: AetherPromptsMaxOrderByAggregateInput
-    _min?: AetherPromptsMinOrderByAggregateInput
-    _sum?: AetherPromptsSumOrderByAggregateInput
+    text?: SortOrder
+    _count?: PromptSearchCountOrderByAggregateInput
+    _avg?: PromptSearchAvgOrderByAggregateInput
+    _max?: PromptSearchMaxOrderByAggregateInput
+    _min?: PromptSearchMinOrderByAggregateInput
+    _sum?: PromptSearchSumOrderByAggregateInput
   }
 
-  export type AetherPromptsScalarWhereWithAggregatesInput = {
-    AND?: AetherPromptsScalarWhereWithAggregatesInput | AetherPromptsScalarWhereWithAggregatesInput[]
-    OR?: AetherPromptsScalarWhereWithAggregatesInput[]
-    NOT?: AetherPromptsScalarWhereWithAggregatesInput | AetherPromptsScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"AetherPrompts"> | number
-    authorsNote?: StringNullableWithAggregatesFilter<"AetherPrompts"> | string | null
-    description?: StringNullableWithAggregatesFilter<"AetherPrompts"> | string | null
-    memory?: StringNullableWithAggregatesFilter<"AetherPrompts"> | string | null
-    nsfw?: IntWithAggregatesFilter<"AetherPrompts"> | number
-    parentId?: StringNullableWithAggregatesFilter<"AetherPrompts"> | string | null
-    promptContent?: StringWithAggregatesFilter<"AetherPrompts"> | string
-    publishDate?: StringNullableWithAggregatesFilter<"AetherPrompts"> | string | null
-    quests?: StringNullableWithAggregatesFilter<"AetherPrompts"> | string | null
-    tags?: StringWithAggregatesFilter<"AetherPrompts"> | string
-    title?: StringWithAggregatesFilter<"AetherPrompts"> | string
-    scriptZip?: BytesNullableWithAggregatesFilter<"AetherPrompts"> | Buffer | null
-    novelAiScenario?: StringNullableWithAggregatesFilter<"AetherPrompts"> | string | null
-    holoAiScenario?: StringNullableWithAggregatesFilter<"AetherPrompts"> | string | null
-    correlationId?: StringWithAggregatesFilter<"AetherPrompts"> | string
-    dateCreated?: StringWithAggregatesFilter<"AetherPrompts"> | string
-    dateEdited?: StringNullableWithAggregatesFilter<"AetherPrompts"> | string | null
+  export type PromptSearchScalarWhereWithAggregatesInput = {
+    AND?: PromptSearchScalarWhereWithAggregatesInput | PromptSearchScalarWhereWithAggregatesInput[]
+    OR?: PromptSearchScalarWhereWithAggregatesInput[]
+    NOT?: PromptSearchScalarWhereWithAggregatesInput | PromptSearchScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"PromptSearch"> | number
+    text?: StringWithAggregatesFilter<"PromptSearch"> | string
   }
 
-  export type AetherWorldInfosWhereInput = {
-    AND?: AetherWorldInfosWhereInput | AetherWorldInfosWhereInput[]
-    OR?: AetherWorldInfosWhereInput[]
-    NOT?: AetherWorldInfosWhereInput | AetherWorldInfosWhereInput[]
-    id?: IntFilter<"AetherWorldInfos"> | number
-    entry?: StringFilter<"AetherWorldInfos"> | string
-    keys?: StringFilter<"AetherWorldInfos"> | string
-    promptId?: IntFilter<"AetherWorldInfos"> | number
-    correlationId?: StringFilter<"AetherWorldInfos"> | string
-    dateCreated?: StringFilter<"AetherWorldInfos"> | string
-    dateEdited?: StringNullableFilter<"AetherWorldInfos"> | string | null
-    prompts?: XOR<AetherPromptsRelationFilter, AetherPromptsWhereInput>
+  export type WorldInfoSearchWhereInput = {
+    AND?: WorldInfoSearchWhereInput | WorldInfoSearchWhereInput[]
+    OR?: WorldInfoSearchWhereInput[]
+    NOT?: WorldInfoSearchWhereInput | WorldInfoSearchWhereInput[]
+    id?: IntFilter<"WorldInfoSearch"> | number
+    text?: StringFilter<"WorldInfoSearch"> | string
   }
 
-  export type AetherWorldInfosOrderByWithRelationInput = {
+  export type WorldInfoSearchOrderByWithRelationInput = {
     id?: SortOrder
-    entry?: SortOrder
-    keys?: SortOrder
-    promptId?: SortOrder
-    correlationId?: SortOrder
-    dateCreated?: SortOrder
-    dateEdited?: SortOrderInput | SortOrder
-    prompts?: AetherPromptsOrderByWithRelationInput
+    text?: SortOrder
   }
 
-  export type AetherWorldInfosWhereUniqueInput = Prisma.AtLeast<{
+  export type WorldInfoSearchWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    AND?: AetherWorldInfosWhereInput | AetherWorldInfosWhereInput[]
-    OR?: AetherWorldInfosWhereInput[]
-    NOT?: AetherWorldInfosWhereInput | AetherWorldInfosWhereInput[]
-    entry?: StringFilter<"AetherWorldInfos"> | string
-    keys?: StringFilter<"AetherWorldInfos"> | string
-    promptId?: IntFilter<"AetherWorldInfos"> | number
-    correlationId?: StringFilter<"AetherWorldInfos"> | string
-    dateCreated?: StringFilter<"AetherWorldInfos"> | string
-    dateEdited?: StringNullableFilter<"AetherWorldInfos"> | string | null
-    prompts?: XOR<AetherPromptsRelationFilter, AetherPromptsWhereInput>
+    AND?: WorldInfoSearchWhereInput | WorldInfoSearchWhereInput[]
+    OR?: WorldInfoSearchWhereInput[]
+    NOT?: WorldInfoSearchWhereInput | WorldInfoSearchWhereInput[]
+    text?: StringFilter<"WorldInfoSearch"> | string
   }, "id">
 
-  export type AetherWorldInfosOrderByWithAggregationInput = {
+  export type WorldInfoSearchOrderByWithAggregationInput = {
     id?: SortOrder
-    entry?: SortOrder
-    keys?: SortOrder
-    promptId?: SortOrder
-    correlationId?: SortOrder
-    dateCreated?: SortOrder
-    dateEdited?: SortOrderInput | SortOrder
-    _count?: AetherWorldInfosCountOrderByAggregateInput
-    _avg?: AetherWorldInfosAvgOrderByAggregateInput
-    _max?: AetherWorldInfosMaxOrderByAggregateInput
-    _min?: AetherWorldInfosMinOrderByAggregateInput
-    _sum?: AetherWorldInfosSumOrderByAggregateInput
+    text?: SortOrder
+    _count?: WorldInfoSearchCountOrderByAggregateInput
+    _avg?: WorldInfoSearchAvgOrderByAggregateInput
+    _max?: WorldInfoSearchMaxOrderByAggregateInput
+    _min?: WorldInfoSearchMinOrderByAggregateInput
+    _sum?: WorldInfoSearchSumOrderByAggregateInput
   }
 
-  export type AetherWorldInfosScalarWhereWithAggregatesInput = {
-    AND?: AetherWorldInfosScalarWhereWithAggregatesInput | AetherWorldInfosScalarWhereWithAggregatesInput[]
-    OR?: AetherWorldInfosScalarWhereWithAggregatesInput[]
-    NOT?: AetherWorldInfosScalarWhereWithAggregatesInput | AetherWorldInfosScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"AetherWorldInfos"> | number
-    entry?: StringWithAggregatesFilter<"AetherWorldInfos"> | string
-    keys?: StringWithAggregatesFilter<"AetherWorldInfos"> | string
-    promptId?: IntWithAggregatesFilter<"AetherWorldInfos"> | number
-    correlationId?: StringWithAggregatesFilter<"AetherWorldInfos"> | string
-    dateCreated?: StringWithAggregatesFilter<"AetherWorldInfos"> | string
-    dateEdited?: StringNullableWithAggregatesFilter<"AetherWorldInfos"> | string | null
+  export type WorldInfoSearchScalarWhereWithAggregatesInput = {
+    AND?: WorldInfoSearchScalarWhereWithAggregatesInput | WorldInfoSearchScalarWhereWithAggregatesInput[]
+    OR?: WorldInfoSearchScalarWhereWithAggregatesInput[]
+    NOT?: WorldInfoSearchScalarWhereWithAggregatesInput | WorldInfoSearchScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"WorldInfoSearch"> | number
+    text?: StringWithAggregatesFilter<"WorldInfoSearch"> | string
+  }
+
+  export type UserWhereInput = {
+    AND?: UserWhereInput | UserWhereInput[]
+    OR?: UserWhereInput[]
+    NOT?: UserWhereInput | UserWhereInput[]
+    id?: StringFilter<"User"> | string
+    email?: StringFilter<"User"> | string
+    name?: StringFilter<"User"> | string
+    dateCreated?: StringFilter<"User"> | string
+    lastLoggedIn?: StringNullableFilter<"User"> | string | null
+  }
+
+  export type UserOrderByWithRelationInput = {
+    id?: SortOrder
+    email?: SortOrder
+    name?: SortOrder
+    dateCreated?: SortOrder
+    lastLoggedIn?: SortOrderInput | SortOrder
+  }
+
+  export type UserWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    email?: string
+    AND?: UserWhereInput | UserWhereInput[]
+    OR?: UserWhereInput[]
+    NOT?: UserWhereInput | UserWhereInput[]
+    name?: StringFilter<"User"> | string
+    dateCreated?: StringFilter<"User"> | string
+    lastLoggedIn?: StringNullableFilter<"User"> | string | null
+  }, "id" | "email">
+
+  export type UserOrderByWithAggregationInput = {
+    id?: SortOrder
+    email?: SortOrder
+    name?: SortOrder
+    dateCreated?: SortOrder
+    lastLoggedIn?: SortOrderInput | SortOrder
+    _count?: UserCountOrderByAggregateInput
+    _max?: UserMaxOrderByAggregateInput
+    _min?: UserMinOrderByAggregateInput
+  }
+
+  export type UserScalarWhereWithAggregatesInput = {
+    AND?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
+    OR?: UserScalarWhereWithAggregatesInput[]
+    NOT?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"User"> | string
+    email?: StringWithAggregatesFilter<"User"> | string
+    name?: StringWithAggregatesFilter<"User"> | string
+    dateCreated?: StringWithAggregatesFilter<"User"> | string
+    lastLoggedIn?: StringNullableWithAggregatesFilter<"User"> | string | null
   }
 
   export type PromptsCreateInput = {
@@ -5947,181 +6423,106 @@ export namespace Prisma {
     dateEdited?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type AetherPromptsCreateInput = {
-    authorsNote?: string | null
-    description?: string | null
-    memory?: string | null
-    nsfw: number
-    parentId?: string | null
-    promptContent: string
-    publishDate?: string | null
-    quests?: string | null
-    tags: string
-    title: string
-    scriptZip?: Buffer | null
-    novelAiScenario?: string | null
-    holoAiScenario?: string | null
-    correlationId: string
-    dateCreated: string
-    dateEdited?: string | null
-    worldInfos?: AetherWorldInfosCreateNestedManyWithoutPromptsInput
+  export type PromptSearchCreateInput = {
+    text: string
   }
 
-  export type AetherPromptsUncheckedCreateInput = {
+  export type PromptSearchUncheckedCreateInput = {
     id?: number
-    authorsNote?: string | null
-    description?: string | null
-    memory?: string | null
-    nsfw: number
-    parentId?: string | null
-    promptContent: string
-    publishDate?: string | null
-    quests?: string | null
-    tags: string
-    title: string
-    scriptZip?: Buffer | null
-    novelAiScenario?: string | null
-    holoAiScenario?: string | null
-    correlationId: string
-    dateCreated: string
-    dateEdited?: string | null
-    worldInfos?: AetherWorldInfosUncheckedCreateNestedManyWithoutPromptsInput
+    text: string
   }
 
-  export type AetherPromptsUpdateInput = {
-    authorsNote?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    memory?: NullableStringFieldUpdateOperationsInput | string | null
-    nsfw?: IntFieldUpdateOperationsInput | number
-    parentId?: NullableStringFieldUpdateOperationsInput | string | null
-    promptContent?: StringFieldUpdateOperationsInput | string
-    publishDate?: NullableStringFieldUpdateOperationsInput | string | null
-    quests?: NullableStringFieldUpdateOperationsInput | string | null
-    tags?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    scriptZip?: NullableBytesFieldUpdateOperationsInput | Buffer | null
-    novelAiScenario?: NullableStringFieldUpdateOperationsInput | string | null
-    holoAiScenario?: NullableStringFieldUpdateOperationsInput | string | null
-    correlationId?: StringFieldUpdateOperationsInput | string
-    dateCreated?: StringFieldUpdateOperationsInput | string
-    dateEdited?: NullableStringFieldUpdateOperationsInput | string | null
-    worldInfos?: AetherWorldInfosUpdateManyWithoutPromptsNestedInput
+  export type PromptSearchUpdateInput = {
+    text?: StringFieldUpdateOperationsInput | string
   }
 
-  export type AetherPromptsUncheckedUpdateInput = {
+  export type PromptSearchUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    authorsNote?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    memory?: NullableStringFieldUpdateOperationsInput | string | null
-    nsfw?: IntFieldUpdateOperationsInput | number
-    parentId?: NullableStringFieldUpdateOperationsInput | string | null
-    promptContent?: StringFieldUpdateOperationsInput | string
-    publishDate?: NullableStringFieldUpdateOperationsInput | string | null
-    quests?: NullableStringFieldUpdateOperationsInput | string | null
-    tags?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    scriptZip?: NullableBytesFieldUpdateOperationsInput | Buffer | null
-    novelAiScenario?: NullableStringFieldUpdateOperationsInput | string | null
-    holoAiScenario?: NullableStringFieldUpdateOperationsInput | string | null
-    correlationId?: StringFieldUpdateOperationsInput | string
-    dateCreated?: StringFieldUpdateOperationsInput | string
-    dateEdited?: NullableStringFieldUpdateOperationsInput | string | null
-    worldInfos?: AetherWorldInfosUncheckedUpdateManyWithoutPromptsNestedInput
+    text?: StringFieldUpdateOperationsInput | string
   }
 
-  export type AetherPromptsUpdateManyMutationInput = {
-    authorsNote?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    memory?: NullableStringFieldUpdateOperationsInput | string | null
-    nsfw?: IntFieldUpdateOperationsInput | number
-    parentId?: NullableStringFieldUpdateOperationsInput | string | null
-    promptContent?: StringFieldUpdateOperationsInput | string
-    publishDate?: NullableStringFieldUpdateOperationsInput | string | null
-    quests?: NullableStringFieldUpdateOperationsInput | string | null
-    tags?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    scriptZip?: NullableBytesFieldUpdateOperationsInput | Buffer | null
-    novelAiScenario?: NullableStringFieldUpdateOperationsInput | string | null
-    holoAiScenario?: NullableStringFieldUpdateOperationsInput | string | null
-    correlationId?: StringFieldUpdateOperationsInput | string
-    dateCreated?: StringFieldUpdateOperationsInput | string
-    dateEdited?: NullableStringFieldUpdateOperationsInput | string | null
+  export type PromptSearchUpdateManyMutationInput = {
+    text?: StringFieldUpdateOperationsInput | string
   }
 
-  export type AetherPromptsUncheckedUpdateManyInput = {
+  export type PromptSearchUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    authorsNote?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    memory?: NullableStringFieldUpdateOperationsInput | string | null
-    nsfw?: IntFieldUpdateOperationsInput | number
-    parentId?: NullableStringFieldUpdateOperationsInput | string | null
-    promptContent?: StringFieldUpdateOperationsInput | string
-    publishDate?: NullableStringFieldUpdateOperationsInput | string | null
-    quests?: NullableStringFieldUpdateOperationsInput | string | null
-    tags?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    scriptZip?: NullableBytesFieldUpdateOperationsInput | Buffer | null
-    novelAiScenario?: NullableStringFieldUpdateOperationsInput | string | null
-    holoAiScenario?: NullableStringFieldUpdateOperationsInput | string | null
-    correlationId?: StringFieldUpdateOperationsInput | string
-    dateCreated?: StringFieldUpdateOperationsInput | string
-    dateEdited?: NullableStringFieldUpdateOperationsInput | string | null
+    text?: StringFieldUpdateOperationsInput | string
   }
 
-  export type AetherWorldInfosCreateInput = {
-    entry: string
-    keys: string
-    correlationId: string
-    dateCreated: string
-    dateEdited?: string | null
-    prompts: AetherPromptsCreateNestedOneWithoutWorldInfosInput
+  export type WorldInfoSearchCreateInput = {
+    text: string
   }
 
-  export type AetherWorldInfosUncheckedCreateInput = {
+  export type WorldInfoSearchUncheckedCreateInput = {
     id?: number
-    entry: string
-    keys: string
-    promptId: number
-    correlationId: string
+    text: string
+  }
+
+  export type WorldInfoSearchUpdateInput = {
+    text?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type WorldInfoSearchUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    text?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type WorldInfoSearchUpdateManyMutationInput = {
+    text?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type WorldInfoSearchUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    text?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type UserCreateInput = {
+    id?: string
+    email: string
+    name: string
     dateCreated: string
-    dateEdited?: string | null
+    lastLoggedIn?: string | null
   }
 
-  export type AetherWorldInfosUpdateInput = {
-    entry?: StringFieldUpdateOperationsInput | string
-    keys?: StringFieldUpdateOperationsInput | string
-    correlationId?: StringFieldUpdateOperationsInput | string
-    dateCreated?: StringFieldUpdateOperationsInput | string
-    dateEdited?: NullableStringFieldUpdateOperationsInput | string | null
-    prompts?: AetherPromptsUpdateOneRequiredWithoutWorldInfosNestedInput
+  export type UserUncheckedCreateInput = {
+    id?: string
+    email: string
+    name: string
+    dateCreated: string
+    lastLoggedIn?: string | null
   }
 
-  export type AetherWorldInfosUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    entry?: StringFieldUpdateOperationsInput | string
-    keys?: StringFieldUpdateOperationsInput | string
-    promptId?: IntFieldUpdateOperationsInput | number
-    correlationId?: StringFieldUpdateOperationsInput | string
+  export type UserUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     dateCreated?: StringFieldUpdateOperationsInput | string
-    dateEdited?: NullableStringFieldUpdateOperationsInput | string | null
+    lastLoggedIn?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type AetherWorldInfosUpdateManyMutationInput = {
-    entry?: StringFieldUpdateOperationsInput | string
-    keys?: StringFieldUpdateOperationsInput | string
-    correlationId?: StringFieldUpdateOperationsInput | string
+  export type UserUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     dateCreated?: StringFieldUpdateOperationsInput | string
-    dateEdited?: NullableStringFieldUpdateOperationsInput | string | null
+    lastLoggedIn?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type AetherWorldInfosUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    entry?: StringFieldUpdateOperationsInput | string
-    keys?: StringFieldUpdateOperationsInput | string
-    promptId?: IntFieldUpdateOperationsInput | number
-    correlationId?: StringFieldUpdateOperationsInput | string
+  export type UserUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     dateCreated?: StringFieldUpdateOperationsInput | string
-    dateEdited?: NullableStringFieldUpdateOperationsInput | string | null
+    lastLoggedIn?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type UserUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    dateCreated?: StringFieldUpdateOperationsInput | string
+    lastLoggedIn?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -6391,129 +6792,74 @@ export namespace Prisma {
     aetherId?: SortOrder
   }
 
-  export type AetherWorldInfosListRelationFilter = {
-    every?: AetherWorldInfosWhereInput
-    some?: AetherWorldInfosWhereInput
-    none?: AetherWorldInfosWhereInput
-  }
-
-  export type AetherWorldInfosOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type AetherPromptsCountOrderByAggregateInput = {
+  export type PromptSearchCountOrderByAggregateInput = {
     id?: SortOrder
-    authorsNote?: SortOrder
-    description?: SortOrder
-    memory?: SortOrder
-    nsfw?: SortOrder
-    parentId?: SortOrder
-    promptContent?: SortOrder
-    publishDate?: SortOrder
-    quests?: SortOrder
-    tags?: SortOrder
-    title?: SortOrder
-    scriptZip?: SortOrder
-    novelAiScenario?: SortOrder
-    holoAiScenario?: SortOrder
-    correlationId?: SortOrder
+    text?: SortOrder
+  }
+
+  export type PromptSearchAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type PromptSearchMaxOrderByAggregateInput = {
+    id?: SortOrder
+    text?: SortOrder
+  }
+
+  export type PromptSearchMinOrderByAggregateInput = {
+    id?: SortOrder
+    text?: SortOrder
+  }
+
+  export type PromptSearchSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type WorldInfoSearchCountOrderByAggregateInput = {
+    id?: SortOrder
+    text?: SortOrder
+  }
+
+  export type WorldInfoSearchAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type WorldInfoSearchMaxOrderByAggregateInput = {
+    id?: SortOrder
+    text?: SortOrder
+  }
+
+  export type WorldInfoSearchMinOrderByAggregateInput = {
+    id?: SortOrder
+    text?: SortOrder
+  }
+
+  export type WorldInfoSearchSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type UserCountOrderByAggregateInput = {
+    id?: SortOrder
+    email?: SortOrder
+    name?: SortOrder
     dateCreated?: SortOrder
-    dateEdited?: SortOrder
+    lastLoggedIn?: SortOrder
   }
 
-  export type AetherPromptsAvgOrderByAggregateInput = {
+  export type UserMaxOrderByAggregateInput = {
     id?: SortOrder
-    nsfw?: SortOrder
-  }
-
-  export type AetherPromptsMaxOrderByAggregateInput = {
-    id?: SortOrder
-    authorsNote?: SortOrder
-    description?: SortOrder
-    memory?: SortOrder
-    nsfw?: SortOrder
-    parentId?: SortOrder
-    promptContent?: SortOrder
-    publishDate?: SortOrder
-    quests?: SortOrder
-    tags?: SortOrder
-    title?: SortOrder
-    scriptZip?: SortOrder
-    novelAiScenario?: SortOrder
-    holoAiScenario?: SortOrder
-    correlationId?: SortOrder
+    email?: SortOrder
+    name?: SortOrder
     dateCreated?: SortOrder
-    dateEdited?: SortOrder
+    lastLoggedIn?: SortOrder
   }
 
-  export type AetherPromptsMinOrderByAggregateInput = {
+  export type UserMinOrderByAggregateInput = {
     id?: SortOrder
-    authorsNote?: SortOrder
-    description?: SortOrder
-    memory?: SortOrder
-    nsfw?: SortOrder
-    parentId?: SortOrder
-    promptContent?: SortOrder
-    publishDate?: SortOrder
-    quests?: SortOrder
-    tags?: SortOrder
-    title?: SortOrder
-    scriptZip?: SortOrder
-    novelAiScenario?: SortOrder
-    holoAiScenario?: SortOrder
-    correlationId?: SortOrder
+    email?: SortOrder
+    name?: SortOrder
     dateCreated?: SortOrder
-    dateEdited?: SortOrder
-  }
-
-  export type AetherPromptsSumOrderByAggregateInput = {
-    id?: SortOrder
-    nsfw?: SortOrder
-  }
-
-  export type AetherPromptsRelationFilter = {
-    is?: AetherPromptsWhereInput
-    isNot?: AetherPromptsWhereInput
-  }
-
-  export type AetherWorldInfosCountOrderByAggregateInput = {
-    id?: SortOrder
-    entry?: SortOrder
-    keys?: SortOrder
-    promptId?: SortOrder
-    correlationId?: SortOrder
-    dateCreated?: SortOrder
-    dateEdited?: SortOrder
-  }
-
-  export type AetherWorldInfosAvgOrderByAggregateInput = {
-    id?: SortOrder
-    promptId?: SortOrder
-  }
-
-  export type AetherWorldInfosMaxOrderByAggregateInput = {
-    id?: SortOrder
-    entry?: SortOrder
-    keys?: SortOrder
-    promptId?: SortOrder
-    correlationId?: SortOrder
-    dateCreated?: SortOrder
-    dateEdited?: SortOrder
-  }
-
-  export type AetherWorldInfosMinOrderByAggregateInput = {
-    id?: SortOrder
-    entry?: SortOrder
-    keys?: SortOrder
-    promptId?: SortOrder
-    correlationId?: SortOrder
-    dateCreated?: SortOrder
-    dateEdited?: SortOrder
-  }
-
-  export type AetherWorldInfosSumOrderByAggregateInput = {
-    id?: SortOrder
-    promptId?: SortOrder
+    lastLoggedIn?: SortOrder
   }
 
   export type WorldInfosCreateNestedManyWithoutPromptsInput = {
@@ -6594,58 +6940,6 @@ export namespace Prisma {
     upsert?: PromptsUpsertWithoutWorldInfosInput
     connect?: PromptsWhereUniqueInput
     update?: XOR<XOR<PromptsUpdateToOneWithWhereWithoutWorldInfosInput, PromptsUpdateWithoutWorldInfosInput>, PromptsUncheckedUpdateWithoutWorldInfosInput>
-  }
-
-  export type AetherWorldInfosCreateNestedManyWithoutPromptsInput = {
-    create?: XOR<AetherWorldInfosCreateWithoutPromptsInput, AetherWorldInfosUncheckedCreateWithoutPromptsInput> | AetherWorldInfosCreateWithoutPromptsInput[] | AetherWorldInfosUncheckedCreateWithoutPromptsInput[]
-    connectOrCreate?: AetherWorldInfosCreateOrConnectWithoutPromptsInput | AetherWorldInfosCreateOrConnectWithoutPromptsInput[]
-    connect?: AetherWorldInfosWhereUniqueInput | AetherWorldInfosWhereUniqueInput[]
-  }
-
-  export type AetherWorldInfosUncheckedCreateNestedManyWithoutPromptsInput = {
-    create?: XOR<AetherWorldInfosCreateWithoutPromptsInput, AetherWorldInfosUncheckedCreateWithoutPromptsInput> | AetherWorldInfosCreateWithoutPromptsInput[] | AetherWorldInfosUncheckedCreateWithoutPromptsInput[]
-    connectOrCreate?: AetherWorldInfosCreateOrConnectWithoutPromptsInput | AetherWorldInfosCreateOrConnectWithoutPromptsInput[]
-    connect?: AetherWorldInfosWhereUniqueInput | AetherWorldInfosWhereUniqueInput[]
-  }
-
-  export type AetherWorldInfosUpdateManyWithoutPromptsNestedInput = {
-    create?: XOR<AetherWorldInfosCreateWithoutPromptsInput, AetherWorldInfosUncheckedCreateWithoutPromptsInput> | AetherWorldInfosCreateWithoutPromptsInput[] | AetherWorldInfosUncheckedCreateWithoutPromptsInput[]
-    connectOrCreate?: AetherWorldInfosCreateOrConnectWithoutPromptsInput | AetherWorldInfosCreateOrConnectWithoutPromptsInput[]
-    upsert?: AetherWorldInfosUpsertWithWhereUniqueWithoutPromptsInput | AetherWorldInfosUpsertWithWhereUniqueWithoutPromptsInput[]
-    set?: AetherWorldInfosWhereUniqueInput | AetherWorldInfosWhereUniqueInput[]
-    disconnect?: AetherWorldInfosWhereUniqueInput | AetherWorldInfosWhereUniqueInput[]
-    delete?: AetherWorldInfosWhereUniqueInput | AetherWorldInfosWhereUniqueInput[]
-    connect?: AetherWorldInfosWhereUniqueInput | AetherWorldInfosWhereUniqueInput[]
-    update?: AetherWorldInfosUpdateWithWhereUniqueWithoutPromptsInput | AetherWorldInfosUpdateWithWhereUniqueWithoutPromptsInput[]
-    updateMany?: AetherWorldInfosUpdateManyWithWhereWithoutPromptsInput | AetherWorldInfosUpdateManyWithWhereWithoutPromptsInput[]
-    deleteMany?: AetherWorldInfosScalarWhereInput | AetherWorldInfosScalarWhereInput[]
-  }
-
-  export type AetherWorldInfosUncheckedUpdateManyWithoutPromptsNestedInput = {
-    create?: XOR<AetherWorldInfosCreateWithoutPromptsInput, AetherWorldInfosUncheckedCreateWithoutPromptsInput> | AetherWorldInfosCreateWithoutPromptsInput[] | AetherWorldInfosUncheckedCreateWithoutPromptsInput[]
-    connectOrCreate?: AetherWorldInfosCreateOrConnectWithoutPromptsInput | AetherWorldInfosCreateOrConnectWithoutPromptsInput[]
-    upsert?: AetherWorldInfosUpsertWithWhereUniqueWithoutPromptsInput | AetherWorldInfosUpsertWithWhereUniqueWithoutPromptsInput[]
-    set?: AetherWorldInfosWhereUniqueInput | AetherWorldInfosWhereUniqueInput[]
-    disconnect?: AetherWorldInfosWhereUniqueInput | AetherWorldInfosWhereUniqueInput[]
-    delete?: AetherWorldInfosWhereUniqueInput | AetherWorldInfosWhereUniqueInput[]
-    connect?: AetherWorldInfosWhereUniqueInput | AetherWorldInfosWhereUniqueInput[]
-    update?: AetherWorldInfosUpdateWithWhereUniqueWithoutPromptsInput | AetherWorldInfosUpdateWithWhereUniqueWithoutPromptsInput[]
-    updateMany?: AetherWorldInfosUpdateManyWithWhereWithoutPromptsInput | AetherWorldInfosUpdateManyWithWhereWithoutPromptsInput[]
-    deleteMany?: AetherWorldInfosScalarWhereInput | AetherWorldInfosScalarWhereInput[]
-  }
-
-  export type AetherPromptsCreateNestedOneWithoutWorldInfosInput = {
-    create?: XOR<AetherPromptsCreateWithoutWorldInfosInput, AetherPromptsUncheckedCreateWithoutWorldInfosInput>
-    connectOrCreate?: AetherPromptsCreateOrConnectWithoutWorldInfosInput
-    connect?: AetherPromptsWhereUniqueInput
-  }
-
-  export type AetherPromptsUpdateOneRequiredWithoutWorldInfosNestedInput = {
-    create?: XOR<AetherPromptsCreateWithoutWorldInfosInput, AetherPromptsUncheckedCreateWithoutWorldInfosInput>
-    connectOrCreate?: AetherPromptsCreateOrConnectWithoutWorldInfosInput
-    upsert?: AetherPromptsUpsertWithoutWorldInfosInput
-    connect?: AetherPromptsWhereUniqueInput
-    update?: XOR<XOR<AetherPromptsUpdateToOneWithWhereWithoutWorldInfosInput, AetherPromptsUpdateWithoutWorldInfosInput>, AetherPromptsUncheckedUpdateWithoutWorldInfosInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -6958,151 +7252,6 @@ export namespace Prisma {
     dateEdited?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type AetherWorldInfosCreateWithoutPromptsInput = {
-    entry: string
-    keys: string
-    correlationId: string
-    dateCreated: string
-    dateEdited?: string | null
-  }
-
-  export type AetherWorldInfosUncheckedCreateWithoutPromptsInput = {
-    id?: number
-    entry: string
-    keys: string
-    correlationId: string
-    dateCreated: string
-    dateEdited?: string | null
-  }
-
-  export type AetherWorldInfosCreateOrConnectWithoutPromptsInput = {
-    where: AetherWorldInfosWhereUniqueInput
-    create: XOR<AetherWorldInfosCreateWithoutPromptsInput, AetherWorldInfosUncheckedCreateWithoutPromptsInput>
-  }
-
-  export type AetherWorldInfosUpsertWithWhereUniqueWithoutPromptsInput = {
-    where: AetherWorldInfosWhereUniqueInput
-    update: XOR<AetherWorldInfosUpdateWithoutPromptsInput, AetherWorldInfosUncheckedUpdateWithoutPromptsInput>
-    create: XOR<AetherWorldInfosCreateWithoutPromptsInput, AetherWorldInfosUncheckedCreateWithoutPromptsInput>
-  }
-
-  export type AetherWorldInfosUpdateWithWhereUniqueWithoutPromptsInput = {
-    where: AetherWorldInfosWhereUniqueInput
-    data: XOR<AetherWorldInfosUpdateWithoutPromptsInput, AetherWorldInfosUncheckedUpdateWithoutPromptsInput>
-  }
-
-  export type AetherWorldInfosUpdateManyWithWhereWithoutPromptsInput = {
-    where: AetherWorldInfosScalarWhereInput
-    data: XOR<AetherWorldInfosUpdateManyMutationInput, AetherWorldInfosUncheckedUpdateManyWithoutPromptsInput>
-  }
-
-  export type AetherWorldInfosScalarWhereInput = {
-    AND?: AetherWorldInfosScalarWhereInput | AetherWorldInfosScalarWhereInput[]
-    OR?: AetherWorldInfosScalarWhereInput[]
-    NOT?: AetherWorldInfosScalarWhereInput | AetherWorldInfosScalarWhereInput[]
-    id?: IntFilter<"AetherWorldInfos"> | number
-    entry?: StringFilter<"AetherWorldInfos"> | string
-    keys?: StringFilter<"AetherWorldInfos"> | string
-    promptId?: IntFilter<"AetherWorldInfos"> | number
-    correlationId?: StringFilter<"AetherWorldInfos"> | string
-    dateCreated?: StringFilter<"AetherWorldInfos"> | string
-    dateEdited?: StringNullableFilter<"AetherWorldInfos"> | string | null
-  }
-
-  export type AetherPromptsCreateWithoutWorldInfosInput = {
-    authorsNote?: string | null
-    description?: string | null
-    memory?: string | null
-    nsfw: number
-    parentId?: string | null
-    promptContent: string
-    publishDate?: string | null
-    quests?: string | null
-    tags: string
-    title: string
-    scriptZip?: Buffer | null
-    novelAiScenario?: string | null
-    holoAiScenario?: string | null
-    correlationId: string
-    dateCreated: string
-    dateEdited?: string | null
-  }
-
-  export type AetherPromptsUncheckedCreateWithoutWorldInfosInput = {
-    id?: number
-    authorsNote?: string | null
-    description?: string | null
-    memory?: string | null
-    nsfw: number
-    parentId?: string | null
-    promptContent: string
-    publishDate?: string | null
-    quests?: string | null
-    tags: string
-    title: string
-    scriptZip?: Buffer | null
-    novelAiScenario?: string | null
-    holoAiScenario?: string | null
-    correlationId: string
-    dateCreated: string
-    dateEdited?: string | null
-  }
-
-  export type AetherPromptsCreateOrConnectWithoutWorldInfosInput = {
-    where: AetherPromptsWhereUniqueInput
-    create: XOR<AetherPromptsCreateWithoutWorldInfosInput, AetherPromptsUncheckedCreateWithoutWorldInfosInput>
-  }
-
-  export type AetherPromptsUpsertWithoutWorldInfosInput = {
-    update: XOR<AetherPromptsUpdateWithoutWorldInfosInput, AetherPromptsUncheckedUpdateWithoutWorldInfosInput>
-    create: XOR<AetherPromptsCreateWithoutWorldInfosInput, AetherPromptsUncheckedCreateWithoutWorldInfosInput>
-    where?: AetherPromptsWhereInput
-  }
-
-  export type AetherPromptsUpdateToOneWithWhereWithoutWorldInfosInput = {
-    where?: AetherPromptsWhereInput
-    data: XOR<AetherPromptsUpdateWithoutWorldInfosInput, AetherPromptsUncheckedUpdateWithoutWorldInfosInput>
-  }
-
-  export type AetherPromptsUpdateWithoutWorldInfosInput = {
-    authorsNote?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    memory?: NullableStringFieldUpdateOperationsInput | string | null
-    nsfw?: IntFieldUpdateOperationsInput | number
-    parentId?: NullableStringFieldUpdateOperationsInput | string | null
-    promptContent?: StringFieldUpdateOperationsInput | string
-    publishDate?: NullableStringFieldUpdateOperationsInput | string | null
-    quests?: NullableStringFieldUpdateOperationsInput | string | null
-    tags?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    scriptZip?: NullableBytesFieldUpdateOperationsInput | Buffer | null
-    novelAiScenario?: NullableStringFieldUpdateOperationsInput | string | null
-    holoAiScenario?: NullableStringFieldUpdateOperationsInput | string | null
-    correlationId?: StringFieldUpdateOperationsInput | string
-    dateCreated?: StringFieldUpdateOperationsInput | string
-    dateEdited?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type AetherPromptsUncheckedUpdateWithoutWorldInfosInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    authorsNote?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    memory?: NullableStringFieldUpdateOperationsInput | string | null
-    nsfw?: IntFieldUpdateOperationsInput | number
-    parentId?: NullableStringFieldUpdateOperationsInput | string | null
-    promptContent?: StringFieldUpdateOperationsInput | string
-    publishDate?: NullableStringFieldUpdateOperationsInput | string | null
-    quests?: NullableStringFieldUpdateOperationsInput | string | null
-    tags?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    scriptZip?: NullableBytesFieldUpdateOperationsInput | Buffer | null
-    novelAiScenario?: NullableStringFieldUpdateOperationsInput | string | null
-    holoAiScenario?: NullableStringFieldUpdateOperationsInput | string | null
-    correlationId?: StringFieldUpdateOperationsInput | string
-    dateCreated?: StringFieldUpdateOperationsInput | string
-    dateEdited?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
   export type WorldInfosUpdateWithoutPromptsInput = {
     id?: StringFieldUpdateOperationsInput | string
     aetherId?: NullableIntFieldUpdateOperationsInput | number | null
@@ -7133,32 +7282,6 @@ export namespace Prisma {
     dateEdited?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type AetherWorldInfosUpdateWithoutPromptsInput = {
-    entry?: StringFieldUpdateOperationsInput | string
-    keys?: StringFieldUpdateOperationsInput | string
-    correlationId?: StringFieldUpdateOperationsInput | string
-    dateCreated?: StringFieldUpdateOperationsInput | string
-    dateEdited?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type AetherWorldInfosUncheckedUpdateWithoutPromptsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    entry?: StringFieldUpdateOperationsInput | string
-    keys?: StringFieldUpdateOperationsInput | string
-    correlationId?: StringFieldUpdateOperationsInput | string
-    dateCreated?: StringFieldUpdateOperationsInput | string
-    dateEdited?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type AetherWorldInfosUncheckedUpdateManyWithoutPromptsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    entry?: StringFieldUpdateOperationsInput | string
-    keys?: StringFieldUpdateOperationsInput | string
-    correlationId?: StringFieldUpdateOperationsInput | string
-    dateCreated?: StringFieldUpdateOperationsInput | string
-    dateEdited?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
 
 
   /**
@@ -7169,10 +7292,6 @@ export namespace Prisma {
      */
     export type PromptsCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = PromptsCountOutputTypeDefaultArgs<ExtArgs>
     /**
-     * @deprecated Use AetherPromptsCountOutputTypeDefaultArgs instead
-     */
-    export type AetherPromptsCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = AetherPromptsCountOutputTypeDefaultArgs<ExtArgs>
-    /**
      * @deprecated Use PromptsDefaultArgs instead
      */
     export type PromptsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = PromptsDefaultArgs<ExtArgs>
@@ -7181,13 +7300,17 @@ export namespace Prisma {
      */
     export type WorldInfosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = WorldInfosDefaultArgs<ExtArgs>
     /**
-     * @deprecated Use AetherPromptsDefaultArgs instead
+     * @deprecated Use PromptSearchDefaultArgs instead
      */
-    export type AetherPromptsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = AetherPromptsDefaultArgs<ExtArgs>
+    export type PromptSearchArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = PromptSearchDefaultArgs<ExtArgs>
     /**
-     * @deprecated Use AetherWorldInfosDefaultArgs instead
+     * @deprecated Use WorldInfoSearchDefaultArgs instead
      */
-    export type AetherWorldInfosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = AetherWorldInfosDefaultArgs<ExtArgs>
+    export type WorldInfoSearchArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = WorldInfoSearchDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use UserDefaultArgs instead
+     */
+    export type UserArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = UserDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

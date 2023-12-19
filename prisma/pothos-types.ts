@@ -1,5 +1,5 @@
 /* eslint-disable */
-import type { Prisma, Prompts, WorldInfos, AetherPrompts, AetherWorldInfos } from "./client";
+import type { Prisma, Prompts, WorldInfos, PromptSearch, WorldInfoSearch, User } from "./client";
 export default interface PrismaTypes {
     Prompts: {
         Name: "Prompts";
@@ -39,42 +39,46 @@ export default interface PrismaTypes {
             };
         };
     };
-    AetherPrompts: {
-        Name: "AetherPrompts";
-        Shape: AetherPrompts;
-        Include: Prisma.AetherPromptsInclude;
-        Select: Prisma.AetherPromptsSelect;
-        OrderBy: Prisma.AetherPromptsOrderByWithRelationInput;
-        WhereUnique: Prisma.AetherPromptsWhereUniqueInput;
-        Where: Prisma.AetherPromptsWhereInput;
+    PromptSearch: {
+        Name: "PromptSearch";
+        Shape: PromptSearch;
+        Include: never;
+        Select: Prisma.PromptSearchSelect;
+        OrderBy: Prisma.PromptSearchOrderByWithRelationInput;
+        WhereUnique: Prisma.PromptSearchWhereUniqueInput;
+        Where: Prisma.PromptSearchWhereInput;
         Create: {};
         Update: {};
-        RelationName: "worldInfos";
-        ListRelations: "worldInfos";
-        Relations: {
-            worldInfos: {
-                Shape: AetherWorldInfos[];
-                Name: "AetherWorldInfos";
-            };
-        };
-    };
-    AetherWorldInfos: {
-        Name: "AetherWorldInfos";
-        Shape: AetherWorldInfos;
-        Include: Prisma.AetherWorldInfosInclude;
-        Select: Prisma.AetherWorldInfosSelect;
-        OrderBy: Prisma.AetherWorldInfosOrderByWithRelationInput;
-        WhereUnique: Prisma.AetherWorldInfosWhereUniqueInput;
-        Where: Prisma.AetherWorldInfosWhereInput;
-        Create: {};
-        Update: {};
-        RelationName: "prompts";
+        RelationName: never;
         ListRelations: never;
-        Relations: {
-            prompts: {
-                Shape: AetherPrompts;
-                Name: "AetherPrompts";
-            };
-        };
+        Relations: {};
+    };
+    WorldInfoSearch: {
+        Name: "WorldInfoSearch";
+        Shape: WorldInfoSearch;
+        Include: never;
+        Select: Prisma.WorldInfoSearchSelect;
+        OrderBy: Prisma.WorldInfoSearchOrderByWithRelationInput;
+        WhereUnique: Prisma.WorldInfoSearchWhereUniqueInput;
+        Where: Prisma.WorldInfoSearchWhereInput;
+        Create: {};
+        Update: {};
+        RelationName: never;
+        ListRelations: never;
+        Relations: {};
+    };
+    User: {
+        Name: "User";
+        Shape: User;
+        Include: never;
+        Select: Prisma.UserSelect;
+        OrderBy: Prisma.UserOrderByWithRelationInput;
+        WhereUnique: Prisma.UserWhereUniqueInput;
+        Where: Prisma.UserWhereInput;
+        Create: {};
+        Update: {};
+        RelationName: never;
+        ListRelations: never;
+        Relations: {};
     };
 }

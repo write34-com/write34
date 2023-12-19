@@ -1,7 +1,7 @@
 
 import type { NextApiRequest, NextApiResponse } from 'next';
 import {db} from "@/app/api/graphql/db";
-import {NextResponse} from "next/server";
+import {NextRequest, NextResponse} from "next/server";
 
 type ResponseData = {
     message: string
@@ -217,7 +217,7 @@ function getWorldInfos(worldInfos: {
             keys: keys,
             searchRange: 1000,
             enabled: true,
-            forceActivation: keys.length === 0,
+            forceActivation: keys.length > 0,
             keyRelative: false,
             nonStoryActivatable: false,
             category: 'World Info',
@@ -229,18 +229,22 @@ function getWorldInfos(worldInfos: {
 }
 
 export async function GET(
-    req: NextApiRequest,
-    res: NextApiResponse<ResponseData | NovelAIScenarioContainerVersion1>
+    req: Request | NextRequest,
+    res: NextResponse<ResponseData | NovelAIScenarioContainerVersion1>
 ) {
     if (!req.url) {
-        return res.status(400).json({ message: 'Invalid URL requested' });
+        return NextResponse.json({ message: 'Invalid URL requested' }, {
+            status: 400
+        });
     }
 
     const {searchParams} = new URL(req.url);
     const promptId = searchParams.get("scenario");
 
     if (!promptId) {
-        return res.status(400).json({ message: 'Invalid prompt ID' });
+        return NextResponse.json({ message: 'Invalid  prompt ID' }, {
+            status: 400
+        });
     }
 
     const prompt = await db.prompts.findFirst({
@@ -250,12 +254,27 @@ export async function GET(
     });
 
     if (!prompt) {
-        return res.status(404).json({ message: 'Not found' });
+        return NextResponse.json({ message: 'Prompt not found' }, {
+            status: 404
+        });
     }
+
+    // Sanitize title for filename to download. Strip sensitive characters.
+    const filename = prompt.title.replace(/[^a-z0-9]/gi, '_');
+
 
     // If there is a novelAiScenario, return it as-is.
     if (prompt.novelAiScenario) {
-        return res.status(200).json(prompt.novelAiScenario as unknown as NovelAIScenarioContainerVersion1);
+
+        // Pretty print the JSON
+        // TODO: Decide if we thinking parsing and prettifying the JSON is worth it. I'm lazy tho, so send back as-is. #yolo
+        const response = new NextResponse(prompt.novelAiScenario);
+
+        // Set headers to force download.
+        response.headers.set('Content-Type', 'application/json');
+        response.headers.set('Content-Disposition', `attachment; filename=${filename}.scenario`);
+
+        return response;
     }
 
     const worldInfos = await db.worldInfos.findMany({
@@ -264,51 +283,62 @@ export async function GET(
         }
     });
 
-    const scenario: NovelAIScenarioVersion3 = {
-        scenarioVersion: 3,
-        title: prompt.title,
-        description: prompt.description || '',
-        tags: prompt.tags.split(',').map(tag => tag.trim()),
-        settings: defaultContentSettings,
-        placeholders: [],
-        prompt: prompt.promptContent,
-        author: 'write34.com export',
-        storyContextConfig: {
-            prefix: '',
-            suffix: '',
-            tokenBudget: 1,
-            reservedTokens: 512,
-            budgetPriority: 0,
-            trimDirection: 'trimTop',
-            insertionType: 'newline',
-            maximumTrimType: 'sentence',
-            insertionPosition: -1,
-            allowInsertionInside: true
+    const scenario: NovelAIScenarioContainerVersion1 = {
+        storyContainerVersion: 1,
+        metadata: {
+            storyMetadataVersion: 1,
+            id: prompt.id,
+            title: prompt.title,
+            description: prompt.description || '',
+            textPreview: prompt.promptContent.slice(0, 100),
+            isTA: false,
+            favorite: false,
+            tags: prompt.tags.split(',').map(tag => tag.trim()),
+            // Use current Unix time for now.
+            createdAt: Math.floor(Date.now() / 1000),
+            lastUpdatedAt: Math.floor(Date.now() / 1000),
+            isModified: false,
+            hasDocument: true,
         },
-        ephemeralContext: [],
-        contextDefaults: contextDefaults,
-        context: getContext(prompt),
-        lorebook: getWorldInfos(worldInfos),
-        phraseBiasGroups: [
-            {
-                "phrases": [],
-                "ensureSequenceFinish": false,
-                "generateOnce": true,
-                "bias": 0,
-                "enabled": true,
-                "whenInactive": false
-            }
-        ],
-        bannedSequenceGroups: [
-            {
-                "sequences": [],
-                "enabled": true
-            }
-        ]
+        content: {
+            storyContentVersion: 6,
+            settings: defaultContentSettings,
+            document: '1BQA1HJAldZiAAABSsEIwQXBB8ENwQSAkNQeANRyQZPBBMEHwQXLQwf45' + btoa(prompt.promptContent),
+            context: getContext(prompt),
+            lorebook: getWorldInfos(worldInfos),
+            storyContextConfig: {
+                prefix: '',
+                suffix: '',
+                tokenBudget: 1,
+                reservedTokens: 512,
+                budgetPriority: 0,
+                trimDirection: 'trimTop',
+                insertionType: 'newline',
+                maximumTrimType: 'sentence',
+                insertionPosition: -1,
+                allowInsertionInside: true
+            },
+            ephemeralContext: [],
+            contextDefaults: contextDefaults,
+            settingsDirty: false,
+            phraseBiasGroups: [
+                {
+                    "phrases": [],
+                    "ensureSequenceFinish": false,
+                    "generateOnce": true,
+                    "bias": 0,
+                    "enabled": true,
+                    "whenInactive": false
+                }
+            ],
+            bannedSequenceGroups: [
+                {
+                    "sequences": [],
+                    "enabled": true
+                }
+            ]
+        },
     };
-
-    // Sanitize title for filename to download. Strip sensitive characters.
-    const filename = prompt.title.replace(/[^a-z0-9]/gi, '_');
 
     // Pretty print the JSON
     const response = new NextResponse(JSON.stringify(scenario, null, 2));

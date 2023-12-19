@@ -63,41 +63,64 @@ model WorldInfos {
   @@index([promptId], name: "IX_WorldInfos_PromptId")
 }
 
-model AetherPrompts {
-  id              Int     @id @default(autoincrement())
-  authorsNote     String?
-  description     String?
-  memory          String?
-  nsfw            Int
-  parentId        String?
-  promptContent   String
-  publishDate     String?
-  quests          String?
-  tags            String
-  title           String
-  scriptZip       Bytes?
-  novelAiScenario String?
-  holoAiScenario  String?
-  correlationId   String
-  dateCreated     String
-  dateEdited      String?
+// model AetherPrompts {
+//   id              Int     @id @default(autoincrement())
+//   authorsNote     String?
+//   description     String?
+//   memory          String?
+//   nsfw            Int
+//   parentId        String?
+//   promptContent   String
+//   publishDate     String?
+//   quests          String?
+//   tags            String
+//   title           String
+//   scriptZip       Bytes?
+//   novelAiScenario String?
+//   holoAiScenario  String?
+//   correlationId   String
+//   dateCreated     String
+//   dateEdited      String?
+//
+//   worldInfos AetherWorldInfos[] @relation("AetherPromptWorldInfo")
+//
+//   @@index([correlationId], name: "IX_AetherPrompts_CorrelationId")
+// }
 
-  worldInfos AetherWorldInfos[] @relation("AetherPromptWorldInfo")
+// model AetherWorldInfos {
+//   id            Int     @id @default(autoincrement())
+//   entry         String
+//   keys          String
+//   promptId      Int
+//   correlationId String
+//   dateCreated   String
+//   dateEdited    String?
+//
+//   prompts AetherPrompts @relation("AetherPromptWorldInfo", fields: [promptId], references: [id], onDelete: Cascade)
+//
+//   @@index([correlationId], name: "IX_AetherWorldInfos_CorrelationId")
+//   @@index([promptId], name: "IX_AetherWorldInfos_PromptId")
+// }
 
-  @@index([correlationId], name: "IX_AetherPrompts_CorrelationId")
+// fst5 search tables
+model PromptSearch {
+  id   Int    @id @default(autoincrement())
+  text String
 }
 
-model AetherWorldInfos {
-  id            Int     @id @default(autoincrement())
-  entry         String
-  keys          String
-  promptId      Int
-  correlationId String
-  dateCreated   String
-  dateEdited    String?
+model WorldInfoSearch {
+  id   Int    @id @default(autoincrement())
+  text String
+}
 
-  prompts AetherPrompts @relation("AetherPromptWorldInfo", fields: [promptId], references: [id], onDelete: Cascade)
+model User {
+  id           String  @id @default(uuid())
+  email        String  @unique
+  name         String
+  dateCreated  String
+  lastLoggedIn String?
 
-  @@index([correlationId], name: "IX_AetherWorldInfos_CorrelationId")
-  @@index([promptId], name: "IX_AetherWorldInfos_PromptId")
+  @@index([email], name: "IX_Users_Email")
+  @@index([name], name: "IX_Users_Name")
+  @@index([lastLoggedIn], name: "IX_Users_LastLoggedIn")
 }
