@@ -6,26 +6,23 @@ export default function MainView(props: {
     queryRef: PreloadedQuery<MainViewQuery>;
 }) {
     // Read the preloaded query data from the props
-    const data = usePreloadedQuery(
-        graphql`
-            query MainViewQuery {
-                prompts(first: 15) {
-                    edges {
-                        node {
-                            id
-                            title
-                            description
-                            dateCreated
-                            dateEdited
-                            publishDate
-                            nsfw
-                        }
+    const data = usePreloadedQuery(graphql`
+        query MainViewQuery {
+            prompts(first: 15) {
+                edges {
+                    node {
+                        id
+                        title
+                        description
+                        dateCreated
+                        dateEdited
+                        publishDate
+                        nsfw
                     }
                 }
             }
-        `,
-        props.queryRef
-    );
+        }
+    `, props.queryRef);
 
     return (
         <div className="bg-white dark:bg-gray-900 dark:text-gray-100 py-24 sm:py-32">
@@ -36,12 +33,13 @@ export default function MainView(props: {
                         View prompts submitted by the community.
                     </p>
                 </div>
-                <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+                <div
+                    className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
                     {data.prompts?.edges?.map((edge) => {
                         const link = '/scenarios/' + atob(edge?.node?.id || '').replace('Prompts:', '');
 
-                        return (
-                            <article key={edge?.node?.id} className="flex max-w-xl flex-col items-start justify-between border-gray-200 border-b">
+                        return (<article key={edge?.node?.id}
+                                         className="flex max-w-xl flex-col items-start justify-between border-gray-200 border-b">
                                 <div className="flex items-center gap-x-4 text-xs">
                                     <time dateTime={edge?.node?.publishDate || undefined} className="text-gray-400">
                                         {edge?.node?.publishDate}
@@ -56,7 +54,7 @@ export default function MainView(props: {
                                 <div className="group relative">
                                     <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600 dark:text-gray-100">
                                         <Link href={link}>
-                                            <span className="absolute inset-0" />
+                                            <span className="absolute inset-0"/>
                                             {edge?.node?.title}
                                         </Link>
                                     </h3>
@@ -67,19 +65,17 @@ export default function MainView(props: {
                                     <div className="text-sm leading-6">
                                         <p className="font-semibold text-gray-900 dark:bg-gray-900 dark:text-gray-100">
                                             <Link href={link}>
-                                                <span className="absolute inset-0" />
+                                                <span className="absolute inset-0"/>
                                                 {/*{edge?.node?.id}*/}
                                             </Link>
                                         </p>
                                         {/*<p className="text-gray-600">{post.author.role}</p>*/}
                                     </div>
                                 </div>
-                            </article>
-                        );
-                        }
-                    )}
+                            </article>);
+                    })}
                 </div>
             </div>
-        </div >
+        </div>
     );
 }

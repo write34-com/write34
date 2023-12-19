@@ -9,7 +9,7 @@ import scenarioComponentViewQueryGraphql, {
 export const generateStaticParams = (async () => {
 
     const dbScenarios = await db.prompts.findMany({
-        take: 15
+        take: 100000,
     });
 
     return dbScenarios.map(scenario => ({
