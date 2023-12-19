@@ -10,7 +10,7 @@
     "start": "next start",
     "lint": "next lint",
     "lint-fix": "next lint --fix",
-    "postinstall": "npm run generate",
+    "postinstall": "npx prisma generate",
     "watch": "nodemon"
   },
   "dependencies": {
