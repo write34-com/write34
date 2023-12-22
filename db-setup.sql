@@ -183,22 +183,22 @@ INSERT INTO "promptSearch" (id,
 SELECT id, description, memory, PromptContent, Tags, Title FROM "Prompts" LIMIT 100000;
 
 -- Creating these *after* because of the malformed database error
-CREATE TRIGGER promptSearch_ai AFTER INSERT ON Prompts
-BEGIN
-    INSERT INTO promptSearch (id, description, memory, promptContent, tags, title)
-    VALUES (new.id, new.description, new.memory, new.promptContent, new.tags, new.title);
-END;
-
-CREATE TRIGGER promptSearch_ad AFTER DELETE ON Prompts
-BEGIN
-    INSERT INTO promptSearch (promptSearch, id, description, memory, promptContent, tags, title)
-    VALUES ('delete', old.id, old.description, old.memory, old.promptContent, old.tags, old.title);
-END;
-
-CREATE TRIGGER promptSearch_au AFTER UPDATE ON Prompts
-BEGIN
-    INSERT INTO promptSearch (promptSearch, id, description, memory, promptContent, tags, title)
-    VALUES ('delete', old.id, old.description, old.memory, old.promptContent, old.tags, old.title);
-    INSERT INTO promptSearch (id, description, memory, promptContent, tags, title)
-    VALUES (new.id, new.description, new.memory, new.promptContent, new.tags, new.title);
-END;
+-- CREATE TRIGGER promptSearch_ai AFTER INSERT ON Prompts
+-- BEGIN
+--     INSERT INTO promptSearch (id, description, memory, promptContent, tags, title)
+--     VALUES (new.id, new.description, new.memory, new.promptContent, new.tags, new.title);
+-- END;
+--
+-- CREATE TRIGGER promptSearch_ad AFTER DELETE ON Prompts
+-- BEGIN
+--     INSERT INTO promptSearch (promptSearch, id, description, memory, promptContent, tags, title)
+--     VALUES ('delete', old.id, old.description, old.memory, old.promptContent, old.tags, old.title);
+-- END;
+--
+-- CREATE TRIGGER promptSearch_au AFTER UPDATE ON Prompts
+-- BEGIN
+--     INSERT INTO promptSearch (promptSearch, id, description, memory, promptContent, tags, title)
+--     VALUES ('delete', old.id, old.description, old.memory, old.promptContent, old.tags, old.title);
+--     INSERT INTO promptSearch (id, description, memory, promptContent, tags, title)
+--     VALUES (new.id, new.description, new.memory, new.promptContent, new.tags, new.title);
+-- END;

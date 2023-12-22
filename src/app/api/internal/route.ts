@@ -40,14 +40,24 @@ export async function GET(
 
     // @ts-ignore
     for (let tag of tagSet.keys()) {
-        const tagId = randomUUID();
+        let tagId = randomUUID() as string;
 
-        await db.tags.create({
-            data: {
-                id: tagId,
+        const existingTag = await db.tags.findFirst({
+            where: {
                 name: tag
             }
         });
+
+        if (!existingTag) {
+            await db.tags.create({
+                data: {
+                    id: tagId,
+                    name: tag
+                }
+            });
+        } else {
+            tagId = existingTag.id;
+        }
 
         // Store for later when creating JOIN table entries
         tagIdMap.set(tag, tagId);
