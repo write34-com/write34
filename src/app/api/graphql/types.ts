@@ -47,7 +47,7 @@ builder.addScalarType('JSON', JSONResolver);
 builder.addScalarType('Date', DateResolver);
 
 const Prompts = builder.prismaNode('Prompts', {
-    id: { field: 'id' },
+    id: {field: 'id'},
     select: {
         id: true,
     },
@@ -107,6 +107,8 @@ const Prompts = builder.prismaNode('Prompts', {
         dateEdited: t.exposeString('dateEdited', {
             nullable: true,
         }),
+        // TODO: Figure out how to do many-to-many JOINs in Pothos
+        // tags: t.relation('tagsPromptsMap'),
         worldInfos: t.relation('worldInfos'),
     }),
 });
@@ -114,7 +116,7 @@ const Prompts = builder.prismaNode('Prompts', {
 builder.prismaNode('WorldInfos', {
     // Optional name for the object, defaults to the name of the prisma model
     // name: 'WorldInfos',
-    id: { field: 'id' },
+    id: {field: 'id'},
     fields: (t) => ({
         // id: t.exposeID('id'),
         aetherId: t.exposeInt('aetherId', {
@@ -143,7 +145,7 @@ builder.prismaNode('WorldInfos', {
 
 const PromptsSearch = builder.prismaNode('Prompts', {
     variant: 'PromptsSearch',
-    id: { field: 'id' },
+    id: {field: 'id'},
     fields: (t) => ({
         title: t.exposeString('title', {
             nullable: false,
@@ -160,11 +162,26 @@ const PromptsSearch = builder.prismaNode('Prompts', {
         memory: t.exposeString('memory', {
             nullable: true,
         }),
+        // nsfw: t.exposeBoolean('nsfw', {
+        //     nullable: false,
+        // }),
+        nsfw: t.boolean({
+            resolve: (parent) => {
+                // Assuming `parent.nsfw` is the boolean
+                const nsfw = parent.nsfw;
+
+                if (nsfw === undefined) {
+                    return false;
+                }
+
+                return Number(nsfw) !== 0;
+            },
+        }),
     })
 });
 
 builder.prismaNode('User', {
-    id: { field: 'id' },
+    id: {field: 'id'},
     fields: (t) => ({
         email: t.exposeString('email', {
             nullable: false,
@@ -183,8 +200,61 @@ builder.prismaNode('User', {
     })
 });
 
+builder.prismaNode('Tags', {
+    id: {field: 'id'},
+    fields: (t) => ({
+        name: t.exposeString('name', {
+            nullable: false,
+        }),
+        description: t.exposeString('description', {
+            nullable: true,
+        }),
+    })
+});
+
+class TopTagsResult {
+    count: number;
+    name: string;
+    description?: string;
+
+    constructor(count: number, name: string, description?: string) {
+        this.count = count;
+        this.name = name;
+        this.description = description;
+    }
+}
+
+const TopTags = builder.objectType(TopTagsResult, {
+    name: 'TopTags',
+    fields: (t) => ({
+        // SQLite exposes BigInt as the response to the query, so we to convert it.
+        // TODO: Move this to a utility if we see this again
+        count: t.int({
+            resolve: (parent) => {
+                // Assuming `parent.count` is the BigInt
+                const count = parent.count;
+
+                // Check if the value is within the safe integer range
+                if (count <= Number.MAX_SAFE_INTEGER) {
+                    return Number(count);
+                } else {
+                    // Handle the case where the number is too large
+                    throw new Error("Count exceeds the safe integer limit");
+                }
+            },
+        }),
+        name: t.exposeString('name', {
+            nullable: false,
+        }),
+        description: t.exposeString('description', {
+            nullable: true
+        }),
+    }),
+});
+
 // Empty class because this is just the object we expose on the GraphQL server to hold different search types
-class Search {}
+class Search {
+}
 
 builder.objectType(Search, {
     name: 'Search',
@@ -193,17 +263,59 @@ builder.objectType(Search, {
         prompts: t.connection({
             type: PromptsSearch,
             args: {
-                query: t.arg.string({ required: true }),
+                query: t.arg.string({required: false}),
+                tags: t.arg.stringList({required: false}),
+                nsfw: t.arg.boolean({required: false}),
             },
+            // TODO: Clean this code up with types and maybe to feel less hacky
             resolve: async (parent, args, ctx, info) => {
-                const resolveOffset = await resolveOffsetConnection({ args }, async ({ limit, offset }) => {
+                const resolveOffset = await resolveOffsetConnection({args}, async ({limit, offset}) => {
                     const searchTerm = args.query;
 
-                    if (!searchTerm) {
-                        return [];
+                    let prompts: any[] = [];
+
+                    const nsfwFilter = args.nsfw === null ? [true, false] : [!!args.nsfw];
+
+                    // Search by tags
+                    if (args.tags && args.tags.length > 0) {
+                        const tags = args.tags.map(tag => tag.toLowerCase());
+
+                        prompts = await db.$queryRaw`
+                                SELECT p.*
+                                FROM prompts AS p
+                                JOIN tagsPromptsMap AS tpm ON p.id = tpm.promptID
+                                JOIN tags AS t ON tpm.tagId = t.id
+                                WHERE t.name IN (${Prisma.join(tags)})
+                                    AND p.nsfw IN (${Prisma.join(nsfwFilter)})
+                                GROUP BY p.id
+                                HAVING COUNT(DISTINCT t.id) = ${tags.length}
+                                LIMIT ${limit} OFFSET ${offset}
+                            `;
                     }
 
-                    return db.$queryRaw`SELECT id, title, description, tags FROM "promptSearch" WHERE "promptSearch" MATCH ${searchTerm} LIMIT ${limit} OFFSET ${offset}` as any;
+                    // We are done if there is no search query
+                    if (!searchTerm) {
+                        return prompts;
+                    }
+
+                    if (prompts.length > 0) {
+                        // Search by text for all prompts that match the tags
+                        return db.$queryRaw`SELECT p.id, p.title, p.promptContent, p.description, p.tags, p.nsfw
+                                            FROM "promptSearch" p 
+                                            WHERE
+                                                 p.id IN (${Prisma.join(prompts.map(p => p.id))})
+                                                 AND "promptSearch" MATCH ${searchTerm}
+                                                 AND p.nsfw IN (${Prisma.join(nsfwFilter)})
+                                            LIMIT ${limit} OFFSET ${offset}`;
+                    }
+
+                    const promptsByText = db.$queryRaw`SELECT p.id, p.title, p.promptContent, p.description, p.tags, p.nsfw
+                                        FROM "promptSearch" p
+                                        WHERE "promptSearch" MATCH ${searchTerm}
+                                        AND p.nsfw IN (${Prisma.join(nsfwFilter)})
+                                        LIMIT ${limit} OFFSET ${offset}` as any;
+
+                    return promptsByText;
                 });
                 return resolveOffset as any;
             },
@@ -211,6 +323,27 @@ builder.objectType(Search, {
     }),
 });
 
+class Viewer {
+}
+
+builder.objectType(Viewer, {
+    name: 'Viewer',
+    description: 'Collection of information about the database',
+    fields: (t) => ({
+        tagCounts: t.field({
+            type: [TopTags],
+            resolve: async () => {
+                const result = await db.$queryRaw`SELECT COUNT(tagId) as count, T.name, T.description
+                                                  FROM TagsPromptsMap
+                                                           JOIN main.Tags T on TagsPromptsMap.tagId = T.id
+                                                  GROUP BY tagId
+                                                  ORDER BY COUNT(tagId) DESC`;
+                // TODO: Figure out the right type to cast this as
+                return result as any;
+            },
+        }),
+    }),
+});
 
 builder.queryType({
     fields: (t) => ({
@@ -218,12 +351,12 @@ builder.queryType({
             type: Prompts,
             nullable: true,
             args: {
-                id: t.arg.id({ required: true }),
+                id: t.arg.id({required: true}),
             },
             resolve: (query, root, args) =>
                 db.prompts.findUnique({
                     ...query,
-                    where: { id: String(args.id) },
+                    where: {id: String(args.id)},
                 }),
         }),
         prompts: t.prismaConnection({
@@ -237,12 +370,12 @@ builder.queryType({
             type: 'WorldInfos',
             nullable: true,
             args: {
-                id: t.arg.id({ required: true }),
+                id: t.arg.id({required: true}),
             },
             resolve: (query, root, args) =>
                 db.worldInfos.findUnique({
                     ...query,
-                    where: { id: String(args.id) },
+                    where: {id: String(args.id)},
                 }),
         }),
         worldInfos: t.prismaConnection({
@@ -264,6 +397,12 @@ builder.queryType({
                 return {};
             },
         }),
+        viewer: t.field({
+            type: Viewer,
+            resolve: async (parent, args, ctx, info) => {
+                return {};
+            },
+        })
     }),
 });
 
@@ -272,22 +411,13 @@ builder.queryField("promptById", (t) =>
         type: "Prompts",
         nullable: true,
         args: {
-            id: t.arg.string({ required: true }),
+            id: t.arg.string({required: true}),
         },
         resolve: async (query, root, args, ctx, info) => {
-            // return db.prompts.findMany({
-            //     ...query,
-            //     where: { id: args.id }
-            // });
-
-            const foo = await db.prompts.findUnique({
+            return db.prompts.findUnique({
                 ...query,
-                where: { id: args.id }
+                where: {id: args.id}
             });
-
-            console.log(foo);
-
-            return foo;
         },
     })
 );

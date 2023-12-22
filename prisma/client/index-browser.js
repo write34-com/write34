@@ -184,6 +184,17 @@ exports.Prisma.UserScalarFieldEnum = {
   lastLoggedIn: 'lastLoggedIn'
 };
 
+exports.Prisma.TagsScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description'
+};
+
+exports.Prisma.TagsPromptsMapScalarFieldEnum = {
+  tagId: 'tagId',
+  promptID: 'promptID'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -202,7 +213,9 @@ exports.Prisma.ModelName = {
   AetherWorldInfos: 'AetherWorldInfos',
   PromptSearch: 'PromptSearch',
   WorldInfoSearch: 'WorldInfoSearch',
-  User: 'User'
+  User: 'User',
+  Tags: 'Tags',
+  TagsPromptsMap: 'TagsPromptsMap'
 };
 
 /**

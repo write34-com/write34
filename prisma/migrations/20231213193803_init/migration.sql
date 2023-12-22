@@ -20,6 +20,15 @@ CREATE TABLE "Prompts" (
     "dateEdited" TEXT
 );
 
+-- CreateIndex
+CREATE INDEX "IX_Prompts_AetherId" ON "Prompts"("aetherId");
+
+-- CreateIndex
+CREATE INDEX "IX_Prompts_CorrelationId" ON "Prompts"("correlationId");
+
+-- CreateIndex
+CREATE INDEX "IX_Prompts_ParentId" ON "Prompts"("parentId");
+
 -- CreateTable
 CREATE TABLE "WorldInfos" (
     "id" TEXT NOT NULL PRIMARY KEY default (uuid()),
@@ -32,15 +41,6 @@ CREATE TABLE "WorldInfos" (
     "dateEdited" TEXT,
     CONSTRAINT "WorldInfos_promptId_fkey" FOREIGN KEY ("promptId") REFERENCES "Prompts" ("id") ON DELETE CASCADE ON UPDATE CASCADE
 );
-
--- CreateIndex
-CREATE INDEX "IX_Prompts_CorrelationId" ON "Prompts"("correlationId");
-
--- CreateIndex
-CREATE INDEX "IX_Prompts_AetherId" ON "Prompts"("aetherId");
-
--- CreateIndex
-CREATE INDEX "IX_Prompts_ParentId" ON "Prompts"("parentId");
 
 -- CreateIndex
 CREATE INDEX "IX_WorldInfos_CorrelationId" ON "WorldInfos"("correlationId");
@@ -83,7 +83,9 @@ CREATE TABLE "AetherWorldInfos" (
                               "correlationId" INTEGER NOT NULL,
                               "dateCreated" TEXT NOT NULL,
                               "dateEdited" TEXT,
-                              CONSTRAINT "WorldInfos_promptId_fkey" FOREIGN KEY ("promptId") REFERENCES "Prompts" ("id") ON DELETE CASCADE ON UPDATE CASCADE
+                              CONSTRAINT "AetherWorldInfos_promptId_fkey"
+                                  FOREIGN KEY ("promptId") REFERENCES "AetherPrompts" ("id")
+                                      ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- CreateIndex
@@ -105,29 +107,37 @@ CREATE VIRTUAL TABLE promptSearch USING fts5
     promptContent,
     tags,
     title,
+    nsfw UNINDEXED,
     content="Prompts",
     content_rowid='rowid'
 );
 
--- CREATE TRIGGER promptSearch_ai AFTER INSERT ON Prompts
--- BEGIN
---     INSERT INTO promptSearch (id, description, memory, promptContent, tags, title)
---     VALUES (new.id, new.description, new.memory, new.promptContent, new.tags, new.title);
--- END;
---
--- CREATE TRIGGER promptSearch_ad AFTER DELETE ON Prompts
--- BEGIN
---     INSERT INTO promptSearch (promptSearch, id, description, memory, promptContent, tags, title)
---     VALUES ('delete', old.id, old.description, old.memory, old.promptContent, old.tags, old.title);
--- END;
---
--- CREATE TRIGGER promptSearch_au AFTER UPDATE ON Prompts
--- BEGIN
---     INSERT INTO promptSearch (promptSearch, id, description, memory, promptContent, tags, title)
---     VALUES ('delete', old.id, old.description, old.memory, old.promptContent, old.tags, old.title);
---     INSERT INTO promptSearch (id, description, memory, promptContent, tags, title)
---     VALUES (new.id, new.description, new.memory, new.promptContent, new.tags, new.title);
--- END;
+-- This has been moved into "db-setup.sql" for now until we can figure out the
+-- "malformed database" issue that seems to exist when prompts are inserted by these triggers.
+-- It only happens when we run a FTS5 search against `promptSearch` but it breaks the ORM/Prisma.
+-- Very annoying. It might have to do with the ID needing to be an integer value, but we're using
+-- a UUID and instead relying on `rowid` as the identifier. Perhaps there is a weird edge case there.
+-- For now though, this works and is just a bit jank. But databases are often delicate anyway!
+
+CREATE TRIGGER promptSearch_ai AFTER INSERT ON Prompts
+BEGIN
+    INSERT INTO promptSearch (id, description, memory, promptContent, tags, title, nsfw)
+    VALUES (new.id, new.description, new.memory, new.promptContent, new.tags, new.title, new.nsfw);
+END;
+
+CREATE TRIGGER promptSearch_ad AFTER DELETE ON Prompts
+BEGIN
+    INSERT INTO promptSearch (promptSearch, id, description, memory, promptContent, tags, title, nsfw)
+    VALUES ('delete', old.id, old.description, old.memory, old.promptContent, old.tags, old.title, old.nsfw);
+END;
+
+CREATE TRIGGER promptSearch_au AFTER UPDATE ON Prompts
+BEGIN
+    INSERT INTO promptSearch (promptSearch, id, description, memory, promptContent, tags, title, nsfw)
+    VALUES ('delete', old.id, old.description, old.memory, old.promptContent, old.tags, old.title, old.nsfw);
+    INSERT INTO promptSearch (id, description, memory, promptContent, tags, title, nsfw)
+    VALUES (new.id, new.description, new.memory, new.promptContent, new.tags, new.title, new.nsfw);
+END;
 
 CREATE VIRTUAL TABLE worldInfoSearch USING fts5
 (
@@ -160,3 +170,28 @@ BEGIN
     INSERT INTO worldInfoSearch (id, entry, keys)
     VALUES (new.id, new.entry, new.keys);
 END;
+
+-----
+
+-- Tags Tables
+--
+-- CREATE TABLE Tags (
+--     "id" TEXT NOT NULL PRIMARY KEY default (uuid()),
+--     "name" TEXT NOT NULL UNIQUE,
+--     "description" TEXT
+-- );
+--
+-- -- CreateIndex
+-- CREATE INDEX "IX_Tags_Name" ON "Tags"("name");
+--
+-- CREATE TABLE TagsPromptsMap (
+--     "tagId" TEXT NOT NULL REFERENCES Tags,
+--     "promptId" TEXT NOT NULL REFERENCES Prompts,
+-- );
+--
+-- -- CreateIndex
+-- CREATE INDEX "IX_TagsPromptsMap_TagId" ON "TagsPromptsMap"("tagId");
+--
+-- -- CreateIndex
+-- CREATE INDEX "IX_TagsPromptsMap_PromptId" ON "TagsPromptsMap"("promptId");
+

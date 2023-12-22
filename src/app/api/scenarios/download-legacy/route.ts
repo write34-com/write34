@@ -1,5 +1,4 @@
 
-import type { NextApiRequest, NextApiResponse } from 'next';
 import {db} from "@/app/api/graphql/db";
 import {NextRequest, NextResponse} from "next/server";
 
@@ -333,4 +332,4 @@ export async function GET(
     response.headers.set('Content-Disposition', `attachment; filename=${filename}.scenario`);
 
     return response;
-};
+}

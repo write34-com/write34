@@ -48,6 +48,16 @@ export type WorldInfoSearch = $Result.DefaultSelection<Prisma.$WorldInfoSearchPa
  * 
  */
 export type User = $Result.DefaultSelection<Prisma.$UserPayload>
+/**
+ * Model Tags
+ * 
+ */
+export type Tags = $Result.DefaultSelection<Prisma.$TagsPayload>
+/**
+ * Model TagsPromptsMap
+ * 
+ */
+export type TagsPromptsMap = $Result.DefaultSelection<Prisma.$TagsPromptsMapPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -240,6 +250,26 @@ export class PrismaClient<
     * ```
     */
   get user(): Prisma.UserDelegate<ExtArgs>;
+
+  /**
+   * `prisma.tags`: Exposes CRUD operations for the **Tags** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Tags
+    * const tags = await prisma.tags.findMany()
+    * ```
+    */
+  get tags(): Prisma.TagsDelegate<ExtArgs>;
+
+  /**
+   * `prisma.tagsPromptsMap`: Exposes CRUD operations for the **TagsPromptsMap** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more TagsPromptsMaps
+    * const tagsPromptsMaps = await prisma.tagsPromptsMap.findMany()
+    * ```
+    */
+  get tagsPromptsMap(): Prisma.TagsPromptsMapDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -716,7 +746,9 @@ export namespace Prisma {
     AetherWorldInfos: 'AetherWorldInfos',
     PromptSearch: 'PromptSearch',
     WorldInfoSearch: 'WorldInfoSearch',
-    User: 'User'
+    User: 'User',
+    Tags: 'Tags',
+    TagsPromptsMap: 'TagsPromptsMap'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -733,7 +765,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     meta: {
-      modelProps: 'prompts' | 'worldInfos' | 'aetherPrompts' | 'aetherWorldInfos' | 'promptSearch' | 'worldInfoSearch' | 'user'
+      modelProps: 'prompts' | 'worldInfos' | 'aetherPrompts' | 'aetherWorldInfos' | 'promptSearch' | 'worldInfoSearch' | 'user' | 'tags' | 'tagsPromptsMap'
       txIsolationLevel: Prisma.TransactionIsolationLevel
     },
     model: {
@@ -1171,6 +1203,130 @@ export namespace Prisma {
           }
         }
       }
+      Tags: {
+        payload: Prisma.$TagsPayload<ExtArgs>
+        fields: Prisma.TagsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TagsFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$TagsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TagsFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$TagsPayload>
+          }
+          findFirst: {
+            args: Prisma.TagsFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$TagsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TagsFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$TagsPayload>
+          }
+          findMany: {
+            args: Prisma.TagsFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$TagsPayload>[]
+          }
+          create: {
+            args: Prisma.TagsCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$TagsPayload>
+          }
+          delete: {
+            args: Prisma.TagsDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$TagsPayload>
+          }
+          update: {
+            args: Prisma.TagsUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$TagsPayload>
+          }
+          deleteMany: {
+            args: Prisma.TagsDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TagsUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.TagsUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$TagsPayload>
+          }
+          aggregate: {
+            args: Prisma.TagsAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateTags>
+          }
+          groupBy: {
+            args: Prisma.TagsGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<TagsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.TagsCountArgs<ExtArgs>,
+            result: $Utils.Optional<TagsCountAggregateOutputType> | number
+          }
+        }
+      }
+      TagsPromptsMap: {
+        payload: Prisma.$TagsPromptsMapPayload<ExtArgs>
+        fields: Prisma.TagsPromptsMapFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TagsPromptsMapFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$TagsPromptsMapPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TagsPromptsMapFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$TagsPromptsMapPayload>
+          }
+          findFirst: {
+            args: Prisma.TagsPromptsMapFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$TagsPromptsMapPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TagsPromptsMapFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$TagsPromptsMapPayload>
+          }
+          findMany: {
+            args: Prisma.TagsPromptsMapFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$TagsPromptsMapPayload>[]
+          }
+          create: {
+            args: Prisma.TagsPromptsMapCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$TagsPromptsMapPayload>
+          }
+          delete: {
+            args: Prisma.TagsPromptsMapDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$TagsPromptsMapPayload>
+          }
+          update: {
+            args: Prisma.TagsPromptsMapUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$TagsPromptsMapPayload>
+          }
+          deleteMany: {
+            args: Prisma.TagsPromptsMapDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TagsPromptsMapUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.TagsPromptsMapUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$TagsPromptsMapPayload>
+          }
+          aggregate: {
+            args: Prisma.TagsPromptsMapAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateTagsPromptsMap>
+          }
+          groupBy: {
+            args: Prisma.TagsPromptsMapGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<TagsPromptsMapGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.TagsPromptsMapCountArgs<ExtArgs>,
+            result: $Utils.Optional<TagsPromptsMapCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1320,10 +1476,12 @@ export namespace Prisma {
    */
 
   export type PromptsCountOutputType = {
+    tagsFull: number
     worldInfos: number
   }
 
   export type PromptsCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tagsFull?: boolean | PromptsCountOutputTypeCountTagsFullArgs
     worldInfos?: boolean | PromptsCountOutputTypeCountWorldInfosArgs
   }
 
@@ -1337,6 +1495,14 @@ export namespace Prisma {
      * Select specific fields to fetch from the PromptsCountOutputType
      */
     select?: PromptsCountOutputTypeSelect<ExtArgs> | null
+  }
+
+
+  /**
+   * PromptsCountOutputType without action
+   */
+  export type PromptsCountOutputTypeCountTagsFullArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TagsPromptsMapWhereInput
   }
 
 
@@ -1379,6 +1545,40 @@ export namespace Prisma {
    */
   export type AetherPromptsCountOutputTypeCountWorldInfosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: AetherWorldInfosWhereInput
+  }
+
+
+
+  /**
+   * Count Type TagsCountOutputType
+   */
+
+  export type TagsCountOutputType = {
+    tagPrompts: number
+  }
+
+  export type TagsCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tagPrompts?: boolean | TagsCountOutputTypeCountTagPromptsArgs
+  }
+
+  // Custom InputTypes
+
+  /**
+   * TagsCountOutputType without action
+   */
+  export type TagsCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TagsCountOutputType
+     */
+    select?: TagsCountOutputTypeSelect<ExtArgs> | null
+  }
+
+
+  /**
+   * TagsCountOutputType without action
+   */
+  export type TagsCountOutputTypeCountTagPromptsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TagsPromptsMapWhereInput
   }
 
 
@@ -1693,6 +1893,7 @@ export namespace Prisma {
     correlationId?: boolean
     dateCreated?: boolean
     dateEdited?: boolean
+    tagsFull?: boolean | Prompts$tagsFullArgs<ExtArgs>
     worldInfos?: boolean | Prompts$worldInfosArgs<ExtArgs>
     _count?: boolean | PromptsCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["prompts"]>
@@ -1719,6 +1920,7 @@ export namespace Prisma {
   }
 
   export type PromptsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tagsFull?: boolean | Prompts$tagsFullArgs<ExtArgs>
     worldInfos?: boolean | Prompts$worldInfosArgs<ExtArgs>
     _count?: boolean | PromptsCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -1727,6 +1929,7 @@ export namespace Prisma {
   export type $PromptsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Prompts"
     objects: {
+      tagsFull: Prisma.$TagsPromptsMapPayload<ExtArgs>[]
       worldInfos: Prisma.$WorldInfosPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -2097,6 +2300,8 @@ export namespace Prisma {
   export interface Prisma__PromptsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
+    tagsFull<T extends Prompts$tagsFullArgs<ExtArgs> = {}>(args?: Subset<T, Prompts$tagsFullArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TagsPromptsMapPayload<ExtArgs>, T, 'findMany'> | Null>;
+
     worldInfos<T extends Prompts$worldInfosArgs<ExtArgs> = {}>(args?: Subset<T, Prompts$worldInfosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WorldInfosPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     /**
@@ -2441,6 +2646,27 @@ export namespace Prisma {
      * Filter which Prompts to delete
      */
     where?: PromptsWhereInput
+  }
+
+
+  /**
+   * Prompts.tagsFull
+   */
+  export type Prompts$tagsFullArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TagsPromptsMap
+     */
+    select?: TagsPromptsMapSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: TagsPromptsMapInclude<ExtArgs> | null
+    where?: TagsPromptsMapWhereInput
+    orderBy?: TagsPromptsMapOrderByWithRelationInput | TagsPromptsMapOrderByWithRelationInput[]
+    cursor?: TagsPromptsMapWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TagsPromptsMapScalarFieldEnum | TagsPromptsMapScalarFieldEnum[]
   }
 
 
@@ -8000,6 +8226,1759 @@ export namespace Prisma {
 
 
   /**
+   * Model Tags
+   */
+
+  export type AggregateTags = {
+    _count: TagsCountAggregateOutputType | null
+    _min: TagsMinAggregateOutputType | null
+    _max: TagsMaxAggregateOutputType | null
+  }
+
+  export type TagsMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    description: string | null
+  }
+
+  export type TagsMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    description: string | null
+  }
+
+  export type TagsCountAggregateOutputType = {
+    id: number
+    name: number
+    description: number
+    _all: number
+  }
+
+
+  export type TagsMinAggregateInputType = {
+    id?: true
+    name?: true
+    description?: true
+  }
+
+  export type TagsMaxAggregateInputType = {
+    id?: true
+    name?: true
+    description?: true
+  }
+
+  export type TagsCountAggregateInputType = {
+    id?: true
+    name?: true
+    description?: true
+    _all?: true
+  }
+
+  export type TagsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Tags to aggregate.
+     */
+    where?: TagsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Tags to fetch.
+     */
+    orderBy?: TagsOrderByWithRelationInput | TagsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TagsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Tags from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Tags.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Tags
+    **/
+    _count?: true | TagsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TagsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TagsMaxAggregateInputType
+  }
+
+  export type GetTagsAggregateType<T extends TagsAggregateArgs> = {
+        [P in keyof T & keyof AggregateTags]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTags[P]>
+      : GetScalarType<T[P], AggregateTags[P]>
+  }
+
+
+
+
+  export type TagsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TagsWhereInput
+    orderBy?: TagsOrderByWithAggregationInput | TagsOrderByWithAggregationInput[]
+    by: TagsScalarFieldEnum[] | TagsScalarFieldEnum
+    having?: TagsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TagsCountAggregateInputType | true
+    _min?: TagsMinAggregateInputType
+    _max?: TagsMaxAggregateInputType
+  }
+
+  export type TagsGroupByOutputType = {
+    id: string
+    name: string
+    description: string | null
+    _count: TagsCountAggregateOutputType | null
+    _min: TagsMinAggregateOutputType | null
+    _max: TagsMaxAggregateOutputType | null
+  }
+
+  type GetTagsGroupByPayload<T extends TagsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TagsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TagsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TagsGroupByOutputType[P]>
+            : GetScalarType<T[P], TagsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TagsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    tagPrompts?: boolean | Tags$tagPromptsArgs<ExtArgs>
+    _count?: boolean | TagsCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["tags"]>
+
+  export type TagsSelectScalar = {
+    id?: boolean
+    name?: boolean
+    description?: boolean
+  }
+
+  export type TagsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tagPrompts?: boolean | Tags$tagPromptsArgs<ExtArgs>
+    _count?: boolean | TagsCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+
+  export type $TagsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Tags"
+    objects: {
+      tagPrompts: Prisma.$TagsPromptsMapPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      description: string | null
+    }, ExtArgs["result"]["tags"]>
+    composites: {}
+  }
+
+
+  type TagsGetPayload<S extends boolean | null | undefined | TagsDefaultArgs> = $Result.GetResult<Prisma.$TagsPayload, S>
+
+  type TagsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<TagsFindManyArgs, 'select' | 'include' | 'distinct' > & {
+      select?: TagsCountAggregateInputType | true
+    }
+
+  export interface TagsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Tags'], meta: { name: 'Tags' } }
+    /**
+     * Find zero or one Tags that matches the filter.
+     * @param {TagsFindUniqueArgs} args - Arguments to find a Tags
+     * @example
+     * // Get one Tags
+     * const tags = await prisma.tags.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends TagsFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, TagsFindUniqueArgs<ExtArgs>>
+    ): Prisma__TagsClient<$Result.GetResult<Prisma.$TagsPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one Tags that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {TagsFindUniqueOrThrowArgs} args - Arguments to find a Tags
+     * @example
+     * // Get one Tags
+     * const tags = await prisma.tags.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends TagsFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, TagsFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__TagsClient<$Result.GetResult<Prisma.$TagsPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first Tags that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TagsFindFirstArgs} args - Arguments to find a Tags
+     * @example
+     * // Get one Tags
+     * const tags = await prisma.tags.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends TagsFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, TagsFindFirstArgs<ExtArgs>>
+    ): Prisma__TagsClient<$Result.GetResult<Prisma.$TagsPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first Tags that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TagsFindFirstOrThrowArgs} args - Arguments to find a Tags
+     * @example
+     * // Get one Tags
+     * const tags = await prisma.tags.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends TagsFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, TagsFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__TagsClient<$Result.GetResult<Prisma.$TagsPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more Tags that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TagsFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Tags
+     * const tags = await prisma.tags.findMany()
+     * 
+     * // Get first 10 Tags
+     * const tags = await prisma.tags.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const tagsWithIdOnly = await prisma.tags.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends TagsFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, TagsFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TagsPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a Tags.
+     * @param {TagsCreateArgs} args - Arguments to create a Tags.
+     * @example
+     * // Create one Tags
+     * const Tags = await prisma.tags.create({
+     *   data: {
+     *     // ... data to create a Tags
+     *   }
+     * })
+     * 
+    **/
+    create<T extends TagsCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, TagsCreateArgs<ExtArgs>>
+    ): Prisma__TagsClient<$Result.GetResult<Prisma.$TagsPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Delete a Tags.
+     * @param {TagsDeleteArgs} args - Arguments to delete one Tags.
+     * @example
+     * // Delete one Tags
+     * const Tags = await prisma.tags.delete({
+     *   where: {
+     *     // ... filter to delete one Tags
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends TagsDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, TagsDeleteArgs<ExtArgs>>
+    ): Prisma__TagsClient<$Result.GetResult<Prisma.$TagsPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one Tags.
+     * @param {TagsUpdateArgs} args - Arguments to update one Tags.
+     * @example
+     * // Update one Tags
+     * const tags = await prisma.tags.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends TagsUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, TagsUpdateArgs<ExtArgs>>
+    ): Prisma__TagsClient<$Result.GetResult<Prisma.$TagsPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more Tags.
+     * @param {TagsDeleteManyArgs} args - Arguments to filter Tags to delete.
+     * @example
+     * // Delete a few Tags
+     * const { count } = await prisma.tags.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends TagsDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, TagsDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Tags.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TagsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Tags
+     * const tags = await prisma.tags.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends TagsUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, TagsUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Tags.
+     * @param {TagsUpsertArgs} args - Arguments to update or create a Tags.
+     * @example
+     * // Update or create a Tags
+     * const tags = await prisma.tags.upsert({
+     *   create: {
+     *     // ... data to create a Tags
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Tags we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends TagsUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, TagsUpsertArgs<ExtArgs>>
+    ): Prisma__TagsClient<$Result.GetResult<Prisma.$TagsPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of Tags.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TagsCountArgs} args - Arguments to filter Tags to count.
+     * @example
+     * // Count the number of Tags
+     * const count = await prisma.tags.count({
+     *   where: {
+     *     // ... the filter for the Tags we want to count
+     *   }
+     * })
+    **/
+    count<T extends TagsCountArgs>(
+      args?: Subset<T, TagsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TagsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Tags.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TagsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TagsAggregateArgs>(args: Subset<T, TagsAggregateArgs>): Prisma.PrismaPromise<GetTagsAggregateType<T>>
+
+    /**
+     * Group by Tags.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TagsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TagsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TagsGroupByArgs['orderBy'] }
+        : { orderBy?: TagsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TagsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTagsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Tags model
+   */
+  readonly fields: TagsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Tags.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__TagsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    tagPrompts<T extends Tags$tagPromptsArgs<ExtArgs> = {}>(args?: Subset<T, Tags$tagPromptsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TagsPromptsMapPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the Tags model
+   */ 
+  interface TagsFieldRefs {
+    readonly id: FieldRef<"Tags", 'String'>
+    readonly name: FieldRef<"Tags", 'String'>
+    readonly description: FieldRef<"Tags", 'String'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * Tags findUnique
+   */
+  export type TagsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tags
+     */
+    select?: TagsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: TagsInclude<ExtArgs> | null
+    /**
+     * Filter, which Tags to fetch.
+     */
+    where: TagsWhereUniqueInput
+  }
+
+
+  /**
+   * Tags findUniqueOrThrow
+   */
+  export type TagsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tags
+     */
+    select?: TagsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: TagsInclude<ExtArgs> | null
+    /**
+     * Filter, which Tags to fetch.
+     */
+    where: TagsWhereUniqueInput
+  }
+
+
+  /**
+   * Tags findFirst
+   */
+  export type TagsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tags
+     */
+    select?: TagsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: TagsInclude<ExtArgs> | null
+    /**
+     * Filter, which Tags to fetch.
+     */
+    where?: TagsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Tags to fetch.
+     */
+    orderBy?: TagsOrderByWithRelationInput | TagsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Tags.
+     */
+    cursor?: TagsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Tags from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Tags.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Tags.
+     */
+    distinct?: TagsScalarFieldEnum | TagsScalarFieldEnum[]
+  }
+
+
+  /**
+   * Tags findFirstOrThrow
+   */
+  export type TagsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tags
+     */
+    select?: TagsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: TagsInclude<ExtArgs> | null
+    /**
+     * Filter, which Tags to fetch.
+     */
+    where?: TagsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Tags to fetch.
+     */
+    orderBy?: TagsOrderByWithRelationInput | TagsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Tags.
+     */
+    cursor?: TagsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Tags from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Tags.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Tags.
+     */
+    distinct?: TagsScalarFieldEnum | TagsScalarFieldEnum[]
+  }
+
+
+  /**
+   * Tags findMany
+   */
+  export type TagsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tags
+     */
+    select?: TagsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: TagsInclude<ExtArgs> | null
+    /**
+     * Filter, which Tags to fetch.
+     */
+    where?: TagsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Tags to fetch.
+     */
+    orderBy?: TagsOrderByWithRelationInput | TagsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Tags.
+     */
+    cursor?: TagsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Tags from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Tags.
+     */
+    skip?: number
+    distinct?: TagsScalarFieldEnum | TagsScalarFieldEnum[]
+  }
+
+
+  /**
+   * Tags create
+   */
+  export type TagsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tags
+     */
+    select?: TagsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: TagsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Tags.
+     */
+    data: XOR<TagsCreateInput, TagsUncheckedCreateInput>
+  }
+
+
+  /**
+   * Tags update
+   */
+  export type TagsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tags
+     */
+    select?: TagsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: TagsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Tags.
+     */
+    data: XOR<TagsUpdateInput, TagsUncheckedUpdateInput>
+    /**
+     * Choose, which Tags to update.
+     */
+    where: TagsWhereUniqueInput
+  }
+
+
+  /**
+   * Tags updateMany
+   */
+  export type TagsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Tags.
+     */
+    data: XOR<TagsUpdateManyMutationInput, TagsUncheckedUpdateManyInput>
+    /**
+     * Filter which Tags to update
+     */
+    where?: TagsWhereInput
+  }
+
+
+  /**
+   * Tags upsert
+   */
+  export type TagsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tags
+     */
+    select?: TagsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: TagsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Tags to update in case it exists.
+     */
+    where: TagsWhereUniqueInput
+    /**
+     * In case the Tags found by the `where` argument doesn't exist, create a new Tags with this data.
+     */
+    create: XOR<TagsCreateInput, TagsUncheckedCreateInput>
+    /**
+     * In case the Tags was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TagsUpdateInput, TagsUncheckedUpdateInput>
+  }
+
+
+  /**
+   * Tags delete
+   */
+  export type TagsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tags
+     */
+    select?: TagsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: TagsInclude<ExtArgs> | null
+    /**
+     * Filter which Tags to delete.
+     */
+    where: TagsWhereUniqueInput
+  }
+
+
+  /**
+   * Tags deleteMany
+   */
+  export type TagsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Tags to delete
+     */
+    where?: TagsWhereInput
+  }
+
+
+  /**
+   * Tags.tagPrompts
+   */
+  export type Tags$tagPromptsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TagsPromptsMap
+     */
+    select?: TagsPromptsMapSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: TagsPromptsMapInclude<ExtArgs> | null
+    where?: TagsPromptsMapWhereInput
+    orderBy?: TagsPromptsMapOrderByWithRelationInput | TagsPromptsMapOrderByWithRelationInput[]
+    cursor?: TagsPromptsMapWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TagsPromptsMapScalarFieldEnum | TagsPromptsMapScalarFieldEnum[]
+  }
+
+
+  /**
+   * Tags without action
+   */
+  export type TagsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tags
+     */
+    select?: TagsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: TagsInclude<ExtArgs> | null
+  }
+
+
+
+  /**
+   * Model TagsPromptsMap
+   */
+
+  export type AggregateTagsPromptsMap = {
+    _count: TagsPromptsMapCountAggregateOutputType | null
+    _min: TagsPromptsMapMinAggregateOutputType | null
+    _max: TagsPromptsMapMaxAggregateOutputType | null
+  }
+
+  export type TagsPromptsMapMinAggregateOutputType = {
+    tagId: string | null
+    promptID: string | null
+  }
+
+  export type TagsPromptsMapMaxAggregateOutputType = {
+    tagId: string | null
+    promptID: string | null
+  }
+
+  export type TagsPromptsMapCountAggregateOutputType = {
+    tagId: number
+    promptID: number
+    _all: number
+  }
+
+
+  export type TagsPromptsMapMinAggregateInputType = {
+    tagId?: true
+    promptID?: true
+  }
+
+  export type TagsPromptsMapMaxAggregateInputType = {
+    tagId?: true
+    promptID?: true
+  }
+
+  export type TagsPromptsMapCountAggregateInputType = {
+    tagId?: true
+    promptID?: true
+    _all?: true
+  }
+
+  export type TagsPromptsMapAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TagsPromptsMap to aggregate.
+     */
+    where?: TagsPromptsMapWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TagsPromptsMaps to fetch.
+     */
+    orderBy?: TagsPromptsMapOrderByWithRelationInput | TagsPromptsMapOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TagsPromptsMapWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TagsPromptsMaps from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TagsPromptsMaps.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned TagsPromptsMaps
+    **/
+    _count?: true | TagsPromptsMapCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TagsPromptsMapMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TagsPromptsMapMaxAggregateInputType
+  }
+
+  export type GetTagsPromptsMapAggregateType<T extends TagsPromptsMapAggregateArgs> = {
+        [P in keyof T & keyof AggregateTagsPromptsMap]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTagsPromptsMap[P]>
+      : GetScalarType<T[P], AggregateTagsPromptsMap[P]>
+  }
+
+
+
+
+  export type TagsPromptsMapGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TagsPromptsMapWhereInput
+    orderBy?: TagsPromptsMapOrderByWithAggregationInput | TagsPromptsMapOrderByWithAggregationInput[]
+    by: TagsPromptsMapScalarFieldEnum[] | TagsPromptsMapScalarFieldEnum
+    having?: TagsPromptsMapScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TagsPromptsMapCountAggregateInputType | true
+    _min?: TagsPromptsMapMinAggregateInputType
+    _max?: TagsPromptsMapMaxAggregateInputType
+  }
+
+  export type TagsPromptsMapGroupByOutputType = {
+    tagId: string
+    promptID: string
+    _count: TagsPromptsMapCountAggregateOutputType | null
+    _min: TagsPromptsMapMinAggregateOutputType | null
+    _max: TagsPromptsMapMaxAggregateOutputType | null
+  }
+
+  type GetTagsPromptsMapGroupByPayload<T extends TagsPromptsMapGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TagsPromptsMapGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TagsPromptsMapGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TagsPromptsMapGroupByOutputType[P]>
+            : GetScalarType<T[P], TagsPromptsMapGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TagsPromptsMapSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    tagId?: boolean
+    promptID?: boolean
+    tag?: boolean | TagsDefaultArgs<ExtArgs>
+    prompt?: boolean | PromptsDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["tagsPromptsMap"]>
+
+  export type TagsPromptsMapSelectScalar = {
+    tagId?: boolean
+    promptID?: boolean
+  }
+
+  export type TagsPromptsMapInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tag?: boolean | TagsDefaultArgs<ExtArgs>
+    prompt?: boolean | PromptsDefaultArgs<ExtArgs>
+  }
+
+
+  export type $TagsPromptsMapPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "TagsPromptsMap"
+    objects: {
+      tag: Prisma.$TagsPayload<ExtArgs>
+      prompt: Prisma.$PromptsPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      tagId: string
+      promptID: string
+    }, ExtArgs["result"]["tagsPromptsMap"]>
+    composites: {}
+  }
+
+
+  type TagsPromptsMapGetPayload<S extends boolean | null | undefined | TagsPromptsMapDefaultArgs> = $Result.GetResult<Prisma.$TagsPromptsMapPayload, S>
+
+  type TagsPromptsMapCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<TagsPromptsMapFindManyArgs, 'select' | 'include' | 'distinct' > & {
+      select?: TagsPromptsMapCountAggregateInputType | true
+    }
+
+  export interface TagsPromptsMapDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TagsPromptsMap'], meta: { name: 'TagsPromptsMap' } }
+    /**
+     * Find zero or one TagsPromptsMap that matches the filter.
+     * @param {TagsPromptsMapFindUniqueArgs} args - Arguments to find a TagsPromptsMap
+     * @example
+     * // Get one TagsPromptsMap
+     * const tagsPromptsMap = await prisma.tagsPromptsMap.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends TagsPromptsMapFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, TagsPromptsMapFindUniqueArgs<ExtArgs>>
+    ): Prisma__TagsPromptsMapClient<$Result.GetResult<Prisma.$TagsPromptsMapPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one TagsPromptsMap that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {TagsPromptsMapFindUniqueOrThrowArgs} args - Arguments to find a TagsPromptsMap
+     * @example
+     * // Get one TagsPromptsMap
+     * const tagsPromptsMap = await prisma.tagsPromptsMap.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends TagsPromptsMapFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, TagsPromptsMapFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__TagsPromptsMapClient<$Result.GetResult<Prisma.$TagsPromptsMapPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first TagsPromptsMap that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TagsPromptsMapFindFirstArgs} args - Arguments to find a TagsPromptsMap
+     * @example
+     * // Get one TagsPromptsMap
+     * const tagsPromptsMap = await prisma.tagsPromptsMap.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends TagsPromptsMapFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, TagsPromptsMapFindFirstArgs<ExtArgs>>
+    ): Prisma__TagsPromptsMapClient<$Result.GetResult<Prisma.$TagsPromptsMapPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first TagsPromptsMap that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TagsPromptsMapFindFirstOrThrowArgs} args - Arguments to find a TagsPromptsMap
+     * @example
+     * // Get one TagsPromptsMap
+     * const tagsPromptsMap = await prisma.tagsPromptsMap.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends TagsPromptsMapFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, TagsPromptsMapFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__TagsPromptsMapClient<$Result.GetResult<Prisma.$TagsPromptsMapPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more TagsPromptsMaps that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TagsPromptsMapFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all TagsPromptsMaps
+     * const tagsPromptsMaps = await prisma.tagsPromptsMap.findMany()
+     * 
+     * // Get first 10 TagsPromptsMaps
+     * const tagsPromptsMaps = await prisma.tagsPromptsMap.findMany({ take: 10 })
+     * 
+     * // Only select the `tagId`
+     * const tagsPromptsMapWithTagIdOnly = await prisma.tagsPromptsMap.findMany({ select: { tagId: true } })
+     * 
+    **/
+    findMany<T extends TagsPromptsMapFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, TagsPromptsMapFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TagsPromptsMapPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a TagsPromptsMap.
+     * @param {TagsPromptsMapCreateArgs} args - Arguments to create a TagsPromptsMap.
+     * @example
+     * // Create one TagsPromptsMap
+     * const TagsPromptsMap = await prisma.tagsPromptsMap.create({
+     *   data: {
+     *     // ... data to create a TagsPromptsMap
+     *   }
+     * })
+     * 
+    **/
+    create<T extends TagsPromptsMapCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, TagsPromptsMapCreateArgs<ExtArgs>>
+    ): Prisma__TagsPromptsMapClient<$Result.GetResult<Prisma.$TagsPromptsMapPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Delete a TagsPromptsMap.
+     * @param {TagsPromptsMapDeleteArgs} args - Arguments to delete one TagsPromptsMap.
+     * @example
+     * // Delete one TagsPromptsMap
+     * const TagsPromptsMap = await prisma.tagsPromptsMap.delete({
+     *   where: {
+     *     // ... filter to delete one TagsPromptsMap
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends TagsPromptsMapDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, TagsPromptsMapDeleteArgs<ExtArgs>>
+    ): Prisma__TagsPromptsMapClient<$Result.GetResult<Prisma.$TagsPromptsMapPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one TagsPromptsMap.
+     * @param {TagsPromptsMapUpdateArgs} args - Arguments to update one TagsPromptsMap.
+     * @example
+     * // Update one TagsPromptsMap
+     * const tagsPromptsMap = await prisma.tagsPromptsMap.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends TagsPromptsMapUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, TagsPromptsMapUpdateArgs<ExtArgs>>
+    ): Prisma__TagsPromptsMapClient<$Result.GetResult<Prisma.$TagsPromptsMapPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more TagsPromptsMaps.
+     * @param {TagsPromptsMapDeleteManyArgs} args - Arguments to filter TagsPromptsMaps to delete.
+     * @example
+     * // Delete a few TagsPromptsMaps
+     * const { count } = await prisma.tagsPromptsMap.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends TagsPromptsMapDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, TagsPromptsMapDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TagsPromptsMaps.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TagsPromptsMapUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many TagsPromptsMaps
+     * const tagsPromptsMap = await prisma.tagsPromptsMap.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends TagsPromptsMapUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, TagsPromptsMapUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one TagsPromptsMap.
+     * @param {TagsPromptsMapUpsertArgs} args - Arguments to update or create a TagsPromptsMap.
+     * @example
+     * // Update or create a TagsPromptsMap
+     * const tagsPromptsMap = await prisma.tagsPromptsMap.upsert({
+     *   create: {
+     *     // ... data to create a TagsPromptsMap
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the TagsPromptsMap we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends TagsPromptsMapUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, TagsPromptsMapUpsertArgs<ExtArgs>>
+    ): Prisma__TagsPromptsMapClient<$Result.GetResult<Prisma.$TagsPromptsMapPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of TagsPromptsMaps.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TagsPromptsMapCountArgs} args - Arguments to filter TagsPromptsMaps to count.
+     * @example
+     * // Count the number of TagsPromptsMaps
+     * const count = await prisma.tagsPromptsMap.count({
+     *   where: {
+     *     // ... the filter for the TagsPromptsMaps we want to count
+     *   }
+     * })
+    **/
+    count<T extends TagsPromptsMapCountArgs>(
+      args?: Subset<T, TagsPromptsMapCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TagsPromptsMapCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a TagsPromptsMap.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TagsPromptsMapAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TagsPromptsMapAggregateArgs>(args: Subset<T, TagsPromptsMapAggregateArgs>): Prisma.PrismaPromise<GetTagsPromptsMapAggregateType<T>>
+
+    /**
+     * Group by TagsPromptsMap.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TagsPromptsMapGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TagsPromptsMapGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TagsPromptsMapGroupByArgs['orderBy'] }
+        : { orderBy?: TagsPromptsMapGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TagsPromptsMapGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTagsPromptsMapGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the TagsPromptsMap model
+   */
+  readonly fields: TagsPromptsMapFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for TagsPromptsMap.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__TagsPromptsMapClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    tag<T extends TagsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TagsDefaultArgs<ExtArgs>>): Prisma__TagsClient<$Result.GetResult<Prisma.$TagsPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    prompt<T extends PromptsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PromptsDefaultArgs<ExtArgs>>): Prisma__PromptsClient<$Result.GetResult<Prisma.$PromptsPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the TagsPromptsMap model
+   */ 
+  interface TagsPromptsMapFieldRefs {
+    readonly tagId: FieldRef<"TagsPromptsMap", 'String'>
+    readonly promptID: FieldRef<"TagsPromptsMap", 'String'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * TagsPromptsMap findUnique
+   */
+  export type TagsPromptsMapFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TagsPromptsMap
+     */
+    select?: TagsPromptsMapSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: TagsPromptsMapInclude<ExtArgs> | null
+    /**
+     * Filter, which TagsPromptsMap to fetch.
+     */
+    where: TagsPromptsMapWhereUniqueInput
+  }
+
+
+  /**
+   * TagsPromptsMap findUniqueOrThrow
+   */
+  export type TagsPromptsMapFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TagsPromptsMap
+     */
+    select?: TagsPromptsMapSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: TagsPromptsMapInclude<ExtArgs> | null
+    /**
+     * Filter, which TagsPromptsMap to fetch.
+     */
+    where: TagsPromptsMapWhereUniqueInput
+  }
+
+
+  /**
+   * TagsPromptsMap findFirst
+   */
+  export type TagsPromptsMapFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TagsPromptsMap
+     */
+    select?: TagsPromptsMapSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: TagsPromptsMapInclude<ExtArgs> | null
+    /**
+     * Filter, which TagsPromptsMap to fetch.
+     */
+    where?: TagsPromptsMapWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TagsPromptsMaps to fetch.
+     */
+    orderBy?: TagsPromptsMapOrderByWithRelationInput | TagsPromptsMapOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TagsPromptsMaps.
+     */
+    cursor?: TagsPromptsMapWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TagsPromptsMaps from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TagsPromptsMaps.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TagsPromptsMaps.
+     */
+    distinct?: TagsPromptsMapScalarFieldEnum | TagsPromptsMapScalarFieldEnum[]
+  }
+
+
+  /**
+   * TagsPromptsMap findFirstOrThrow
+   */
+  export type TagsPromptsMapFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TagsPromptsMap
+     */
+    select?: TagsPromptsMapSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: TagsPromptsMapInclude<ExtArgs> | null
+    /**
+     * Filter, which TagsPromptsMap to fetch.
+     */
+    where?: TagsPromptsMapWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TagsPromptsMaps to fetch.
+     */
+    orderBy?: TagsPromptsMapOrderByWithRelationInput | TagsPromptsMapOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TagsPromptsMaps.
+     */
+    cursor?: TagsPromptsMapWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TagsPromptsMaps from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TagsPromptsMaps.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TagsPromptsMaps.
+     */
+    distinct?: TagsPromptsMapScalarFieldEnum | TagsPromptsMapScalarFieldEnum[]
+  }
+
+
+  /**
+   * TagsPromptsMap findMany
+   */
+  export type TagsPromptsMapFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TagsPromptsMap
+     */
+    select?: TagsPromptsMapSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: TagsPromptsMapInclude<ExtArgs> | null
+    /**
+     * Filter, which TagsPromptsMaps to fetch.
+     */
+    where?: TagsPromptsMapWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TagsPromptsMaps to fetch.
+     */
+    orderBy?: TagsPromptsMapOrderByWithRelationInput | TagsPromptsMapOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing TagsPromptsMaps.
+     */
+    cursor?: TagsPromptsMapWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TagsPromptsMaps from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TagsPromptsMaps.
+     */
+    skip?: number
+    distinct?: TagsPromptsMapScalarFieldEnum | TagsPromptsMapScalarFieldEnum[]
+  }
+
+
+  /**
+   * TagsPromptsMap create
+   */
+  export type TagsPromptsMapCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TagsPromptsMap
+     */
+    select?: TagsPromptsMapSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: TagsPromptsMapInclude<ExtArgs> | null
+    /**
+     * The data needed to create a TagsPromptsMap.
+     */
+    data: XOR<TagsPromptsMapCreateInput, TagsPromptsMapUncheckedCreateInput>
+  }
+
+
+  /**
+   * TagsPromptsMap update
+   */
+  export type TagsPromptsMapUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TagsPromptsMap
+     */
+    select?: TagsPromptsMapSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: TagsPromptsMapInclude<ExtArgs> | null
+    /**
+     * The data needed to update a TagsPromptsMap.
+     */
+    data: XOR<TagsPromptsMapUpdateInput, TagsPromptsMapUncheckedUpdateInput>
+    /**
+     * Choose, which TagsPromptsMap to update.
+     */
+    where: TagsPromptsMapWhereUniqueInput
+  }
+
+
+  /**
+   * TagsPromptsMap updateMany
+   */
+  export type TagsPromptsMapUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update TagsPromptsMaps.
+     */
+    data: XOR<TagsPromptsMapUpdateManyMutationInput, TagsPromptsMapUncheckedUpdateManyInput>
+    /**
+     * Filter which TagsPromptsMaps to update
+     */
+    where?: TagsPromptsMapWhereInput
+  }
+
+
+  /**
+   * TagsPromptsMap upsert
+   */
+  export type TagsPromptsMapUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TagsPromptsMap
+     */
+    select?: TagsPromptsMapSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: TagsPromptsMapInclude<ExtArgs> | null
+    /**
+     * The filter to search for the TagsPromptsMap to update in case it exists.
+     */
+    where: TagsPromptsMapWhereUniqueInput
+    /**
+     * In case the TagsPromptsMap found by the `where` argument doesn't exist, create a new TagsPromptsMap with this data.
+     */
+    create: XOR<TagsPromptsMapCreateInput, TagsPromptsMapUncheckedCreateInput>
+    /**
+     * In case the TagsPromptsMap was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TagsPromptsMapUpdateInput, TagsPromptsMapUncheckedUpdateInput>
+  }
+
+
+  /**
+   * TagsPromptsMap delete
+   */
+  export type TagsPromptsMapDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TagsPromptsMap
+     */
+    select?: TagsPromptsMapSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: TagsPromptsMapInclude<ExtArgs> | null
+    /**
+     * Filter which TagsPromptsMap to delete.
+     */
+    where: TagsPromptsMapWhereUniqueInput
+  }
+
+
+  /**
+   * TagsPromptsMap deleteMany
+   */
+  export type TagsPromptsMapDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TagsPromptsMaps to delete
+     */
+    where?: TagsPromptsMapWhereInput
+  }
+
+
+  /**
+   * TagsPromptsMap without action
+   */
+  export type TagsPromptsMapDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TagsPromptsMap
+     */
+    select?: TagsPromptsMapSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: TagsPromptsMapInclude<ExtArgs> | null
+  }
+
+
+
+  /**
    * Enums
    */
 
@@ -8111,6 +10090,23 @@ export namespace Prisma {
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
+  export const TagsScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    description: 'description'
+  };
+
+  export type TagsScalarFieldEnum = (typeof TagsScalarFieldEnum)[keyof typeof TagsScalarFieldEnum]
+
+
+  export const TagsPromptsMapScalarFieldEnum: {
+    tagId: 'tagId',
+    promptID: 'promptID'
+  };
+
+  export type TagsPromptsMapScalarFieldEnum = (typeof TagsPromptsMapScalarFieldEnum)[keyof typeof TagsPromptsMapScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -8185,6 +10181,7 @@ export namespace Prisma {
     correlationId?: StringFilter<"Prompts"> | string
     dateCreated?: StringFilter<"Prompts"> | string
     dateEdited?: StringNullableFilter<"Prompts"> | string | null
+    tagsFull?: TagsPromptsMapListRelationFilter
     worldInfos?: WorldInfosListRelationFilter
   }
 
@@ -8207,6 +10204,7 @@ export namespace Prisma {
     correlationId?: SortOrder
     dateCreated?: SortOrder
     dateEdited?: SortOrderInput | SortOrder
+    tagsFull?: TagsPromptsMapOrderByRelationAggregateInput
     worldInfos?: WorldInfosOrderByRelationAggregateInput
   }
 
@@ -8232,6 +10230,7 @@ export namespace Prisma {
     correlationId?: StringFilter<"Prompts"> | string
     dateCreated?: StringFilter<"Prompts"> | string
     dateEdited?: StringNullableFilter<"Prompts"> | string | null
+    tagsFull?: TagsPromptsMapListRelationFilter
     worldInfos?: WorldInfosListRelationFilter
   }, "id">
 
@@ -8671,6 +10670,95 @@ export namespace Prisma {
     lastLoggedIn?: StringNullableWithAggregatesFilter<"User"> | string | null
   }
 
+  export type TagsWhereInput = {
+    AND?: TagsWhereInput | TagsWhereInput[]
+    OR?: TagsWhereInput[]
+    NOT?: TagsWhereInput | TagsWhereInput[]
+    id?: StringFilter<"Tags"> | string
+    name?: StringFilter<"Tags"> | string
+    description?: StringNullableFilter<"Tags"> | string | null
+    tagPrompts?: TagsPromptsMapListRelationFilter
+  }
+
+  export type TagsOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrderInput | SortOrder
+    tagPrompts?: TagsPromptsMapOrderByRelationAggregateInput
+  }
+
+  export type TagsWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    name?: string
+    AND?: TagsWhereInput | TagsWhereInput[]
+    OR?: TagsWhereInput[]
+    NOT?: TagsWhereInput | TagsWhereInput[]
+    description?: StringNullableFilter<"Tags"> | string | null
+    tagPrompts?: TagsPromptsMapListRelationFilter
+  }, "id" | "name">
+
+  export type TagsOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrderInput | SortOrder
+    _count?: TagsCountOrderByAggregateInput
+    _max?: TagsMaxOrderByAggregateInput
+    _min?: TagsMinOrderByAggregateInput
+  }
+
+  export type TagsScalarWhereWithAggregatesInput = {
+    AND?: TagsScalarWhereWithAggregatesInput | TagsScalarWhereWithAggregatesInput[]
+    OR?: TagsScalarWhereWithAggregatesInput[]
+    NOT?: TagsScalarWhereWithAggregatesInput | TagsScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Tags"> | string
+    name?: StringWithAggregatesFilter<"Tags"> | string
+    description?: StringNullableWithAggregatesFilter<"Tags"> | string | null
+  }
+
+  export type TagsPromptsMapWhereInput = {
+    AND?: TagsPromptsMapWhereInput | TagsPromptsMapWhereInput[]
+    OR?: TagsPromptsMapWhereInput[]
+    NOT?: TagsPromptsMapWhereInput | TagsPromptsMapWhereInput[]
+    tagId?: StringFilter<"TagsPromptsMap"> | string
+    promptID?: StringFilter<"TagsPromptsMap"> | string
+    tag?: XOR<TagsRelationFilter, TagsWhereInput>
+    prompt?: XOR<PromptsRelationFilter, PromptsWhereInput>
+  }
+
+  export type TagsPromptsMapOrderByWithRelationInput = {
+    tagId?: SortOrder
+    promptID?: SortOrder
+    tag?: TagsOrderByWithRelationInput
+    prompt?: PromptsOrderByWithRelationInput
+  }
+
+  export type TagsPromptsMapWhereUniqueInput = Prisma.AtLeast<{
+    tagId_promptID?: TagsPromptsMapTagIdPromptIDCompoundUniqueInput
+    AND?: TagsPromptsMapWhereInput | TagsPromptsMapWhereInput[]
+    OR?: TagsPromptsMapWhereInput[]
+    NOT?: TagsPromptsMapWhereInput | TagsPromptsMapWhereInput[]
+    tagId?: StringFilter<"TagsPromptsMap"> | string
+    promptID?: StringFilter<"TagsPromptsMap"> | string
+    tag?: XOR<TagsRelationFilter, TagsWhereInput>
+    prompt?: XOR<PromptsRelationFilter, PromptsWhereInput>
+  }, "tagId_promptID">
+
+  export type TagsPromptsMapOrderByWithAggregationInput = {
+    tagId?: SortOrder
+    promptID?: SortOrder
+    _count?: TagsPromptsMapCountOrderByAggregateInput
+    _max?: TagsPromptsMapMaxOrderByAggregateInput
+    _min?: TagsPromptsMapMinOrderByAggregateInput
+  }
+
+  export type TagsPromptsMapScalarWhereWithAggregatesInput = {
+    AND?: TagsPromptsMapScalarWhereWithAggregatesInput | TagsPromptsMapScalarWhereWithAggregatesInput[]
+    OR?: TagsPromptsMapScalarWhereWithAggregatesInput[]
+    NOT?: TagsPromptsMapScalarWhereWithAggregatesInput | TagsPromptsMapScalarWhereWithAggregatesInput[]
+    tagId?: StringWithAggregatesFilter<"TagsPromptsMap"> | string
+    promptID?: StringWithAggregatesFilter<"TagsPromptsMap"> | string
+  }
+
   export type PromptsCreateInput = {
     id?: string
     aetherId?: number | null
@@ -8690,6 +10778,7 @@ export namespace Prisma {
     correlationId: string
     dateCreated: string
     dateEdited?: string | null
+    tagsFull?: TagsPromptsMapCreateNestedManyWithoutPromptInput
     worldInfos?: WorldInfosCreateNestedManyWithoutPromptsInput
   }
 
@@ -8712,6 +10801,7 @@ export namespace Prisma {
     correlationId: string
     dateCreated: string
     dateEdited?: string | null
+    tagsFull?: TagsPromptsMapUncheckedCreateNestedManyWithoutPromptInput
     worldInfos?: WorldInfosUncheckedCreateNestedManyWithoutPromptsInput
   }
 
@@ -8734,6 +10824,7 @@ export namespace Prisma {
     correlationId?: StringFieldUpdateOperationsInput | string
     dateCreated?: StringFieldUpdateOperationsInput | string
     dateEdited?: NullableStringFieldUpdateOperationsInput | string | null
+    tagsFull?: TagsPromptsMapUpdateManyWithoutPromptNestedInput
     worldInfos?: WorldInfosUpdateManyWithoutPromptsNestedInput
   }
 
@@ -8756,6 +10847,7 @@ export namespace Prisma {
     correlationId?: StringFieldUpdateOperationsInput | string
     dateCreated?: StringFieldUpdateOperationsInput | string
     dateEdited?: NullableStringFieldUpdateOperationsInput | string | null
+    tagsFull?: TagsPromptsMapUncheckedUpdateManyWithoutPromptNestedInput
     worldInfos?: WorldInfosUncheckedUpdateManyWithoutPromptsNestedInput
   }
 
@@ -9145,6 +11237,75 @@ export namespace Prisma {
     lastLoggedIn?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
+  export type TagsCreateInput = {
+    id?: string
+    name: string
+    description?: string | null
+    tagPrompts?: TagsPromptsMapCreateNestedManyWithoutTagInput
+  }
+
+  export type TagsUncheckedCreateInput = {
+    id?: string
+    name: string
+    description?: string | null
+    tagPrompts?: TagsPromptsMapUncheckedCreateNestedManyWithoutTagInput
+  }
+
+  export type TagsUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    tagPrompts?: TagsPromptsMapUpdateManyWithoutTagNestedInput
+  }
+
+  export type TagsUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    tagPrompts?: TagsPromptsMapUncheckedUpdateManyWithoutTagNestedInput
+  }
+
+  export type TagsUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type TagsUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type TagsPromptsMapCreateInput = {
+    tag: TagsCreateNestedOneWithoutTagPromptsInput
+    prompt: PromptsCreateNestedOneWithoutTagsFullInput
+  }
+
+  export type TagsPromptsMapUncheckedCreateInput = {
+    tagId: string
+    promptID: string
+  }
+
+  export type TagsPromptsMapUpdateInput = {
+    tag?: TagsUpdateOneRequiredWithoutTagPromptsNestedInput
+    prompt?: PromptsUpdateOneRequiredWithoutTagsFullNestedInput
+  }
+
+  export type TagsPromptsMapUncheckedUpdateInput = {
+    tagId?: StringFieldUpdateOperationsInput | string
+    promptID?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type TagsPromptsMapUpdateManyMutationInput = {
+
+  }
+
+  export type TagsPromptsMapUncheckedUpdateManyInput = {
+    tagId?: StringFieldUpdateOperationsInput | string
+    promptID?: StringFieldUpdateOperationsInput | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[]
@@ -9202,6 +11363,12 @@ export namespace Prisma {
     not?: NestedBytesNullableFilter<$PrismaModel> | Buffer | null
   }
 
+  export type TagsPromptsMapListRelationFilter = {
+    every?: TagsPromptsMapWhereInput
+    some?: TagsPromptsMapWhereInput
+    none?: TagsPromptsMapWhereInput
+  }
+
   export type WorldInfosListRelationFilter = {
     every?: WorldInfosWhereInput
     some?: WorldInfosWhereInput
@@ -9211,6 +11378,10 @@ export namespace Prisma {
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
+  }
+
+  export type TagsPromptsMapOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type WorldInfosOrderByRelationAggregateInput = {
@@ -9607,10 +11778,65 @@ export namespace Prisma {
     lastLoggedIn?: SortOrder
   }
 
+  export type TagsCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+  }
+
+  export type TagsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+  }
+
+  export type TagsMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+  }
+
+  export type TagsRelationFilter = {
+    is?: TagsWhereInput
+    isNot?: TagsWhereInput
+  }
+
+  export type TagsPromptsMapTagIdPromptIDCompoundUniqueInput = {
+    tagId: string
+    promptID: string
+  }
+
+  export type TagsPromptsMapCountOrderByAggregateInput = {
+    tagId?: SortOrder
+    promptID?: SortOrder
+  }
+
+  export type TagsPromptsMapMaxOrderByAggregateInput = {
+    tagId?: SortOrder
+    promptID?: SortOrder
+  }
+
+  export type TagsPromptsMapMinOrderByAggregateInput = {
+    tagId?: SortOrder
+    promptID?: SortOrder
+  }
+
+  export type TagsPromptsMapCreateNestedManyWithoutPromptInput = {
+    create?: XOR<TagsPromptsMapCreateWithoutPromptInput, TagsPromptsMapUncheckedCreateWithoutPromptInput> | TagsPromptsMapCreateWithoutPromptInput[] | TagsPromptsMapUncheckedCreateWithoutPromptInput[]
+    connectOrCreate?: TagsPromptsMapCreateOrConnectWithoutPromptInput | TagsPromptsMapCreateOrConnectWithoutPromptInput[]
+    connect?: TagsPromptsMapWhereUniqueInput | TagsPromptsMapWhereUniqueInput[]
+  }
+
   export type WorldInfosCreateNestedManyWithoutPromptsInput = {
     create?: XOR<WorldInfosCreateWithoutPromptsInput, WorldInfosUncheckedCreateWithoutPromptsInput> | WorldInfosCreateWithoutPromptsInput[] | WorldInfosUncheckedCreateWithoutPromptsInput[]
     connectOrCreate?: WorldInfosCreateOrConnectWithoutPromptsInput | WorldInfosCreateOrConnectWithoutPromptsInput[]
     connect?: WorldInfosWhereUniqueInput | WorldInfosWhereUniqueInput[]
+  }
+
+  export type TagsPromptsMapUncheckedCreateNestedManyWithoutPromptInput = {
+    create?: XOR<TagsPromptsMapCreateWithoutPromptInput, TagsPromptsMapUncheckedCreateWithoutPromptInput> | TagsPromptsMapCreateWithoutPromptInput[] | TagsPromptsMapUncheckedCreateWithoutPromptInput[]
+    connectOrCreate?: TagsPromptsMapCreateOrConnectWithoutPromptInput | TagsPromptsMapCreateOrConnectWithoutPromptInput[]
+    connect?: TagsPromptsMapWhereUniqueInput | TagsPromptsMapWhereUniqueInput[]
   }
 
   export type WorldInfosUncheckedCreateNestedManyWithoutPromptsInput = {
@@ -9647,6 +11873,19 @@ export namespace Prisma {
     set?: Buffer | null
   }
 
+  export type TagsPromptsMapUpdateManyWithoutPromptNestedInput = {
+    create?: XOR<TagsPromptsMapCreateWithoutPromptInput, TagsPromptsMapUncheckedCreateWithoutPromptInput> | TagsPromptsMapCreateWithoutPromptInput[] | TagsPromptsMapUncheckedCreateWithoutPromptInput[]
+    connectOrCreate?: TagsPromptsMapCreateOrConnectWithoutPromptInput | TagsPromptsMapCreateOrConnectWithoutPromptInput[]
+    upsert?: TagsPromptsMapUpsertWithWhereUniqueWithoutPromptInput | TagsPromptsMapUpsertWithWhereUniqueWithoutPromptInput[]
+    set?: TagsPromptsMapWhereUniqueInput | TagsPromptsMapWhereUniqueInput[]
+    disconnect?: TagsPromptsMapWhereUniqueInput | TagsPromptsMapWhereUniqueInput[]
+    delete?: TagsPromptsMapWhereUniqueInput | TagsPromptsMapWhereUniqueInput[]
+    connect?: TagsPromptsMapWhereUniqueInput | TagsPromptsMapWhereUniqueInput[]
+    update?: TagsPromptsMapUpdateWithWhereUniqueWithoutPromptInput | TagsPromptsMapUpdateWithWhereUniqueWithoutPromptInput[]
+    updateMany?: TagsPromptsMapUpdateManyWithWhereWithoutPromptInput | TagsPromptsMapUpdateManyWithWhereWithoutPromptInput[]
+    deleteMany?: TagsPromptsMapScalarWhereInput | TagsPromptsMapScalarWhereInput[]
+  }
+
   export type WorldInfosUpdateManyWithoutPromptsNestedInput = {
     create?: XOR<WorldInfosCreateWithoutPromptsInput, WorldInfosUncheckedCreateWithoutPromptsInput> | WorldInfosCreateWithoutPromptsInput[] | WorldInfosUncheckedCreateWithoutPromptsInput[]
     connectOrCreate?: WorldInfosCreateOrConnectWithoutPromptsInput | WorldInfosCreateOrConnectWithoutPromptsInput[]
@@ -9658,6 +11897,19 @@ export namespace Prisma {
     update?: WorldInfosUpdateWithWhereUniqueWithoutPromptsInput | WorldInfosUpdateWithWhereUniqueWithoutPromptsInput[]
     updateMany?: WorldInfosUpdateManyWithWhereWithoutPromptsInput | WorldInfosUpdateManyWithWhereWithoutPromptsInput[]
     deleteMany?: WorldInfosScalarWhereInput | WorldInfosScalarWhereInput[]
+  }
+
+  export type TagsPromptsMapUncheckedUpdateManyWithoutPromptNestedInput = {
+    create?: XOR<TagsPromptsMapCreateWithoutPromptInput, TagsPromptsMapUncheckedCreateWithoutPromptInput> | TagsPromptsMapCreateWithoutPromptInput[] | TagsPromptsMapUncheckedCreateWithoutPromptInput[]
+    connectOrCreate?: TagsPromptsMapCreateOrConnectWithoutPromptInput | TagsPromptsMapCreateOrConnectWithoutPromptInput[]
+    upsert?: TagsPromptsMapUpsertWithWhereUniqueWithoutPromptInput | TagsPromptsMapUpsertWithWhereUniqueWithoutPromptInput[]
+    set?: TagsPromptsMapWhereUniqueInput | TagsPromptsMapWhereUniqueInput[]
+    disconnect?: TagsPromptsMapWhereUniqueInput | TagsPromptsMapWhereUniqueInput[]
+    delete?: TagsPromptsMapWhereUniqueInput | TagsPromptsMapWhereUniqueInput[]
+    connect?: TagsPromptsMapWhereUniqueInput | TagsPromptsMapWhereUniqueInput[]
+    update?: TagsPromptsMapUpdateWithWhereUniqueWithoutPromptInput | TagsPromptsMapUpdateWithWhereUniqueWithoutPromptInput[]
+    updateMany?: TagsPromptsMapUpdateManyWithWhereWithoutPromptInput | TagsPromptsMapUpdateManyWithWhereWithoutPromptInput[]
+    deleteMany?: TagsPromptsMapScalarWhereInput | TagsPromptsMapScalarWhereInput[]
   }
 
   export type WorldInfosUncheckedUpdateManyWithoutPromptsNestedInput = {
@@ -9737,6 +11989,72 @@ export namespace Prisma {
     upsert?: AetherPromptsUpsertWithoutWorldInfosInput
     connect?: AetherPromptsWhereUniqueInput
     update?: XOR<XOR<AetherPromptsUpdateToOneWithWhereWithoutWorldInfosInput, AetherPromptsUpdateWithoutWorldInfosInput>, AetherPromptsUncheckedUpdateWithoutWorldInfosInput>
+  }
+
+  export type TagsPromptsMapCreateNestedManyWithoutTagInput = {
+    create?: XOR<TagsPromptsMapCreateWithoutTagInput, TagsPromptsMapUncheckedCreateWithoutTagInput> | TagsPromptsMapCreateWithoutTagInput[] | TagsPromptsMapUncheckedCreateWithoutTagInput[]
+    connectOrCreate?: TagsPromptsMapCreateOrConnectWithoutTagInput | TagsPromptsMapCreateOrConnectWithoutTagInput[]
+    connect?: TagsPromptsMapWhereUniqueInput | TagsPromptsMapWhereUniqueInput[]
+  }
+
+  export type TagsPromptsMapUncheckedCreateNestedManyWithoutTagInput = {
+    create?: XOR<TagsPromptsMapCreateWithoutTagInput, TagsPromptsMapUncheckedCreateWithoutTagInput> | TagsPromptsMapCreateWithoutTagInput[] | TagsPromptsMapUncheckedCreateWithoutTagInput[]
+    connectOrCreate?: TagsPromptsMapCreateOrConnectWithoutTagInput | TagsPromptsMapCreateOrConnectWithoutTagInput[]
+    connect?: TagsPromptsMapWhereUniqueInput | TagsPromptsMapWhereUniqueInput[]
+  }
+
+  export type TagsPromptsMapUpdateManyWithoutTagNestedInput = {
+    create?: XOR<TagsPromptsMapCreateWithoutTagInput, TagsPromptsMapUncheckedCreateWithoutTagInput> | TagsPromptsMapCreateWithoutTagInput[] | TagsPromptsMapUncheckedCreateWithoutTagInput[]
+    connectOrCreate?: TagsPromptsMapCreateOrConnectWithoutTagInput | TagsPromptsMapCreateOrConnectWithoutTagInput[]
+    upsert?: TagsPromptsMapUpsertWithWhereUniqueWithoutTagInput | TagsPromptsMapUpsertWithWhereUniqueWithoutTagInput[]
+    set?: TagsPromptsMapWhereUniqueInput | TagsPromptsMapWhereUniqueInput[]
+    disconnect?: TagsPromptsMapWhereUniqueInput | TagsPromptsMapWhereUniqueInput[]
+    delete?: TagsPromptsMapWhereUniqueInput | TagsPromptsMapWhereUniqueInput[]
+    connect?: TagsPromptsMapWhereUniqueInput | TagsPromptsMapWhereUniqueInput[]
+    update?: TagsPromptsMapUpdateWithWhereUniqueWithoutTagInput | TagsPromptsMapUpdateWithWhereUniqueWithoutTagInput[]
+    updateMany?: TagsPromptsMapUpdateManyWithWhereWithoutTagInput | TagsPromptsMapUpdateManyWithWhereWithoutTagInput[]
+    deleteMany?: TagsPromptsMapScalarWhereInput | TagsPromptsMapScalarWhereInput[]
+  }
+
+  export type TagsPromptsMapUncheckedUpdateManyWithoutTagNestedInput = {
+    create?: XOR<TagsPromptsMapCreateWithoutTagInput, TagsPromptsMapUncheckedCreateWithoutTagInput> | TagsPromptsMapCreateWithoutTagInput[] | TagsPromptsMapUncheckedCreateWithoutTagInput[]
+    connectOrCreate?: TagsPromptsMapCreateOrConnectWithoutTagInput | TagsPromptsMapCreateOrConnectWithoutTagInput[]
+    upsert?: TagsPromptsMapUpsertWithWhereUniqueWithoutTagInput | TagsPromptsMapUpsertWithWhereUniqueWithoutTagInput[]
+    set?: TagsPromptsMapWhereUniqueInput | TagsPromptsMapWhereUniqueInput[]
+    disconnect?: TagsPromptsMapWhereUniqueInput | TagsPromptsMapWhereUniqueInput[]
+    delete?: TagsPromptsMapWhereUniqueInput | TagsPromptsMapWhereUniqueInput[]
+    connect?: TagsPromptsMapWhereUniqueInput | TagsPromptsMapWhereUniqueInput[]
+    update?: TagsPromptsMapUpdateWithWhereUniqueWithoutTagInput | TagsPromptsMapUpdateWithWhereUniqueWithoutTagInput[]
+    updateMany?: TagsPromptsMapUpdateManyWithWhereWithoutTagInput | TagsPromptsMapUpdateManyWithWhereWithoutTagInput[]
+    deleteMany?: TagsPromptsMapScalarWhereInput | TagsPromptsMapScalarWhereInput[]
+  }
+
+  export type TagsCreateNestedOneWithoutTagPromptsInput = {
+    create?: XOR<TagsCreateWithoutTagPromptsInput, TagsUncheckedCreateWithoutTagPromptsInput>
+    connectOrCreate?: TagsCreateOrConnectWithoutTagPromptsInput
+    connect?: TagsWhereUniqueInput
+  }
+
+  export type PromptsCreateNestedOneWithoutTagsFullInput = {
+    create?: XOR<PromptsCreateWithoutTagsFullInput, PromptsUncheckedCreateWithoutTagsFullInput>
+    connectOrCreate?: PromptsCreateOrConnectWithoutTagsFullInput
+    connect?: PromptsWhereUniqueInput
+  }
+
+  export type TagsUpdateOneRequiredWithoutTagPromptsNestedInput = {
+    create?: XOR<TagsCreateWithoutTagPromptsInput, TagsUncheckedCreateWithoutTagPromptsInput>
+    connectOrCreate?: TagsCreateOrConnectWithoutTagPromptsInput
+    upsert?: TagsUpsertWithoutTagPromptsInput
+    connect?: TagsWhereUniqueInput
+    update?: XOR<XOR<TagsUpdateToOneWithWhereWithoutTagPromptsInput, TagsUpdateWithoutTagPromptsInput>, TagsUncheckedUpdateWithoutTagPromptsInput>
+  }
+
+  export type PromptsUpdateOneRequiredWithoutTagsFullNestedInput = {
+    create?: XOR<PromptsCreateWithoutTagsFullInput, PromptsUncheckedCreateWithoutTagsFullInput>
+    connectOrCreate?: PromptsCreateOrConnectWithoutTagsFullInput
+    upsert?: PromptsUpsertWithoutTagsFullInput
+    connect?: PromptsWhereUniqueInput
+    update?: XOR<XOR<PromptsUpdateToOneWithWhereWithoutTagsFullInput, PromptsUpdateWithoutTagsFullInput>, PromptsUncheckedUpdateWithoutTagsFullInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -9894,6 +12212,19 @@ export namespace Prisma {
     _max?: NestedBytesNullableFilter<$PrismaModel>
   }
 
+  export type TagsPromptsMapCreateWithoutPromptInput = {
+    tag: TagsCreateNestedOneWithoutTagPromptsInput
+  }
+
+  export type TagsPromptsMapUncheckedCreateWithoutPromptInput = {
+    tagId: string
+  }
+
+  export type TagsPromptsMapCreateOrConnectWithoutPromptInput = {
+    where: TagsPromptsMapWhereUniqueInput
+    create: XOR<TagsPromptsMapCreateWithoutPromptInput, TagsPromptsMapUncheckedCreateWithoutPromptInput>
+  }
+
   export type WorldInfosCreateWithoutPromptsInput = {
     id?: string
     aetherId?: number | null
@@ -9917,6 +12248,30 @@ export namespace Prisma {
   export type WorldInfosCreateOrConnectWithoutPromptsInput = {
     where: WorldInfosWhereUniqueInput
     create: XOR<WorldInfosCreateWithoutPromptsInput, WorldInfosUncheckedCreateWithoutPromptsInput>
+  }
+
+  export type TagsPromptsMapUpsertWithWhereUniqueWithoutPromptInput = {
+    where: TagsPromptsMapWhereUniqueInput
+    update: XOR<TagsPromptsMapUpdateWithoutPromptInput, TagsPromptsMapUncheckedUpdateWithoutPromptInput>
+    create: XOR<TagsPromptsMapCreateWithoutPromptInput, TagsPromptsMapUncheckedCreateWithoutPromptInput>
+  }
+
+  export type TagsPromptsMapUpdateWithWhereUniqueWithoutPromptInput = {
+    where: TagsPromptsMapWhereUniqueInput
+    data: XOR<TagsPromptsMapUpdateWithoutPromptInput, TagsPromptsMapUncheckedUpdateWithoutPromptInput>
+  }
+
+  export type TagsPromptsMapUpdateManyWithWhereWithoutPromptInput = {
+    where: TagsPromptsMapScalarWhereInput
+    data: XOR<TagsPromptsMapUpdateManyMutationInput, TagsPromptsMapUncheckedUpdateManyWithoutPromptInput>
+  }
+
+  export type TagsPromptsMapScalarWhereInput = {
+    AND?: TagsPromptsMapScalarWhereInput | TagsPromptsMapScalarWhereInput[]
+    OR?: TagsPromptsMapScalarWhereInput[]
+    NOT?: TagsPromptsMapScalarWhereInput | TagsPromptsMapScalarWhereInput[]
+    tagId?: StringFilter<"TagsPromptsMap"> | string
+    promptID?: StringFilter<"TagsPromptsMap"> | string
   }
 
   export type WorldInfosUpsertWithWhereUniqueWithoutPromptsInput = {
@@ -9968,6 +12323,7 @@ export namespace Prisma {
     correlationId: string
     dateCreated: string
     dateEdited?: string | null
+    tagsFull?: TagsPromptsMapCreateNestedManyWithoutPromptInput
   }
 
   export type PromptsUncheckedCreateWithoutWorldInfosInput = {
@@ -9989,6 +12345,7 @@ export namespace Prisma {
     correlationId: string
     dateCreated: string
     dateEdited?: string | null
+    tagsFull?: TagsPromptsMapUncheckedCreateNestedManyWithoutPromptInput
   }
 
   export type PromptsCreateOrConnectWithoutWorldInfosInput = {
@@ -10026,6 +12383,7 @@ export namespace Prisma {
     correlationId?: StringFieldUpdateOperationsInput | string
     dateCreated?: StringFieldUpdateOperationsInput | string
     dateEdited?: NullableStringFieldUpdateOperationsInput | string | null
+    tagsFull?: TagsPromptsMapUpdateManyWithoutPromptNestedInput
   }
 
   export type PromptsUncheckedUpdateWithoutWorldInfosInput = {
@@ -10047,6 +12405,7 @@ export namespace Prisma {
     correlationId?: StringFieldUpdateOperationsInput | string
     dateCreated?: StringFieldUpdateOperationsInput | string
     dateEdited?: NullableStringFieldUpdateOperationsInput | string | null
+    tagsFull?: TagsPromptsMapUncheckedUpdateManyWithoutPromptNestedInput
   }
 
   export type AetherWorldInfosCreateWithoutPromptsInput = {
@@ -10194,6 +12553,191 @@ export namespace Prisma {
     dateEdited?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
+  export type TagsPromptsMapCreateWithoutTagInput = {
+    prompt: PromptsCreateNestedOneWithoutTagsFullInput
+  }
+
+  export type TagsPromptsMapUncheckedCreateWithoutTagInput = {
+    promptID: string
+  }
+
+  export type TagsPromptsMapCreateOrConnectWithoutTagInput = {
+    where: TagsPromptsMapWhereUniqueInput
+    create: XOR<TagsPromptsMapCreateWithoutTagInput, TagsPromptsMapUncheckedCreateWithoutTagInput>
+  }
+
+  export type TagsPromptsMapUpsertWithWhereUniqueWithoutTagInput = {
+    where: TagsPromptsMapWhereUniqueInput
+    update: XOR<TagsPromptsMapUpdateWithoutTagInput, TagsPromptsMapUncheckedUpdateWithoutTagInput>
+    create: XOR<TagsPromptsMapCreateWithoutTagInput, TagsPromptsMapUncheckedCreateWithoutTagInput>
+  }
+
+  export type TagsPromptsMapUpdateWithWhereUniqueWithoutTagInput = {
+    where: TagsPromptsMapWhereUniqueInput
+    data: XOR<TagsPromptsMapUpdateWithoutTagInput, TagsPromptsMapUncheckedUpdateWithoutTagInput>
+  }
+
+  export type TagsPromptsMapUpdateManyWithWhereWithoutTagInput = {
+    where: TagsPromptsMapScalarWhereInput
+    data: XOR<TagsPromptsMapUpdateManyMutationInput, TagsPromptsMapUncheckedUpdateManyWithoutTagInput>
+  }
+
+  export type TagsCreateWithoutTagPromptsInput = {
+    id?: string
+    name: string
+    description?: string | null
+  }
+
+  export type TagsUncheckedCreateWithoutTagPromptsInput = {
+    id?: string
+    name: string
+    description?: string | null
+  }
+
+  export type TagsCreateOrConnectWithoutTagPromptsInput = {
+    where: TagsWhereUniqueInput
+    create: XOR<TagsCreateWithoutTagPromptsInput, TagsUncheckedCreateWithoutTagPromptsInput>
+  }
+
+  export type PromptsCreateWithoutTagsFullInput = {
+    id?: string
+    aetherId?: number | null
+    authorsNote?: string | null
+    description?: string | null
+    memory?: string | null
+    nsfw: number
+    parentId?: string | null
+    promptContent: string
+    publishDate?: string | null
+    quests?: string | null
+    tags: string
+    title: string
+    scriptZip?: Buffer | null
+    novelAiScenario?: string | null
+    holoAiScenario?: string | null
+    correlationId: string
+    dateCreated: string
+    dateEdited?: string | null
+    worldInfos?: WorldInfosCreateNestedManyWithoutPromptsInput
+  }
+
+  export type PromptsUncheckedCreateWithoutTagsFullInput = {
+    id?: string
+    aetherId?: number | null
+    authorsNote?: string | null
+    description?: string | null
+    memory?: string | null
+    nsfw: number
+    parentId?: string | null
+    promptContent: string
+    publishDate?: string | null
+    quests?: string | null
+    tags: string
+    title: string
+    scriptZip?: Buffer | null
+    novelAiScenario?: string | null
+    holoAiScenario?: string | null
+    correlationId: string
+    dateCreated: string
+    dateEdited?: string | null
+    worldInfos?: WorldInfosUncheckedCreateNestedManyWithoutPromptsInput
+  }
+
+  export type PromptsCreateOrConnectWithoutTagsFullInput = {
+    where: PromptsWhereUniqueInput
+    create: XOR<PromptsCreateWithoutTagsFullInput, PromptsUncheckedCreateWithoutTagsFullInput>
+  }
+
+  export type TagsUpsertWithoutTagPromptsInput = {
+    update: XOR<TagsUpdateWithoutTagPromptsInput, TagsUncheckedUpdateWithoutTagPromptsInput>
+    create: XOR<TagsCreateWithoutTagPromptsInput, TagsUncheckedCreateWithoutTagPromptsInput>
+    where?: TagsWhereInput
+  }
+
+  export type TagsUpdateToOneWithWhereWithoutTagPromptsInput = {
+    where?: TagsWhereInput
+    data: XOR<TagsUpdateWithoutTagPromptsInput, TagsUncheckedUpdateWithoutTagPromptsInput>
+  }
+
+  export type TagsUpdateWithoutTagPromptsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type TagsUncheckedUpdateWithoutTagPromptsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type PromptsUpsertWithoutTagsFullInput = {
+    update: XOR<PromptsUpdateWithoutTagsFullInput, PromptsUncheckedUpdateWithoutTagsFullInput>
+    create: XOR<PromptsCreateWithoutTagsFullInput, PromptsUncheckedCreateWithoutTagsFullInput>
+    where?: PromptsWhereInput
+  }
+
+  export type PromptsUpdateToOneWithWhereWithoutTagsFullInput = {
+    where?: PromptsWhereInput
+    data: XOR<PromptsUpdateWithoutTagsFullInput, PromptsUncheckedUpdateWithoutTagsFullInput>
+  }
+
+  export type PromptsUpdateWithoutTagsFullInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    aetherId?: NullableIntFieldUpdateOperationsInput | number | null
+    authorsNote?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    memory?: NullableStringFieldUpdateOperationsInput | string | null
+    nsfw?: IntFieldUpdateOperationsInput | number
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    promptContent?: StringFieldUpdateOperationsInput | string
+    publishDate?: NullableStringFieldUpdateOperationsInput | string | null
+    quests?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    scriptZip?: NullableBytesFieldUpdateOperationsInput | Buffer | null
+    novelAiScenario?: NullableStringFieldUpdateOperationsInput | string | null
+    holoAiScenario?: NullableStringFieldUpdateOperationsInput | string | null
+    correlationId?: StringFieldUpdateOperationsInput | string
+    dateCreated?: StringFieldUpdateOperationsInput | string
+    dateEdited?: NullableStringFieldUpdateOperationsInput | string | null
+    worldInfos?: WorldInfosUpdateManyWithoutPromptsNestedInput
+  }
+
+  export type PromptsUncheckedUpdateWithoutTagsFullInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    aetherId?: NullableIntFieldUpdateOperationsInput | number | null
+    authorsNote?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    memory?: NullableStringFieldUpdateOperationsInput | string | null
+    nsfw?: IntFieldUpdateOperationsInput | number
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    promptContent?: StringFieldUpdateOperationsInput | string
+    publishDate?: NullableStringFieldUpdateOperationsInput | string | null
+    quests?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    scriptZip?: NullableBytesFieldUpdateOperationsInput | Buffer | null
+    novelAiScenario?: NullableStringFieldUpdateOperationsInput | string | null
+    holoAiScenario?: NullableStringFieldUpdateOperationsInput | string | null
+    correlationId?: StringFieldUpdateOperationsInput | string
+    dateCreated?: StringFieldUpdateOperationsInput | string
+    dateEdited?: NullableStringFieldUpdateOperationsInput | string | null
+    worldInfos?: WorldInfosUncheckedUpdateManyWithoutPromptsNestedInput
+  }
+
+  export type TagsPromptsMapUpdateWithoutPromptInput = {
+    tag?: TagsUpdateOneRequiredWithoutTagPromptsNestedInput
+  }
+
+  export type TagsPromptsMapUncheckedUpdateWithoutPromptInput = {
+    tagId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type TagsPromptsMapUncheckedUpdateManyWithoutPromptInput = {
+    tagId?: StringFieldUpdateOperationsInput | string
+  }
+
   export type WorldInfosUpdateWithoutPromptsInput = {
     id?: StringFieldUpdateOperationsInput | string
     aetherId?: NullableIntFieldUpdateOperationsInput | number | null
@@ -10250,6 +12794,18 @@ export namespace Prisma {
     dateEdited?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
+  export type TagsPromptsMapUpdateWithoutTagInput = {
+    prompt?: PromptsUpdateOneRequiredWithoutTagsFullNestedInput
+  }
+
+  export type TagsPromptsMapUncheckedUpdateWithoutTagInput = {
+    promptID?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type TagsPromptsMapUncheckedUpdateManyWithoutTagInput = {
+    promptID?: StringFieldUpdateOperationsInput | string
+  }
+
 
 
   /**
@@ -10263,6 +12819,10 @@ export namespace Prisma {
      * @deprecated Use AetherPromptsCountOutputTypeDefaultArgs instead
      */
     export type AetherPromptsCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = AetherPromptsCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use TagsCountOutputTypeDefaultArgs instead
+     */
+    export type TagsCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = TagsCountOutputTypeDefaultArgs<ExtArgs>
     /**
      * @deprecated Use PromptsDefaultArgs instead
      */
@@ -10291,6 +12851,14 @@ export namespace Prisma {
      * @deprecated Use UserDefaultArgs instead
      */
     export type UserArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = UserDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use TagsDefaultArgs instead
+     */
+    export type TagsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = TagsDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use TagsPromptsMapDefaultArgs instead
+     */
+    export type TagsPromptsMapArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = TagsPromptsMapDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

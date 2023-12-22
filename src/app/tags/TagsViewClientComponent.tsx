@@ -3,14 +3,14 @@
 import {RelayEnvironmentProvider } from 'react-relay';
 import { SerializablePreloadedQuery } from '@/relay/loadSerializableQuery';
 import useSerializablePreloadedQuery from '@/relay/useSerializablePreloadedQuery';
-import ScenarioComponent from '@/app/scenarios/[scenario]/scenarioComponent';
-import scenarioComponentViewQueryGraphql, {
-    scenarioComponentViewQuery
-} from '@/__generated__/scenarioComponentViewQuery.graphql';
 import {getCurrentEnvironment} from '@/relay/clientEnvironment';
+import TagsViewComponentGetAllTagsQueryGraphql, {
+    TagsViewComponentGetAllTagsQuery
+} from "@/__generated__/TagsViewComponentGetAllTagsQuery.graphql";
+import TagsViewComponent from "@/app/tags/TagsViewComponent";
 
-const ScenarioClientComponent = (props: {
-    preloadedQuery: SerializablePreloadedQuery<typeof scenarioComponentViewQueryGraphql, scenarioComponentViewQuery>;
+const TagsViewClientComponent = (props: {
+    preloadedQuery: SerializablePreloadedQuery<typeof TagsViewComponentGetAllTagsQueryGraphql, TagsViewComponentGetAllTagsQuery>;
 }) => {
     const environment = getCurrentEnvironment();
     const queryRef = useSerializablePreloadedQuery(
@@ -20,9 +20,9 @@ const ScenarioClientComponent = (props: {
 
     return (
         <RelayEnvironmentProvider environment={environment}>
-            <ScenarioComponent queryRef={queryRef} />
+            <TagsViewComponent queryRef={queryRef} />
         </RelayEnvironmentProvider>
     );
 };
 
-export default ScenarioClientComponent;
+export default TagsViewClientComponent;

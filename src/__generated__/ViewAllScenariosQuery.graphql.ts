@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<ca953e0cda95102e87033387f6ff6640>>
+ * @generated SignedSource<<d265c775a5ea0f54c1d26bb9a561f3e0>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,8 +9,8 @@
 // @ts-nocheck
 
 import type { ConcreteRequest, Query } from 'relay-runtime';
-export type MainViewQuery$variables = Record<PropertyKey, never>;
-export type MainViewQuery$data = {
+export type ViewAllScenariosQuery$variables = Record<PropertyKey, never>;
+export type ViewAllScenariosQuery$data = {
   readonly prompts: {
     readonly edges: ReadonlyArray<{
       readonly node: {
@@ -25,9 +25,9 @@ export type MainViewQuery$data = {
     } | null | undefined>;
   };
 };
-export type MainViewQuery = {
-  response: MainViewQuery$data;
-  variables: MainViewQuery$variables;
+export type ViewAllScenariosQuery = {
+  response: ViewAllScenariosQuery$data;
+  variables: ViewAllScenariosQuery$variables;
 };
 
 const node: ConcreteRequest = (function(){
@@ -126,7 +126,7 @@ return {
     "argumentDefinitions": [],
     "kind": "Fragment",
     "metadata": null,
-    "name": "MainViewQuery",
+    "name": "ViewAllScenariosQuery",
     "selections": (v0/*: any*/),
     "type": "Query",
     "abstractKey": null
@@ -135,20 +135,20 @@ return {
   "operation": {
     "argumentDefinitions": [],
     "kind": "Operation",
-    "name": "MainViewQuery",
+    "name": "ViewAllScenariosQuery",
     "selections": (v0/*: any*/)
   },
   "params": {
-    "cacheID": "46d153482a9840ac7bb0f5c71a9f067e",
+    "cacheID": "c1eb9122d65de62effc5a1315cbfaca8",
     "id": null,
     "metadata": {},
-    "name": "MainViewQuery",
+    "name": "ViewAllScenariosQuery",
     "operationKind": "query",
-    "text": "query MainViewQuery {\n  prompts(first: 15) {\n    edges {\n      node {\n        id\n        title\n        description\n        dateCreated\n        dateEdited\n        publishDate\n        nsfw\n      }\n    }\n  }\n}\n"
+    "text": "query ViewAllScenariosQuery {\n  prompts(first: 15) {\n    edges {\n      node {\n        id\n        title\n        description\n        dateCreated\n        dateEdited\n        publishDate\n        nsfw\n      }\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "5f98b8833cd9f0d315d473f896d77c0a";
+(node as any).hash = "bf0b2e05341b570d5104f0b5c718244f";
 
 export default node;

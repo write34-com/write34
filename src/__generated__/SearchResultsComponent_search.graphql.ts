@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<01107ebaa87dda1ddbdd7592c33c54ec>>
+ * @generated SignedSource<<50f0a910f8fbece771e0e302fddea0af>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -17,6 +17,7 @@ export type SearchResultsComponent_search$data = {
         readonly node: {
           readonly description: string | null | undefined;
           readonly id: string;
+          readonly nsfw: boolean;
           readonly tags: string;
           readonly title: string;
         };
@@ -49,7 +50,15 @@ return {
     },
     {
       "kind": "RootArgument",
+      "name": "nsfw"
+    },
+    {
+      "kind": "RootArgument",
       "name": "query"
+    },
+    {
+      "kind": "RootArgument",
+      "name": "tags"
     }
   ],
   "kind": "Fragment",
@@ -90,8 +99,18 @@ return {
           "args": [
             {
               "kind": "Variable",
+              "name": "nsfw",
+              "variableName": "nsfw"
+            },
+            {
+              "kind": "Variable",
               "name": "query",
               "variableName": "query"
+            },
+            {
+              "kind": "Variable",
+              "name": "tags",
+              "variableName": "tags"
             }
           ],
           "concreteType": "SearchPromptsConnection",
@@ -141,6 +160,13 @@ return {
                       "args": null,
                       "kind": "ScalarField",
                       "name": "tags",
+                      "storageKey": null
+                    },
+                    {
+                      "alias": null,
+                      "args": null,
+                      "kind": "ScalarField",
+                      "name": "nsfw",
                       "storageKey": null
                     },
                     {
@@ -200,6 +226,6 @@ return {
 };
 })();
 
-(node as any).hash = "686df0ea31d67b890dcb4b5efc5d771f";
+(node as any).hash = "123236a88087cc0e11d2f06616d1c522";
 
 export default node;

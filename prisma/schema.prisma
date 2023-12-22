@@ -39,7 +39,8 @@ model Prompts {
   dateCreated     String
   dateEdited      String?
 
-  worldInfos WorldInfos[] @relation("PromptWorldInfo")
+  tagsFull   TagsPromptsMap[] @relation("PromptTagMap")
+  worldInfos WorldInfos[]     @relation("PromptWorldInfo")
 
   @@index([aetherId], name: "IX_Prompts_AetherId")
   @@index([correlationId], name: "IX_Prompts_CorrelationId")
@@ -123,4 +124,24 @@ model User {
   @@index([email], name: "IX_Users_Email")
   @@index([name], name: "IX_Users_Name")
   @@index([lastLoggedIn], name: "IX_Users_LastLoggedIn")
+}
+
+model Tags {
+  id          String  @id @default(uuid())
+  name        String  @unique
+  description String?
+
+  tagPrompts TagsPromptsMap[] @relation("TagPrompt")
+
+  @@index([name], name: "IX_Tags_Name")
+}
+
+model TagsPromptsMap {
+  tagId    String
+  promptID String
+
+  tag    Tags    @relation("TagPrompt", fields: [tagId], references: [id], onDelete: Cascade)
+  prompt Prompts @relation("PromptTagMap", fields: [promptID], references: [id], onDelete: Cascade)
+
+  @@unique([tagId, promptID])
 }

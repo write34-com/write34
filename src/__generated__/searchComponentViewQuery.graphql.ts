@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<1742163f6fc94ba87157a865cd600abd>>
+ * @generated SignedSource<<04f84e1347394aa317b22d63714c445a>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -13,7 +13,9 @@ import type { FragmentRefs } from "relay-runtime";
 export type searchComponentViewQuery$variables = {
   count: number;
   cursor?: string | null | undefined;
-  query: string;
+  nsfw?: boolean | null | undefined;
+  query?: string | null | undefined;
+  tags?: ReadonlyArray<string> | null | undefined;
 };
 export type searchComponentViewQuery$data = {
   readonly " $fragmentSpreads": FragmentRefs<"SearchResultsComponent_search">;
@@ -37,9 +39,19 @@ v1 = {
 v2 = {
   "defaultValue": null,
   "kind": "LocalArgument",
+  "name": "nsfw"
+},
+v3 = {
+  "defaultValue": null,
+  "kind": "LocalArgument",
   "name": "query"
 },
-v3 = [
+v4 = {
+  "defaultValue": null,
+  "kind": "LocalArgument",
+  "name": "tags"
+},
+v5 = [
   {
     "kind": "Variable",
     "name": "after",
@@ -52,8 +64,18 @@ v3 = [
   },
   {
     "kind": "Variable",
+    "name": "nsfw",
+    "variableName": "nsfw"
+  },
+  {
+    "kind": "Variable",
     "name": "query",
     "variableName": "query"
+  },
+  {
+    "kind": "Variable",
+    "name": "tags",
+    "variableName": "tags"
   }
 ];
 return {
@@ -61,7 +83,9 @@ return {
     "argumentDefinitions": [
       (v0/*: any*/),
       (v1/*: any*/),
-      (v2/*: any*/)
+      (v2/*: any*/),
+      (v3/*: any*/),
+      (v4/*: any*/)
     ],
     "kind": "Fragment",
     "metadata": null,
@@ -79,9 +103,11 @@ return {
   "kind": "Request",
   "operation": {
     "argumentDefinitions": [
-      (v2/*: any*/),
+      (v3/*: any*/),
       (v0/*: any*/),
-      (v1/*: any*/)
+      (v1/*: any*/),
+      (v4/*: any*/),
+      (v2/*: any*/)
     ],
     "kind": "Operation",
     "name": "searchComponentViewQuery",
@@ -96,7 +122,7 @@ return {
         "selections": [
           {
             "alias": null,
-            "args": (v3/*: any*/),
+            "args": (v5/*: any*/),
             "concreteType": "SearchPromptsConnection",
             "kind": "LinkedField",
             "name": "prompts",
@@ -150,6 +176,13 @@ return {
                         "alias": null,
                         "args": null,
                         "kind": "ScalarField",
+                        "name": "nsfw",
+                        "storageKey": null
+                      },
+                      {
+                        "alias": null,
+                        "args": null,
+                        "kind": "ScalarField",
                         "name": "__typename",
                         "storageKey": null
                       }
@@ -196,9 +229,11 @@ return {
           },
           {
             "alias": null,
-            "args": (v3/*: any*/),
+            "args": (v5/*: any*/),
             "filters": [
-              "query"
+              "query",
+              "tags",
+              "nsfw"
             ],
             "handle": "connection",
             "key": "searchComponentViewQuery_search__prompts",
@@ -211,16 +246,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "68e1f09eeedad6bddc6c0c96d1f7641f",
+    "cacheID": "f42fc6d8094b0361d93946545255bede",
     "id": null,
     "metadata": {},
     "name": "searchComponentViewQuery",
     "operationKind": "query",
-    "text": "query searchComponentViewQuery(\n  $query: String!\n  $count: Int!\n  $cursor: String\n) {\n  ...SearchResultsComponent_search\n}\n\nfragment SearchResultsComponent_search on Query {\n  search {\n    prompts(first: $count, after: $cursor, query: $query) {\n      edges {\n        node {\n          id\n          title\n          description\n          tags\n          __typename\n        }\n        cursor\n      }\n      pageInfo {\n        endCursor\n        hasNextPage\n      }\n    }\n  }\n}\n"
+    "text": "query searchComponentViewQuery(\n  $query: String\n  $count: Int!\n  $cursor: String\n  $tags: [String!]\n  $nsfw: Boolean\n) {\n  ...SearchResultsComponent_search\n}\n\nfragment SearchResultsComponent_search on Query {\n  search {\n    prompts(first: $count, after: $cursor, query: $query, tags: $tags, nsfw: $nsfw) {\n      edges {\n        node {\n          id\n          title\n          description\n          tags\n          nsfw\n          __typename\n        }\n        cursor\n      }\n      pageInfo {\n        endCursor\n        hasNextPage\n      }\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "4ea673d2d5b31e57262a9da229f6a6ad";
+(node as any).hash = "a08ca6aea504e2827f2eeafcd2ee751b";
 
 export default node;

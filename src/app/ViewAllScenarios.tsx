@@ -1,13 +1,13 @@
 import {graphql, PreloadedQuery, usePreloadedQuery} from "react-relay";
-import {MainViewQuery} from "@/__generated__/MainViewQuery.graphql";
+import {ViewAllScenariosQuery} from "@/__generated__/ViewAllScenariosQuery.graphql";
 import Link from "next/link";
 
-export default function MainView(props: {
-    queryRef: PreloadedQuery<MainViewQuery>;
+export default function ViewAllScenarios(props: {
+    queryRef: PreloadedQuery<ViewAllScenariosQuery>;
 }) {
     // Read the preloaded query data from the props
     const data = usePreloadedQuery(graphql`
-        query MainViewQuery {
+        query ViewAllScenariosQuery {
             prompts(first: 15) {
                 edges {
                     node {

@@ -74,7 +74,9 @@ export function fetchQuery(
         }
     }
 
-    return fetch('/api/graphql', {
+    const baseurl = process.env.NEXTAUTH_URL || '';
+
+    return fetch(baseurl + '/api/graphql', {
         method: 'POST',
         headers: {
             // Add authentication and other headers here

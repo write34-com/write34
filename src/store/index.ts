@@ -4,14 +4,14 @@ import {createContext, useContext} from "react";
 interface StoreInterface {
     bears: number;
     increase: (by: number) => void;
-    searchQuery: string;
+    searchQuery: string | undefined;
     // set store
     setSearchQuery: (query: string) => void;
 }
 
 const getDefaultInitialState = () => ({
     bears: 0,
-    searchQuery: '',
+    searchQuery: undefined,
 });
 
 export type StoreType = ReturnType<typeof initializeStore>

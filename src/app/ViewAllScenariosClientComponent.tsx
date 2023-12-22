@@ -2,16 +2,16 @@
 import {Suspense} from 'react';
 import {RelayEnvironmentProvider} from 'react-relay/hooks';
 import {SerializablePreloadedQuery} from '@/relay/loadSerializableQuery';
-import MainViewQueryNode, {
-    MainViewQuery,
-} from '@/__generated__/MainViewQuery.graphql';
+import ViewAllScenariosQueryNode, {
+    ViewAllScenariosQuery,
+} from '@/__generated__/ViewAllScenariosQuery.graphql';
 import {getCurrentEnvironment} from '@/relay/clientEnvironment';
 import useSerializablePreloadedQuery from '@/relay/useSerializablePreloadedQuery';
-import MainView from '@/app/MainView';
+import ViewAllScenarios from '@/app/ViewAllScenarios';
 
 
-const MainViewClientComponent = (props: {
-    preloadedQuery: SerializablePreloadedQuery<typeof MainViewQueryNode, MainViewQuery>;
+const ViewAllScenariosClientComponent = (props: {
+    preloadedQuery: SerializablePreloadedQuery<typeof ViewAllScenariosQueryNode, ViewAllScenariosQuery>;
 }) => {
     const environment = getCurrentEnvironment();
     const queryRef = useSerializablePreloadedQuery(environment, props.preloadedQuery);
@@ -19,10 +19,10 @@ const MainViewClientComponent = (props: {
     return (
         <RelayEnvironmentProvider environment={environment}>
             <Suspense fallback="Loading...">
-                <MainView queryRef={queryRef}/>
+                <ViewAllScenarios queryRef={queryRef} />
             </Suspense>
         </RelayEnvironmentProvider>
     );
 };
 
-export default MainViewClientComponent;
+export default ViewAllScenariosClientComponent;

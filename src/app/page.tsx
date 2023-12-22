@@ -1,23 +1,23 @@
 import Image from 'next/image';
 import loadSerializableQuery from "../relay/loadSerializableQuery";
-import MainViewQueryNode, {
-  MainViewQuery,
-} from "../__generated__/MainViewQuery.graphql";
-import MainViewClientComponent from "./MainViewClientComponent";
+import ViewAllScenariosQueryNode, {
+  ViewAllScenariosQuery,
+} from "../__generated__/ViewAllScenariosQuery.graphql";
+import ViewAllScenariosClientComponent from "./ViewAllScenariosClientComponent";
 
 export default async function Home() {
 
   const preloadedQuery = await loadSerializableQuery<
-    typeof MainViewQueryNode,
-    MainViewQuery
-  >(MainViewQueryNode.params, {
+    typeof ViewAllScenariosQueryNode,
+    ViewAllScenariosQuery
+  >(ViewAllScenariosQueryNode.params, {
     // owner: "firstcontributions",
     // name: "first-contributions",
   });
 
   return (
       <div>
-        <MainViewClientComponent preloadedQuery={preloadedQuery} />
+        <ViewAllScenariosClientComponent preloadedQuery={preloadedQuery} />
       </div>
   );
 }

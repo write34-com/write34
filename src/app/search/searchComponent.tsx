@@ -5,9 +5,10 @@ import { useDebounce } from 'use-debounce';
 import {searchComponentViewQuery} from "@/__generated__/searchComponentViewQuery.graphql";
 import {useStore} from "@/store";
 import SearchResults from "@/app/search/SearchResults";
+import {useState} from "react";
 
 const SearchPageQuery = graphql`
-    query searchComponentViewQuery($query: String!, $count: Int!, $cursor: String) {
+    query searchComponentViewQuery($query: String, $count: Int!, $cursor: String, $tags: [String!], $nsfw: Boolean) {
         ...SearchResultsComponent_search
     }
 `;
@@ -15,16 +16,26 @@ const SearchPageQuery = graphql`
 export function SearchComponent() {
     const searchQuery = useStore((state) => state.searchQuery);
     const setSearchQuery = useStore((state) => state.setSearchQuery);
+    const [tags, setTags] = useState('');
+    const [nsfw, setNsfw] = useState<boolean | undefined>(undefined);
     const [debouncedSearchQuery] = useDebounce(searchQuery, 500);
+    const [debouncedTagsQuery] = useDebounce(tags, 500);
 
     const query = useLazyLoadQuery<searchComponentViewQuery>(SearchPageQuery, {
-        query: debouncedSearchQuery, // Replace with dynamic search term as needed
+        query: debouncedSearchQuery,
+        tags: debouncedTagsQuery.split(',').map(tag => tag.trim()).filter(tag => tag),
+        nsfw: nsfw,
         count: 15,
         cursor: null, // Adjust as needed for pagination
     });
 
+    const handleNsfwChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        const value = event.target.value;
+        setNsfw(value === 'undefined' ? undefined : value === 'true');
+    };
+
     const searchInput = (
-        <div className="flex items-center justify-between w-full text-base text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm dark:bg-gray-800 dark:text-gray-50">
+        <div className="flex gap-4 mb-4">
             <input
                 type="text"
                 placeholder="Search Scenarios by Content"
@@ -33,6 +44,21 @@ export function SearchComponent() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
             />
+            <input
+                type="text"
+                placeholder="Tags (comma separated)"
+                className="w-full px-4 py-2 text-base text-gray-700 placeholder-gray-400 bg-white border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
+                value={tags}
+                onChange={(e) => setTags(e.target.value)}
+            />
+            <select
+                className="w-60 px-4 py-2 text-base text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
+                value={nsfw === undefined ? 'undefined' : nsfw.toString()}
+                onChange={handleNsfwChange}>
+                <option value="undefined">NSFW & SFW</option>
+                <option value="true">NSFW Only</option>
+                <option value="false">SFW Only</option>
+            </select>
         </div>
     );
 
@@ -44,7 +70,7 @@ export function SearchComponent() {
             </div>
             {searchInput}
             <div className="mt-8 mb-4">
-                {searchQuery && <SearchResults queryRef={query} />}
+                {<SearchResults queryRef={query} />}
             </div>
         </div>
     );

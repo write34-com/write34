@@ -44,6 +44,7 @@ type PromptsSearch implements Node {
   description: String
   id: ID!
   memory: String
+  nsfw: Boolean!
   promptContent: String!
   tags: String!
   title: String!
@@ -57,6 +58,7 @@ type Query {
   promptById(id: String!): Prompts
   prompts(after: String, before: String, first: Int, last: Int): QueryPromptsConnection!
   search: Search!
+  viewer: Viewer!
   worldInfo(id: ID!): WorldInfos
   worldInfos(after: String, before: String, first: Int, last: Int): QueryWorldInfosConnection!
 }
@@ -83,7 +85,7 @@ type QueryWorldInfosConnectionEdge {
 
 """Search results"""
 type Search {
-  prompts(after: String, before: String, first: Int, last: Int, query: String!): SearchPromptsConnection!
+  prompts(after: String, before: String, first: Int, last: Int, nsfw: Boolean, query: String, tags: [String!]): SearchPromptsConnection!
 }
 
 type SearchPromptsConnection {
@@ -96,11 +98,28 @@ type SearchPromptsConnectionEdge {
   node: PromptsSearch!
 }
 
+type Tags implements Node {
+  description: String
+  id: ID!
+  name: String!
+}
+
+type TopTags {
+  count: Int!
+  description: String
+  name: String!
+}
+
 type User implements Node {
   dateCreated: String!
   email: String!
   id: ID!
   name: String!
+}
+
+"""Collection of information about the database"""
+type Viewer {
+  tagCounts: [TopTags!]!
 }
 
 type WorldInfos implements Node {
