@@ -64,7 +64,7 @@ export function SearchComponent() {
 
     // Style components with Tailwind CSS
     return (
-        <div className="container mx-auto py-16 sm:py-20">
+        <div className="container mx-auto py-16 sm:py-20 px-8">
             <div className="text-3xl mt-4 mb-8 font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-gray-50">
                 Search Scenarios
             </div>

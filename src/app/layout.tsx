@@ -41,6 +41,11 @@ export default function RootLayout({
                         href="/">
                         Scenarios
                     </Link>
+                    <Link
+                        className="btn btn-ghost"
+                        href="/tags">
+                        Tags
+                    </Link>
                 </div>
                 <div className="navbar-center">
                     <Link
