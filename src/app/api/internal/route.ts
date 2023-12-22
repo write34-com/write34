@@ -81,12 +81,27 @@ export async function GET(
                 throw new Error('unable to find tag id');
             }
 
-            await db.tagsPromptsMap.create({
-                data: {
+            const existingMap = await db.tagsPromptsMap.findFirst({
+                where: {
                     tagId: tagId,
                     promptID: promptId
                 }
             });
+
+            if (!existingMap) {
+                continue;
+            }
+
+            try {
+                await db.tagsPromptsMap.create({
+                    data: {
+                        tagId: tagId,
+                        promptID: promptId
+                    }
+                });
+            } catch (e) {
+                // ignore the conflict
+            }
         }
     }
 
