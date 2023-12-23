@@ -34,13 +34,16 @@ function SearchResults({queryRef}: SearchResultsProps) {
     `, queryRef);
 
     if (!data.search.prompts.edges.length) {
-        return (<div>
+        return (
+            <div>
                 <h2>No results found.</h2>
-            </div>);
+            </div>
+        );
     }
 
-    return (<div>
-            <ul className="grid grid-cols-3 gap-4 items-baseline">
+    return (
+        <div>
+            <ul className="grid md:grid-cols-3 gap-4 items-baseline sm:grid-cols-1">
                 {data.search.prompts.edges.map((edge) => {
                     const prompt = edge?.node;
                     if (!prompt) {
@@ -49,7 +52,8 @@ function SearchResults({queryRef}: SearchResultsProps) {
 
                     const tags = prompt.tags?.split(',') || [];
 
-                    return (<li key={prompt.id}>
+                    return (
+                        <li key={prompt.id}>
                             <div
                                 className="p-2 text-base text-gray-700 bg-white border border-gray-500 rounded-md shadow-sm dark:bg-gray-800 dark:text-gray-50">
                                 <Link key={prompt.id}
@@ -87,7 +91,8 @@ function SearchResults({queryRef}: SearchResultsProps) {
                         </li>);
                 })}
             </ul>
-            {hasNext && (<div className="flex justify-center mt-4">
+            {hasNext && (
+                <div className="flex justify-center mt-4">
                     <button
                         className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400"
                         onClick={() => loadNext(10)}
@@ -95,8 +100,10 @@ function SearchResults({queryRef}: SearchResultsProps) {
                     >
                         {isLoadingNext ? 'Loading...' : 'Load More'}
                     </button>
-                </div>)}
-        </div>);
+                </div>
+            )}
+        </div>
+    );
 }
 
 export default SearchResults;

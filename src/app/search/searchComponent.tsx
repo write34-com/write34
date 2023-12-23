@@ -35,7 +35,7 @@ export function SearchComponent() {
     };
 
     const searchInput = (
-        <div className="flex gap-4 mb-4">
+        <div className="gap-4 mb-4 flex-col flex md:flex-row">
             <input
                 type="text"
                 placeholder="Search Scenarios by Content"
