@@ -145,39 +145,35 @@ function getContext(prompt: {
 }) {
     const context: Context[] = [];
 
-    if (prompt.memory) {
-        context.push({
-            text: prompt.memory,
-            contextConfig: {
-                prefix: '',
-                suffix: '\n',
-                tokenBudget: 1,
-                reservedTokens: 0,
-                budgetPriority: 800,
-                trimDirection: 'trimBottom',
-                insertionType: 'newline',
-                maximumTrimType: 'sentence',
-                insertionPosition: 0
-            }
-        });
-    }
+    context.push({
+        text: prompt.memory || '',
+        contextConfig: {
+            prefix: '',
+            suffix: '\n',
+            tokenBudget: 1,
+            reservedTokens: 0,
+            budgetPriority: 800,
+            trimDirection: 'trimBottom',
+            insertionType: 'newline',
+            maximumTrimType: 'sentence',
+            insertionPosition: 0
+        }
+    });
 
-    if (prompt.authorsNote) {
-        context.push({
-            text: prompt.authorsNote,
-            contextConfig: {
-                prefix: '',
-                suffix: '\n',
-                tokenBudget: 1,
-                reservedTokens: 0,
-                budgetPriority: -400,
-                trimDirection: 'trimBottom',
-                insertionType: 'newline',
-                maximumTrimType: 'sentence',
-                insertionPosition: -4
-            }
-        });
-    }
+    context.push({
+        text: prompt.authorsNote || '',
+        contextConfig: {
+            prefix: '',
+            suffix: '\n',
+            tokenBudget: 1,
+            reservedTokens: 0,
+            budgetPriority: -400,
+            trimDirection: 'trimBottom',
+            insertionType: 'newline',
+            maximumTrimType: 'sentence',
+            insertionPosition: -4
+        }
+    });
 
     return context;
 }
@@ -197,7 +193,7 @@ function getWorldInfos(worldInfos: {
     };
 
     worldInfos.forEach(worldInfo => {
-        const keys = worldInfo.keys.split(',');
+        const keys = worldInfo.keys.split(',').map(key => key.trim());
         lorebook.entries.push({
             text: worldInfo.entry,
             contextConfig: {
