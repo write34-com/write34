@@ -35,6 +35,18 @@ function downloadScenario(id: string) {
 
 }
 
+function formatContent(content: string) {
+    return content.split('\n').map((line) => {
+
+        // Add line spacing between newlines
+        return (
+            <div className='mb-3' key={line}>
+                {line}
+            </div>
+        );
+    });
+}
+
 async function copyScenarioToClipboard(id: string) {
     // Fetch the scenario
     const response = await fetch(`/api/scenarios/download-legacy?scenario=${id}`);
@@ -102,7 +114,7 @@ export default function ScenarioComponent(props: { queryRef: PreloadedQuery<scen
                                     Description
                                 </dt>
                                 <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0 dark:text-gray-300">
-                                    {prompt.description ? prompt.description : '<No Description>'}
+                                    {prompt.description ? formatContent(prompt.description) : '<No Description>'}
                                 </dd>
                             </div>
                             <div
@@ -129,7 +141,7 @@ export default function ScenarioComponent(props: { queryRef: PreloadedQuery<scen
                                             </div>
                                             <div className="collapse-content collapse-arrow dark:text-gray-50 dark:bg-gray-800">
                                                 <p className="mt-1 mr-4 text-sm text-gray-500 dark:text-gray-300">
-                                                    {prompt.promptContent}
+                                                    {formatContent(prompt.promptContent)}
                                                 </p>
                                             </div>
                                         </div>
@@ -143,7 +155,7 @@ export default function ScenarioComponent(props: { queryRef: PreloadedQuery<scen
                                         Author Notes
                                     </dt>
                                     <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0 dark:text-gray-300">
-                                        {prompt.authorsNote}
+                                        {formatContent(prompt.authorsNote)}
                                     </dd>
                                 </div>
                             )}
@@ -154,7 +166,7 @@ export default function ScenarioComponent(props: { queryRef: PreloadedQuery<scen
                                         Memory
                                     </dt>
                                     <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0 dark:text-gray-300">
-                                        {prompt.memory}
+                                        {formatContent(prompt.memory)}
                                     </dd>
                                 </div>
                             )}
@@ -199,7 +211,7 @@ export default function ScenarioComponent(props: { queryRef: PreloadedQuery<scen
                                                                 {worldInfo.keys}
                                                             </h3>
                                                             <p className="mt-1 mr-4 text-sm text-gray-500 dark:text-gray-400">
-                                                                {worldInfo.entry}
+                                                                {formatContent(worldInfo.entry)}
                                                             </p>
                                                         </div>
                                                     </li>

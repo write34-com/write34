@@ -179,8 +179,9 @@ INSERT INTO "promptSearch" (id,
                             memory,
                             promptContent,
                             tags,
-                            title)
-SELECT id, description, memory, PromptContent, Tags, Title FROM "Prompts" LIMIT 100000;
+                            title,
+                            nsfw)
+SELECT id, description, memory, PromptContent, Tags, Title, nsfw FROM "Prompts" LIMIT 100000;
 
 -- Creating these *after* because of the malformed database error
 -- CREATE TRIGGER promptSearch_ai AFTER INSERT ON Prompts

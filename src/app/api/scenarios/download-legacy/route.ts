@@ -1,6 +1,7 @@
 
 import {db} from "@/app/api/graphql/db";
 import {NextRequest, NextResponse} from "next/server";
+import {randomUUID} from "crypto";
 
 type ResponseData = {
     message: string
@@ -116,7 +117,7 @@ const contextDefaults: ContextDefaults = {
             },
             "lastUpdatedAt": 1702478809363,
             "displayName": "New Lorebook Entry",
-            "id": "e9dee567-b2b2-499e-81d2-621a1657f379",
+            "id": randomUUID(),
             "keys": [],
             "searchRange": 1000,
             "enabled": true,
@@ -156,7 +157,7 @@ function getContext(prompt: {
                 trimDirection: 'trimBottom',
                 insertionType: 'newline',
                 maximumTrimType: 'sentence',
-                insertionPosition: -4
+                insertionPosition: 0
             }
         });
     }
@@ -323,7 +324,7 @@ export async function GET(
                 "enabled": true
             }
         ]
-    };    // Pretty print the JSON
+    };
 
     const response = new NextResponse(JSON.stringify(scenario, null, 2));
 
