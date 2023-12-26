@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {graphql, usePaginationFragment} from 'react-relay';
 import {
     SearchResultsComponent_search$key
@@ -32,6 +32,33 @@ function SearchResults({queryRef}: SearchResultsProps) {
             }
         }
     `, queryRef);
+
+
+    // Function to check if the user has scrolled to the bottom
+    const handleScroll = () => {
+        // Window scroll position
+        const scrollTop = window.scrollY;
+        // Total height of the document
+        const documentHeight = document.body.offsetHeight;
+        // Height of the window's content area
+        const windowHeight = window.innerHeight;
+
+        // Buffer value (e.g., 100px before reaching the bottom)
+        const buffer = 100;
+
+        // Check if the user is near the bottom of the page
+        if (windowHeight + scrollTop + buffer >= documentHeight && hasNext && !isLoadingNext) {
+            loadNext(15);
+        }
+    };
+
+    useEffect(() => {
+        // Add scroll event listener
+        window.addEventListener('scroll', handleScroll);
+
+        // Cleanup function to remove the event listener
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [data]);
 
     if (!data.search.prompts.edges.length) {
         return (
@@ -95,7 +122,7 @@ function SearchResults({queryRef}: SearchResultsProps) {
                 <div className="flex justify-center mt-4">
                     <button
                         className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400"
-                        onClick={() => loadNext(10)}
+                        onClick={() => loadNext(12)}
                         disabled={!hasNext || isLoadingNext}
                     >
                         {isLoadingNext ? 'Loading...' : 'Load More'}

@@ -1628,6 +1628,7 @@ export namespace Prisma {
     correlationId: string | null
     dateCreated: string | null
     dateEdited: string | null
+    deleted: boolean | null
   }
 
   export type PromptsMaxAggregateOutputType = {
@@ -1649,6 +1650,7 @@ export namespace Prisma {
     correlationId: string | null
     dateCreated: string | null
     dateEdited: string | null
+    deleted: boolean | null
   }
 
   export type PromptsCountAggregateOutputType = {
@@ -1670,6 +1672,7 @@ export namespace Prisma {
     correlationId: number
     dateCreated: number
     dateEdited: number
+    deleted: number
     _all: number
   }
 
@@ -1703,6 +1706,7 @@ export namespace Prisma {
     correlationId?: true
     dateCreated?: true
     dateEdited?: true
+    deleted?: true
   }
 
   export type PromptsMaxAggregateInputType = {
@@ -1724,6 +1728,7 @@ export namespace Prisma {
     correlationId?: true
     dateCreated?: true
     dateEdited?: true
+    deleted?: true
   }
 
   export type PromptsCountAggregateInputType = {
@@ -1745,6 +1750,7 @@ export namespace Prisma {
     correlationId?: true
     dateCreated?: true
     dateEdited?: true
+    deleted?: true
     _all?: true
   }
 
@@ -1853,6 +1859,7 @@ export namespace Prisma {
     correlationId: string
     dateCreated: string
     dateEdited: string | null
+    deleted: boolean
     _count: PromptsCountAggregateOutputType | null
     _avg: PromptsAvgAggregateOutputType | null
     _sum: PromptsSumAggregateOutputType | null
@@ -1893,6 +1900,7 @@ export namespace Prisma {
     correlationId?: boolean
     dateCreated?: boolean
     dateEdited?: boolean
+    deleted?: boolean
     tagsFull?: boolean | Prompts$tagsFullArgs<ExtArgs>
     worldInfos?: boolean | Prompts$worldInfosArgs<ExtArgs>
     _count?: boolean | PromptsCountOutputTypeDefaultArgs<ExtArgs>
@@ -1917,6 +1925,7 @@ export namespace Prisma {
     correlationId?: boolean
     dateCreated?: boolean
     dateEdited?: boolean
+    deleted?: boolean
   }
 
   export type PromptsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1951,6 +1960,7 @@ export namespace Prisma {
       correlationId: string
       dateCreated: string
       dateEdited: string | null
+      deleted: boolean
     }, ExtArgs["result"]["prompts"]>
     composites: {}
   }
@@ -2350,6 +2360,7 @@ export namespace Prisma {
     readonly correlationId: FieldRef<"Prompts", 'String'>
     readonly dateCreated: FieldRef<"Prompts", 'String'>
     readonly dateEdited: FieldRef<"Prompts", 'String'>
+    readonly deleted: FieldRef<"Prompts", 'Boolean'>
   }
     
 
@@ -10007,7 +10018,8 @@ export namespace Prisma {
     holoAiScenario: 'holoAiScenario',
     correlationId: 'correlationId',
     dateCreated: 'dateCreated',
-    dateEdited: 'dateEdited'
+    dateEdited: 'dateEdited',
+    deleted: 'deleted'
   };
 
   export type PromptsScalarFieldEnum = (typeof PromptsScalarFieldEnum)[keyof typeof PromptsScalarFieldEnum]
@@ -10150,6 +10162,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -10181,6 +10200,7 @@ export namespace Prisma {
     correlationId?: StringFilter<"Prompts"> | string
     dateCreated?: StringFilter<"Prompts"> | string
     dateEdited?: StringNullableFilter<"Prompts"> | string | null
+    deleted?: BoolFilter<"Prompts"> | boolean
     tagsFull?: TagsPromptsMapListRelationFilter
     worldInfos?: WorldInfosListRelationFilter
   }
@@ -10204,6 +10224,7 @@ export namespace Prisma {
     correlationId?: SortOrder
     dateCreated?: SortOrder
     dateEdited?: SortOrderInput | SortOrder
+    deleted?: SortOrder
     tagsFull?: TagsPromptsMapOrderByRelationAggregateInput
     worldInfos?: WorldInfosOrderByRelationAggregateInput
   }
@@ -10230,6 +10251,7 @@ export namespace Prisma {
     correlationId?: StringFilter<"Prompts"> | string
     dateCreated?: StringFilter<"Prompts"> | string
     dateEdited?: StringNullableFilter<"Prompts"> | string | null
+    deleted?: BoolFilter<"Prompts"> | boolean
     tagsFull?: TagsPromptsMapListRelationFilter
     worldInfos?: WorldInfosListRelationFilter
   }, "id">
@@ -10253,6 +10275,7 @@ export namespace Prisma {
     correlationId?: SortOrder
     dateCreated?: SortOrder
     dateEdited?: SortOrderInput | SortOrder
+    deleted?: SortOrder
     _count?: PromptsCountOrderByAggregateInput
     _avg?: PromptsAvgOrderByAggregateInput
     _max?: PromptsMaxOrderByAggregateInput
@@ -10282,6 +10305,7 @@ export namespace Prisma {
     correlationId?: StringWithAggregatesFilter<"Prompts"> | string
     dateCreated?: StringWithAggregatesFilter<"Prompts"> | string
     dateEdited?: StringNullableWithAggregatesFilter<"Prompts"> | string | null
+    deleted?: BoolWithAggregatesFilter<"Prompts"> | boolean
   }
 
   export type WorldInfosWhereInput = {
@@ -10778,6 +10802,7 @@ export namespace Prisma {
     correlationId: string
     dateCreated: string
     dateEdited?: string | null
+    deleted?: boolean
     tagsFull?: TagsPromptsMapCreateNestedManyWithoutPromptInput
     worldInfos?: WorldInfosCreateNestedManyWithoutPromptsInput
   }
@@ -10801,6 +10826,7 @@ export namespace Prisma {
     correlationId: string
     dateCreated: string
     dateEdited?: string | null
+    deleted?: boolean
     tagsFull?: TagsPromptsMapUncheckedCreateNestedManyWithoutPromptInput
     worldInfos?: WorldInfosUncheckedCreateNestedManyWithoutPromptsInput
   }
@@ -10824,6 +10850,7 @@ export namespace Prisma {
     correlationId?: StringFieldUpdateOperationsInput | string
     dateCreated?: StringFieldUpdateOperationsInput | string
     dateEdited?: NullableStringFieldUpdateOperationsInput | string | null
+    deleted?: BoolFieldUpdateOperationsInput | boolean
     tagsFull?: TagsPromptsMapUpdateManyWithoutPromptNestedInput
     worldInfos?: WorldInfosUpdateManyWithoutPromptsNestedInput
   }
@@ -10847,6 +10874,7 @@ export namespace Prisma {
     correlationId?: StringFieldUpdateOperationsInput | string
     dateCreated?: StringFieldUpdateOperationsInput | string
     dateEdited?: NullableStringFieldUpdateOperationsInput | string | null
+    deleted?: BoolFieldUpdateOperationsInput | boolean
     tagsFull?: TagsPromptsMapUncheckedUpdateManyWithoutPromptNestedInput
     worldInfos?: WorldInfosUncheckedUpdateManyWithoutPromptsNestedInput
   }
@@ -10870,6 +10898,7 @@ export namespace Prisma {
     correlationId?: StringFieldUpdateOperationsInput | string
     dateCreated?: StringFieldUpdateOperationsInput | string
     dateEdited?: NullableStringFieldUpdateOperationsInput | string | null
+    deleted?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type PromptsUncheckedUpdateManyInput = {
@@ -10891,6 +10920,7 @@ export namespace Prisma {
     correlationId?: StringFieldUpdateOperationsInput | string
     dateCreated?: StringFieldUpdateOperationsInput | string
     dateEdited?: NullableStringFieldUpdateOperationsInput | string | null
+    deleted?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type WorldInfosCreateInput = {
@@ -11363,6 +11393,11 @@ export namespace Prisma {
     not?: NestedBytesNullableFilter<$PrismaModel> | Buffer | null
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type TagsPromptsMapListRelationFilter = {
     every?: TagsPromptsMapWhereInput
     some?: TagsPromptsMapWhereInput
@@ -11407,6 +11442,7 @@ export namespace Prisma {
     correlationId?: SortOrder
     dateCreated?: SortOrder
     dateEdited?: SortOrder
+    deleted?: SortOrder
   }
 
   export type PromptsAvgOrderByAggregateInput = {
@@ -11433,6 +11469,7 @@ export namespace Prisma {
     correlationId?: SortOrder
     dateCreated?: SortOrder
     dateEdited?: SortOrder
+    deleted?: SortOrder
   }
 
   export type PromptsMinOrderByAggregateInput = {
@@ -11454,6 +11491,7 @@ export namespace Prisma {
     correlationId?: SortOrder
     dateCreated?: SortOrder
     dateEdited?: SortOrder
+    deleted?: SortOrder
   }
 
   export type PromptsSumOrderByAggregateInput = {
@@ -11535,6 +11573,14 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedBytesNullableFilter<$PrismaModel>
     _max?: NestedBytesNullableFilter<$PrismaModel>
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type PromptsRelationFilter = {
@@ -11873,6 +11919,10 @@ export namespace Prisma {
     set?: Buffer | null
   }
 
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
   export type TagsPromptsMapUpdateManyWithoutPromptNestedInput = {
     create?: XOR<TagsPromptsMapCreateWithoutPromptInput, TagsPromptsMapUncheckedCreateWithoutPromptInput> | TagsPromptsMapCreateWithoutPromptInput[] | TagsPromptsMapUncheckedCreateWithoutPromptInput[]
     connectOrCreate?: TagsPromptsMapCreateOrConnectWithoutPromptInput | TagsPromptsMapCreateOrConnectWithoutPromptInput[]
@@ -12114,6 +12164,11 @@ export namespace Prisma {
     not?: NestedBytesNullableFilter<$PrismaModel> | Buffer | null
   }
 
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[]
@@ -12210,6 +12265,14 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedBytesNullableFilter<$PrismaModel>
     _max?: NestedBytesNullableFilter<$PrismaModel>
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type TagsPromptsMapCreateWithoutPromptInput = {
@@ -12323,6 +12386,7 @@ export namespace Prisma {
     correlationId: string
     dateCreated: string
     dateEdited?: string | null
+    deleted?: boolean
     tagsFull?: TagsPromptsMapCreateNestedManyWithoutPromptInput
   }
 
@@ -12345,6 +12409,7 @@ export namespace Prisma {
     correlationId: string
     dateCreated: string
     dateEdited?: string | null
+    deleted?: boolean
     tagsFull?: TagsPromptsMapUncheckedCreateNestedManyWithoutPromptInput
   }
 
@@ -12383,6 +12448,7 @@ export namespace Prisma {
     correlationId?: StringFieldUpdateOperationsInput | string
     dateCreated?: StringFieldUpdateOperationsInput | string
     dateEdited?: NullableStringFieldUpdateOperationsInput | string | null
+    deleted?: BoolFieldUpdateOperationsInput | boolean
     tagsFull?: TagsPromptsMapUpdateManyWithoutPromptNestedInput
   }
 
@@ -12405,6 +12471,7 @@ export namespace Prisma {
     correlationId?: StringFieldUpdateOperationsInput | string
     dateCreated?: StringFieldUpdateOperationsInput | string
     dateEdited?: NullableStringFieldUpdateOperationsInput | string | null
+    deleted?: BoolFieldUpdateOperationsInput | boolean
     tagsFull?: TagsPromptsMapUncheckedUpdateManyWithoutPromptNestedInput
   }
 
@@ -12618,6 +12685,7 @@ export namespace Prisma {
     correlationId: string
     dateCreated: string
     dateEdited?: string | null
+    deleted?: boolean
     worldInfos?: WorldInfosCreateNestedManyWithoutPromptsInput
   }
 
@@ -12640,6 +12708,7 @@ export namespace Prisma {
     correlationId: string
     dateCreated: string
     dateEdited?: string | null
+    deleted?: boolean
     worldInfos?: WorldInfosUncheckedCreateNestedManyWithoutPromptsInput
   }
 
@@ -12701,6 +12770,7 @@ export namespace Prisma {
     correlationId?: StringFieldUpdateOperationsInput | string
     dateCreated?: StringFieldUpdateOperationsInput | string
     dateEdited?: NullableStringFieldUpdateOperationsInput | string | null
+    deleted?: BoolFieldUpdateOperationsInput | boolean
     worldInfos?: WorldInfosUpdateManyWithoutPromptsNestedInput
   }
 
@@ -12723,6 +12793,7 @@ export namespace Prisma {
     correlationId?: StringFieldUpdateOperationsInput | string
     dateCreated?: StringFieldUpdateOperationsInput | string
     dateEdited?: NullableStringFieldUpdateOperationsInput | string | null
+    deleted?: BoolFieldUpdateOperationsInput | boolean
     worldInfos?: WorldInfosUncheckedUpdateManyWithoutPromptsNestedInput
   }
 

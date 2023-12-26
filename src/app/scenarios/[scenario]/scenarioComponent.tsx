@@ -2,7 +2,7 @@ import {
     graphql, PreloadedQuery,
     usePreloadedQuery,
 } from "react-relay";
-import {Suspense} from "react";
+import {Fragment, Suspense} from "react";
 import {PaperClipIcon} from '@heroicons/react/20/solid';
 import {scenarioComponentViewQuery} from "@/__generated__/scenarioComponentViewQuery.graphql";
 
@@ -34,17 +34,14 @@ function downloadScenario(id: string) {
     window.open(`/api/scenarios/download-legacy?scenario=${id}`, '_blank');
 
 }
-
 function formatContent(content: string) {
-    return content.split('\n').map((line) => {
+    const lines = content.split('\n');
 
-        // Add line spacing between newlines
-        return (
-            <div className='mb-3' key={line}>
-                {line}
-            </div>
-        );
-    });
+    return lines.map((line, index) => (
+        <div className={`mb-3`} key={`line-${index}`}>
+            {line}
+        </div>
+    ));
 }
 
 async function copyScenarioToClipboard(id: string) {
@@ -67,14 +64,14 @@ export default function ScenarioComponent(props: { queryRef: PreloadedQuery<scen
 
     if (!prompt) {
         return (
-            <Suspense fallback="Loading prompt...">
+            // <Suspense fallback="Loading prompt...">
                 <div>
                     <div className="px-4 sm:px-0">
                         <h3 className="text-base font-semibold leading-7 text-gray-900">Not Found</h3>
                         <p className="mt-1 max-w-2xl text-sm leading-6 text-gray-500">Please try another scenario.</p>
                     </div>
                 </div>
-            </Suspense>
+            // </Suspense>
         );
     }
 
@@ -83,19 +80,19 @@ export default function ScenarioComponent(props: { queryRef: PreloadedQuery<scen
 
     if (!prompt) {
         return (
-            <Suspense fallback="Loading prompt...">
+            // <Suspense fallback="Loading prompt...">
                 <div>
                     <div className="px-4 sm:px-0">
                         <h3 className="text-base font-semibold leading-7 text-gray-900">Not Found</h3>
                         <p className="mt-1 max-w-2xl text-sm leading-6 text-gray-500">Please try another scenario.</p>
                     </div>
                 </div>
-            </Suspense>
+            // </Suspense>
         );
     }
 
     return (
-        <Suspense fallback="Loading prompt...">
+        // <Suspense fallback="Loading prompt...">
             <div className="bg-white dark:bg-gray-900 dark:text-gray-100 py-16 sm:py-24">
                 <div className="mx-auto max-w-7xl px-6 lg:px-8">
                     <div className="px-4 sm:px-0">
@@ -140,9 +137,9 @@ export default function ScenarioComponent(props: { queryRef: PreloadedQuery<scen
                                                 <span className="line-clamp-3">{prompt.promptContent}</span>... [Click to expand]
                                             </div>
                                             <div className="collapse-content collapse-arrow dark:text-gray-50 dark:bg-gray-800">
-                                                <p className="mt-1 mr-4 text-sm text-gray-500 dark:text-gray-300">
+                                                <div className="mt-1 mr-4 text-sm text-gray-500 dark:text-gray-300">
                                                     {formatContent(prompt.promptContent)}
-                                                </p>
+                                                </div>
                                             </div>
                                         </div>
                                     )}
@@ -228,7 +225,7 @@ export default function ScenarioComponent(props: { queryRef: PreloadedQuery<scen
                             <button
                                 type="button"
                                 onClick={() => downloadScenario(promptId)}
-                                className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-gray-900 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
+                                className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-800 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 dark:bg-blue-600 dark:hover:bg-blue-800 dark:focus:ring-gray-800"
                             >
                                 Download (NovelAI)
                             </button>
@@ -244,8 +241,8 @@ export default function ScenarioComponent(props: { queryRef: PreloadedQuery<scen
                     </div>
                 </div>
             </div>
-        </Suspense>
+        // </Suspense>
     );
 }
 
-export const revalidate = 0;
+// export const revalidate = 0;

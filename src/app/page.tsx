@@ -11,8 +11,8 @@ export default async function Home() {
     typeof ViewAllScenariosQueryNode,
     ViewAllScenariosQuery
   >(ViewAllScenariosQueryNode.params, {
-    // owner: "firstcontributions",
-    // name: "first-contributions",
+      cursor: null,
+      count: 15
   });
 
   return (

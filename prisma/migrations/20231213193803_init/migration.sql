@@ -17,7 +17,8 @@ CREATE TABLE "Prompts" (
     "holoAiScenario" TEXT,
     "correlationId" TEXT NOT NULL,
     "dateCreated" TEXT NOT NULL,
-    "dateEdited" TEXT
+    "dateEdited" TEXT,
+    "deleted" INTEGER NOT NULL DEFAULT 0
 );
 
 -- CreateIndex

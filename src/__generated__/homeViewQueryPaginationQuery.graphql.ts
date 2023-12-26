@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<ea9a083738ae0d6af0011270120a438e>>
+ * @generated SignedSource<<26a9ad615e093b78cc89136739cb31ca>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,16 +10,16 @@
 
 import type { ConcreteRequest, Query } from 'relay-runtime';
 import type { FragmentRefs } from "relay-runtime";
-export type ViewAllScenariosQuery$variables = {
-  count: number;
+export type homeViewQueryPaginationQuery$variables = {
+  count?: number | null | undefined;
   cursor?: string | null | undefined;
 };
-export type ViewAllScenariosQuery$data = {
+export type homeViewQueryPaginationQuery$data = {
   readonly " $fragmentSpreads": FragmentRefs<"ViewAllScenarios_search">;
 };
-export type ViewAllScenariosQuery = {
-  response: ViewAllScenariosQuery$data;
-  variables: ViewAllScenariosQuery$variables;
+export type homeViewQueryPaginationQuery = {
+  response: homeViewQueryPaginationQuery$data;
+  variables: homeViewQueryPaginationQuery$variables;
 };
 
 const node: ConcreteRequest = (function(){
@@ -62,7 +62,7 @@ return {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "ViewAllScenariosQuery",
+    "name": "homeViewQueryPaginationQuery",
     "selections": [
       {
         "args": null,
@@ -77,7 +77,7 @@ return {
   "operation": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "ViewAllScenariosQuery",
+    "name": "homeViewQueryPaginationQuery",
     "selections": [
       {
         "alias": null,
@@ -219,16 +219,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "22b15c91b0226589f6fe365b69fbb9c7",
+    "cacheID": "451e2b2f698c5f96e92f6e4e8c42ae57",
     "id": null,
     "metadata": {},
-    "name": "ViewAllScenariosQuery",
+    "name": "homeViewQueryPaginationQuery",
     "operationKind": "query",
-    "text": "query ViewAllScenariosQuery(\n  $count: Int!\n  $cursor: String\n) {\n  ...ViewAllScenarios_search\n}\n\nfragment ViewAllScenarios_search on Query {\n  search {\n    prompts(first: $count, after: $cursor, query: \"\", nsfw: false) {\n      edges {\n        node {\n          id\n          title\n          description\n          tags\n          nsfw\n          dateCreated\n          __typename\n        }\n        cursor\n      }\n      pageInfo {\n        endCursor\n        hasNextPage\n      }\n    }\n  }\n}\n"
+    "text": "query homeViewQueryPaginationQuery(\n  $count: Int\n  $cursor: String\n) {\n  ...ViewAllScenarios_search\n}\n\nfragment ViewAllScenarios_search on Query {\n  search {\n    prompts(first: $count, after: $cursor, query: \"\", nsfw: false) {\n      edges {\n        node {\n          id\n          title\n          description\n          tags\n          nsfw\n          dateCreated\n          __typename\n        }\n        cursor\n      }\n      pageInfo {\n        endCursor\n        hasNextPage\n      }\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "22c3910ed8132a46d41baa26b7436df6";
+(node as any).hash = "b6b1451cab1931adb02a18bb8180a285";
 
 export default node;

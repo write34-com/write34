@@ -38,6 +38,7 @@ model Prompts {
   correlationId   String
   dateCreated     String
   dateEdited      String?
+  deleted         Boolean @default(false)
 
   tagsFull   TagsPromptsMap[] @relation("PromptTagMap")
   worldInfos WorldInfos[]     @relation("PromptWorldInfo")

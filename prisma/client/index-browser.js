@@ -122,7 +122,8 @@ exports.Prisma.PromptsScalarFieldEnum = {
   holoAiScenario: 'holoAiScenario',
   correlationId: 'correlationId',
   dateCreated: 'dateCreated',
-  dateEdited: 'dateEdited'
+  dateEdited: 'dateEdited',
+  deleted: 'deleted'
 };
 
 exports.Prisma.WorldInfosScalarFieldEnum = {

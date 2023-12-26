@@ -41,11 +41,15 @@ type Prompts implements Node {
 }
 
 type PromptsSearch implements Node {
+  authorsNote: String
+  dateCreated: String!
+  dateEdited: String
   description: String
   id: ID!
   memory: String
   nsfw: Boolean!
   promptContent: String!
+  publishDate: String
   tags: String!
   title: String!
 }
@@ -85,7 +89,7 @@ type QueryWorldInfosConnectionEdge {
 
 """Search results"""
 type Search {
-  prompts(after: String, before: String, first: Int, last: Int, nsfw: Boolean, query: String, tags: [String!]): SearchPromptsConnection!
+  prompts(after: String, before: String, first: Int, last: Int, nsfw: Boolean, order: String, query: String, tags: [String!]): SearchPromptsConnection!
 }
 
 type SearchPromptsConnection {

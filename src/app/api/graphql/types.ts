@@ -162,9 +162,18 @@ const PromptsSearch = builder.prismaNode('Prompts', {
         memory: t.exposeString('memory', {
             nullable: true,
         }),
-        // nsfw: t.exposeBoolean('nsfw', {
-        //     nullable: false,
-        // }),
+        authorsNote: t.exposeString('authorsNote', {
+            nullable: true,
+        }),
+        dateCreated: t.exposeString('dateCreated', {
+            nullable: false,
+        }),
+        dateEdited: t.exposeString('dateEdited', {
+            nullable: true,
+        }),
+        publishDate: t.exposeString('publishDate', {
+            nullable: true,
+        }),
         nsfw: t.boolean({
             resolve: (parent) => {
                 // Assuming `parent.nsfw` is the boolean
@@ -266,6 +275,7 @@ builder.objectType(Search, {
                 query: t.arg.string({required: false}),
                 tags: t.arg.stringList({required: false}),
                 nsfw: t.arg.boolean({required: false}),
+                order: t.arg.string({required: false}),
             },
             // TODO: Clean this code up with types and maybe to feel less hacky
             resolve: async (parent, args, ctx, info) => {
@@ -275,6 +285,17 @@ builder.objectType(Search, {
                     let prompts: any[] = [];
 
                     const nsfwFilter = args.nsfw === null ? [true, false] : [!!args.nsfw];
+
+                    if (!searchTerm && (!args.tags || args.tags.length === 0)) {
+                        return db.$queryRaw`SELECT p.id, p.title, p.promptContent, p.description, p.tags, p.nsfw, prompts.dateCreated, prompts.dateEdited, prompts.publishDate
+                                            FROM "promptSearch" p
+                                            JOIN Prompts prompts ON p.id = prompts.id
+                                            WHERE p.nsfw IN (${Prisma.join(nsfwFilter)})
+                                                AND prompts.description IS NOT NULL AND prompts.description != ''
+                                                AND prompts.deleted = false
+                                            ORDER BY prompts.dateCreated DESC
+                                            LIMIT ${limit} OFFSET ${offset}`;
+                    }
 
                     // Search by tags
                     if (args.tags && args.tags.length > 0) {
@@ -287,6 +308,7 @@ builder.objectType(Search, {
                                 JOIN tags AS t ON tpm.tagId = t.id
                                 WHERE t.name IN (${Prisma.join(tags)})
                                     AND p.nsfw IN (${Prisma.join(nsfwFilter)})
+                                    AND p.deleted = false
                                 GROUP BY p.id
                                 HAVING COUNT(DISTINCT t.id) = ${tags.length}
                                 LIMIT ${limit} OFFSET ${offset}
@@ -300,19 +322,23 @@ builder.objectType(Search, {
 
                     if (prompts.length > 0) {
                         // Search by text for all prompts that match the tags
-                        return db.$queryRaw`SELECT p.id, p.title, p.promptContent, p.description, p.tags, p.nsfw
-                                            FROM "promptSearch" p 
+                        return db.$queryRaw`SELECT p.id, p.title, p.promptContent, p.description, p.tags, p.nsfw, prompts.dateCreated, prompts.dateEdited, prompts.publishDate
+                                            FROM "promptSearch" p
+                                            JOIN Prompts prompts ON p.id = prompts.id
                                             WHERE
-                                                 p.id IN (${Prisma.join(prompts.map(p => p.id))})
-                                                 AND "promptSearch" MATCH ${searchTerm}
-                                                 AND p.nsfw IN (${Prisma.join(nsfwFilter)})
+                                                p.id IN (${Prisma.join(prompts.map(p => p.id))})
+                                                AND "promptSearch" MATCH ${searchTerm}
+                                                AND p.nsfw IN (${Prisma.join(nsfwFilter)})
+                                                AND prompts.deleted = false
                                             LIMIT ${limit} OFFSET ${offset}`;
                     }
 
-                    const promptsByText = db.$queryRaw`SELECT p.id, p.title, p.promptContent, p.description, p.tags, p.nsfw
+                    const promptsByText = db.$queryRaw`SELECT p.id, p.title, p.promptContent, p.description, p.tags, p.nsfw, prompts.dateCreated, prompts.dateEdited, prompts.publishDate
                                         FROM "promptSearch" p
+                                        JOIN Prompts prompts ON p.id = prompts.id
                                         WHERE "promptSearch" MATCH ${searchTerm}
                                         AND p.nsfw IN (${Prisma.join(nsfwFilter)})
+                                        AND prompts.deleted = false
                                         LIMIT ${limit} OFFSET ${offset}` as any;
 
                     return promptsByText;
@@ -333,11 +359,13 @@ builder.objectType(Viewer, {
         tagCounts: t.field({
             type: [TopTags],
             resolve: async () => {
-                const result = await db.$queryRaw`SELECT COUNT(tagId) as count, T.name, T.description
-                                                  FROM TagsPromptsMap
-                                                           JOIN main.Tags T on TagsPromptsMap.tagId = T.id
-                                                  GROUP BY tagId
-                                                  ORDER BY COUNT(tagId) DESC`;
+                const result = await db.$queryRaw`SELECT count, name, description FROM (
+                                                      SELECT COUNT(tagId) as count, T.name, T.description
+                                                      FROM TagsPromptsMap
+                                                          JOIN main.Tags T on TagsPromptsMap.tagId = T.id
+                                                      GROUP BY tagId
+                                                      ORDER BY COUNT(tagId) DESC
+                                                  ) WHERE count > 4`;
                 // TODO: Figure out the right type to cast this as
                 return result as any;
             },
