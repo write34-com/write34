@@ -280,7 +280,8 @@ builder.objectType(Search, {
             // TODO: Clean this code up with types and maybe to feel less hacky
             resolve: async (parent, args, ctx, info) => {
                 const resolveOffset = await resolveOffsetConnection({args}, async ({limit, offset}) => {
-                    const searchTerm = args.query;
+                    // TODO: Figure out how to allow additional characters like dashes without crashing queryRaw
+                    const searchTerm = args.query ? args.query.replace(/[\-@]/g, ' ').replace(/[^a-zA-Z0-9 _]/g, '') : null;
 
                     let prompts: any[] = [];
 

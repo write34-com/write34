@@ -58,7 +58,7 @@ function SearchResults({queryRef}: SearchResultsProps) {
 
         // Cleanup function to remove the event listener
         return () => window.removeEventListener('scroll', handleScroll);
-    }, [data]);
+    }, [data, handleScroll]);
 
     if (!data.search.prompts.edges.length) {
         return (
