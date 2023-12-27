@@ -18,9 +18,7 @@ const ViewAllScenariosClientComponent = (props: {
 
     return (
         <RelayEnvironmentProvider environment={environment}>
-            <Suspense fallback="Loading...">
-                <ViewAllScenarios initialQueryRef={queryRef} />
-            </Suspense>
+            <ViewAllScenarios initialQueryRef={queryRef} />
         </RelayEnvironmentProvider>
     );
 };
