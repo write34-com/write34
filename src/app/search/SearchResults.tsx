@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import {graphql, usePaginationFragment} from 'react-relay';
 import {
     SearchResultsComponent_search$key
@@ -35,7 +35,7 @@ function SearchResults({queryRef}: SearchResultsProps) {
 
 
     // Function to check if the user has scrolled to the bottom
-    const handleScroll = () => {
+    const handleScroll = useCallback(() => {
         // Window scroll position
         const scrollTop = window.scrollY;
         // Total height of the document
@@ -50,7 +50,7 @@ function SearchResults({queryRef}: SearchResultsProps) {
         if (windowHeight + scrollTop + buffer >= documentHeight && hasNext && !isLoadingNext) {
             loadNext(15);
         }
-    };
+    }, [hasNext, isLoadingNext, loadNext]);
 
     useEffect(() => {
         // Add scroll event listener
@@ -58,7 +58,7 @@ function SearchResults({queryRef}: SearchResultsProps) {
 
         // Cleanup function to remove the event listener
         return () => window.removeEventListener('scroll', handleScroll);
-    }, [data, handleScroll]);
+    }, [handleScroll]);
 
     if (!data.search.prompts.edges.length) {
         return (

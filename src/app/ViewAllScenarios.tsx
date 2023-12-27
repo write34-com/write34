@@ -1,8 +1,14 @@
-import {graphql, PreloadedQuery, useLazyLoadQuery, usePaginationFragment, usePreloadedQuery} from "react-relay";
+import {
+    graphql,
+    PreloadedQuery,
+    usePaginationFragment,
+    usePreloadedQuery,
+    useQueryLoader
+} from "react-relay";
 import {ViewAllScenariosQuery} from "@/__generated__/ViewAllScenariosQuery.graphql";
 import Link from "next/link";
 import {ViewAllScenarios_search$key} from "@/__generated__/ViewAllScenarios_search.graphql";
-import React, {useEffect} from "react";
+import React from "react";
 
 const HomePageQuery = graphql`
     query ViewAllScenariosQuery($count: Int!, $cursor: String) {
@@ -34,8 +40,6 @@ export function Results(queryRef: ViewAllScenarios_search$key) {
             }
         }
     `, queryRef);
-
-
 
     return (
         <>
@@ -98,14 +102,10 @@ export function Results(queryRef: ViewAllScenarios_search$key) {
 }
 
 export default function ViewAllScenarios(props: {
-    queryRef: PreloadedQuery<ViewAllScenariosQuery>;
+    initialQueryRef: PreloadedQuery<ViewAllScenariosQuery>;
 }) {
 
-    const query= useLazyLoadQuery<ViewAllScenariosQuery>(HomePageQuery, {
-        // query: '',
-        count: 15,
-        cursor: null, // Adjust as needed for pagination
-    });
+    const query = usePreloadedQuery(HomePageQuery, props.initialQueryRef);
 
     const results = Results(query);
 
