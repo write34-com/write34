@@ -4,12 +4,15 @@ import './globals.css';
 import Providers from './Providers';
 import classnames from 'classnames';
 import Link from 'next/link';
+import LoginComponent from "@/components/LoginComponent";
 
 const inter = Inter({subsets: ['latin']});
 
 export const metadata: Metadata = {
     title: 'write34', description: 'Share and explore NovelAI Scenarios',
 };
+
+
 
 export default function RootLayout({
                                        children,
@@ -54,7 +57,9 @@ export default function RootLayout({
                         write34
                     </Link>
                 </div>
+
                 <div className="navbar-end">
+                    <LoginComponent />
                     <Link href="/search">
                         <button className="btn btn-ghost btn-circle">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24"
