@@ -18,14 +18,15 @@ export default async function sitemap(params: {
     take: 100000,
     select: {
       id: true,
-      dateCreated: true,
-      dateEdited: true,
-      publishDate: true,
+      // dateCreated: true,
+      // dateEdited: true,
+      // publishDate: true,
     }
   });
 
   return dbScenarios.map((c) => ({
     url: `${BASE_URL}/scenarios/${c.id}`,
-    lastModified: c.dateEdited || c.publishDate || c.dateCreated,
+    // Apparently these are ignored by Google anyway to #yolo
+    // lastModified: c.dateEdited || c.publishDate || c.dateCreated,
   }));
 }
