@@ -8,6 +8,17 @@ import TagsViewComponentGetAllTagsQueryGraphql, {
     TagsViewComponentGetAllTagsQuery
 } from "@/__generated__/TagsViewComponentGetAllTagsQuery.graphql";
 import TagsViewClientComponent from "@/app/tags/TagsViewClientComponent";
+import Head from "next/head";
+import {Metadata, ResolvingMetadata} from "next";
+
+export async function generateMetadata(
+  props: {},
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+    return {
+        title: 'Tags for NovelAI Scenarios & Prompts - write34',
+    };
+}
 
 export default async function TagsViewPage({ params }: {
     params: { scenario: string };
@@ -17,7 +28,12 @@ export default async function TagsViewPage({ params }: {
         TagsViewComponentGetAllTagsQuery
     >(TagsViewComponentGetAllTagsQueryGraphql.params, {});
 
-    return <TagsViewClientComponent preloadedQuery={preloadedQuery} />;
+    return <>
+        <Head>
+            <title>Tags - write34</title>
+        </Head>
+        <TagsViewClientComponent preloadedQuery={preloadedQuery} />
+    </>;
 }
 
 // export const runtime = 'edge';

@@ -5,6 +5,7 @@ import ScenarioClientComponent from "@/app/scenarios/[scenario]/scenarioClientCo
 import scenarioComponentViewQueryGraphql, {
     scenarioComponentViewQuery
 } from "@/__generated__/scenarioComponentViewQuery.graphql";
+import {Metadata, ResolvingMetadata} from "next";
 
 export const generateStaticParams = (async () => {
 
@@ -16,6 +17,23 @@ export const generateStaticParams = (async () => {
         scenario: scenario.id
     }));
 });
+
+export async function generateMetadata(
+  {params}: {params: {scenario: string}},
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+
+    const dbScenario = await db.prompts.findUniqueOrThrow({
+        where: {
+            id: params.scenario
+        }
+    });
+
+    return {
+        title: 'NovelAI Scenario: ' + dbScenario.title + ' - write34',
+        description: 'Scenario to import NovelAI: ' + dbScenario.description,
+    };
+}
 
 export default async function ScenarioPage({ params }: {
     params: { scenario: string };
@@ -29,6 +47,4 @@ export default async function ScenarioPage({ params }: {
 
     return <ScenarioClientComponent preloadedQuery={preloadedQuery} />;
 }
-
-// export const runtime = 'edge';
 

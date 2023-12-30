@@ -1,9 +1,18 @@
-import Image from 'next/image';
 import loadSerializableQuery from "../relay/loadSerializableQuery";
 import ViewAllScenariosQueryNode, {
   ViewAllScenariosQuery,
 } from "../__generated__/ViewAllScenariosQuery.graphql";
 import ViewAllScenariosClientComponent from "./ViewAllScenariosClientComponent";
+import {Metadata, ResolvingMetadata} from "next";
+
+export async function generateMetadata(
+  props: {},
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  return {
+    title: 'NovelAI Scenarios & Prompts - write34',
+  };
+}
 
 export default async function Home() {
 
@@ -16,9 +25,7 @@ export default async function Home() {
   });
 
   return (
-      <div>
-        <ViewAllScenariosClientComponent preloadedQuery={preloadedQuery} />
-      </div>
+    <ViewAllScenariosClientComponent preloadedQuery={preloadedQuery} />
   );
 }
 
