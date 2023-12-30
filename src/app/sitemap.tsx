@@ -1,7 +1,7 @@
 import {db} from "@/app/api/graphql/db";
 import {MetadataRoute} from "next";
 
-const BASE_URL = 'https://write34.com'
+const BASE_URL = 'https://write34.com';
 
 export async function generateSitemaps() {
 
