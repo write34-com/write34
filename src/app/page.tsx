@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import loadSerializableQuery from "../relay/loadSerializableQuery";
 import ViewAllScenariosQueryNode, {
   ViewAllScenariosQuery,
@@ -6,6 +5,16 @@ import ViewAllScenariosQueryNode, {
 import ViewAllScenariosClientComponent from "./ViewAllScenariosClientComponent";
 import {getServerSession} from "next-auth";
 import {auth} from "@/lib/auth";
+import {Metadata, ResolvingMetadata} from "next";
+
+export async function generateMetadata(
+  props: {},
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  return {
+    title: 'NovelAI Scenarios & Prompts - write34',
+  };
+}
 
 export default async function Home() {
   // TODO: Figure out why these types are jank
@@ -20,12 +29,7 @@ export default async function Home() {
   });
 
   return (
-      <div>
-          <div className="text-2xl m-4 dark:text-white">
-            {JSON.stringify(session, null, 2)}
-          </div>
         <ViewAllScenariosClientComponent preloadedQuery={preloadedQuery} />
-      </div>
   );
 }
 

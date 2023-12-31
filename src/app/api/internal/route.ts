@@ -12,6 +12,14 @@ export async function GET(
     req: Request | NextRequest,
     res: NextResponse<ResponseData>
 ) {
+    if (req.headers.get('secret') !== process.env.INTERNAL_SECRET) {
+        return NextResponse.json({
+            message: 'invalid secret'
+        }, {
+            status: 401
+        });
+    }
+
     const prompts = await db.prompts.findMany();
 
     const tagSet: Set<string> = new Set();
@@ -88,7 +96,7 @@ export async function GET(
                 }
             });
 
-            if (!existingMap) {
+            if (existingMap) {
                 continue;
             }
 
@@ -109,3 +117,6 @@ export async function GET(
         message: 'successfully created tags'
     });
 }
+
+
+// export const dynamic = "force-dynamic";

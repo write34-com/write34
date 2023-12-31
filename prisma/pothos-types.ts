@@ -1,5 +1,5 @@
 /* eslint-disable */
-import type { Prisma, Prompts, WorldInfos, AetherPrompts, AetherWorldInfos, PromptSearch, WorldInfoSearch, User, Tags, TagsPromptsMap } from "./client";
+import type { Prisma, Prompts, WorldInfos, AetherPrompts, AetherWorldInfos, PromptSearch, WorldInfoSearch, Account, Session, User, VerificationToken, Tags, TagsPromptsMap } from "./client";
 export default interface PrismaTypes {
     Prompts: {
         Name: "Prompts";
@@ -109,14 +109,75 @@ export default interface PrismaTypes {
         ListRelations: never;
         Relations: {};
     };
+    Account: {
+        Name: "Account";
+        Shape: Account;
+        Include: Prisma.AccountInclude;
+        Select: Prisma.AccountSelect;
+        OrderBy: Prisma.AccountOrderByWithRelationInput;
+        WhereUnique: Prisma.AccountWhereUniqueInput;
+        Where: Prisma.AccountWhereInput;
+        Create: {};
+        Update: {};
+        RelationName: "user";
+        ListRelations: never;
+        Relations: {
+            user: {
+                Shape: User;
+                Name: "User";
+            };
+        };
+    };
+    Session: {
+        Name: "Session";
+        Shape: Session;
+        Include: Prisma.SessionInclude;
+        Select: Prisma.SessionSelect;
+        OrderBy: Prisma.SessionOrderByWithRelationInput;
+        WhereUnique: Prisma.SessionWhereUniqueInput;
+        Where: Prisma.SessionWhereInput;
+        Create: {};
+        Update: {};
+        RelationName: "user";
+        ListRelations: never;
+        Relations: {
+            user: {
+                Shape: User;
+                Name: "User";
+            };
+        };
+    };
     User: {
         Name: "User";
         Shape: User;
-        Include: never;
+        Include: Prisma.UserInclude;
         Select: Prisma.UserSelect;
         OrderBy: Prisma.UserOrderByWithRelationInput;
         WhereUnique: Prisma.UserWhereUniqueInput;
         Where: Prisma.UserWhereInput;
+        Create: {};
+        Update: {};
+        RelationName: "accounts" | "sessions";
+        ListRelations: "accounts" | "sessions";
+        Relations: {
+            accounts: {
+                Shape: Account[];
+                Name: "Account";
+            };
+            sessions: {
+                Shape: Session[];
+                Name: "Session";
+            };
+        };
+    };
+    VerificationToken: {
+        Name: "VerificationToken";
+        Shape: VerificationToken;
+        Include: never;
+        Select: Prisma.VerificationTokenSelect;
+        OrderBy: Prisma.VerificationTokenOrderByWithRelationInput;
+        WhereUnique: Prisma.VerificationTokenWhereUniqueInput;
+        Where: Prisma.VerificationTokenWhereInput;
         Create: {};
         Update: {};
         RelationName: never;

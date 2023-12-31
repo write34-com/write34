@@ -1,6 +1,6 @@
 -- CreateTable
 CREATE TABLE "Prompts" (
-    "id" TEXT NOT NULL PRIMARY KEY default (uuid()),
+    "id" TEXT NOT NULL PRIMARY KEY,
     "aetherId" INTEGER,
     "authorsNote" TEXT,
     "description" TEXT,
@@ -18,7 +18,7 @@ CREATE TABLE "Prompts" (
     "correlationId" TEXT NOT NULL,
     "dateCreated" TEXT NOT NULL,
     "dateEdited" TEXT,
-    "deleted" INTEGER NOT NULL DEFAULT 0
+    "deleted" BOOLEAN NOT NULL DEFAULT false
 );
 
 -- CreateIndex
@@ -32,12 +32,12 @@ CREATE INDEX "IX_Prompts_ParentId" ON "Prompts"("parentId");
 
 -- CreateTable
 CREATE TABLE "WorldInfos" (
-    "id" TEXT NOT NULL PRIMARY KEY default (uuid()),
+    "id" TEXT NOT NULL PRIMARY KEY,
     "aetherId" INTEGER,
     "entry" TEXT NOT NULL,
     "keys" TEXT NOT NULL,
-    "promptId" INTEGER NOT NULL,
-    "correlationId" INTEGER NOT NULL,
+    "promptId" TEXT NOT NULL,
+    "correlationId" TEXT NOT NULL,
     "dateCreated" TEXT NOT NULL,
     "dateEdited" TEXT,
     CONSTRAINT "WorldInfos_promptId_fkey" FOREIGN KEY ("promptId") REFERENCES "Prompts" ("id") ON DELETE CASCADE ON UPDATE CASCADE

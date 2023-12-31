@@ -1,23 +1,29 @@
-
 import loadSerializableQuery from "@/relay/loadSerializableQuery";
-import ScenarioClientComponent from "@/app/scenarios/[scenario]/scenarioClientComponent";
-import scenarioComponentViewQueryGraphql, {
-    scenarioComponentViewQuery
-} from "@/__generated__/scenarioComponentViewQuery.graphql";
 import TagsViewComponentGetAllTagsQueryGraphql, {
-    TagsViewComponentGetAllTagsQuery
+  TagsViewComponentGetAllTagsQuery
 } from "@/__generated__/TagsViewComponentGetAllTagsQuery.graphql";
 import TagsViewClientComponent from "@/app/tags/TagsViewClientComponent";
+import {Metadata, ResolvingMetadata} from "next";
 
-export default async function TagsViewPage({ params }: {
-    params: { scenario: string };
-}) {
-    const preloadedQuery = await loadSerializableQuery<
-        typeof TagsViewComponentGetAllTagsQueryGraphql,
-        TagsViewComponentGetAllTagsQuery
-    >(TagsViewComponentGetAllTagsQueryGraphql.params, {});
+export async function generateMetadata(
+  props: {},
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  return {
+    title: 'Tags for NovelAI Scenarios & Prompts - write34',
+  };
+}
 
-    return <TagsViewClientComponent preloadedQuery={preloadedQuery} />;
+export default async function TagsViewPage({params}: {
+  params: { scenario: string };
+})
+{
+  const preloadedQuery = await loadSerializableQuery<
+    typeof TagsViewComponentGetAllTagsQueryGraphql,
+    TagsViewComponentGetAllTagsQuery
+  >(TagsViewComponentGetAllTagsQueryGraphql.params, {});
+
+  return <TagsViewClientComponent preloadedQuery={preloadedQuery}/>;
 }
 
 // export const runtime = 'edge';

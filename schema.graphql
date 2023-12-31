@@ -115,10 +115,10 @@ type TopTags {
 }
 
 type User implements Node {
-  dateCreated: String!
   email: String!
   id: ID!
-  name: String!
+  image: String
+  name: String
 }
 
 """Collection of information about the database"""

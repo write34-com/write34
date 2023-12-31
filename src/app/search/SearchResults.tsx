@@ -1,10 +1,11 @@
-import React, {useCallback, useEffect} from 'react';
+import React, {Suspense, useCallback, useEffect} from 'react';
 import {graphql, usePaginationFragment} from 'react-relay';
 import {
     SearchResultsComponent_search$key
 } from "@/__generated__/SearchResultsComponent_search.graphql";
 import Link from "next/link";
 import {searchComponentViewQuery} from "@/__generated__/searchComponentViewQuery.graphql";
+import LoadingSearch from "@/app/search/loading";
 
 interface SearchResultsProps {
     queryRef: SearchResultsComponent_search$key
@@ -62,14 +63,16 @@ function SearchResults({queryRef}: SearchResultsProps) {
 
     if (!data.search.prompts.edges.length) {
         return (
+          <Suspense fallback={<LoadingSearch/>}>
             <div>
                 <h2>No results found.</h2>
             </div>
+          </Suspense>
         );
     }
 
     return (
-        <div>
+        <Suspense fallback={<LoadingSearch/>}>
             <ul className="grid md:grid-cols-3 gap-4 items-baseline sm:grid-cols-1">
                 {data.search.prompts.edges.map((edge) => {
                     const prompt = edge?.node;
@@ -129,7 +132,7 @@ function SearchResults({queryRef}: SearchResultsProps) {
                     </button>
                 </div>
             )}
-        </div>
+        </Suspense>
     );
 }
 

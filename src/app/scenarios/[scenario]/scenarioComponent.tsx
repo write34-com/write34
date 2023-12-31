@@ -64,14 +64,14 @@ export default function ScenarioComponent(props: { queryRef: PreloadedQuery<scen
 
     if (!prompt) {
         return (
-            // <Suspense fallback="Loading prompt...">
+            <Suspense fallback="Loading prompt...">
                 <div>
                     <div className="px-4 sm:px-0">
                         <h3 className="text-base font-semibold leading-7 text-gray-900">Not Found</h3>
                         <p className="mt-1 max-w-2xl text-sm leading-6 text-gray-500">Please try another scenario.</p>
                     </div>
                 </div>
-            // </Suspense>
+            </Suspense>
         );
     }
 
@@ -80,19 +80,19 @@ export default function ScenarioComponent(props: { queryRef: PreloadedQuery<scen
 
     if (!prompt) {
         return (
-            // <Suspense fallback="Loading prompt...">
+            <Suspense fallback="Loading prompt...">
                 <div>
                     <div className="px-4 sm:px-0">
                         <h3 className="text-base font-semibold leading-7 text-gray-900">Not Found</h3>
                         <p className="mt-1 max-w-2xl text-sm leading-6 text-gray-500">Please try another scenario.</p>
                     </div>
                 </div>
-            // </Suspense>
+            </Suspense>
         );
     }
 
     return (
-        // <Suspense fallback="Loading prompt...">
+        <Suspense fallback="Loading prompt...">
             <div className="bg-white dark:bg-gray-900 dark:text-gray-100 py-16 sm:py-24">
                 <div className="mx-auto max-w-7xl px-6 lg:px-8">
                     <div className="px-4 sm:px-0">
@@ -207,9 +207,9 @@ export default function ScenarioComponent(props: { queryRef: PreloadedQuery<scen
                                                             <h3 className="truncate font-medium dark:text-gray-50 font-semibold">
                                                                 {worldInfo.keys}
                                                             </h3>
-                                                            <p className="mt-1 mr-4 text-sm text-gray-500 dark:text-gray-400">
+                                                            <div className="mt-1 mr-4 text-sm text-gray-500 dark:text-gray-400">
                                                                 {formatContent(worldInfo.entry)}
-                                                            </p>
+                                                            </div>
                                                         </div>
                                                     </li>
                                                 ))}
@@ -241,7 +241,7 @@ export default function ScenarioComponent(props: { queryRef: PreloadedQuery<scen
                     </div>
                 </div>
             </div>
-        // </Suspense>
+        </Suspense>
     );
 }
 

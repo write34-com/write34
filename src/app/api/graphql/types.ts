@@ -196,14 +196,24 @@ builder.prismaNode('User', {
             nullable: false,
         }),
         name: t.exposeString('name', {
-            nullable: false,
+            nullable: true,
         }),
+        image: t.exposeString('image', {
+            nullable: true,
+        }),
+        // dateCreated: t.exposeString('dateCreated', {
+        //     nullable: false,
+        // }),
+        // name: t.exposeString('name', {
+        //     nullable: false,
+        // }),
         // picture: t.exposeString('picture', {
         //     nullable: false,
         // }),
-        dateCreated: t.exposeString('dateCreated', {
-            nullable: false,
-        }),
+        // dateCreated: t.exposeString('dateCreated', {
+        //     nullable: false,
+        // }),
+
         // prompts: t.relation('prompts'),
         // worldInfos: t.relation('worldInfos'),
     })
