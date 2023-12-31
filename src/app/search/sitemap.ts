@@ -14,19 +14,14 @@ export default async function sitemap(params: {
   id: string,
 }): Promise<MetadataRoute.Sitemap> {
 
-  const dbScenarios = await db.prompts.findMany({
+  const dbScenarios = await db.tags.findMany({
     take: 10000,
     select: {
-      id: true,
-      // dateCreated: true,
-      // dateEdited: true,
-      // publishDate: true,
+      name: true,
     }
   });
 
   return dbScenarios.map((c) => ({
-    url: `${BASE_URL}/scenarios/${c.id}`,
-    // Apparently these are ignored by Google anyway to #yolo
-    // lastModified: c.dateEdited || c.publishDate || c.dateCreated,
+    url: `${BASE_URL}/search?tags=${c.name}`,
   }));
 }

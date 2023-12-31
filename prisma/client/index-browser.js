@@ -177,12 +177,41 @@ exports.Prisma.WorldInfoSearchScalarFieldEnum = {
   text: 'text'
 };
 
+exports.Prisma.AccountScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  type: 'type',
+  provider: 'provider',
+  providerAccountId: 'providerAccountId',
+  refresh_token: 'refresh_token',
+  access_token: 'access_token',
+  expires_at: 'expires_at',
+  token_type: 'token_type',
+  scope: 'scope',
+  id_token: 'id_token',
+  session_state: 'session_state'
+};
+
+exports.Prisma.SessionScalarFieldEnum = {
+  id: 'id',
+  sessionToken: 'sessionToken',
+  userId: 'userId',
+  expires: 'expires'
+};
+
 exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
-  email: 'email',
   name: 'name',
-  dateCreated: 'dateCreated',
-  lastLoggedIn: 'lastLoggedIn'
+  email: 'email',
+  emailVerified: 'emailVerified',
+  image: 'image',
+  dateCreated: 'dateCreated'
+};
+
+exports.Prisma.VerificationTokenScalarFieldEnum = {
+  identifier: 'identifier',
+  token: 'token',
+  expires: 'expires'
 };
 
 exports.Prisma.TagsScalarFieldEnum = {
@@ -214,7 +243,10 @@ exports.Prisma.ModelName = {
   AetherWorldInfos: 'AetherWorldInfos',
   PromptSearch: 'PromptSearch',
   WorldInfoSearch: 'WorldInfoSearch',
+  Account: 'Account',
+  Session: 'Session',
   User: 'User',
+  VerificationToken: 'VerificationToken',
   Tags: 'Tags',
   TagsPromptsMap: 'TagsPromptsMap'
 };

@@ -5,7 +5,6 @@ import {
 import {Fragment, Suspense} from "react";
 import {PaperClipIcon} from '@heroicons/react/20/solid';
 import {scenarioComponentViewQuery} from "@/__generated__/scenarioComponentViewQuery.graphql";
-import Head from "next/head";
 
 const ScenarioQuery = graphql`
     query scenarioComponentViewQuery($scenario: ID!) {
@@ -65,12 +64,14 @@ export default function ScenarioComponent(props: { queryRef: PreloadedQuery<scen
 
     if (!prompt) {
         return (
-            <div>
-                <div className="px-4 sm:px-0">
-                    <h3 className="text-base font-semibold leading-7 text-gray-900">Not Found</h3>
-                    <p className="mt-1 max-w-2xl text-sm leading-6 text-gray-500">Please try another scenario.</p>
+            <Suspense fallback="Loading prompt...">
+                <div>
+                    <div className="px-4 sm:px-0">
+                        <h3 className="text-base font-semibold leading-7 text-gray-900">Not Found</h3>
+                        <p className="mt-1 max-w-2xl text-sm leading-6 text-gray-500">Please try another scenario.</p>
+                    </div>
                 </div>
-            </div>
+            </Suspense>
         );
     }
 
@@ -79,21 +80,19 @@ export default function ScenarioComponent(props: { queryRef: PreloadedQuery<scen
 
     if (!prompt) {
         return (
-            <div>
-                <div className="px-4 sm:px-0">
-                    <h3 className="text-base font-semibold leading-7 text-gray-900">Not Found</h3>
-                    <p className="mt-1 max-w-2xl text-sm leading-6 text-gray-500">Please try another scenario.</p>
+            <Suspense fallback="Loading prompt...">
+                <div>
+                    <div className="px-4 sm:px-0">
+                        <h3 className="text-base font-semibold leading-7 text-gray-900">Not Found</h3>
+                        <p className="mt-1 max-w-2xl text-sm leading-6 text-gray-500">Please try another scenario.</p>
+                    </div>
                 </div>
-            </div>
+            </Suspense>
         );
     }
 
     return (
-      <>
-          <Head>
-              <title>{prompt.title} - NovelAI Scenario from write34</title>
-              <meta property="og:title" content={prompt.title + ' - NovelAI Scenario from write34'} key="title" />
-          </Head>
+        <Suspense fallback="Loading prompt...">
             <div className="bg-white dark:bg-gray-900 dark:text-gray-100 py-16 sm:py-24">
                 <div className="mx-auto max-w-7xl px-6 lg:px-8">
                     <div className="px-4 sm:px-0">
@@ -242,7 +241,7 @@ export default function ScenarioComponent(props: { queryRef: PreloadedQuery<scen
                     </div>
                 </div>
             </div>
-        </>
+        </Suspense>
     );
 }
 

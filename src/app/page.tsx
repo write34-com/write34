@@ -3,6 +3,8 @@ import ViewAllScenariosQueryNode, {
   ViewAllScenariosQuery,
 } from "../__generated__/ViewAllScenariosQuery.graphql";
 import ViewAllScenariosClientComponent from "./ViewAllScenariosClientComponent";
+import {getServerSession} from "next-auth";
+import {auth} from "@/lib/auth";
 import {Metadata, ResolvingMetadata} from "next";
 
 export async function generateMetadata(
@@ -15,6 +17,8 @@ export async function generateMetadata(
 }
 
 export default async function Home() {
+  // TODO: Figure out why these types are jank
+  const session = await getServerSession(auth as any);
 
   const preloadedQuery = await loadSerializableQuery<
     typeof ViewAllScenariosQueryNode,
@@ -25,7 +29,7 @@ export default async function Home() {
   });
 
   return (
-    <ViewAllScenariosClientComponent preloadedQuery={preloadedQuery} />
+        <ViewAllScenariosClientComponent preloadedQuery={preloadedQuery} />
   );
 }
 

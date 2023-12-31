@@ -4,7 +4,9 @@ import './globals.css';
 import Providers from './Providers';
 import classnames from 'classnames';
 import Link from 'next/link';
-import Head from "next/head";
+import LoginComponent from "@/components/LoginComponent";
+import {Suspense} from "react";
+import LoadingSearch from "@/app/search/loading";
 
 const inter = Inter({subsets: ['latin']});
 
@@ -21,9 +23,6 @@ export default function RootLayout({
     return (
 
         <html lang="en" suppressHydrationWarning>
-        <Head>
-            <title>write34</title>
-        </Head>
         <body
             className={classnames('min-h-screen mx-auto max-w-6xl flex flex-col bg-white dark:bg-gray-900', inter.className)}>
         <Providers>
@@ -57,9 +56,10 @@ export default function RootLayout({
                         write34
                     </Link>
                 </div>
+
                 <div className="navbar-end">
                     <Link href="/search">
-                        <button className="btn btn-ghost btn-circle">
+                        <button className="btn btn-ghost btn-circle mr-1">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24"
                                  stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
@@ -67,9 +67,12 @@ export default function RootLayout({
                             </svg>
                         </button>
                     </Link>
+                    <LoginComponent />
                 </div>
             </div>
-            {children}
+            <Suspense fallback={<LoadingSearch/>}>
+                {children}
+            </Suspense>
         </Providers>
         </body>
         </html>

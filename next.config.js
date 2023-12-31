@@ -9,6 +9,9 @@ const nextConfig = {
             artifactDirectory: "src/__generated__",
         },
     },
+    env: {
+        NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
+    }
     // experimental: { appDir: true },
 };
 

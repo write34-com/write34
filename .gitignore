@@ -41,5 +41,6 @@ seanario.sqlite
 seanario2.sqlite
 sqlite-bug/
 
-export GIT_SSH_COMMAND='ssh -i ~/.ssh/write34 -o IdentitiesOnly=yes'
-
+.env
+secrets/
+backups/

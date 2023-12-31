@@ -1,4 +1,4 @@
-ATTACH DATABASE 'backup.db' as 'AetherDB';
+ATTACH DATABASE 'backups/aetherrom-2023-30-12.db' as 'AetherDB';
 
 BEGIN TRANSACTION;
 
@@ -93,8 +93,8 @@ WHERE EXISTS (
 
 -- Create a temporary table for aetherId to UUID mapping
 CREATE TEMPORARY TABLE PromptsMapping (
-                                          aetherId TEXT UNIQUE,
-                                          newUUID TEXT
+    aetherId TEXT UNIQUE,
+    newUUID TEXT
 );
 
 -- Create a mapping of aetherId to UUID
@@ -117,6 +117,7 @@ WHERE EXISTS (
 
 -- Select all WorldInfos that don't exist in our database yet.
 INSERT INTO WorldInfos (
+    id,
     aetherId,
     entry,
     keys,
@@ -127,6 +128,7 @@ INSERT INTO WorldInfos (
     dateEdited
 )
 SELECT
+    uuid() as id,
     wi.id as aetherId,
     wi.entry,
     wi.keys,
@@ -155,7 +157,7 @@ WHERE EXISTS (
 );
 
 
--- Update parentId to the UUID of the parent record, if exists
+-- Update correlationId to the UUID of the parent record, if exists
 UPDATE WorldInfos
 SET correlationId = (
     SELECT cm.newUUID
@@ -181,25 +183,6 @@ INSERT INTO "promptSearch" (id,
                             tags,
                             title,
                             nsfw)
-SELECT id, description, memory, PromptContent, Tags, Title, nsfw FROM "Prompts" LIMIT 100000;
+SELECT id, description, memory, PromptContent, Tags, Title, nsfw FROM "Prompts";
 
 -- Creating these *after* because of the malformed database error
--- CREATE TRIGGER promptSearch_ai AFTER INSERT ON Prompts
--- BEGIN
---     INSERT INTO promptSearch (id, description, memory, promptContent, tags, title)
---     VALUES (new.id, new.description, new.memory, new.promptContent, new.tags, new.title);
--- END;
---
--- CREATE TRIGGER promptSearch_ad AFTER DELETE ON Prompts
--- BEGIN
---     INSERT INTO promptSearch (promptSearch, id, description, memory, promptContent, tags, title)
---     VALUES ('delete', old.id, old.description, old.memory, old.promptContent, old.tags, old.title);
--- END;
---
--- CREATE TRIGGER promptSearch_au AFTER UPDATE ON Prompts
--- BEGIN
---     INSERT INTO promptSearch (promptSearch, id, description, memory, promptContent, tags, title)
---     VALUES ('delete', old.id, old.description, old.memory, old.promptContent, old.tags, old.title);
---     INSERT INTO promptSearch (id, description, memory, promptContent, tags, title)
---     VALUES (new.id, new.description, new.memory, new.promptContent, new.tags, new.title);
--- END;
