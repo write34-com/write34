@@ -8,6 +8,7 @@ import ViewAllScenariosQueryNode, {
 import {getCurrentEnvironment} from '@/relay/clientEnvironment';
 import useSerializablePreloadedQuery from '@/relay/useSerializablePreloadedQuery';
 import ViewAllScenarios from '@/app/ViewAllScenarios';
+import {decodeDocument} from "@/lib/novelai-scenario-decoder/decode";
 
 
 const ViewAllScenariosClientComponent = (props: {

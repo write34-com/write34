@@ -36,9 +36,13 @@ yarn-error.log*
 next-env.d.ts
 
 test-scenarios/
+manual_import/
+
 backup.db
 seanario.sqlite
+seanario-backup.sqlite
 seanario2.sqlite
+seanario.sqlite-journal
 sqlite-bug/
 
 .env

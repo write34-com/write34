@@ -15,28 +15,6 @@ const SearchPageQuery = graphql`
   }
 `;
 
-function redirectWithState(router: AppRouterInstance, searchQuery: string | undefined, tags: string | undefined, nsfw: boolean | undefined) {
-  const url = new URL(window.location.href);
-  if (searchQuery !== undefined && searchQuery.length > 0) {
-    url.searchParams.set('search', searchQuery);
-  } else {
-    url.searchParams.delete('search');
-  }
-  if (tags !== undefined && tags.length > 0) {
-    url.searchParams.set('tags', tags);
-  } else {
-    url.searchParams.delete('tags');
-  }
-  if (nsfw !== undefined) {
-    url.searchParams.set('nsfw', nsfw.toString());
-  } else {
-    url.searchParams.delete('nsfw');
-  }
-  console.log('redirecting to', url.toString());
-  router.replace(url.toString(), {
-     scroll: false,
-  });
-}
 
 export function SearchComponent(props: {
   queryRef: PreloadedQuery<searchComponentViewQuery>
@@ -47,6 +25,28 @@ export function SearchComponent(props: {
   );
 
   const router = useRouter();
+
+  function redirectWithState(router: AppRouterInstance, searchQuery: string | undefined, tags: string | undefined, nsfw: boolean | undefined) {
+    const url = new URL(window.location.href);
+    if (searchQuery !== undefined && searchQuery.length > 0) {
+      url.searchParams.set('search', searchQuery);
+    } else {
+      url.searchParams.delete('search');
+    }
+    if (tags !== undefined && tags.length > 0) {
+      url.searchParams.set('tags', tags);
+    } else {
+      url.searchParams.delete('tags');
+    }
+    if (nsfw !== undefined) {
+      url.searchParams.set('nsfw', nsfw.toString());
+    } else {
+      url.searchParams.delete('nsfw');
+    }
+    router.replace(url.toString(), {
+      scroll: false,
+    });
+  }
 
   const urlSearchQuery = props.queryRef.variables.query || '';
   const urlTags = props.queryRef.variables.tags || [];
@@ -66,7 +66,7 @@ export function SearchComponent(props: {
     if (debouncedSearchQuery !== urlSearchQuery || debouncedTagsQuery !== urlTags.join(', ') || nsfw !== urlNsfw) {
       redirectWithState(router, debouncedSearchQuery, debouncedTagsQuery, nsfw);
     }
-  }, [debouncedSearchQuery, debouncedTagsQuery, nsfw, urlNsfw, urlSearchQuery, urlTags]);
+  }, [debouncedSearchQuery, debouncedTagsQuery, nsfw, urlNsfw, urlSearchQuery, urlTags, router]);
 
 
   const handleNsfwChange = (event: React.ChangeEvent<HTMLSelectElement>) => {

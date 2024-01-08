@@ -21,7 +21,9 @@ export default async function sitemap(params: {
     }
   });
 
-  return dbScenarios.map((c) => ({
-    url: `${BASE_URL}/search?tags=${c.name}`,
+  return dbScenarios
+    .filter((c) => c.name)
+    .map((c) => ({
+    url: `${BASE_URL}/search?tags=${encodeURIComponent(c.name)}`,
   }));
 }
