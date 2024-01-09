@@ -47,7 +47,6 @@ export const config = {
 
     callbacks: {
         async jwt({token, account, profile}) {
-            console.log('token', token);
 
             if (!token.email) {
                 throw new Error("No email found");

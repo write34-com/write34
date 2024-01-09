@@ -2,11 +2,10 @@ import { createYoga } from 'graphql-yoga';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import {schema} from "@/app/api/graphql/types";
 import {auth, config} from "@/lib/auth";
-
-// export { handleRequest as GET, handleRequest as POST, handleRequest as OPTIONS };
+import {NextRequest, NextResponse} from "next/server";
 
 // Proxy the Yoga request handler through a handler that holds req/res
-export async function GET(req: NextApiRequest, res: NextApiResponse) {
+async function handler(req: Request | NextRequest, res: NextResponse<Response>) {
 
     // Get the user session using NextAuth
     const session = await auth(
@@ -37,9 +36,8 @@ export async function GET(req: NextApiRequest, res: NextApiResponse) {
         }
     });
 
-    // @ts-ignore
     return handleRequest(req, res);
 }
 
-export { GET as POST, GET as OPTIONS };
+export { handler as GET, handler as POST, handler as OPTIONS };
 
