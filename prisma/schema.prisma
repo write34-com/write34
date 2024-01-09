@@ -40,6 +40,7 @@ model Prompts {
   dateEdited      String?
   deleted         Boolean @default(false)
   authorId        String?
+  json            String?
 
   tagsFull   TagsPromptsMap[] @relation("PromptTagMap")
   worldInfos WorldInfos[]     @relation("PromptWorldInfo")

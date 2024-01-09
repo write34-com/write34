@@ -1,14 +1,9 @@
 import SearchClientComponent from "@/app/search/searchClientComponent";
 import {Metadata, ResolvingMetadata} from "next";
 import loadSerializableQuery from "@/relay/loadSerializableQuery";
-import TagsViewComponentGetAllTagsQueryGraphql, {
-    TagsViewComponentGetAllTagsQuery
-} from "@/__generated__/TagsViewComponentGetAllTagsQuery.graphql";
 import searchComponentViewQueryGraphql, {
     searchComponentViewQuery
 } from "@/__generated__/searchComponentViewQuery.graphql";
-import {useSearchParams} from "next/navigation";
-import {db} from "@/app/api/graphql/db";
 
 export async function generateMetadata(
   props: {},

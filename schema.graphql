@@ -8,6 +8,10 @@ The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://
 """
 scalar JSON
 
+type Mutation {
+  updateUser(newName: String, newPublicName: String): User!
+}
+
 interface Node {
   id: ID!
 }
@@ -59,7 +63,6 @@ type Query {
   node(id: ID!): Node
   nodes(ids: [ID!]!): [Node]!
   prompt(id: ID!): Prompts
-  promptById(id: String!): Prompts
   prompts(after: String, before: String, first: Int, last: Int): QueryPromptsConnection!
   search: Search!
   viewer: Viewer!
@@ -119,6 +122,7 @@ type User implements Node {
   id: ID!
   image: String
   name: String
+  publicName: String
 }
 
 """Collection of information about the database"""

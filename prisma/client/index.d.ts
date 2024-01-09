@@ -1790,11 +1790,13 @@ export namespace Prisma {
   export type UserCountOutputType = {
     accounts: number
     sessions: number
+    Prompts: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     accounts?: boolean | UserCountOutputTypeCountAccountsArgs
     sessions?: boolean | UserCountOutputTypeCountSessionsArgs
+    Prompts?: boolean | UserCountOutputTypeCountPromptsArgs
   }
 
   // Custom InputTypes
@@ -1823,6 +1825,14 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountSessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: SessionWhereInput
+  }
+
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountPromptsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PromptsWhereInput
   }
 
 
@@ -1907,6 +1917,8 @@ export namespace Prisma {
     dateCreated: string | null
     dateEdited: string | null
     deleted: boolean | null
+    authorId: string | null
+    json: string | null
   }
 
   export type PromptsMaxAggregateOutputType = {
@@ -1929,6 +1941,8 @@ export namespace Prisma {
     dateCreated: string | null
     dateEdited: string | null
     deleted: boolean | null
+    authorId: string | null
+    json: string | null
   }
 
   export type PromptsCountAggregateOutputType = {
@@ -1951,6 +1965,8 @@ export namespace Prisma {
     dateCreated: number
     dateEdited: number
     deleted: number
+    authorId: number
+    json: number
     _all: number
   }
 
@@ -1985,6 +2001,8 @@ export namespace Prisma {
     dateCreated?: true
     dateEdited?: true
     deleted?: true
+    authorId?: true
+    json?: true
   }
 
   export type PromptsMaxAggregateInputType = {
@@ -2007,6 +2025,8 @@ export namespace Prisma {
     dateCreated?: true
     dateEdited?: true
     deleted?: true
+    authorId?: true
+    json?: true
   }
 
   export type PromptsCountAggregateInputType = {
@@ -2029,6 +2049,8 @@ export namespace Prisma {
     dateCreated?: true
     dateEdited?: true
     deleted?: true
+    authorId?: true
+    json?: true
     _all?: true
   }
 
@@ -2138,6 +2160,8 @@ export namespace Prisma {
     dateCreated: string
     dateEdited: string | null
     deleted: boolean
+    authorId: string | null
+    json: string | null
     _count: PromptsCountAggregateOutputType | null
     _avg: PromptsAvgAggregateOutputType | null
     _sum: PromptsSumAggregateOutputType | null
@@ -2179,8 +2203,11 @@ export namespace Prisma {
     dateCreated?: boolean
     dateEdited?: boolean
     deleted?: boolean
+    authorId?: boolean
+    json?: boolean
     tagsFull?: boolean | Prompts$tagsFullArgs<ExtArgs>
     worldInfos?: boolean | Prompts$worldInfosArgs<ExtArgs>
+    author?: boolean | Prompts$authorArgs<ExtArgs>
     _count?: boolean | PromptsCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["prompts"]>
 
@@ -2204,11 +2231,14 @@ export namespace Prisma {
     dateCreated?: boolean
     dateEdited?: boolean
     deleted?: boolean
+    authorId?: boolean
+    json?: boolean
   }
 
   export type PromptsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     tagsFull?: boolean | Prompts$tagsFullArgs<ExtArgs>
     worldInfos?: boolean | Prompts$worldInfosArgs<ExtArgs>
+    author?: boolean | Prompts$authorArgs<ExtArgs>
     _count?: boolean | PromptsCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -2218,6 +2248,7 @@ export namespace Prisma {
     objects: {
       tagsFull: Prisma.$TagsPromptsMapPayload<ExtArgs>[]
       worldInfos: Prisma.$WorldInfosPayload<ExtArgs>[]
+      author: Prisma.$UserPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2239,6 +2270,8 @@ export namespace Prisma {
       dateCreated: string
       dateEdited: string | null
       deleted: boolean
+      authorId: string | null
+      json: string | null
     }, ExtArgs["result"]["prompts"]>
     composites: {}
   }
@@ -2592,6 +2625,8 @@ export namespace Prisma {
 
     worldInfos<T extends Prompts$worldInfosArgs<ExtArgs> = {}>(args?: Subset<T, Prompts$worldInfosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WorldInfosPayload<ExtArgs>, T, 'findMany'> | Null>;
 
+    author<T extends Prompts$authorArgs<ExtArgs> = {}>(args?: Subset<T, Prompts$authorArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
+
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2639,6 +2674,8 @@ export namespace Prisma {
     readonly dateCreated: FieldRef<"Prompts", 'String'>
     readonly dateEdited: FieldRef<"Prompts", 'String'>
     readonly deleted: FieldRef<"Prompts", 'Boolean'>
+    readonly authorId: FieldRef<"Prompts", 'String'>
+    readonly json: FieldRef<"Prompts", 'String'>
   }
     
 
@@ -2977,6 +3014,22 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: WorldInfosScalarFieldEnum | WorldInfosScalarFieldEnum[]
+  }
+
+
+  /**
+   * Prompts.author
+   */
+  export type Prompts$authorArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
   }
 
 
@@ -9565,6 +9618,7 @@ export namespace Prisma {
   export type UserMinAggregateOutputType = {
     id: string | null
     name: string | null
+    publicName: string | null
     email: string | null
     emailVerified: Date | null
     image: string | null
@@ -9574,6 +9628,7 @@ export namespace Prisma {
   export type UserMaxAggregateOutputType = {
     id: string | null
     name: string | null
+    publicName: string | null
     email: string | null
     emailVerified: Date | null
     image: string | null
@@ -9583,6 +9638,7 @@ export namespace Prisma {
   export type UserCountAggregateOutputType = {
     id: number
     name: number
+    publicName: number
     email: number
     emailVerified: number
     image: number
@@ -9594,6 +9650,7 @@ export namespace Prisma {
   export type UserMinAggregateInputType = {
     id?: true
     name?: true
+    publicName?: true
     email?: true
     emailVerified?: true
     image?: true
@@ -9603,6 +9660,7 @@ export namespace Prisma {
   export type UserMaxAggregateInputType = {
     id?: true
     name?: true
+    publicName?: true
     email?: true
     emailVerified?: true
     image?: true
@@ -9612,6 +9670,7 @@ export namespace Prisma {
   export type UserCountAggregateInputType = {
     id?: true
     name?: true
+    publicName?: true
     email?: true
     emailVerified?: true
     image?: true
@@ -9694,6 +9753,7 @@ export namespace Prisma {
   export type UserGroupByOutputType = {
     id: string
     name: string | null
+    publicName: string | null
     email: string
     emailVerified: Date | null
     image: string | null
@@ -9720,18 +9780,21 @@ export namespace Prisma {
   export type UserSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
+    publicName?: boolean
     email?: boolean
     emailVerified?: boolean
     image?: boolean
     dateCreated?: boolean
     accounts?: boolean | User$accountsArgs<ExtArgs>
     sessions?: boolean | User$sessionsArgs<ExtArgs>
+    Prompts?: boolean | User$PromptsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
     id?: boolean
     name?: boolean
+    publicName?: boolean
     email?: boolean
     emailVerified?: boolean
     image?: boolean
@@ -9741,6 +9804,7 @@ export namespace Prisma {
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     accounts?: boolean | User$accountsArgs<ExtArgs>
     sessions?: boolean | User$sessionsArgs<ExtArgs>
+    Prompts?: boolean | User$PromptsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -9750,10 +9814,12 @@ export namespace Prisma {
     objects: {
       accounts: Prisma.$AccountPayload<ExtArgs>[]
       sessions: Prisma.$SessionPayload<ExtArgs>[]
+      Prompts: Prisma.$PromptsPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       name: string | null
+      publicName: string | null
       email: string
       emailVerified: Date | null
       image: string | null
@@ -10111,6 +10177,8 @@ export namespace Prisma {
 
     sessions<T extends User$sessionsArgs<ExtArgs> = {}>(args?: Subset<T, User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, 'findMany'> | Null>;
 
+    Prompts<T extends User$PromptsArgs<ExtArgs> = {}>(args?: Subset<T, User$PromptsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PromptsPayload<ExtArgs>, T, 'findMany'> | Null>;
+
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -10141,6 +10209,7 @@ export namespace Prisma {
   interface UserFieldRefs {
     readonly id: FieldRef<"User", 'String'>
     readonly name: FieldRef<"User", 'String'>
+    readonly publicName: FieldRef<"User", 'String'>
     readonly email: FieldRef<"User", 'String'>
     readonly emailVerified: FieldRef<"User", 'DateTime'>
     readonly image: FieldRef<"User", 'String'>
@@ -10483,6 +10552,27 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: SessionScalarFieldEnum | SessionScalarFieldEnum[]
+  }
+
+
+  /**
+   * User.Prompts
+   */
+  export type User$PromptsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Prompts
+     */
+    select?: PromptsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PromptsInclude<ExtArgs> | null
+    where?: PromptsWhereInput
+    orderBy?: PromptsOrderByWithRelationInput | PromptsOrderByWithRelationInput[]
+    cursor?: PromptsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PromptsScalarFieldEnum | PromptsScalarFieldEnum[]
   }
 
 
@@ -13105,7 +13195,9 @@ export namespace Prisma {
     correlationId: 'correlationId',
     dateCreated: 'dateCreated',
     dateEdited: 'dateEdited',
-    deleted: 'deleted'
+    deleted: 'deleted',
+    authorId: 'authorId',
+    json: 'json'
   };
 
   export type PromptsScalarFieldEnum = (typeof PromptsScalarFieldEnum)[keyof typeof PromptsScalarFieldEnum]
@@ -13208,6 +13300,7 @@ export namespace Prisma {
   export const UserScalarFieldEnum: {
     id: 'id',
     name: 'name',
+    publicName: 'publicName',
     email: 'email',
     emailVerified: 'emailVerified',
     image: 'image',
@@ -13332,8 +13425,11 @@ export namespace Prisma {
     dateCreated?: StringFilter<"Prompts"> | string
     dateEdited?: StringNullableFilter<"Prompts"> | string | null
     deleted?: BoolFilter<"Prompts"> | boolean
+    authorId?: StringNullableFilter<"Prompts"> | string | null
+    json?: StringNullableFilter<"Prompts"> | string | null
     tagsFull?: TagsPromptsMapListRelationFilter
     worldInfos?: WorldInfosListRelationFilter
+    author?: XOR<UserNullableRelationFilter, UserWhereInput> | null
   }
 
   export type PromptsOrderByWithRelationInput = {
@@ -13356,8 +13452,11 @@ export namespace Prisma {
     dateCreated?: SortOrder
     dateEdited?: SortOrderInput | SortOrder
     deleted?: SortOrder
+    authorId?: SortOrderInput | SortOrder
+    json?: SortOrderInput | SortOrder
     tagsFull?: TagsPromptsMapOrderByRelationAggregateInput
     worldInfos?: WorldInfosOrderByRelationAggregateInput
+    author?: UserOrderByWithRelationInput
   }
 
   export type PromptsWhereUniqueInput = Prisma.AtLeast<{
@@ -13383,8 +13482,11 @@ export namespace Prisma {
     dateCreated?: StringFilter<"Prompts"> | string
     dateEdited?: StringNullableFilter<"Prompts"> | string | null
     deleted?: BoolFilter<"Prompts"> | boolean
+    authorId?: StringNullableFilter<"Prompts"> | string | null
+    json?: StringNullableFilter<"Prompts"> | string | null
     tagsFull?: TagsPromptsMapListRelationFilter
     worldInfos?: WorldInfosListRelationFilter
+    author?: XOR<UserNullableRelationFilter, UserWhereInput> | null
   }, "id">
 
   export type PromptsOrderByWithAggregationInput = {
@@ -13407,6 +13509,8 @@ export namespace Prisma {
     dateCreated?: SortOrder
     dateEdited?: SortOrderInput | SortOrder
     deleted?: SortOrder
+    authorId?: SortOrderInput | SortOrder
+    json?: SortOrderInput | SortOrder
     _count?: PromptsCountOrderByAggregateInput
     _avg?: PromptsAvgOrderByAggregateInput
     _max?: PromptsMaxOrderByAggregateInput
@@ -13437,6 +13541,8 @@ export namespace Prisma {
     dateCreated?: StringWithAggregatesFilter<"Prompts"> | string
     dateEdited?: StringNullableWithAggregatesFilter<"Prompts"> | string | null
     deleted?: BoolWithAggregatesFilter<"Prompts"> | boolean
+    authorId?: StringNullableWithAggregatesFilter<"Prompts"> | string | null
+    json?: StringNullableWithAggregatesFilter<"Prompts"> | string | null
   }
 
   export type WorldInfosWhereInput = {
@@ -13922,23 +14028,27 @@ export namespace Prisma {
     NOT?: UserWhereInput | UserWhereInput[]
     id?: StringFilter<"User"> | string
     name?: StringNullableFilter<"User"> | string | null
+    publicName?: StringNullableFilter<"User"> | string | null
     email?: StringFilter<"User"> | string
     emailVerified?: DateTimeNullableFilter<"User"> | Date | string | null
     image?: StringNullableFilter<"User"> | string | null
     dateCreated?: DateTimeFilter<"User"> | Date | string
     accounts?: AccountListRelationFilter
     sessions?: SessionListRelationFilter
+    Prompts?: PromptsListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrderInput | SortOrder
+    publicName?: SortOrderInput | SortOrder
     email?: SortOrder
     emailVerified?: SortOrderInput | SortOrder
     image?: SortOrderInput | SortOrder
     dateCreated?: SortOrder
     accounts?: AccountOrderByRelationAggregateInput
     sessions?: SessionOrderByRelationAggregateInput
+    Prompts?: PromptsOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -13948,16 +14058,19 @@ export namespace Prisma {
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
     name?: StringNullableFilter<"User"> | string | null
+    publicName?: StringNullableFilter<"User"> | string | null
     emailVerified?: DateTimeNullableFilter<"User"> | Date | string | null
     image?: StringNullableFilter<"User"> | string | null
     dateCreated?: DateTimeFilter<"User"> | Date | string
     accounts?: AccountListRelationFilter
     sessions?: SessionListRelationFilter
+    Prompts?: PromptsListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrderInput | SortOrder
+    publicName?: SortOrderInput | SortOrder
     email?: SortOrder
     emailVerified?: SortOrderInput | SortOrder
     image?: SortOrderInput | SortOrder
@@ -13973,6 +14086,7 @@ export namespace Prisma {
     NOT?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"User"> | string
     name?: StringNullableWithAggregatesFilter<"User"> | string | null
+    publicName?: StringNullableWithAggregatesFilter<"User"> | string | null
     email?: StringWithAggregatesFilter<"User"> | string
     emailVerified?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
     image?: StringNullableWithAggregatesFilter<"User"> | string | null
@@ -14131,8 +14245,10 @@ export namespace Prisma {
     dateCreated: string
     dateEdited?: string | null
     deleted?: boolean
+    json?: string | null
     tagsFull?: TagsPromptsMapCreateNestedManyWithoutPromptInput
     worldInfos?: WorldInfosCreateNestedManyWithoutPromptsInput
+    author?: UserCreateNestedOneWithoutPromptsInput
   }
 
   export type PromptsUncheckedCreateInput = {
@@ -14155,6 +14271,8 @@ export namespace Prisma {
     dateCreated: string
     dateEdited?: string | null
     deleted?: boolean
+    authorId?: string | null
+    json?: string | null
     tagsFull?: TagsPromptsMapUncheckedCreateNestedManyWithoutPromptInput
     worldInfos?: WorldInfosUncheckedCreateNestedManyWithoutPromptsInput
   }
@@ -14179,8 +14297,10 @@ export namespace Prisma {
     dateCreated?: StringFieldUpdateOperationsInput | string
     dateEdited?: NullableStringFieldUpdateOperationsInput | string | null
     deleted?: BoolFieldUpdateOperationsInput | boolean
+    json?: NullableStringFieldUpdateOperationsInput | string | null
     tagsFull?: TagsPromptsMapUpdateManyWithoutPromptNestedInput
     worldInfos?: WorldInfosUpdateManyWithoutPromptsNestedInput
+    author?: UserUpdateOneWithoutPromptsNestedInput
   }
 
   export type PromptsUncheckedUpdateInput = {
@@ -14203,6 +14323,8 @@ export namespace Prisma {
     dateCreated?: StringFieldUpdateOperationsInput | string
     dateEdited?: NullableStringFieldUpdateOperationsInput | string | null
     deleted?: BoolFieldUpdateOperationsInput | boolean
+    authorId?: NullableStringFieldUpdateOperationsInput | string | null
+    json?: NullableStringFieldUpdateOperationsInput | string | null
     tagsFull?: TagsPromptsMapUncheckedUpdateManyWithoutPromptNestedInput
     worldInfos?: WorldInfosUncheckedUpdateManyWithoutPromptsNestedInput
   }
@@ -14227,6 +14349,7 @@ export namespace Prisma {
     dateCreated?: StringFieldUpdateOperationsInput | string
     dateEdited?: NullableStringFieldUpdateOperationsInput | string | null
     deleted?: BoolFieldUpdateOperationsInput | boolean
+    json?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type PromptsUncheckedUpdateManyInput = {
@@ -14249,6 +14372,8 @@ export namespace Prisma {
     dateCreated?: StringFieldUpdateOperationsInput | string
     dateEdited?: NullableStringFieldUpdateOperationsInput | string | null
     deleted?: BoolFieldUpdateOperationsInput | boolean
+    authorId?: NullableStringFieldUpdateOperationsInput | string | null
+    json?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type WorldInfosCreateInput = {
@@ -14680,50 +14805,59 @@ export namespace Prisma {
   export type UserCreateInput = {
     id?: string
     name?: string | null
+    publicName?: string | null
     email: string
     emailVerified?: Date | string | null
     image?: string | null
     dateCreated?: Date | string
     accounts?: AccountCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
+    Prompts?: PromptsCreateNestedManyWithoutAuthorInput
   }
 
   export type UserUncheckedCreateInput = {
     id?: string
     name?: string | null
+    publicName?: string | null
     email: string
     emailVerified?: Date | string | null
     image?: string | null
     dateCreated?: Date | string
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    Prompts?: PromptsUncheckedCreateNestedManyWithoutAuthorInput
   }
 
   export type UserUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    publicName?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
+    Prompts?: PromptsUpdateManyWithoutAuthorNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    publicName?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    Prompts?: PromptsUncheckedUpdateManyWithoutAuthorNestedInput
   }
 
   export type UserUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    publicName?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
@@ -14733,6 +14867,7 @@ export namespace Prisma {
   export type UserUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    publicName?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
@@ -14918,6 +15053,11 @@ export namespace Prisma {
     none?: WorldInfosWhereInput
   }
 
+  export type UserNullableRelationFilter = {
+    is?: UserWhereInput | null
+    isNot?: UserWhereInput | null
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -14951,6 +15091,8 @@ export namespace Prisma {
     dateCreated?: SortOrder
     dateEdited?: SortOrder
     deleted?: SortOrder
+    authorId?: SortOrder
+    json?: SortOrder
   }
 
   export type PromptsAvgOrderByAggregateInput = {
@@ -14978,6 +15120,8 @@ export namespace Prisma {
     dateCreated?: SortOrder
     dateEdited?: SortOrder
     deleted?: SortOrder
+    authorId?: SortOrder
+    json?: SortOrder
   }
 
   export type PromptsMinOrderByAggregateInput = {
@@ -15000,6 +15144,8 @@ export namespace Prisma {
     dateCreated?: SortOrder
     dateEdited?: SortOrder
     deleted?: SortOrder
+    authorId?: SortOrder
+    json?: SortOrder
   }
 
   export type PromptsSumOrderByAggregateInput = {
@@ -15440,6 +15586,12 @@ export namespace Prisma {
     none?: SessionWhereInput
   }
 
+  export type PromptsListRelationFilter = {
+    every?: PromptsWhereInput
+    some?: PromptsWhereInput
+    none?: PromptsWhereInput
+  }
+
   export type AccountOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -15448,9 +15600,14 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
+  export type PromptsOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    publicName?: SortOrder
     email?: SortOrder
     emailVerified?: SortOrder
     image?: SortOrder
@@ -15460,6 +15617,7 @@ export namespace Prisma {
   export type UserMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    publicName?: SortOrder
     email?: SortOrder
     emailVerified?: SortOrder
     image?: SortOrder
@@ -15469,6 +15627,7 @@ export namespace Prisma {
   export type UserMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    publicName?: SortOrder
     email?: SortOrder
     emailVerified?: SortOrder
     image?: SortOrder
@@ -15567,6 +15726,12 @@ export namespace Prisma {
     connect?: WorldInfosWhereUniqueInput | WorldInfosWhereUniqueInput[]
   }
 
+  export type UserCreateNestedOneWithoutPromptsInput = {
+    create?: XOR<UserCreateWithoutPromptsInput, UserUncheckedCreateWithoutPromptsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutPromptsInput
+    connect?: UserWhereUniqueInput
+  }
+
   export type TagsPromptsMapUncheckedCreateNestedManyWithoutPromptInput = {
     create?: XOR<TagsPromptsMapCreateWithoutPromptInput, TagsPromptsMapUncheckedCreateWithoutPromptInput> | TagsPromptsMapCreateWithoutPromptInput[] | TagsPromptsMapUncheckedCreateWithoutPromptInput[]
     connectOrCreate?: TagsPromptsMapCreateOrConnectWithoutPromptInput | TagsPromptsMapCreateOrConnectWithoutPromptInput[]
@@ -15635,6 +15800,16 @@ export namespace Prisma {
     update?: WorldInfosUpdateWithWhereUniqueWithoutPromptsInput | WorldInfosUpdateWithWhereUniqueWithoutPromptsInput[]
     updateMany?: WorldInfosUpdateManyWithWhereWithoutPromptsInput | WorldInfosUpdateManyWithWhereWithoutPromptsInput[]
     deleteMany?: WorldInfosScalarWhereInput | WorldInfosScalarWhereInput[]
+  }
+
+  export type UserUpdateOneWithoutPromptsNestedInput = {
+    create?: XOR<UserCreateWithoutPromptsInput, UserUncheckedCreateWithoutPromptsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutPromptsInput
+    upsert?: UserUpsertWithoutPromptsInput
+    disconnect?: UserWhereInput | boolean
+    delete?: UserWhereInput | boolean
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPromptsInput, UserUpdateWithoutPromptsInput>, UserUncheckedUpdateWithoutPromptsInput>
   }
 
   export type TagsPromptsMapUncheckedUpdateManyWithoutPromptNestedInput = {
@@ -15773,6 +15948,12 @@ export namespace Prisma {
     connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
   }
 
+  export type PromptsCreateNestedManyWithoutAuthorInput = {
+    create?: XOR<PromptsCreateWithoutAuthorInput, PromptsUncheckedCreateWithoutAuthorInput> | PromptsCreateWithoutAuthorInput[] | PromptsUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: PromptsCreateOrConnectWithoutAuthorInput | PromptsCreateOrConnectWithoutAuthorInput[]
+    connect?: PromptsWhereUniqueInput | PromptsWhereUniqueInput[]
+  }
+
   export type AccountUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -15783,6 +15964,12 @@ export namespace Prisma {
     create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
     connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
     connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+  }
+
+  export type PromptsUncheckedCreateNestedManyWithoutAuthorInput = {
+    create?: XOR<PromptsCreateWithoutAuthorInput, PromptsUncheckedCreateWithoutAuthorInput> | PromptsCreateWithoutAuthorInput[] | PromptsUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: PromptsCreateOrConnectWithoutAuthorInput | PromptsCreateOrConnectWithoutAuthorInput[]
+    connect?: PromptsWhereUniqueInput | PromptsWhereUniqueInput[]
   }
 
   export type NullableDateTimeFieldUpdateOperationsInput = {
@@ -15815,6 +16002,19 @@ export namespace Prisma {
     deleteMany?: SessionScalarWhereInput | SessionScalarWhereInput[]
   }
 
+  export type PromptsUpdateManyWithoutAuthorNestedInput = {
+    create?: XOR<PromptsCreateWithoutAuthorInput, PromptsUncheckedCreateWithoutAuthorInput> | PromptsCreateWithoutAuthorInput[] | PromptsUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: PromptsCreateOrConnectWithoutAuthorInput | PromptsCreateOrConnectWithoutAuthorInput[]
+    upsert?: PromptsUpsertWithWhereUniqueWithoutAuthorInput | PromptsUpsertWithWhereUniqueWithoutAuthorInput[]
+    set?: PromptsWhereUniqueInput | PromptsWhereUniqueInput[]
+    disconnect?: PromptsWhereUniqueInput | PromptsWhereUniqueInput[]
+    delete?: PromptsWhereUniqueInput | PromptsWhereUniqueInput[]
+    connect?: PromptsWhereUniqueInput | PromptsWhereUniqueInput[]
+    update?: PromptsUpdateWithWhereUniqueWithoutAuthorInput | PromptsUpdateWithWhereUniqueWithoutAuthorInput[]
+    updateMany?: PromptsUpdateManyWithWhereWithoutAuthorInput | PromptsUpdateManyWithWhereWithoutAuthorInput[]
+    deleteMany?: PromptsScalarWhereInput | PromptsScalarWhereInput[]
+  }
+
   export type AccountUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -15839,6 +16039,19 @@ export namespace Prisma {
     update?: SessionUpdateWithWhereUniqueWithoutUserInput | SessionUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: SessionUpdateManyWithWhereWithoutUserInput | SessionUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: SessionScalarWhereInput | SessionScalarWhereInput[]
+  }
+
+  export type PromptsUncheckedUpdateManyWithoutAuthorNestedInput = {
+    create?: XOR<PromptsCreateWithoutAuthorInput, PromptsUncheckedCreateWithoutAuthorInput> | PromptsCreateWithoutAuthorInput[] | PromptsUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: PromptsCreateOrConnectWithoutAuthorInput | PromptsCreateOrConnectWithoutAuthorInput[]
+    upsert?: PromptsUpsertWithWhereUniqueWithoutAuthorInput | PromptsUpsertWithWhereUniqueWithoutAuthorInput[]
+    set?: PromptsWhereUniqueInput | PromptsWhereUniqueInput[]
+    disconnect?: PromptsWhereUniqueInput | PromptsWhereUniqueInput[]
+    delete?: PromptsWhereUniqueInput | PromptsWhereUniqueInput[]
+    connect?: PromptsWhereUniqueInput | PromptsWhereUniqueInput[]
+    update?: PromptsUpdateWithWhereUniqueWithoutAuthorInput | PromptsUpdateWithWhereUniqueWithoutAuthorInput[]
+    updateMany?: PromptsUpdateManyWithWhereWithoutAuthorInput | PromptsUpdateManyWithWhereWithoutAuthorInput[]
+    deleteMany?: PromptsScalarWhereInput | PromptsScalarWhereInput[]
   }
 
   export type TagsPromptsMapCreateNestedManyWithoutTagInput = {
@@ -16163,6 +16376,35 @@ export namespace Prisma {
     create: XOR<WorldInfosCreateWithoutPromptsInput, WorldInfosUncheckedCreateWithoutPromptsInput>
   }
 
+  export type UserCreateWithoutPromptsInput = {
+    id?: string
+    name?: string | null
+    publicName?: string | null
+    email: string
+    emailVerified?: Date | string | null
+    image?: string | null
+    dateCreated?: Date | string
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutPromptsInput = {
+    id?: string
+    name?: string | null
+    publicName?: string | null
+    email: string
+    emailVerified?: Date | string | null
+    image?: string | null
+    dateCreated?: Date | string
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutPromptsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutPromptsInput, UserUncheckedCreateWithoutPromptsInput>
+  }
+
   export type TagsPromptsMapUpsertWithWhereUniqueWithoutPromptInput = {
     where: TagsPromptsMapWhereUniqueInput
     update: XOR<TagsPromptsMapUpdateWithoutPromptInput, TagsPromptsMapUncheckedUpdateWithoutPromptInput>
@@ -16217,6 +16459,41 @@ export namespace Prisma {
     dateEdited?: StringNullableFilter<"WorldInfos"> | string | null
   }
 
+  export type UserUpsertWithoutPromptsInput = {
+    update: XOR<UserUpdateWithoutPromptsInput, UserUncheckedUpdateWithoutPromptsInput>
+    create: XOR<UserCreateWithoutPromptsInput, UserUncheckedCreateWithoutPromptsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutPromptsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutPromptsInput, UserUncheckedUpdateWithoutPromptsInput>
+  }
+
+  export type UserUpdateWithoutPromptsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    publicName?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutPromptsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    publicName?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+  }
+
   export type PromptsCreateWithoutWorldInfosInput = {
     id?: string
     aetherId?: number | null
@@ -16237,7 +16514,9 @@ export namespace Prisma {
     dateCreated: string
     dateEdited?: string | null
     deleted?: boolean
+    json?: string | null
     tagsFull?: TagsPromptsMapCreateNestedManyWithoutPromptInput
+    author?: UserCreateNestedOneWithoutPromptsInput
   }
 
   export type PromptsUncheckedCreateWithoutWorldInfosInput = {
@@ -16260,6 +16539,8 @@ export namespace Prisma {
     dateCreated: string
     dateEdited?: string | null
     deleted?: boolean
+    authorId?: string | null
+    json?: string | null
     tagsFull?: TagsPromptsMapUncheckedCreateNestedManyWithoutPromptInput
   }
 
@@ -16299,7 +16580,9 @@ export namespace Prisma {
     dateCreated?: StringFieldUpdateOperationsInput | string
     dateEdited?: NullableStringFieldUpdateOperationsInput | string | null
     deleted?: BoolFieldUpdateOperationsInput | boolean
+    json?: NullableStringFieldUpdateOperationsInput | string | null
     tagsFull?: TagsPromptsMapUpdateManyWithoutPromptNestedInput
+    author?: UserUpdateOneWithoutPromptsNestedInput
   }
 
   export type PromptsUncheckedUpdateWithoutWorldInfosInput = {
@@ -16322,6 +16605,8 @@ export namespace Prisma {
     dateCreated?: StringFieldUpdateOperationsInput | string
     dateEdited?: NullableStringFieldUpdateOperationsInput | string | null
     deleted?: BoolFieldUpdateOperationsInput | boolean
+    authorId?: NullableStringFieldUpdateOperationsInput | string | null
+    json?: NullableStringFieldUpdateOperationsInput | string | null
     tagsFull?: TagsPromptsMapUncheckedUpdateManyWithoutPromptNestedInput
   }
 
@@ -16473,21 +16758,25 @@ export namespace Prisma {
   export type UserCreateWithoutAccountsInput = {
     id?: string
     name?: string | null
+    publicName?: string | null
     email: string
     emailVerified?: Date | string | null
     image?: string | null
     dateCreated?: Date | string
     sessions?: SessionCreateNestedManyWithoutUserInput
+    Prompts?: PromptsCreateNestedManyWithoutAuthorInput
   }
 
   export type UserUncheckedCreateWithoutAccountsInput = {
     id?: string
     name?: string | null
+    publicName?: string | null
     email: string
     emailVerified?: Date | string | null
     image?: string | null
     dateCreated?: Date | string
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    Prompts?: PromptsUncheckedCreateNestedManyWithoutAuthorInput
   }
 
   export type UserCreateOrConnectWithoutAccountsInput = {
@@ -16509,41 +16798,49 @@ export namespace Prisma {
   export type UserUpdateWithoutAccountsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    publicName?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     sessions?: SessionUpdateManyWithoutUserNestedInput
+    Prompts?: PromptsUpdateManyWithoutAuthorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAccountsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    publicName?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    Prompts?: PromptsUncheckedUpdateManyWithoutAuthorNestedInput
   }
 
   export type UserCreateWithoutSessionsInput = {
     id?: string
     name?: string | null
+    publicName?: string | null
     email: string
     emailVerified?: Date | string | null
     image?: string | null
     dateCreated?: Date | string
     accounts?: AccountCreateNestedManyWithoutUserInput
+    Prompts?: PromptsCreateNestedManyWithoutAuthorInput
   }
 
   export type UserUncheckedCreateWithoutSessionsInput = {
     id?: string
     name?: string | null
+    publicName?: string | null
     email: string
     emailVerified?: Date | string | null
     image?: string | null
     dateCreated?: Date | string
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    Prompts?: PromptsUncheckedCreateNestedManyWithoutAuthorInput
   }
 
   export type UserCreateOrConnectWithoutSessionsInput = {
@@ -16565,21 +16862,25 @@ export namespace Prisma {
   export type UserUpdateWithoutSessionsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    publicName?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUpdateManyWithoutUserNestedInput
+    Prompts?: PromptsUpdateManyWithoutAuthorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSessionsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    publicName?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    Prompts?: PromptsUncheckedUpdateManyWithoutAuthorNestedInput
   }
 
   export type AccountCreateWithoutUserInput = {
@@ -16630,6 +16931,61 @@ export namespace Prisma {
   export type SessionCreateOrConnectWithoutUserInput = {
     where: SessionWhereUniqueInput
     create: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput>
+  }
+
+  export type PromptsCreateWithoutAuthorInput = {
+    id?: string
+    aetherId?: number | null
+    authorsNote?: string | null
+    description?: string | null
+    memory?: string | null
+    nsfw: number
+    parentId?: string | null
+    promptContent: string
+    publishDate?: string | null
+    quests?: string | null
+    tags: string
+    title: string
+    scriptZip?: Buffer | null
+    novelAiScenario?: string | null
+    holoAiScenario?: string | null
+    correlationId: string
+    dateCreated: string
+    dateEdited?: string | null
+    deleted?: boolean
+    json?: string | null
+    tagsFull?: TagsPromptsMapCreateNestedManyWithoutPromptInput
+    worldInfos?: WorldInfosCreateNestedManyWithoutPromptsInput
+  }
+
+  export type PromptsUncheckedCreateWithoutAuthorInput = {
+    id?: string
+    aetherId?: number | null
+    authorsNote?: string | null
+    description?: string | null
+    memory?: string | null
+    nsfw: number
+    parentId?: string | null
+    promptContent: string
+    publishDate?: string | null
+    quests?: string | null
+    tags: string
+    title: string
+    scriptZip?: Buffer | null
+    novelAiScenario?: string | null
+    holoAiScenario?: string | null
+    correlationId: string
+    dateCreated: string
+    dateEdited?: string | null
+    deleted?: boolean
+    json?: string | null
+    tagsFull?: TagsPromptsMapUncheckedCreateNestedManyWithoutPromptInput
+    worldInfos?: WorldInfosUncheckedCreateNestedManyWithoutPromptsInput
+  }
+
+  export type PromptsCreateOrConnectWithoutAuthorInput = {
+    where: PromptsWhereUniqueInput
+    create: XOR<PromptsCreateWithoutAuthorInput, PromptsUncheckedCreateWithoutAuthorInput>
   }
 
   export type AccountUpsertWithWhereUniqueWithoutUserInput = {
@@ -16690,6 +17046,49 @@ export namespace Prisma {
     sessionToken?: StringFilter<"Session"> | string
     userId?: StringFilter<"Session"> | string
     expires?: DateTimeFilter<"Session"> | Date | string
+  }
+
+  export type PromptsUpsertWithWhereUniqueWithoutAuthorInput = {
+    where: PromptsWhereUniqueInput
+    update: XOR<PromptsUpdateWithoutAuthorInput, PromptsUncheckedUpdateWithoutAuthorInput>
+    create: XOR<PromptsCreateWithoutAuthorInput, PromptsUncheckedCreateWithoutAuthorInput>
+  }
+
+  export type PromptsUpdateWithWhereUniqueWithoutAuthorInput = {
+    where: PromptsWhereUniqueInput
+    data: XOR<PromptsUpdateWithoutAuthorInput, PromptsUncheckedUpdateWithoutAuthorInput>
+  }
+
+  export type PromptsUpdateManyWithWhereWithoutAuthorInput = {
+    where: PromptsScalarWhereInput
+    data: XOR<PromptsUpdateManyMutationInput, PromptsUncheckedUpdateManyWithoutAuthorInput>
+  }
+
+  export type PromptsScalarWhereInput = {
+    AND?: PromptsScalarWhereInput | PromptsScalarWhereInput[]
+    OR?: PromptsScalarWhereInput[]
+    NOT?: PromptsScalarWhereInput | PromptsScalarWhereInput[]
+    id?: StringFilter<"Prompts"> | string
+    aetherId?: IntNullableFilter<"Prompts"> | number | null
+    authorsNote?: StringNullableFilter<"Prompts"> | string | null
+    description?: StringNullableFilter<"Prompts"> | string | null
+    memory?: StringNullableFilter<"Prompts"> | string | null
+    nsfw?: IntFilter<"Prompts"> | number
+    parentId?: StringNullableFilter<"Prompts"> | string | null
+    promptContent?: StringFilter<"Prompts"> | string
+    publishDate?: StringNullableFilter<"Prompts"> | string | null
+    quests?: StringNullableFilter<"Prompts"> | string | null
+    tags?: StringFilter<"Prompts"> | string
+    title?: StringFilter<"Prompts"> | string
+    scriptZip?: BytesNullableFilter<"Prompts"> | Buffer | null
+    novelAiScenario?: StringNullableFilter<"Prompts"> | string | null
+    holoAiScenario?: StringNullableFilter<"Prompts"> | string | null
+    correlationId?: StringFilter<"Prompts"> | string
+    dateCreated?: StringFilter<"Prompts"> | string
+    dateEdited?: StringNullableFilter<"Prompts"> | string | null
+    deleted?: BoolFilter<"Prompts"> | boolean
+    authorId?: StringNullableFilter<"Prompts"> | string | null
+    json?: StringNullableFilter<"Prompts"> | string | null
   }
 
   export type TagsPromptsMapCreateWithoutTagInput = {
@@ -16758,7 +17157,9 @@ export namespace Prisma {
     dateCreated: string
     dateEdited?: string | null
     deleted?: boolean
+    json?: string | null
     worldInfos?: WorldInfosCreateNestedManyWithoutPromptsInput
+    author?: UserCreateNestedOneWithoutPromptsInput
   }
 
   export type PromptsUncheckedCreateWithoutTagsFullInput = {
@@ -16781,6 +17182,8 @@ export namespace Prisma {
     dateCreated: string
     dateEdited?: string | null
     deleted?: boolean
+    authorId?: string | null
+    json?: string | null
     worldInfos?: WorldInfosUncheckedCreateNestedManyWithoutPromptsInput
   }
 
@@ -16843,7 +17246,9 @@ export namespace Prisma {
     dateCreated?: StringFieldUpdateOperationsInput | string
     dateEdited?: NullableStringFieldUpdateOperationsInput | string | null
     deleted?: BoolFieldUpdateOperationsInput | boolean
+    json?: NullableStringFieldUpdateOperationsInput | string | null
     worldInfos?: WorldInfosUpdateManyWithoutPromptsNestedInput
+    author?: UserUpdateOneWithoutPromptsNestedInput
   }
 
   export type PromptsUncheckedUpdateWithoutTagsFullInput = {
@@ -16866,6 +17271,8 @@ export namespace Prisma {
     dateCreated?: StringFieldUpdateOperationsInput | string
     dateEdited?: NullableStringFieldUpdateOperationsInput | string | null
     deleted?: BoolFieldUpdateOperationsInput | boolean
+    authorId?: NullableStringFieldUpdateOperationsInput | string | null
+    json?: NullableStringFieldUpdateOperationsInput | string | null
     worldInfos?: WorldInfosUncheckedUpdateManyWithoutPromptsNestedInput
   }
 
@@ -16995,6 +17402,79 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     sessionToken?: StringFieldUpdateOperationsInput | string
     expires?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PromptsUpdateWithoutAuthorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    aetherId?: NullableIntFieldUpdateOperationsInput | number | null
+    authorsNote?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    memory?: NullableStringFieldUpdateOperationsInput | string | null
+    nsfw?: IntFieldUpdateOperationsInput | number
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    promptContent?: StringFieldUpdateOperationsInput | string
+    publishDate?: NullableStringFieldUpdateOperationsInput | string | null
+    quests?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    scriptZip?: NullableBytesFieldUpdateOperationsInput | Buffer | null
+    novelAiScenario?: NullableStringFieldUpdateOperationsInput | string | null
+    holoAiScenario?: NullableStringFieldUpdateOperationsInput | string | null
+    correlationId?: StringFieldUpdateOperationsInput | string
+    dateCreated?: StringFieldUpdateOperationsInput | string
+    dateEdited?: NullableStringFieldUpdateOperationsInput | string | null
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+    json?: NullableStringFieldUpdateOperationsInput | string | null
+    tagsFull?: TagsPromptsMapUpdateManyWithoutPromptNestedInput
+    worldInfos?: WorldInfosUpdateManyWithoutPromptsNestedInput
+  }
+
+  export type PromptsUncheckedUpdateWithoutAuthorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    aetherId?: NullableIntFieldUpdateOperationsInput | number | null
+    authorsNote?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    memory?: NullableStringFieldUpdateOperationsInput | string | null
+    nsfw?: IntFieldUpdateOperationsInput | number
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    promptContent?: StringFieldUpdateOperationsInput | string
+    publishDate?: NullableStringFieldUpdateOperationsInput | string | null
+    quests?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    scriptZip?: NullableBytesFieldUpdateOperationsInput | Buffer | null
+    novelAiScenario?: NullableStringFieldUpdateOperationsInput | string | null
+    holoAiScenario?: NullableStringFieldUpdateOperationsInput | string | null
+    correlationId?: StringFieldUpdateOperationsInput | string
+    dateCreated?: StringFieldUpdateOperationsInput | string
+    dateEdited?: NullableStringFieldUpdateOperationsInput | string | null
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+    json?: NullableStringFieldUpdateOperationsInput | string | null
+    tagsFull?: TagsPromptsMapUncheckedUpdateManyWithoutPromptNestedInput
+    worldInfos?: WorldInfosUncheckedUpdateManyWithoutPromptsNestedInput
+  }
+
+  export type PromptsUncheckedUpdateManyWithoutAuthorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    aetherId?: NullableIntFieldUpdateOperationsInput | number | null
+    authorsNote?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    memory?: NullableStringFieldUpdateOperationsInput | string | null
+    nsfw?: IntFieldUpdateOperationsInput | number
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    promptContent?: StringFieldUpdateOperationsInput | string
+    publishDate?: NullableStringFieldUpdateOperationsInput | string | null
+    quests?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    scriptZip?: NullableBytesFieldUpdateOperationsInput | Buffer | null
+    novelAiScenario?: NullableStringFieldUpdateOperationsInput | string | null
+    holoAiScenario?: NullableStringFieldUpdateOperationsInput | string | null
+    correlationId?: StringFieldUpdateOperationsInput | string
+    dateCreated?: StringFieldUpdateOperationsInput | string
+    dateEdited?: NullableStringFieldUpdateOperationsInput | string | null
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+    json?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TagsPromptsMapUpdateWithoutTagInput = {

@@ -4,7 +4,7 @@ import { Prisma, PrismaClient } from '../../../../prisma/client';
 export { Prisma };
 
 export const db = new PrismaClient({
-  log: ['query', 'info', 'warn'],
+  // log: ['query', 'info', 'warn'],
 });
 
 // Disable to see what models are loaded

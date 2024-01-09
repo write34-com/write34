@@ -201,6 +201,9 @@ builder.prismaNode('User', {
         image: t.exposeString('image', {
             nullable: true,
         }),
+        publicName: t.exposeString('publicName', {
+            nullable: true,
+        }),
         // dateCreated: t.exposeString('dateCreated', {
         //     nullable: false,
         // }),
@@ -445,21 +448,39 @@ builder.queryType({
     }),
 });
 
-builder.queryField("promptById", (t) =>
-    t.prismaField({
-        type: "Prompts",
-        nullable: true,
-        args: {
-            id: t.arg.string({required: true}),
-        },
-        resolve: async (query, root, args, ctx, info) => {
-            return db.prompts.findUnique({
-                ...query,
-                where: {id: args.id}
-            });
-        },
-    })
-);
+/** Mutations **/
+
+builder.mutationType({
+    fields: (t) => ({
+        // Define other mutations here
+        updateUser: t.prismaField({
+            type: 'User',
+            args: {
+                newName: t.arg.string({ required: false }),
+                newPublicName: t.arg.string({ required: false }),
+            },
+            resolve: async (query, root, { newName, newPublicName }, ctx, info) => {
+                if (!ctx.currentUser) {
+                    throw new Error("No user found");
+                }
+
+                const loggedInUser = ctx.currentUser.id;
+
+                // TODO: Implement an admin system to allow admins to update other users
+                // Perform the update operation using Prisma client
+                return db.user.update({
+                    ...query,
+                    where: { id: loggedInUser },
+                    data: {
+                        name: newName,
+                        publicName: newPublicName,
+                    },
+                });
+            },
+        }),
+    }),
+});
+
 
 // Build and export the schema
 export const schema = builder.toSchema();

@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/app/api/graphql/db";
 import {decodeDocument, NovelAIDocument} from "@/lib/novelai-scenario-decoder/decode";
 import {randomUUID} from "crypto";
+import {auth} from "@/lib/auth";
+import {NextApiResponse} from "next";
 
 type ResponseData = {
   message: string
@@ -59,7 +61,7 @@ async function createTags(tags: string[]): Promise<{name: string, id: string}[]>
   return tagsFromId;
 }
 
-async function importNovelAIScenarioVersion3(scenario: NovelAIScenarioVersion3): Promise<{id: string}> {
+async function importNovelAIScenarioVersion3(scenario: NovelAIScenarioVersion3, authorId: string): Promise<{id: string}> {
 
   const {context, tags, title, description, lorebook} = scenario;
 
@@ -89,7 +91,6 @@ async function importNovelAIScenarioVersion3(scenario: NovelAIScenarioVersion3):
         title,
         description,
         tags: tags.filter((tag) => tag).join(', '),
-        // Convert unix timestamps to string
         dateCreated: convertDateToISOString(new Date()),
         dateEdited: convertDateToISOString(new Date()),
         publishDate: convertDateToISOString(new Date()),
@@ -100,6 +101,8 @@ async function importNovelAIScenarioVersion3(scenario: NovelAIScenarioVersion3):
         authorsNote: authorsNote.text,
         nsfw: 1,
         correlationId: correlationId,
+        authorId: authorId,
+        json: JSON.stringify(scenario),
         // TODO: Figure out how to create TagsPromptsMap entries here instead of in another chunk of the transaction
         worldInfos: {
           create: worldBookEntries.map((entry) => {
@@ -130,7 +133,7 @@ async function importNovelAIScenarioVersion3(scenario: NovelAIScenarioVersion3):
   };
 }
 
-async function importNovelAIContainerVersion1(scenario: NovelAIScenarioContainerVersion1): Promise<{id: string}> {
+async function importNovelAIContainerVersion1(scenario: NovelAIScenarioContainerVersion1, authorId: string): Promise<{id: string}> {
 
   const {title, description, tags, createdAt, lastUpdatedAt} = scenario.metadata;
 
@@ -162,9 +165,9 @@ async function importNovelAIContainerVersion1(scenario: NovelAIScenarioContainer
         title,
         description,
         tags: tags.filter((tag) => tag).join(', '),
-        // Convert unix timestamps to string
-        dateCreated: convertDateNumberToISOString(createdAt),
-        dateEdited: convertDateNumberToISOString(lastUpdatedAt),
+        // TODO: Maybe keep the original dates, but for now I prefer to see new scenarios at the "top" of the search page
+        dateCreated: convertDateToISOString(new Date()), // convertDateNumberToISOString(createdAt),
+        dateEdited: convertDateToISOString(new Date()), // convertDateNumberToISOString(lastUpdatedAt),
         publishDate: convertDateToISOString(new Date()),
         promptContent: prompt,
         id: promptId,
@@ -173,6 +176,8 @@ async function importNovelAIContainerVersion1(scenario: NovelAIScenarioContainer
         authorsNote: authorsNote.text,
         nsfw: 1,
         correlationId: correlationId,
+        authorId: authorId,
+        json: JSON.stringify(scenario),
         // TODO: Figure out how to create TagsPromptsMap entries here instead of in another chunk of the transaction
         worldInfos: {
           create: worldBookEntries.map((entry) => {
@@ -207,6 +212,32 @@ export async function POST(
   req: Request | NextRequest,
   res: NextResponse<ResponseData>
 ) {
+
+  const session = await auth(
+    // TODO: Figure out why these types are wrong (and very angry)
+    // They'll likely shake itself out as NextAuth and Next.js 14 become more mainstream
+    // @ts-ignore
+    req,
+    {
+      ...res,
+      getHeader: (name: string) => res.headers?.get(name),
+      setHeader: (name: string, value: string) => res.headers?.set(name, value),
+    } as unknown as NextApiResponse);
+
+  if (!session || !session.user || !session.user.email) {
+    return NextResponse.json({ message: "Must be logged in to upload scenario"}, {
+      status: 401,
+    });
+  }
+
+  const authorId = session.user.id;
+
+  if (!authorId) {
+    return NextResponse.json({ message: "Unknown user" }, {
+      status: 500
+    });
+  }
+
   if (!req.body) {
     return NextResponse.json({ message: "Missing body" }, {
       status: 400,
@@ -226,14 +257,14 @@ export async function POST(
     }
 
     if ((body as any).scenarioVersion === 3) {
-      const {id} = await importNovelAIScenarioVersion3(body as NovelAIScenarioVersion3);
+      const {id} = await importNovelAIScenarioVersion3(body as NovelAIScenarioVersion3, authorId);
 
       return NextResponse.json({
         promptId: id,
         message: 'Successfully created new document (NovelAI Scenario v3)'
       });
     } else if ((body as any).storyContainerVersion === 1) {
-      const {id} = await importNovelAIContainerVersion1(body as NovelAIScenarioContainerVersion1);
+      const {id} = await importNovelAIContainerVersion1(body as NovelAIScenarioContainerVersion1, authorId);
 
       return NextResponse.json({
         promptId: id,

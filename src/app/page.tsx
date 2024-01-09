@@ -18,8 +18,6 @@ export async function generateMetadata(
 }
 
 export default async function Home() {
-  // TODO: Figure out why these types are jank
-  const session = await getServerSession(auth as any);
 
   const preloadedQuery = await loadSerializableQuery<
     typeof ViewAllScenariosQueryNode,
@@ -29,9 +27,7 @@ export default async function Home() {
       count: 15
   });
 
-  return (
-        <ViewAllScenariosClientComponent preloadedQuery={preloadedQuery} />
-  );
+  return <ViewAllScenariosClientComponent preloadedQuery={preloadedQuery} />;
 }
 
 export const revalidate = 0;

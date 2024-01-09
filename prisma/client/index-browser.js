@@ -123,7 +123,9 @@ exports.Prisma.PromptsScalarFieldEnum = {
   correlationId: 'correlationId',
   dateCreated: 'dateCreated',
   dateEdited: 'dateEdited',
-  deleted: 'deleted'
+  deleted: 'deleted',
+  authorId: 'authorId',
+  json: 'json'
 };
 
 exports.Prisma.WorldInfosScalarFieldEnum = {
@@ -202,6 +204,7 @@ exports.Prisma.SessionScalarFieldEnum = {
 exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   name: 'name',
+  publicName: 'publicName',
   email: 'email',
   emailVerified: 'emailVerified',
   image: 'image',

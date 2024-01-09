@@ -11,7 +11,7 @@ export default interface PrismaTypes {
         Where: Prisma.PromptsWhereInput;
         Create: {};
         Update: {};
-        RelationName: "tagsFull" | "worldInfos";
+        RelationName: "tagsFull" | "worldInfos" | "author";
         ListRelations: "tagsFull" | "worldInfos";
         Relations: {
             tagsFull: {
@@ -21,6 +21,10 @@ export default interface PrismaTypes {
             worldInfos: {
                 Shape: WorldInfos[];
                 Name: "WorldInfos";
+            };
+            author: {
+                Shape: User | null;
+                Name: "User";
             };
         };
     };
@@ -157,8 +161,8 @@ export default interface PrismaTypes {
         Where: Prisma.UserWhereInput;
         Create: {};
         Update: {};
-        RelationName: "accounts" | "sessions";
-        ListRelations: "accounts" | "sessions";
+        RelationName: "accounts" | "sessions" | "Prompts";
+        ListRelations: "accounts" | "sessions" | "Prompts";
         Relations: {
             accounts: {
                 Shape: Account[];
@@ -167,6 +171,10 @@ export default interface PrismaTypes {
             sessions: {
                 Shape: Session[];
                 Name: "Session";
+            };
+            Prompts: {
+                Shape: Prompts[];
+                Name: "Prompts";
             };
         };
     };

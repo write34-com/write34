@@ -34,6 +34,7 @@ CREATE TABLE "new_Prompts" (
     "dateEdited" TEXT,
     "deleted" BOOLEAN NOT NULL DEFAULT false,
     "authorId" TEXT,
+    "json" TEXT,
     CONSTRAINT "Prompts_authorId_fkey" FOREIGN KEY ("authorId") REFERENCES "User" ("id") ON DELETE SET NULL ON UPDATE CASCADE
 );
 INSERT INTO "new_Prompts" ("aetherId", "authorsNote", "correlationId", "dateCreated", "dateEdited", "deleted", "description", "holoAiScenario", "id", "memory", "novelAiScenario", "nsfw", "parentId", "promptContent", "publishDate", "quests", "scriptZip", "tags", "title") SELECT "aetherId", "authorsNote", "correlationId", "dateCreated", "dateEdited", "deleted", "description", "holoAiScenario", "id", "memory", "novelAiScenario", "nsfw", "parentId", "promptContent", "publishDate", "quests", "scriptZip", "tags", "title" FROM "Prompts";
