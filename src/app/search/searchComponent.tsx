@@ -4,7 +4,7 @@ import {
 import { useDebounce } from 'use-debounce';
 import {searchComponentViewQuery} from "@/__generated__/searchComponentViewQuery.graphql";
 import SearchResults from "@/app/search/SearchResults";
-import {Suspense, useEffect, useState} from "react";
+import {Suspense, useEffect, useMemo, useState} from "react";
 import {redirect, useRouter, useSearchParams} from "next/navigation";
 import LoadingSearch from "@/app/search/loading";
 import {AppRouterInstance} from "next/dist/shared/lib/app-router-context.shared-runtime";
@@ -49,7 +49,7 @@ export function SearchComponent(props: {
   }
 
   const urlSearchQuery = props.queryRef.variables.query || '';
-  const urlTags = props.queryRef.variables.tags || [];
+  const urlTags = useMemo(() => props.queryRef.variables.tags || [], [props.queryRef.variables.tags]);
   const urlNsfw = props.queryRef.variables.nsfw;
 
   const [searchQuery, setSearchQuery] = useState(urlSearchQuery);

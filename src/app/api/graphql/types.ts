@@ -294,7 +294,7 @@ builder.objectType(Search, {
             resolve: async (parent, args, ctx, info) => {
                 const resolveOffset = await resolveOffsetConnection({args}, async ({limit, offset}) => {
                     // TODO: Figure out how to allow additional characters like dashes without crashing queryRaw
-                    const searchTerm = args.query ? args.query.replace(/[\-@]/g, ' ').replace(/[^a-zA-Z0-9 _]/g, '') : null;
+                    const searchTerm = args.query ? args.query.replace(/[\-@]/g, ' ').replace(/[^a-zA-Z0-9 _]/g, '').trim() : null;
 
                     let prompts: any[] = [];
 

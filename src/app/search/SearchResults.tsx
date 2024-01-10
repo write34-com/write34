@@ -80,7 +80,7 @@ function SearchResults({queryRef}: SearchResultsProps) {
                         return null;
                     }
 
-                    const tags = prompt.tags?.split(',') || [];
+                    const tags = prompt.tags?.split(',').filter(t => t) || [];
 
                     return (
                         <li key={prompt.id}>

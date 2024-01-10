@@ -260,11 +260,11 @@ export async function GET(
 
 
     // If there is a novelAiScenario, return it as-is.
-    if (prompt.novelAiScenario) {
+    if (prompt.novelAiScenario || prompt.json) {
 
         // Pretty print the JSON
         // TODO: Decide if we thinking parsing and prettifying the JSON is worth it. I'm lazy tho, so send back as-is. #yolo
-        const response = new NextResponse(prompt.novelAiScenario);
+        const response = new NextResponse(prompt.novelAiScenario || prompt.json);
 
         // Set headers to force download.
         response.headers.set('Content-Type', 'application/json');

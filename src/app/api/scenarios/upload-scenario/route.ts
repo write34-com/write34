@@ -102,7 +102,7 @@ async function importNovelAIScenarioVersion3(scenario: NovelAIScenarioVersion3, 
         nsfw: 1,
         correlationId: correlationId,
         authorId: authorId,
-        json: JSON.stringify(scenario),
+        novelAiScenario: JSON.stringify(scenario),
         // TODO: Figure out how to create TagsPromptsMap entries here instead of in another chunk of the transaction
         worldInfos: {
           create: worldBookEntries.map((entry) => {
@@ -177,7 +177,7 @@ async function importNovelAIContainerVersion1(scenario: NovelAIScenarioContainer
         nsfw: 1,
         correlationId: correlationId,
         authorId: authorId,
-        json: JSON.stringify(scenario),
+        novelAiScenario: JSON.stringify(scenario),
         // TODO: Figure out how to create TagsPromptsMap entries here instead of in another chunk of the transaction
         worldInfos: {
           create: worldBookEntries.map((entry) => {
