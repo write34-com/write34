@@ -376,6 +376,7 @@ builder.objectType(Search, {
                             ORDER BY p.dateCreated DESC
                         `;
 
+                        // We can't call the next step with an empty array
                         if (allTagPrompts.length === 0) {
                             return [];
                         }
