@@ -359,8 +359,8 @@ builder.objectType(Search, {
 
                         // TODO: Figure out how to search the prompts AND tags at the same time. It's likely doable, I'm just lazy.
                         // The tradeoff is that right now we just return ALL prompts. Not the most optimal, but it works.
-                        const allTagPrompts = await db.$queryRaw`
-                            SELECT p.*
+                        const allTagPrompts = await db.$queryRaw<{id: string}[]>`
+                            SELECT p.id 
                             FROM prompts AS p
                                      JOIN tagsPromptsMap AS tpm ON p.id = tpm.promptID
                                      JOIN tags AS t ON tpm.tagId = t.id
@@ -384,7 +384,7 @@ builder.objectType(Search, {
                                             FROM "promptSearch" p
                                             JOIN Prompts prompts ON p.id = prompts.id
                                             WHERE
-                                                p.id IN (${Prisma.join((allTagPrompts as any).map(p => p.id))})
+                                                p.id IN (${Prisma.join(allTagPrompts.map(p => p.id))})
                                                 AND "promptSearch" MATCH ${searchTerm}
                                                 AND p.nsfw IN (${Prisma.join(nsfwFilter)})
                                                 AND prompts.deleted = false
