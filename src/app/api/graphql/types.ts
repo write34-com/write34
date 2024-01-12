@@ -300,13 +300,11 @@ builder.objectType(Search, {
 
                     // The "default" search when somebody hasn't plugged in any queries. More interesting than a blank page.
                     if (!searchTerm && (!args.tags || args.tags.length === 0)) {
-                        return db.$queryRaw`SELECT p.id, p.title, p.promptContent, p.description, p.tags, p.nsfw, prompts.dateCreated, prompts.dateEdited, prompts.publishDate
-                                            FROM "promptSearch" p
-                                            JOIN Prompts prompts ON p.id = prompts.id
+                        return db.$queryRaw`SELECT p.id, p.title, p.promptContent, p.description, p.tags, p.nsfw, p.dateCreated, p.dateEdited, p.publishDate
+                                            FROM Prompts p
                                             WHERE p.nsfw IN (${Prisma.join(nsfwFilter)})
-                                                AND prompts.description IS NOT NULL AND prompts.description != ''
-                                                AND prompts.deleted = false
-                                            ORDER BY prompts.dateCreated DESC
+                                                AND p.deleted = false
+                                            ORDER BY p.dateCreated DESC
                                             LIMIT ${limit} OFFSET ${offset}`;
                     }
 
