@@ -296,10 +296,9 @@ builder.objectType(Search, {
                     // TODO: Figure out how to allow additional characters like dashes without crashing queryRaw
                     const searchTerm = args.query ? args.query.replace(/[\-@]/g, ' ').replace(/[^a-zA-Z0-9 _]/g, '').trim() : null;
 
-                    let prompts: any[] = [];
-
                     const nsfwFilter = args.nsfw === null ? [true, false] : [!!args.nsfw];
 
+                    // The "default" search when somebody hasn't plugged in any queries. More interesting than a blank page.
                     if (!searchTerm && (!args.tags || args.tags.length === 0)) {
                         return db.$queryRaw`SELECT p.id, p.title, p.promptContent, p.description, p.tags, p.nsfw, prompts.dateCreated, prompts.dateEdited, prompts.publishDate
                                             FROM "promptSearch" p
@@ -313,49 +312,94 @@ builder.objectType(Search, {
 
                     // Search by tags
                     if (args.tags && args.tags.length > 0) {
-                        const tags = args.tags.map(tag => tag.toLowerCase());
+                        const allTags = args.tags.map(tag => tag.toLowerCase());
+                        const negativeTags = allTags.filter(tag => tag.startsWith('-')).map(tag => tag.substring(1));
+                        const positiveTags = allTags.filter(tag => !tag.startsWith('-'));
 
-                        prompts = await db.$queryRaw`
+                        // TODO: Figure out if this can be merged with the next query
+                        if (negativeTags.length > 0 && positiveTags.length === 0) {
+                            return db.$queryRaw`
                                 SELECT p.*
                                 FROM prompts AS p
-                                JOIN tagsPromptsMap AS tpm ON p.id = tpm.promptID
-                                JOIN tags AS t ON tpm.tagId = t.id
-                                WHERE t.name IN (${Prisma.join(tags)})
-                                    AND p.nsfw IN (${Prisma.join(nsfwFilter)})
-                                    AND p.deleted = false
-                                GROUP BY p.id
-                                HAVING COUNT(DISTINCT t.id) = ${tags.length}
+                                WHERE p.id NOT IN (
+                                    SELECT tpm.promptID
+                                    FROM tagsPromptsMap AS tpm
+                                    JOIN tags AS t ON tpm.tagId = t.id
+                                    WHERE t.name IN (${Prisma.join(negativeTags)})
+                                )
+                                AND p.nsfw IN (${Prisma.join(nsfwFilter)})
+                                AND p.deleted = false
+                                ORDER BY p.dateCreated DESC
                                 LIMIT ${limit} OFFSET ${offset}
                             `;
-                    }
+                        }
 
-                    // We are done if there is no search query
-                    if (!searchTerm) {
-                        return prompts;
-                    }
+                        // If there is no search term, just return the prompts that match the tags
+                        if (!searchTerm) {
+                            return db.$queryRaw`
+                                SELECT p.*
+                                FROM prompts AS p
+                                         JOIN tagsPromptsMap AS tpm ON p.id = tpm.promptID
+                                         JOIN tags AS t ON tpm.tagId = t.id
+                                WHERE 1=1 ${negativeTags.length > 0 ? Prisma.sql`AND p.id NOT IN (
+                                    SELECT tpm2.promptID
+                                    FROM tagsPromptsMap AS tpm2
+                                             JOIN tags AS t2 ON tpm2.tagId = t2.id
+                                    WHERE t2.name IN (${Prisma.join(negativeTags)})
+                                )` : Prisma.empty}
+                                    ${positiveTags.length > 0 ? Prisma.sql`AND t.name IN (${Prisma.join(positiveTags)})` : Prisma.empty}
+                                  AND p.nsfw IN (${Prisma.join(nsfwFilter)})
+                                  AND p.deleted = false
+                                GROUP BY p.id
+                                HAVING COUNT(DISTINCT t.id) = ${positiveTags.length}
+                                ORDER BY p.dateCreated DESC
+                                LIMIT ${limit} OFFSET ${offset}
+                            `;
+                        }
 
-                    if (prompts.length > 0) {
+                        // TODO: Figure out how to search the prompts AND tags at the same time. It's likely doable, I'm just lazy.
+                        // The tradeoff is that right now we just return ALL prompts. Not the most optimal, but it works.
+                        const allTagPrompts = await db.$queryRaw`
+                            SELECT p.*
+                            FROM prompts AS p
+                                     JOIN tagsPromptsMap AS tpm ON p.id = tpm.promptID
+                                     JOIN tags AS t ON tpm.tagId = t.id
+                            WHERE 1=1 ${negativeTags.length > 0 ? Prisma.sql`AND p.id NOT IN (
+                                    SELECT tpm2.promptID
+                                    FROM tagsPromptsMap AS tpm2
+                                             JOIN tags AS t2 ON tpm2.tagId = t2.id
+                                    WHERE t2.name IN (${Prisma.join(negativeTags)})
+                                )` : Prisma.empty}
+                                ${positiveTags.length > 0 ? Prisma.sql`AND t.name IN (${Prisma.join(positiveTags)})` : Prisma.empty}
+                              AND p.nsfw IN (${Prisma.join(nsfwFilter)})
+                              AND p.deleted = false
+                            GROUP BY p.id
+                            HAVING COUNT(DISTINCT t.id) = ${positiveTags.length}
+                            ORDER BY p.dateCreated DESC
+                        `;
+
+                        // TODO: Get rid of the any because it's not necessary
                         // Search by text for all prompts that match the tags
                         return db.$queryRaw`SELECT p.id, p.title, p.promptContent, p.description, p.tags, p.nsfw, prompts.dateCreated, prompts.dateEdited, prompts.publishDate
                                             FROM "promptSearch" p
                                             JOIN Prompts prompts ON p.id = prompts.id
                                             WHERE
-                                                p.id IN (${Prisma.join(prompts.map(p => p.id))})
+                                                p.id IN (${Prisma.join((allTagPrompts as any).map(p => p.id))})
                                                 AND "promptSearch" MATCH ${searchTerm}
                                                 AND p.nsfw IN (${Prisma.join(nsfwFilter)})
                                                 AND prompts.deleted = false
+                                            ORDER BY prompts.dateCreated DESC
                                             LIMIT ${limit} OFFSET ${offset}`;
                     }
 
-                    const promptsByText = db.$queryRaw`SELECT p.id, p.title, p.promptContent, p.description, p.tags, p.nsfw, prompts.dateCreated, prompts.dateEdited, prompts.publishDate
+                    return db.$queryRaw`SELECT p.id, p.title, p.promptContent, p.description, p.tags, p.nsfw, prompts.dateCreated, prompts.dateEdited, prompts.publishDate
                                         FROM "promptSearch" p
                                         JOIN Prompts prompts ON p.id = prompts.id
                                         WHERE "promptSearch" MATCH ${searchTerm}
                                         AND p.nsfw IN (${Prisma.join(nsfwFilter)})
                                         AND prompts.deleted = false
+                                        ORDER BY prompts.dateCreated DESC
                                         LIMIT ${limit} OFFSET ${offset}` as any;
-
-                    return promptsByText;
                 });
                 return resolveOffset as any;
             },
