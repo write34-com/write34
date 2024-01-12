@@ -376,6 +376,10 @@ builder.objectType(Search, {
                             ORDER BY p.dateCreated DESC
                         `;
 
+                        if (allTagPrompts.length === 0) {
+                            return [];
+                        }
+
                         // TODO: Get rid of the any because it's not necessary
                         // Search by text for all prompts that match the tags
                         return db.$queryRaw`SELECT p.id, p.title, p.promptContent, p.description, p.tags, p.nsfw, prompts.dateCreated, prompts.dateEdited, prompts.publishDate
