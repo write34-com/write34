@@ -7,19 +7,19 @@ import scenarioComponentViewQueryGraphql, {
 } from "@/__generated__/scenarioComponentViewQuery.graphql";
 import {Metadata, ResolvingMetadata} from "next";
 
-// export const generateStaticParams = (async () => {
-//
-//     const dbScenarios = await db.prompts.findMany({
-//         take: 100000,
-//         where: {
-//             deleted: false
-//         }
-//     });
-//
-//     return dbScenarios.map(scenario => ({
-//         scenario: scenario.id
-//     }));
-// });
+export const generateStaticParams = (async () => {
+
+    const dbScenarios = await db.prompts.findMany({
+        take: 100000,
+        where: {
+            deleted: false
+        }
+    });
+
+    return dbScenarios.map(scenario => ({
+        scenario: scenario.id
+    }));
+});
 
 export async function generateMetadata(
   {params}: {params: {scenario: string}},
