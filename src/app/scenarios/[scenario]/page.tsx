@@ -11,6 +11,9 @@ export const generateStaticParams = (async () => {
 
     const dbScenarios = await db.prompts.findMany({
         take: 100000,
+        where: {
+            deleted: false
+        }
     });
 
     return dbScenarios.map(scenario => ({
