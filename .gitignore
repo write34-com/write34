@@ -39,6 +39,7 @@ test-scenarios/
 manual_import/
 
 backup.db
+*.sqlite
 seanario.sqlite
 seanario-backup.sqlite
 seanario2.sqlite
