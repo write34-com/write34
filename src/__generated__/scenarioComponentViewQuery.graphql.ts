@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<55bb296d0709dcb098b779df0b9b2e54>>
+ * @generated SignedSource<<d396c4ac3d633cfb3c010a2a5a451c63>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -14,6 +14,7 @@ export type scenarioComponentViewQuery$variables = {
 };
 export type scenarioComponentViewQuery$data = {
   readonly prompt: {
+    readonly aetherId: number | null | undefined;
     readonly authorsNote: string | null | undefined;
     readonly dateCreated: string;
     readonly dateEdited: string | null | undefined;
@@ -68,6 +69,13 @@ v2 = [
     "plural": false,
     "selections": [
       (v1/*: any*/),
+      {
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "aetherId",
+        "storageKey": null
+      },
       {
         "alias": null,
         "args": null,
@@ -186,16 +194,16 @@ return {
     "selections": (v2/*: any*/)
   },
   "params": {
-    "cacheID": "faefff80e75262b8ada8b292bc561013",
+    "cacheID": "3c0a450ee29b49b9f7793a7890d074af",
     "id": null,
     "metadata": {},
     "name": "scenarioComponentViewQuery",
     "operationKind": "query",
-    "text": "query scenarioComponentViewQuery(\n  $scenario: ID!\n) {\n  prompt(id: $scenario) {\n    id\n    title\n    description\n    dateCreated\n    dateEdited\n    publishDate\n    promptContent\n    nsfw\n    tags\n    authorsNote\n    memory\n    worldInfos {\n      id\n      entry\n      keys\n    }\n  }\n}\n"
+    "text": "query scenarioComponentViewQuery(\n  $scenario: ID!\n) {\n  prompt(id: $scenario) {\n    id\n    aetherId\n    title\n    description\n    dateCreated\n    dateEdited\n    publishDate\n    promptContent\n    nsfw\n    tags\n    authorsNote\n    memory\n    worldInfos {\n      id\n      entry\n      keys\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "8fd4fce6c75ab25185d36f946f2d2115";
+(node as any).hash = "072b9b4eb080bc04676f34e526b15103";
 
 export default node;

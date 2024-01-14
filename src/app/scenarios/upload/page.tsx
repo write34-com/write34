@@ -98,7 +98,7 @@ function UploadNewScenario() {
   };
 
   return (
-    <div className="p-4 max-w-md mx-auto">
+    <div className="p-4 mb-80 max-w-md mx-auto">
       {message.content && (
         <div className={`alert ${message.type === 'error' ? 'alert-error' : 'alert-success'}`}>
           <div>
