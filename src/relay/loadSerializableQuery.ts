@@ -31,7 +31,7 @@ export default async function loadSerializableQuery<
         // Wait for a random amount of time between 0 and 5 seconds
         // If we don't do this, we get build errors because builds happen in parallel too quickly.
         // TODO: When we swap from SQLite to Postgres, we can likely remove this because we can use connection pooling.
-        await new Promise(resolve => setTimeout(resolve, 3000 + Math.random() * 5000));
+        await new Promise(resolve => setTimeout(resolve, 3000 + Math.random() * 10000));
     }
 
     const response = await networkFetch(params, variables);
