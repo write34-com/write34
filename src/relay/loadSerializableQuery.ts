@@ -26,6 +26,14 @@ export default async function loadSerializableQuery<
     params: RequestParameters,
     variables: VariablesOf<TQuery>
 ): Promise<SerializablePreloadedQuery<TRequest, TQuery>> {
+
+    if (process.env.IS_BUILDING_SITE) {
+        // Wait for a random amount of time between 0 and 5 seconds
+        // If we don't do this, we get build errors because builds happen in parallel too quickly.
+        // TODO: When we swap from SQLite to Postgres, we can likely remove this because we can use connection pooling.
+        await new Promise(resolve => setTimeout(resolve, 3000 + Math.random() * 5000));
+    }
+
     const response = await networkFetch(params, variables);
     return {
         params,
