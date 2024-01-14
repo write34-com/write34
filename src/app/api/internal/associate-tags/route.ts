@@ -1,10 +1,12 @@
 import {NextRequest, NextResponse} from "next/server";
 import {db} from "@/app/api/graphql/db";
 import {randomUUID} from "crypto";
+import {createDbTags} from "@/app/api/lib/prompt-utils";
 
 type ResponseData = {
     message: string
 };
+
 
 // TODO: Add a secret password or something to prevent abuse
 // TODO: Figure out why we have to @ts-ignore the 'for of' loops.

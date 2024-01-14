@@ -6,4 +6,10 @@ export function middleware(request: NextRequest) {
   return withAuth(request as any);
 }
 
-export const config = { matcher: ["/scenarios/upload", "/profile"] };
+export const config = {
+  matcher: [
+    // Disabled because we don't require login to upload scenarios (for now)
+    // "/scenarios/upload",
+    "/profile"
+  ]
+};

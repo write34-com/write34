@@ -44,6 +44,8 @@ seanario.sqlite
 seanario-backup.sqlite
 seanario2.sqlite
 seanario.sqlite-journal
+seanario-scrubbed.sqlite
+seanario-scrubbed.sqlite.xz
 sqlite-bug/
 
 .env

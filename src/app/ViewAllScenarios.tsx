@@ -55,7 +55,7 @@ export function Results(queryRef: ViewAllScenarios_search$key) {
                      className="flex max-w-xl flex-col items-start justify-between p-3 pb-0 rounded-xl border-gray-200 border-b bg-gray-200 dark:bg-gray-800">
               <div className="flex items-center gap-x-4 text-xs">
                 <time dateTime={edge?.node?.dateCreated || undefined} className="text-gray-400">
-                  {edge?.node?.dateCreated}
+                  {edge?.node?.dateCreated.slice(0, 10)}
                 </time>
                 <div
                   className="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100 dark:bg-gray-700 dark:text-gray-50"

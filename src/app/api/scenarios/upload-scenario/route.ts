@@ -4,6 +4,7 @@ import {decodeDocument, NovelAIDocument} from "@/lib/novelai-scenario-decoder/de
 import {randomUUID} from "crypto";
 import {auth} from "@/lib/auth";
 import {NextApiResponse} from "next";
+import {createDbTags} from "@/app/api/lib/prompt-utils";
 
 type ResponseData = {
   message: string
@@ -19,49 +20,11 @@ function getPromptFromDocument(document: NovelAIDocument): string {
     .join('\n');
 }
 
-function convertDateNumberToISOString(dateNum: number): string {
-  return convertDateToISOString(new Date(dateNum));
-}
-
 function convertDateToISOString(date: Date): string {
   return date.toISOString().replace('T', ' ').replace('Z', '');
 }
 
-async function createTags(tags: string[]): Promise<{name: string, id: string}[]> {
-
-  const tagsFromId: {name: string, id: string}[] = [];
-
-  for (const tag of tags) {
-    const existingTag = await db.tags.findFirst({
-      where: {
-        name: tag.toLowerCase()
-      }
-    });
-
-    if (existingTag) {
-      tagsFromId.push({
-        name: tag.toLowerCase(),
-        id: existingTag.id
-      });
-    } else {
-      const newTag = await db.tags.create({
-        data: {
-          name: tag.toLowerCase(),
-          id: randomUUID()
-        }
-      });
-
-      tagsFromId.push({
-        name: tag.toLowerCase(),
-        id: newTag.id
-      });
-    }
-  }
-
-  return tagsFromId;
-}
-
-async function importNovelAIScenarioVersion3(scenario: NovelAIScenarioVersion3, authorId: string): Promise<{id: string}> {
+async function importNovelAIScenarioVersion3(scenario: NovelAIScenarioVersion3, authorId: string | undefined): Promise<{id: string}> {
 
   const {context, tags, title, description, lorebook} = scenario;
 
@@ -81,7 +44,7 @@ async function importNovelAIScenarioVersion3(scenario: NovelAIScenarioVersion3, 
   const correlationId = randomUUID();
   const promptId = randomUUID();
 
-  const tagsFromId = await createTags(tags);
+  const tagsFromId = await createDbTags(tags);
 
   // Start a new Prisma transaction
   await db.$transaction([
@@ -133,7 +96,7 @@ async function importNovelAIScenarioVersion3(scenario: NovelAIScenarioVersion3, 
   };
 }
 
-async function importNovelAIContainerVersion1(scenario: NovelAIScenarioContainerVersion1, authorId: string): Promise<{id: string}> {
+async function importNovelAIContainerVersion1(scenario: NovelAIScenarioContainerVersion1, authorId: string | undefined): Promise<{id: string}> {
 
   const {title, description, tags, createdAt, lastUpdatedAt} = scenario.metadata;
 
@@ -155,7 +118,7 @@ async function importNovelAIContainerVersion1(scenario: NovelAIScenarioContainer
   const correlationId = randomUUID();
   const promptId = randomUUID();
 
-  const tagsFromId = await createTags(tags);
+  const tagsFromId = await createDbTags(tags);
 
   // Start a new Prisma transaction
   await db.$transaction([
@@ -224,19 +187,21 @@ export async function POST(
       setHeader: (name: string, value: string) => res.headers?.set(name, value),
     } as unknown as NextApiResponse);
 
-  if (!session || !session.user || !session.user.email) {
-    return NextResponse.json({ message: "Must be logged in to upload scenario"}, {
-      status: 401,
-    });
-  }
+  // Re-enable this if we decide that we want to require login to upload scenarios
+  // if (!session || !session.user || !session.user.email) {
+  //   return NextResponse.json({ message: "Must be logged in to upload scenario"}, {
+  //     status: 401,
+  //   });
+  // }
 
-  const authorId = session.user.id;
+  const authorId = session?.user.id;
 
-  if (!authorId) {
-    return NextResponse.json({ message: "Unknown user" }, {
-      status: 500
-    });
-  }
+  // Re-enable this if we decide that we want to require login to upload scenarios
+  // if (!authorId) {
+  //   return NextResponse.json({ message: "Unknown user" }, {
+  //     status: 500
+  //   });
+  // }
 
   if (!req.body) {
     return NextResponse.json({ message: "Missing body" }, {

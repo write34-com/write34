@@ -106,14 +106,14 @@ export default function ScenarioComponent(props: { queryRef: PreloadedQuery<scen
                   <Fragment>
                     <br/>
                     <span className="text-xs">
-                        Prompt originally from <a href="https://aetherroom.club"
+                        Prompt originally from <a href={`https://aetherroom.club/?Query=${encodeURIComponent(prompt.title)}&NsfwSetting=0&Tags=&MatchExact=true&TagJoin=0&MatchExact=false&Reverse=false`}
                                                   target="_blank"
                                                   className="underline">AetherRoom.club</a>
                     </span>
                     <br/>
                   </Fragment>
                 )}
-              Created: {prompt.dateCreated}
+              Created: {prompt.dateCreated.slice(0, 10)}
             </span>
           </div>
           <div className="border-t border-gray-100 dark:border-gray-700 pt-10">

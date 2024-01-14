@@ -25,9 +25,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
     <head>
-      <script async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+      <script async defer src="https://data.write34.com/latest.js"></script>
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt=""
+      <noscript><img src="https://data.write34.com/noscript.gif" alt=""
                      referrerPolicy="no-referrer-when-downgrade"/></noscript>
     </head>
     <body

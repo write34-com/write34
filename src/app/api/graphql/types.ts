@@ -222,7 +222,7 @@ builder.prismaNode('User', {
     })
 });
 
-builder.prismaNode('Tags', {
+const Tags = builder.prismaNode('Tags', {
     id: {field: 'id'},
     fields: (t) => ({
         name: t.exposeString('name', {
@@ -407,7 +407,34 @@ builder.objectType(Search, {
                 return resolveOffset as any;
             },
         }),
-    }),
+        // tags: t.connection({
+        //     type: Tags,
+        //     args: {
+        //         query: t.arg.string({required: false}),
+        //     },
+        //     resolve: async (parent, args, ctx, info) => {
+        //         const resolveOffset = await resolveOffsetConnection({args}, async ({limit, offset}) => {
+        //             const searchTerm = args.query ? args.query.replace(/[\-@]/g, ' ').replace(/[^a-zA-Z0-9 _]/g, '').trim() : null;
+        //
+        //             // The "default" search when somebody hasn't plugged in any queries. More interesting than a blank page.
+        //             if (!searchTerm) {
+        //                 return db.$queryRaw`SELECT *
+        //                                     FROM Tags
+        //                                     ORDER BY name ASC
+        //                                     LIMIT ${limit} OFFSET ${offset}`;
+        //             }
+        //
+        //             return db.$queryRaw`SELECT *
+        //                                 FROM "tagSearch"
+        //                                 WHERE "tagSearch" MATCH ${searchTerm}
+        //                                 ORDER BY name ASC
+        //                                 LIMIT ${limit} OFFSET ${offset}` as any;
+        //         });
+        //         return resolveOffset as any;
+        //     },
+        // }),
+
+    })
 });
 
 class Viewer {
@@ -496,7 +523,6 @@ builder.queryType({
 });
 
 /** Mutations **/
-
 builder.mutationType({
     fields: (t) => ({
         // Define other mutations here
@@ -527,7 +553,6 @@ builder.mutationType({
         }),
     }),
 });
-
 
 // Build and export the schema
 export const schema = builder.toSchema();
