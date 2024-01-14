@@ -33,6 +33,7 @@ export async function retryRequest<T>(
             }
         }
     }
+    throw new Error('Unreachable');
 }
 
 export async function networkFetch(
