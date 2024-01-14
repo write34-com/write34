@@ -2,9 +2,11 @@ import type {GetServerSidePropsContext, NextApiRequest, NextApiResponse} from "n
 import type {NextAuthOptions, Session} from "next-auth";
 import {getServerSession} from "next-auth";
 import GithubProvider from "next-auth/providers/github";
+import GoogleProvider from "next-auth/providers/google";
 import {db} from "@/app/api/graphql/db";
 import {PrismaAdapter} from "@next-auth/prisma-adapter";
 
+// TODO: Dedupe this code. It's gnarly but fine for now.
 const clientId = process.env.GITHUB_ID;
 
 if (!clientId && process.env.NODE_ENV !== "development") {
@@ -18,6 +20,22 @@ const clientSecret = process.env.GITHUB_SECRET;
 if (!clientSecret && process.env.NODE_ENV !== "development") {
     throw new Error(
         `Please define the GITHUB_SECRET environment variable inside .env.local`
+    );
+}
+
+const googleclientid = process.env.GOOGLE_CLIENT_ID;
+
+if (!googleclientid && process.env.NODE_ENV !== "development") {
+    throw new Error(
+      `Please define the GOOGLE_CLIENT_ID environment variable inside .env.local`
+    );
+}
+
+const googleclientsecret = process.env.GOOGLE_CLIENT_SECRET;
+
+if (!googleclientsecret && process.env.NODE_ENV !== "development") {
+    throw new Error(
+      `Please define the GOOGLE_CLIENT_SECRET environment variable inside .env.local`
     );
 }
 
@@ -38,6 +56,10 @@ export const config = {
             clientId: process.env.GITHUB_ID || '',
             clientSecret: process.env.GITHUB_SECRET || '',
         }),
+        GoogleProvider({
+            clientId: process.env.GOOGLE_CLIENT_ID || '',
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET || ''
+        })
     ],
     session: {
         strategy: "jwt",
