@@ -6,27 +6,45 @@ It is a website for sharing NovelAI prompts. The prompts are pulled from [Aether
 
 ## Contributing
 
-This is a next.js app built with the default Next template. It uses TypeScript, Prisma, SQLite, Pothos, and Tailwind CSS with Daisy UI.
+This is a NextJS app built with the default Next template. It uses TypeScript, React, Prisma, SQLite, Pothos, and Tailwind CSS with Daisy UI.
 
 ### Getting Started
 
-First, run the development server:
+Clone the repo:
+```bash
+git clone https://github.com/write34-com/write34.git
+cd write34
+```
+
+Setup the database:
+- Download it from here: https://file.io/26toKZmBKOEp
+- Extract it:
+  ```bash
+  xz -d seanario-scrubbed.sqlite
+  ```
+- Move it to root of repo
+  ```bash
+  mv seanario-scrubbed.sqlite seanario.sqlite
+  ```
+
+Install dependencies and generate everything.
+```bash
+# Install dependencies
+npm install
+
+# Generate GraphQL stuff
+npm run generate
+```
+
+Then run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+You can start editing the pages by modifying files like `app/page.tsx`. The pages auto-updates as you edit the file. (Thanks NextJS!)
 
 ## Learn More
 
