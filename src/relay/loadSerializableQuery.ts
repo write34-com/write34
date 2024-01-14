@@ -5,7 +5,7 @@ import {
     VariablesOf,
 } from "relay-runtime";
 import { ConcreteRequest } from "relay-runtime/lib/util/RelayConcreteNode";
-import {fetchQuery, networkFetch} from "./clientEnvironment";
+import {fetchQuery, networkFetch, retryRequest} from "./clientEnvironment";
 
 export interface SerializablePreloadedQuery<
     TRequest extends ConcreteRequest,
@@ -27,14 +27,7 @@ export default async function loadSerializableQuery<
     variables: VariablesOf<TQuery>
 ): Promise<SerializablePreloadedQuery<TRequest, TQuery>> {
 
-    if (process.env.IS_BUILDING_SITE) {
-        // Wait for a random amount of time between 0 and 5 seconds
-        // If we don't do this, we get build errors because builds happen in parallel too quickly.
-        // TODO: When we swap from SQLite to Postgres, we can likely remove this because we can use connection pooling.
-        await new Promise(resolve => setTimeout(resolve, 3000 + Math.random() * 10000));
-    }
-
-    const response = await networkFetch(params, variables);
+    const response = await retryRequest(() => networkFetch(params, variables));
     return {
         params,
         variables,

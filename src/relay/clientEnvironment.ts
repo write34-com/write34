@@ -13,6 +13,24 @@ import {
 const IS_SERVER = typeof window === typeof undefined;
 const CACHE_TTL = 5 * 1000; // 5 seconds, to resolve preloaded results
 
+// Retry function to fetch data from network
+export async function retryRequest<T>(
+  fn: () => Promise<T>,
+): Promise<T> {
+    for (let i = 0; i < 4; i++) {
+        try {
+            // delay
+            await new Promise((resolve) => setTimeout(resolve, i * 1000 + (Math.random() * i * i * 1000)));
+            return await fn();
+        } catch (e) {
+            if (process.env.NODE_ENV === 'development') {
+                console.error('Failed to fetch data from network, retrying...', e);
+            }
+        }
+    }
+    throw new Error("Failed to fetch data from network");
+}
+
 export async function networkFetch(
     request: RequestParameters,
     variables: Variables

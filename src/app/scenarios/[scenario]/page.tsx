@@ -25,8 +25,6 @@ export async function generateMetadata(
   {params}: {params: {scenario: string}},
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-    // Needed to keep concurrency down for successful builds.
-    await new Promise(resolve => setTimeout(resolve, 3000 + Math.random() * 10000));
 
     const dbScenario = await db.prompts.findUniqueOrThrow({
         where: {
