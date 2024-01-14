@@ -13,7 +13,7 @@ import {
 const IS_SERVER = typeof window === typeof undefined;
 const CACHE_TTL = 5 * 1000; // 5 seconds, to resolve preloaded results
 
-const MAX_RETRY = 4;
+const MAX_RETRY = process.env.IS_BUILDING_SITE ? 4: 2;
 
 // Retry function to fetch data from network
 export async function retryRequest<T>(
