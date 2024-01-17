@@ -17,15 +17,7 @@ cd write34
 ```
 
 Setup the database:
-- Download it from here: https://file.io/26toKZmBKOEp
-- Extract it:
-  ```bash
-  xz -d seanario-scrubbed.sqlite
-  ```
-- Move it to root of repo
-  ```bash
-  mv seanario-scrubbed.sqlite seanario.sqlite
-  ```
+- Run `db-setup.sql`
 
 Install dependencies and generate everything.
 ```bash
