@@ -1,3 +1,12 @@
+type Comments implements Node {
+  comment: String!
+  createdAt: String!
+  id: ID!
+  promptId: ID!
+  user: User!
+  userId: ID!
+}
+
 """
 A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
 """
@@ -10,6 +19,7 @@ scalar JSON
 
 type Mutation {
   updateUser(newName: String, newPublicName: String): User!
+  votePrompt(promptId: String!, setVoteState: Boolean): Boolean!
 }
 
 interface Node {
@@ -26,12 +36,15 @@ type PageInfo {
 type Prompts implements Node {
   aetherId: Int
   authorsNote: String
+  comments: [Comments!]!
   correlationId: String!
   dateCreated: String!
   dateEdited: String
   description: String
+  downvotes: Int!
   holoAiScenario: String
   id: ID!
+  isVotedByUser: String!
   memory: String
   novelAiScenario: String
   nsfw: Boolean!
@@ -41,6 +54,7 @@ type Prompts implements Node {
   quests: String
   tags: String!
   title: String!
+  upvotes: Int!
   worldInfos: [WorldInfos!]!
 }
 
@@ -49,13 +63,16 @@ type PromptsSearch implements Node {
   dateCreated: String!
   dateEdited: String
   description: String
+  downvotes: Int!
   id: ID!
+  isVotedByUser: String!
   memory: String
   nsfw: Boolean!
   promptContent: String!
   publishDate: String
   tags: String!
   title: String!
+  upvotes: Int!
 }
 
 type Query {
@@ -121,7 +138,7 @@ type User implements Node {
   email: String!
   id: ID!
   image: String
-  name: String
+  name: String!
   publicName: String
 }
 

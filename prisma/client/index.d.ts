@@ -44,6 +44,11 @@ export type PromptSearch = $Result.DefaultSelection<Prisma.$PromptSearchPayload>
  */
 export type WorldInfoSearch = $Result.DefaultSelection<Prisma.$WorldInfoSearchPayload>
 /**
+ * Model TagSearch
+ * 
+ */
+export type TagSearch = $Result.DefaultSelection<Prisma.$TagSearchPayload>
+/**
  * Model Account
  * 
  */
@@ -73,6 +78,26 @@ export type Tags = $Result.DefaultSelection<Prisma.$TagsPayload>
  * 
  */
 export type TagsPromptsMap = $Result.DefaultSelection<Prisma.$TagsPromptsMapPayload>
+/**
+ * Model PromptVotes
+ * 
+ */
+export type PromptVotes = $Result.DefaultSelection<Prisma.$PromptVotesPayload>
+/**
+ * Model Comments
+ * 
+ */
+export type Comments = $Result.DefaultSelection<Prisma.$CommentsPayload>
+/**
+ * Model CommentVotes
+ * 
+ */
+export type CommentVotes = $Result.DefaultSelection<Prisma.$CommentVotesPayload>
+/**
+ * Model CommentReplies
+ * 
+ */
+export type CommentReplies = $Result.DefaultSelection<Prisma.$CommentRepliesPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -257,6 +282,16 @@ export class PrismaClient<
   get worldInfoSearch(): Prisma.WorldInfoSearchDelegate<ExtArgs>;
 
   /**
+   * `prisma.tagSearch`: Exposes CRUD operations for the **TagSearch** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more TagSearches
+    * const tagSearches = await prisma.tagSearch.findMany()
+    * ```
+    */
+  get tagSearch(): Prisma.TagSearchDelegate<ExtArgs>;
+
+  /**
    * `prisma.account`: Exposes CRUD operations for the **Account** model.
     * Example usage:
     * ```ts
@@ -315,6 +350,46 @@ export class PrismaClient<
     * ```
     */
   get tagsPromptsMap(): Prisma.TagsPromptsMapDelegate<ExtArgs>;
+
+  /**
+   * `prisma.promptVotes`: Exposes CRUD operations for the **PromptVotes** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more PromptVotes
+    * const promptVotes = await prisma.promptVotes.findMany()
+    * ```
+    */
+  get promptVotes(): Prisma.PromptVotesDelegate<ExtArgs>;
+
+  /**
+   * `prisma.comments`: Exposes CRUD operations for the **Comments** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Comments
+    * const comments = await prisma.comments.findMany()
+    * ```
+    */
+  get comments(): Prisma.CommentsDelegate<ExtArgs>;
+
+  /**
+   * `prisma.commentVotes`: Exposes CRUD operations for the **CommentVotes** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more CommentVotes
+    * const commentVotes = await prisma.commentVotes.findMany()
+    * ```
+    */
+  get commentVotes(): Prisma.CommentVotesDelegate<ExtArgs>;
+
+  /**
+   * `prisma.commentReplies`: Exposes CRUD operations for the **CommentReplies** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more CommentReplies
+    * const commentReplies = await prisma.commentReplies.findMany()
+    * ```
+    */
+  get commentReplies(): Prisma.CommentRepliesDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -791,12 +866,17 @@ export namespace Prisma {
     AetherWorldInfos: 'AetherWorldInfos',
     PromptSearch: 'PromptSearch',
     WorldInfoSearch: 'WorldInfoSearch',
+    TagSearch: 'TagSearch',
     Account: 'Account',
     Session: 'Session',
     User: 'User',
     VerificationToken: 'VerificationToken',
     Tags: 'Tags',
-    TagsPromptsMap: 'TagsPromptsMap'
+    TagsPromptsMap: 'TagsPromptsMap',
+    PromptVotes: 'PromptVotes',
+    Comments: 'Comments',
+    CommentVotes: 'CommentVotes',
+    CommentReplies: 'CommentReplies'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -813,7 +893,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     meta: {
-      modelProps: 'prompts' | 'worldInfos' | 'aetherPrompts' | 'aetherWorldInfos' | 'promptSearch' | 'worldInfoSearch' | 'account' | 'session' | 'user' | 'verificationToken' | 'tags' | 'tagsPromptsMap'
+      modelProps: 'prompts' | 'worldInfos' | 'aetherPrompts' | 'aetherWorldInfos' | 'promptSearch' | 'worldInfoSearch' | 'tagSearch' | 'account' | 'session' | 'user' | 'verificationToken' | 'tags' | 'tagsPromptsMap' | 'promptVotes' | 'comments' | 'commentVotes' | 'commentReplies'
       txIsolationLevel: Prisma.TransactionIsolationLevel
     },
     model: {
@@ -1189,6 +1269,68 @@ export namespace Prisma {
           }
         }
       }
+      TagSearch: {
+        payload: Prisma.$TagSearchPayload<ExtArgs>
+        fields: Prisma.TagSearchFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TagSearchFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$TagSearchPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TagSearchFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$TagSearchPayload>
+          }
+          findFirst: {
+            args: Prisma.TagSearchFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$TagSearchPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TagSearchFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$TagSearchPayload>
+          }
+          findMany: {
+            args: Prisma.TagSearchFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$TagSearchPayload>[]
+          }
+          create: {
+            args: Prisma.TagSearchCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$TagSearchPayload>
+          }
+          delete: {
+            args: Prisma.TagSearchDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$TagSearchPayload>
+          }
+          update: {
+            args: Prisma.TagSearchUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$TagSearchPayload>
+          }
+          deleteMany: {
+            args: Prisma.TagSearchDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TagSearchUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.TagSearchUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$TagSearchPayload>
+          }
+          aggregate: {
+            args: Prisma.TagSearchAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateTagSearch>
+          }
+          groupBy: {
+            args: Prisma.TagSearchGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<TagSearchGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.TagSearchCountArgs<ExtArgs>,
+            result: $Utils.Optional<TagSearchCountAggregateOutputType> | number
+          }
+        }
+      }
       Account: {
         payload: Prisma.$AccountPayload<ExtArgs>
         fields: Prisma.AccountFieldRefs
@@ -1561,6 +1703,254 @@ export namespace Prisma {
           }
         }
       }
+      PromptVotes: {
+        payload: Prisma.$PromptVotesPayload<ExtArgs>
+        fields: Prisma.PromptVotesFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PromptVotesFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PromptVotesPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PromptVotesFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PromptVotesPayload>
+          }
+          findFirst: {
+            args: Prisma.PromptVotesFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PromptVotesPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PromptVotesFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PromptVotesPayload>
+          }
+          findMany: {
+            args: Prisma.PromptVotesFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PromptVotesPayload>[]
+          }
+          create: {
+            args: Prisma.PromptVotesCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PromptVotesPayload>
+          }
+          delete: {
+            args: Prisma.PromptVotesDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PromptVotesPayload>
+          }
+          update: {
+            args: Prisma.PromptVotesUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PromptVotesPayload>
+          }
+          deleteMany: {
+            args: Prisma.PromptVotesDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PromptVotesUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.PromptVotesUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PromptVotesPayload>
+          }
+          aggregate: {
+            args: Prisma.PromptVotesAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregatePromptVotes>
+          }
+          groupBy: {
+            args: Prisma.PromptVotesGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<PromptVotesGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PromptVotesCountArgs<ExtArgs>,
+            result: $Utils.Optional<PromptVotesCountAggregateOutputType> | number
+          }
+        }
+      }
+      Comments: {
+        payload: Prisma.$CommentsPayload<ExtArgs>
+        fields: Prisma.CommentsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CommentsFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CommentsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CommentsFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CommentsPayload>
+          }
+          findFirst: {
+            args: Prisma.CommentsFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CommentsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CommentsFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CommentsPayload>
+          }
+          findMany: {
+            args: Prisma.CommentsFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CommentsPayload>[]
+          }
+          create: {
+            args: Prisma.CommentsCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CommentsPayload>
+          }
+          delete: {
+            args: Prisma.CommentsDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CommentsPayload>
+          }
+          update: {
+            args: Prisma.CommentsUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CommentsPayload>
+          }
+          deleteMany: {
+            args: Prisma.CommentsDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CommentsUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.CommentsUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CommentsPayload>
+          }
+          aggregate: {
+            args: Prisma.CommentsAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateComments>
+          }
+          groupBy: {
+            args: Prisma.CommentsGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<CommentsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CommentsCountArgs<ExtArgs>,
+            result: $Utils.Optional<CommentsCountAggregateOutputType> | number
+          }
+        }
+      }
+      CommentVotes: {
+        payload: Prisma.$CommentVotesPayload<ExtArgs>
+        fields: Prisma.CommentVotesFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CommentVotesFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CommentVotesPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CommentVotesFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CommentVotesPayload>
+          }
+          findFirst: {
+            args: Prisma.CommentVotesFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CommentVotesPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CommentVotesFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CommentVotesPayload>
+          }
+          findMany: {
+            args: Prisma.CommentVotesFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CommentVotesPayload>[]
+          }
+          create: {
+            args: Prisma.CommentVotesCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CommentVotesPayload>
+          }
+          delete: {
+            args: Prisma.CommentVotesDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CommentVotesPayload>
+          }
+          update: {
+            args: Prisma.CommentVotesUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CommentVotesPayload>
+          }
+          deleteMany: {
+            args: Prisma.CommentVotesDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CommentVotesUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.CommentVotesUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CommentVotesPayload>
+          }
+          aggregate: {
+            args: Prisma.CommentVotesAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateCommentVotes>
+          }
+          groupBy: {
+            args: Prisma.CommentVotesGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<CommentVotesGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CommentVotesCountArgs<ExtArgs>,
+            result: $Utils.Optional<CommentVotesCountAggregateOutputType> | number
+          }
+        }
+      }
+      CommentReplies: {
+        payload: Prisma.$CommentRepliesPayload<ExtArgs>
+        fields: Prisma.CommentRepliesFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CommentRepliesFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CommentRepliesPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CommentRepliesFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CommentRepliesPayload>
+          }
+          findFirst: {
+            args: Prisma.CommentRepliesFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CommentRepliesPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CommentRepliesFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CommentRepliesPayload>
+          }
+          findMany: {
+            args: Prisma.CommentRepliesFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CommentRepliesPayload>[]
+          }
+          create: {
+            args: Prisma.CommentRepliesCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CommentRepliesPayload>
+          }
+          delete: {
+            args: Prisma.CommentRepliesDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CommentRepliesPayload>
+          }
+          update: {
+            args: Prisma.CommentRepliesUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CommentRepliesPayload>
+          }
+          deleteMany: {
+            args: Prisma.CommentRepliesDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CommentRepliesUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.CommentRepliesUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CommentRepliesPayload>
+          }
+          aggregate: {
+            args: Prisma.CommentRepliesAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateCommentReplies>
+          }
+          groupBy: {
+            args: Prisma.CommentRepliesGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<CommentRepliesGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CommentRepliesCountArgs<ExtArgs>,
+            result: $Utils.Optional<CommentRepliesCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1712,11 +2102,15 @@ export namespace Prisma {
   export type PromptsCountOutputType = {
     tagsFull: number
     worldInfos: number
+    PromptVotes: number
+    Comments: number
   }
 
   export type PromptsCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     tagsFull?: boolean | PromptsCountOutputTypeCountTagsFullArgs
     worldInfos?: boolean | PromptsCountOutputTypeCountWorldInfosArgs
+    PromptVotes?: boolean | PromptsCountOutputTypeCountPromptVotesArgs
+    Comments?: boolean | PromptsCountOutputTypeCountCommentsArgs
   }
 
   // Custom InputTypes
@@ -1745,6 +2139,22 @@ export namespace Prisma {
    */
   export type PromptsCountOutputTypeCountWorldInfosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: WorldInfosWhereInput
+  }
+
+
+  /**
+   * PromptsCountOutputType without action
+   */
+  export type PromptsCountOutputTypeCountPromptVotesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PromptVotesWhereInput
+  }
+
+
+  /**
+   * PromptsCountOutputType without action
+   */
+  export type PromptsCountOutputTypeCountCommentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CommentsWhereInput
   }
 
 
@@ -1791,12 +2201,20 @@ export namespace Prisma {
     accounts: number
     sessions: number
     Prompts: number
+    PromptVotes: number
+    Comments: number
+    CommentVotes: number
+    CommentReplies: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     accounts?: boolean | UserCountOutputTypeCountAccountsArgs
     sessions?: boolean | UserCountOutputTypeCountSessionsArgs
     Prompts?: boolean | UserCountOutputTypeCountPromptsArgs
+    PromptVotes?: boolean | UserCountOutputTypeCountPromptVotesArgs
+    Comments?: boolean | UserCountOutputTypeCountCommentsArgs
+    CommentVotes?: boolean | UserCountOutputTypeCountCommentVotesArgs
+    CommentReplies?: boolean | UserCountOutputTypeCountCommentRepliesArgs
   }
 
   // Custom InputTypes
@@ -1836,6 +2254,38 @@ export namespace Prisma {
   }
 
 
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountPromptVotesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PromptVotesWhereInput
+  }
+
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountCommentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CommentsWhereInput
+  }
+
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountCommentVotesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CommentVotesWhereInput
+  }
+
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountCommentRepliesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CommentRepliesWhereInput
+  }
+
+
 
   /**
    * Count Type TagsCountOutputType
@@ -1872,6 +2322,50 @@ export namespace Prisma {
 
 
   /**
+   * Count Type CommentsCountOutputType
+   */
+
+  export type CommentsCountOutputType = {
+    CommentVotes: number
+    CommentReplies: number
+  }
+
+  export type CommentsCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    CommentVotes?: boolean | CommentsCountOutputTypeCountCommentVotesArgs
+    CommentReplies?: boolean | CommentsCountOutputTypeCountCommentRepliesArgs
+  }
+
+  // Custom InputTypes
+
+  /**
+   * CommentsCountOutputType without action
+   */
+  export type CommentsCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommentsCountOutputType
+     */
+    select?: CommentsCountOutputTypeSelect<ExtArgs> | null
+  }
+
+
+  /**
+   * CommentsCountOutputType without action
+   */
+  export type CommentsCountOutputTypeCountCommentVotesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CommentVotesWhereInput
+  }
+
+
+  /**
+   * CommentsCountOutputType without action
+   */
+  export type CommentsCountOutputTypeCountCommentRepliesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CommentRepliesWhereInput
+  }
+
+
+
+  /**
    * Models
    */
 
@@ -1890,11 +2384,13 @@ export namespace Prisma {
   export type PromptsAvgAggregateOutputType = {
     aetherId: number | null
     nsfw: number | null
+    downloadCount: number | null
   }
 
   export type PromptsSumAggregateOutputType = {
     aetherId: number | null
     nsfw: number | null
+    downloadCount: number | null
   }
 
   export type PromptsMinAggregateOutputType = {
@@ -1919,6 +2415,7 @@ export namespace Prisma {
     deleted: boolean | null
     authorId: string | null
     json: string | null
+    downloadCount: number | null
   }
 
   export type PromptsMaxAggregateOutputType = {
@@ -1943,6 +2440,7 @@ export namespace Prisma {
     deleted: boolean | null
     authorId: string | null
     json: string | null
+    downloadCount: number | null
   }
 
   export type PromptsCountAggregateOutputType = {
@@ -1967,6 +2465,7 @@ export namespace Prisma {
     deleted: number
     authorId: number
     json: number
+    downloadCount: number
     _all: number
   }
 
@@ -1974,11 +2473,13 @@ export namespace Prisma {
   export type PromptsAvgAggregateInputType = {
     aetherId?: true
     nsfw?: true
+    downloadCount?: true
   }
 
   export type PromptsSumAggregateInputType = {
     aetherId?: true
     nsfw?: true
+    downloadCount?: true
   }
 
   export type PromptsMinAggregateInputType = {
@@ -2003,6 +2504,7 @@ export namespace Prisma {
     deleted?: true
     authorId?: true
     json?: true
+    downloadCount?: true
   }
 
   export type PromptsMaxAggregateInputType = {
@@ -2027,6 +2529,7 @@ export namespace Prisma {
     deleted?: true
     authorId?: true
     json?: true
+    downloadCount?: true
   }
 
   export type PromptsCountAggregateInputType = {
@@ -2051,6 +2554,7 @@ export namespace Prisma {
     deleted?: true
     authorId?: true
     json?: true
+    downloadCount?: true
     _all?: true
   }
 
@@ -2162,6 +2666,7 @@ export namespace Prisma {
     deleted: boolean
     authorId: string | null
     json: string | null
+    downloadCount: number
     _count: PromptsCountAggregateOutputType | null
     _avg: PromptsAvgAggregateOutputType | null
     _sum: PromptsSumAggregateOutputType | null
@@ -2205,9 +2710,12 @@ export namespace Prisma {
     deleted?: boolean
     authorId?: boolean
     json?: boolean
+    downloadCount?: boolean
     tagsFull?: boolean | Prompts$tagsFullArgs<ExtArgs>
     worldInfos?: boolean | Prompts$worldInfosArgs<ExtArgs>
     author?: boolean | Prompts$authorArgs<ExtArgs>
+    PromptVotes?: boolean | Prompts$PromptVotesArgs<ExtArgs>
+    Comments?: boolean | Prompts$CommentsArgs<ExtArgs>
     _count?: boolean | PromptsCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["prompts"]>
 
@@ -2233,12 +2741,15 @@ export namespace Prisma {
     deleted?: boolean
     authorId?: boolean
     json?: boolean
+    downloadCount?: boolean
   }
 
   export type PromptsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     tagsFull?: boolean | Prompts$tagsFullArgs<ExtArgs>
     worldInfos?: boolean | Prompts$worldInfosArgs<ExtArgs>
     author?: boolean | Prompts$authorArgs<ExtArgs>
+    PromptVotes?: boolean | Prompts$PromptVotesArgs<ExtArgs>
+    Comments?: boolean | Prompts$CommentsArgs<ExtArgs>
     _count?: boolean | PromptsCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -2249,6 +2760,8 @@ export namespace Prisma {
       tagsFull: Prisma.$TagsPromptsMapPayload<ExtArgs>[]
       worldInfos: Prisma.$WorldInfosPayload<ExtArgs>[]
       author: Prisma.$UserPayload<ExtArgs> | null
+      PromptVotes: Prisma.$PromptVotesPayload<ExtArgs>[]
+      Comments: Prisma.$CommentsPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2272,6 +2785,7 @@ export namespace Prisma {
       deleted: boolean
       authorId: string | null
       json: string | null
+      downloadCount: number
     }, ExtArgs["result"]["prompts"]>
     composites: {}
   }
@@ -2627,6 +3141,10 @@ export namespace Prisma {
 
     author<T extends Prompts$authorArgs<ExtArgs> = {}>(args?: Subset<T, Prompts$authorArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
 
+    PromptVotes<T extends Prompts$PromptVotesArgs<ExtArgs> = {}>(args?: Subset<T, Prompts$PromptVotesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PromptVotesPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    Comments<T extends Prompts$CommentsArgs<ExtArgs> = {}>(args?: Subset<T, Prompts$CommentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommentsPayload<ExtArgs>, T, 'findMany'> | Null>;
+
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2676,6 +3194,7 @@ export namespace Prisma {
     readonly deleted: FieldRef<"Prompts", 'Boolean'>
     readonly authorId: FieldRef<"Prompts", 'String'>
     readonly json: FieldRef<"Prompts", 'String'>
+    readonly downloadCount: FieldRef<"Prompts", 'Int'>
   }
     
 
@@ -3030,6 +3549,48 @@ export namespace Prisma {
      */
     include?: UserInclude<ExtArgs> | null
     where?: UserWhereInput
+  }
+
+
+  /**
+   * Prompts.PromptVotes
+   */
+  export type Prompts$PromptVotesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PromptVotes
+     */
+    select?: PromptVotesSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PromptVotesInclude<ExtArgs> | null
+    where?: PromptVotesWhereInput
+    orderBy?: PromptVotesOrderByWithRelationInput | PromptVotesOrderByWithRelationInput[]
+    cursor?: PromptVotesWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PromptVotesScalarFieldEnum | PromptVotesScalarFieldEnum[]
+  }
+
+
+  /**
+   * Prompts.Comments
+   */
+  export type Prompts$CommentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comments
+     */
+    select?: CommentsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CommentsInclude<ExtArgs> | null
+    where?: CommentsWhereInput
+    orderBy?: CommentsOrderByWithRelationInput | CommentsOrderByWithRelationInput[]
+    cursor?: CommentsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CommentsScalarFieldEnum | CommentsScalarFieldEnum[]
   }
 
 
@@ -7726,6 +8287,849 @@ export namespace Prisma {
 
 
   /**
+   * Model TagSearch
+   */
+
+  export type AggregateTagSearch = {
+    _count: TagSearchCountAggregateOutputType | null
+    _avg: TagSearchAvgAggregateOutputType | null
+    _sum: TagSearchSumAggregateOutputType | null
+    _min: TagSearchMinAggregateOutputType | null
+    _max: TagSearchMaxAggregateOutputType | null
+  }
+
+  export type TagSearchAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type TagSearchSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type TagSearchMinAggregateOutputType = {
+    id: number | null
+    text: string | null
+  }
+
+  export type TagSearchMaxAggregateOutputType = {
+    id: number | null
+    text: string | null
+  }
+
+  export type TagSearchCountAggregateOutputType = {
+    id: number
+    text: number
+    _all: number
+  }
+
+
+  export type TagSearchAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type TagSearchSumAggregateInputType = {
+    id?: true
+  }
+
+  export type TagSearchMinAggregateInputType = {
+    id?: true
+    text?: true
+  }
+
+  export type TagSearchMaxAggregateInputType = {
+    id?: true
+    text?: true
+  }
+
+  export type TagSearchCountAggregateInputType = {
+    id?: true
+    text?: true
+    _all?: true
+  }
+
+  export type TagSearchAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TagSearch to aggregate.
+     */
+    where?: TagSearchWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TagSearches to fetch.
+     */
+    orderBy?: TagSearchOrderByWithRelationInput | TagSearchOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TagSearchWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TagSearches from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TagSearches.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned TagSearches
+    **/
+    _count?: true | TagSearchCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: TagSearchAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: TagSearchSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TagSearchMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TagSearchMaxAggregateInputType
+  }
+
+  export type GetTagSearchAggregateType<T extends TagSearchAggregateArgs> = {
+        [P in keyof T & keyof AggregateTagSearch]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTagSearch[P]>
+      : GetScalarType<T[P], AggregateTagSearch[P]>
+  }
+
+
+
+
+  export type TagSearchGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TagSearchWhereInput
+    orderBy?: TagSearchOrderByWithAggregationInput | TagSearchOrderByWithAggregationInput[]
+    by: TagSearchScalarFieldEnum[] | TagSearchScalarFieldEnum
+    having?: TagSearchScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TagSearchCountAggregateInputType | true
+    _avg?: TagSearchAvgAggregateInputType
+    _sum?: TagSearchSumAggregateInputType
+    _min?: TagSearchMinAggregateInputType
+    _max?: TagSearchMaxAggregateInputType
+  }
+
+  export type TagSearchGroupByOutputType = {
+    id: number
+    text: string
+    _count: TagSearchCountAggregateOutputType | null
+    _avg: TagSearchAvgAggregateOutputType | null
+    _sum: TagSearchSumAggregateOutputType | null
+    _min: TagSearchMinAggregateOutputType | null
+    _max: TagSearchMaxAggregateOutputType | null
+  }
+
+  type GetTagSearchGroupByPayload<T extends TagSearchGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TagSearchGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TagSearchGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TagSearchGroupByOutputType[P]>
+            : GetScalarType<T[P], TagSearchGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TagSearchSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    text?: boolean
+  }, ExtArgs["result"]["tagSearch"]>
+
+  export type TagSearchSelectScalar = {
+    id?: boolean
+    text?: boolean
+  }
+
+
+  export type $TagSearchPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "TagSearch"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      text: string
+    }, ExtArgs["result"]["tagSearch"]>
+    composites: {}
+  }
+
+
+  type TagSearchGetPayload<S extends boolean | null | undefined | TagSearchDefaultArgs> = $Result.GetResult<Prisma.$TagSearchPayload, S>
+
+  type TagSearchCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<TagSearchFindManyArgs, 'select' | 'include' | 'distinct' > & {
+      select?: TagSearchCountAggregateInputType | true
+    }
+
+  export interface TagSearchDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TagSearch'], meta: { name: 'TagSearch' } }
+    /**
+     * Find zero or one TagSearch that matches the filter.
+     * @param {TagSearchFindUniqueArgs} args - Arguments to find a TagSearch
+     * @example
+     * // Get one TagSearch
+     * const tagSearch = await prisma.tagSearch.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends TagSearchFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, TagSearchFindUniqueArgs<ExtArgs>>
+    ): Prisma__TagSearchClient<$Result.GetResult<Prisma.$TagSearchPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one TagSearch that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {TagSearchFindUniqueOrThrowArgs} args - Arguments to find a TagSearch
+     * @example
+     * // Get one TagSearch
+     * const tagSearch = await prisma.tagSearch.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends TagSearchFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, TagSearchFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__TagSearchClient<$Result.GetResult<Prisma.$TagSearchPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first TagSearch that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TagSearchFindFirstArgs} args - Arguments to find a TagSearch
+     * @example
+     * // Get one TagSearch
+     * const tagSearch = await prisma.tagSearch.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends TagSearchFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, TagSearchFindFirstArgs<ExtArgs>>
+    ): Prisma__TagSearchClient<$Result.GetResult<Prisma.$TagSearchPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first TagSearch that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TagSearchFindFirstOrThrowArgs} args - Arguments to find a TagSearch
+     * @example
+     * // Get one TagSearch
+     * const tagSearch = await prisma.tagSearch.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends TagSearchFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, TagSearchFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__TagSearchClient<$Result.GetResult<Prisma.$TagSearchPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more TagSearches that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TagSearchFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all TagSearches
+     * const tagSearches = await prisma.tagSearch.findMany()
+     * 
+     * // Get first 10 TagSearches
+     * const tagSearches = await prisma.tagSearch.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const tagSearchWithIdOnly = await prisma.tagSearch.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends TagSearchFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, TagSearchFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TagSearchPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a TagSearch.
+     * @param {TagSearchCreateArgs} args - Arguments to create a TagSearch.
+     * @example
+     * // Create one TagSearch
+     * const TagSearch = await prisma.tagSearch.create({
+     *   data: {
+     *     // ... data to create a TagSearch
+     *   }
+     * })
+     * 
+    **/
+    create<T extends TagSearchCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, TagSearchCreateArgs<ExtArgs>>
+    ): Prisma__TagSearchClient<$Result.GetResult<Prisma.$TagSearchPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Delete a TagSearch.
+     * @param {TagSearchDeleteArgs} args - Arguments to delete one TagSearch.
+     * @example
+     * // Delete one TagSearch
+     * const TagSearch = await prisma.tagSearch.delete({
+     *   where: {
+     *     // ... filter to delete one TagSearch
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends TagSearchDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, TagSearchDeleteArgs<ExtArgs>>
+    ): Prisma__TagSearchClient<$Result.GetResult<Prisma.$TagSearchPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one TagSearch.
+     * @param {TagSearchUpdateArgs} args - Arguments to update one TagSearch.
+     * @example
+     * // Update one TagSearch
+     * const tagSearch = await prisma.tagSearch.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends TagSearchUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, TagSearchUpdateArgs<ExtArgs>>
+    ): Prisma__TagSearchClient<$Result.GetResult<Prisma.$TagSearchPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more TagSearches.
+     * @param {TagSearchDeleteManyArgs} args - Arguments to filter TagSearches to delete.
+     * @example
+     * // Delete a few TagSearches
+     * const { count } = await prisma.tagSearch.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends TagSearchDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, TagSearchDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TagSearches.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TagSearchUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many TagSearches
+     * const tagSearch = await prisma.tagSearch.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends TagSearchUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, TagSearchUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one TagSearch.
+     * @param {TagSearchUpsertArgs} args - Arguments to update or create a TagSearch.
+     * @example
+     * // Update or create a TagSearch
+     * const tagSearch = await prisma.tagSearch.upsert({
+     *   create: {
+     *     // ... data to create a TagSearch
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the TagSearch we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends TagSearchUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, TagSearchUpsertArgs<ExtArgs>>
+    ): Prisma__TagSearchClient<$Result.GetResult<Prisma.$TagSearchPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of TagSearches.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TagSearchCountArgs} args - Arguments to filter TagSearches to count.
+     * @example
+     * // Count the number of TagSearches
+     * const count = await prisma.tagSearch.count({
+     *   where: {
+     *     // ... the filter for the TagSearches we want to count
+     *   }
+     * })
+    **/
+    count<T extends TagSearchCountArgs>(
+      args?: Subset<T, TagSearchCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TagSearchCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a TagSearch.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TagSearchAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TagSearchAggregateArgs>(args: Subset<T, TagSearchAggregateArgs>): Prisma.PrismaPromise<GetTagSearchAggregateType<T>>
+
+    /**
+     * Group by TagSearch.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TagSearchGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TagSearchGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TagSearchGroupByArgs['orderBy'] }
+        : { orderBy?: TagSearchGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TagSearchGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTagSearchGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the TagSearch model
+   */
+  readonly fields: TagSearchFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for TagSearch.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__TagSearchClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the TagSearch model
+   */ 
+  interface TagSearchFieldRefs {
+    readonly id: FieldRef<"TagSearch", 'Int'>
+    readonly text: FieldRef<"TagSearch", 'String'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * TagSearch findUnique
+   */
+  export type TagSearchFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TagSearch
+     */
+    select?: TagSearchSelect<ExtArgs> | null
+    /**
+     * Filter, which TagSearch to fetch.
+     */
+    where: TagSearchWhereUniqueInput
+  }
+
+
+  /**
+   * TagSearch findUniqueOrThrow
+   */
+  export type TagSearchFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TagSearch
+     */
+    select?: TagSearchSelect<ExtArgs> | null
+    /**
+     * Filter, which TagSearch to fetch.
+     */
+    where: TagSearchWhereUniqueInput
+  }
+
+
+  /**
+   * TagSearch findFirst
+   */
+  export type TagSearchFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TagSearch
+     */
+    select?: TagSearchSelect<ExtArgs> | null
+    /**
+     * Filter, which TagSearch to fetch.
+     */
+    where?: TagSearchWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TagSearches to fetch.
+     */
+    orderBy?: TagSearchOrderByWithRelationInput | TagSearchOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TagSearches.
+     */
+    cursor?: TagSearchWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TagSearches from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TagSearches.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TagSearches.
+     */
+    distinct?: TagSearchScalarFieldEnum | TagSearchScalarFieldEnum[]
+  }
+
+
+  /**
+   * TagSearch findFirstOrThrow
+   */
+  export type TagSearchFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TagSearch
+     */
+    select?: TagSearchSelect<ExtArgs> | null
+    /**
+     * Filter, which TagSearch to fetch.
+     */
+    where?: TagSearchWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TagSearches to fetch.
+     */
+    orderBy?: TagSearchOrderByWithRelationInput | TagSearchOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TagSearches.
+     */
+    cursor?: TagSearchWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TagSearches from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TagSearches.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TagSearches.
+     */
+    distinct?: TagSearchScalarFieldEnum | TagSearchScalarFieldEnum[]
+  }
+
+
+  /**
+   * TagSearch findMany
+   */
+  export type TagSearchFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TagSearch
+     */
+    select?: TagSearchSelect<ExtArgs> | null
+    /**
+     * Filter, which TagSearches to fetch.
+     */
+    where?: TagSearchWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TagSearches to fetch.
+     */
+    orderBy?: TagSearchOrderByWithRelationInput | TagSearchOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing TagSearches.
+     */
+    cursor?: TagSearchWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TagSearches from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TagSearches.
+     */
+    skip?: number
+    distinct?: TagSearchScalarFieldEnum | TagSearchScalarFieldEnum[]
+  }
+
+
+  /**
+   * TagSearch create
+   */
+  export type TagSearchCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TagSearch
+     */
+    select?: TagSearchSelect<ExtArgs> | null
+    /**
+     * The data needed to create a TagSearch.
+     */
+    data: XOR<TagSearchCreateInput, TagSearchUncheckedCreateInput>
+  }
+
+
+  /**
+   * TagSearch update
+   */
+  export type TagSearchUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TagSearch
+     */
+    select?: TagSearchSelect<ExtArgs> | null
+    /**
+     * The data needed to update a TagSearch.
+     */
+    data: XOR<TagSearchUpdateInput, TagSearchUncheckedUpdateInput>
+    /**
+     * Choose, which TagSearch to update.
+     */
+    where: TagSearchWhereUniqueInput
+  }
+
+
+  /**
+   * TagSearch updateMany
+   */
+  export type TagSearchUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update TagSearches.
+     */
+    data: XOR<TagSearchUpdateManyMutationInput, TagSearchUncheckedUpdateManyInput>
+    /**
+     * Filter which TagSearches to update
+     */
+    where?: TagSearchWhereInput
+  }
+
+
+  /**
+   * TagSearch upsert
+   */
+  export type TagSearchUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TagSearch
+     */
+    select?: TagSearchSelect<ExtArgs> | null
+    /**
+     * The filter to search for the TagSearch to update in case it exists.
+     */
+    where: TagSearchWhereUniqueInput
+    /**
+     * In case the TagSearch found by the `where` argument doesn't exist, create a new TagSearch with this data.
+     */
+    create: XOR<TagSearchCreateInput, TagSearchUncheckedCreateInput>
+    /**
+     * In case the TagSearch was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TagSearchUpdateInput, TagSearchUncheckedUpdateInput>
+  }
+
+
+  /**
+   * TagSearch delete
+   */
+  export type TagSearchDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TagSearch
+     */
+    select?: TagSearchSelect<ExtArgs> | null
+    /**
+     * Filter which TagSearch to delete.
+     */
+    where: TagSearchWhereUniqueInput
+  }
+
+
+  /**
+   * TagSearch deleteMany
+   */
+  export type TagSearchDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TagSearches to delete
+     */
+    where?: TagSearchWhereInput
+  }
+
+
+  /**
+   * TagSearch without action
+   */
+  export type TagSearchDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TagSearch
+     */
+    select?: TagSearchSelect<ExtArgs> | null
+  }
+
+
+
+  /**
    * Model Account
    */
 
@@ -9788,6 +11192,10 @@ export namespace Prisma {
     accounts?: boolean | User$accountsArgs<ExtArgs>
     sessions?: boolean | User$sessionsArgs<ExtArgs>
     Prompts?: boolean | User$PromptsArgs<ExtArgs>
+    PromptVotes?: boolean | User$PromptVotesArgs<ExtArgs>
+    Comments?: boolean | User$CommentsArgs<ExtArgs>
+    CommentVotes?: boolean | User$CommentVotesArgs<ExtArgs>
+    CommentReplies?: boolean | User$CommentRepliesArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -9805,6 +11213,10 @@ export namespace Prisma {
     accounts?: boolean | User$accountsArgs<ExtArgs>
     sessions?: boolean | User$sessionsArgs<ExtArgs>
     Prompts?: boolean | User$PromptsArgs<ExtArgs>
+    PromptVotes?: boolean | User$PromptVotesArgs<ExtArgs>
+    Comments?: boolean | User$CommentsArgs<ExtArgs>
+    CommentVotes?: boolean | User$CommentVotesArgs<ExtArgs>
+    CommentReplies?: boolean | User$CommentRepliesArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -9815,6 +11227,10 @@ export namespace Prisma {
       accounts: Prisma.$AccountPayload<ExtArgs>[]
       sessions: Prisma.$SessionPayload<ExtArgs>[]
       Prompts: Prisma.$PromptsPayload<ExtArgs>[]
+      PromptVotes: Prisma.$PromptVotesPayload<ExtArgs>[]
+      Comments: Prisma.$CommentsPayload<ExtArgs>[]
+      CommentVotes: Prisma.$CommentVotesPayload<ExtArgs>[]
+      CommentReplies: Prisma.$CommentRepliesPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -10178,6 +11594,14 @@ export namespace Prisma {
     sessions<T extends User$sessionsArgs<ExtArgs> = {}>(args?: Subset<T, User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     Prompts<T extends User$PromptsArgs<ExtArgs> = {}>(args?: Subset<T, User$PromptsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PromptsPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    PromptVotes<T extends User$PromptVotesArgs<ExtArgs> = {}>(args?: Subset<T, User$PromptVotesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PromptVotesPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    Comments<T extends User$CommentsArgs<ExtArgs> = {}>(args?: Subset<T, User$CommentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommentsPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    CommentVotes<T extends User$CommentVotesArgs<ExtArgs> = {}>(args?: Subset<T, User$CommentVotesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommentVotesPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    CommentReplies<T extends User$CommentRepliesArgs<ExtArgs> = {}>(args?: Subset<T, User$CommentRepliesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommentRepliesPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -10573,6 +11997,90 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: PromptsScalarFieldEnum | PromptsScalarFieldEnum[]
+  }
+
+
+  /**
+   * User.PromptVotes
+   */
+  export type User$PromptVotesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PromptVotes
+     */
+    select?: PromptVotesSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PromptVotesInclude<ExtArgs> | null
+    where?: PromptVotesWhereInput
+    orderBy?: PromptVotesOrderByWithRelationInput | PromptVotesOrderByWithRelationInput[]
+    cursor?: PromptVotesWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PromptVotesScalarFieldEnum | PromptVotesScalarFieldEnum[]
+  }
+
+
+  /**
+   * User.Comments
+   */
+  export type User$CommentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comments
+     */
+    select?: CommentsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CommentsInclude<ExtArgs> | null
+    where?: CommentsWhereInput
+    orderBy?: CommentsOrderByWithRelationInput | CommentsOrderByWithRelationInput[]
+    cursor?: CommentsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CommentsScalarFieldEnum | CommentsScalarFieldEnum[]
+  }
+
+
+  /**
+   * User.CommentVotes
+   */
+  export type User$CommentVotesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommentVotes
+     */
+    select?: CommentVotesSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CommentVotesInclude<ExtArgs> | null
+    where?: CommentVotesWhereInput
+    orderBy?: CommentVotesOrderByWithRelationInput | CommentVotesOrderByWithRelationInput[]
+    cursor?: CommentVotesWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CommentVotesScalarFieldEnum | CommentVotesScalarFieldEnum[]
+  }
+
+
+  /**
+   * User.CommentReplies
+   */
+  export type User$CommentRepliesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommentReplies
+     */
+    select?: CommentRepliesSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CommentRepliesInclude<ExtArgs> | null
+    where?: CommentRepliesWhereInput
+    orderBy?: CommentRepliesOrderByWithRelationInput | CommentRepliesOrderByWithRelationInput[]
+    cursor?: CommentRepliesWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CommentRepliesScalarFieldEnum | CommentRepliesScalarFieldEnum[]
   }
 
 
@@ -13166,6 +14674,3640 @@ export namespace Prisma {
 
 
   /**
+   * Model PromptVotes
+   */
+
+  export type AggregatePromptVotes = {
+    _count: PromptVotesCountAggregateOutputType | null
+    _min: PromptVotesMinAggregateOutputType | null
+    _max: PromptVotesMaxAggregateOutputType | null
+  }
+
+  export type PromptVotesMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    promptId: string | null
+    createdAt: Date | null
+    upvote: boolean | null
+  }
+
+  export type PromptVotesMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    promptId: string | null
+    createdAt: Date | null
+    upvote: boolean | null
+  }
+
+  export type PromptVotesCountAggregateOutputType = {
+    id: number
+    userId: number
+    promptId: number
+    createdAt: number
+    upvote: number
+    _all: number
+  }
+
+
+  export type PromptVotesMinAggregateInputType = {
+    id?: true
+    userId?: true
+    promptId?: true
+    createdAt?: true
+    upvote?: true
+  }
+
+  export type PromptVotesMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    promptId?: true
+    createdAt?: true
+    upvote?: true
+  }
+
+  export type PromptVotesCountAggregateInputType = {
+    id?: true
+    userId?: true
+    promptId?: true
+    createdAt?: true
+    upvote?: true
+    _all?: true
+  }
+
+  export type PromptVotesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PromptVotes to aggregate.
+     */
+    where?: PromptVotesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PromptVotes to fetch.
+     */
+    orderBy?: PromptVotesOrderByWithRelationInput | PromptVotesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PromptVotesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PromptVotes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PromptVotes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned PromptVotes
+    **/
+    _count?: true | PromptVotesCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PromptVotesMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PromptVotesMaxAggregateInputType
+  }
+
+  export type GetPromptVotesAggregateType<T extends PromptVotesAggregateArgs> = {
+        [P in keyof T & keyof AggregatePromptVotes]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePromptVotes[P]>
+      : GetScalarType<T[P], AggregatePromptVotes[P]>
+  }
+
+
+
+
+  export type PromptVotesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PromptVotesWhereInput
+    orderBy?: PromptVotesOrderByWithAggregationInput | PromptVotesOrderByWithAggregationInput[]
+    by: PromptVotesScalarFieldEnum[] | PromptVotesScalarFieldEnum
+    having?: PromptVotesScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PromptVotesCountAggregateInputType | true
+    _min?: PromptVotesMinAggregateInputType
+    _max?: PromptVotesMaxAggregateInputType
+  }
+
+  export type PromptVotesGroupByOutputType = {
+    id: string
+    userId: string
+    promptId: string
+    createdAt: Date
+    upvote: boolean
+    _count: PromptVotesCountAggregateOutputType | null
+    _min: PromptVotesMinAggregateOutputType | null
+    _max: PromptVotesMaxAggregateOutputType | null
+  }
+
+  type GetPromptVotesGroupByPayload<T extends PromptVotesGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PromptVotesGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PromptVotesGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PromptVotesGroupByOutputType[P]>
+            : GetScalarType<T[P], PromptVotesGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PromptVotesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    promptId?: boolean
+    createdAt?: boolean
+    upvote?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    prompt?: boolean | PromptsDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["promptVotes"]>
+
+  export type PromptVotesSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    promptId?: boolean
+    createdAt?: boolean
+    upvote?: boolean
+  }
+
+  export type PromptVotesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    prompt?: boolean | PromptsDefaultArgs<ExtArgs>
+  }
+
+
+  export type $PromptVotesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "PromptVotes"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      prompt: Prisma.$PromptsPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      promptId: string
+      createdAt: Date
+      upvote: boolean
+    }, ExtArgs["result"]["promptVotes"]>
+    composites: {}
+  }
+
+
+  type PromptVotesGetPayload<S extends boolean | null | undefined | PromptVotesDefaultArgs> = $Result.GetResult<Prisma.$PromptVotesPayload, S>
+
+  type PromptVotesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<PromptVotesFindManyArgs, 'select' | 'include' | 'distinct' > & {
+      select?: PromptVotesCountAggregateInputType | true
+    }
+
+  export interface PromptVotesDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PromptVotes'], meta: { name: 'PromptVotes' } }
+    /**
+     * Find zero or one PromptVotes that matches the filter.
+     * @param {PromptVotesFindUniqueArgs} args - Arguments to find a PromptVotes
+     * @example
+     * // Get one PromptVotes
+     * const promptVotes = await prisma.promptVotes.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends PromptVotesFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, PromptVotesFindUniqueArgs<ExtArgs>>
+    ): Prisma__PromptVotesClient<$Result.GetResult<Prisma.$PromptVotesPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one PromptVotes that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {PromptVotesFindUniqueOrThrowArgs} args - Arguments to find a PromptVotes
+     * @example
+     * // Get one PromptVotes
+     * const promptVotes = await prisma.promptVotes.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends PromptVotesFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, PromptVotesFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__PromptVotesClient<$Result.GetResult<Prisma.$PromptVotesPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first PromptVotes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PromptVotesFindFirstArgs} args - Arguments to find a PromptVotes
+     * @example
+     * // Get one PromptVotes
+     * const promptVotes = await prisma.promptVotes.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends PromptVotesFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, PromptVotesFindFirstArgs<ExtArgs>>
+    ): Prisma__PromptVotesClient<$Result.GetResult<Prisma.$PromptVotesPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first PromptVotes that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PromptVotesFindFirstOrThrowArgs} args - Arguments to find a PromptVotes
+     * @example
+     * // Get one PromptVotes
+     * const promptVotes = await prisma.promptVotes.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends PromptVotesFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, PromptVotesFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__PromptVotesClient<$Result.GetResult<Prisma.$PromptVotesPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more PromptVotes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PromptVotesFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all PromptVotes
+     * const promptVotes = await prisma.promptVotes.findMany()
+     * 
+     * // Get first 10 PromptVotes
+     * const promptVotes = await prisma.promptVotes.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const promptVotesWithIdOnly = await prisma.promptVotes.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends PromptVotesFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, PromptVotesFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PromptVotesPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a PromptVotes.
+     * @param {PromptVotesCreateArgs} args - Arguments to create a PromptVotes.
+     * @example
+     * // Create one PromptVotes
+     * const PromptVotes = await prisma.promptVotes.create({
+     *   data: {
+     *     // ... data to create a PromptVotes
+     *   }
+     * })
+     * 
+    **/
+    create<T extends PromptVotesCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, PromptVotesCreateArgs<ExtArgs>>
+    ): Prisma__PromptVotesClient<$Result.GetResult<Prisma.$PromptVotesPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Delete a PromptVotes.
+     * @param {PromptVotesDeleteArgs} args - Arguments to delete one PromptVotes.
+     * @example
+     * // Delete one PromptVotes
+     * const PromptVotes = await prisma.promptVotes.delete({
+     *   where: {
+     *     // ... filter to delete one PromptVotes
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends PromptVotesDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, PromptVotesDeleteArgs<ExtArgs>>
+    ): Prisma__PromptVotesClient<$Result.GetResult<Prisma.$PromptVotesPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one PromptVotes.
+     * @param {PromptVotesUpdateArgs} args - Arguments to update one PromptVotes.
+     * @example
+     * // Update one PromptVotes
+     * const promptVotes = await prisma.promptVotes.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends PromptVotesUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, PromptVotesUpdateArgs<ExtArgs>>
+    ): Prisma__PromptVotesClient<$Result.GetResult<Prisma.$PromptVotesPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more PromptVotes.
+     * @param {PromptVotesDeleteManyArgs} args - Arguments to filter PromptVotes to delete.
+     * @example
+     * // Delete a few PromptVotes
+     * const { count } = await prisma.promptVotes.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends PromptVotesDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, PromptVotesDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PromptVotes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PromptVotesUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many PromptVotes
+     * const promptVotes = await prisma.promptVotes.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends PromptVotesUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, PromptVotesUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one PromptVotes.
+     * @param {PromptVotesUpsertArgs} args - Arguments to update or create a PromptVotes.
+     * @example
+     * // Update or create a PromptVotes
+     * const promptVotes = await prisma.promptVotes.upsert({
+     *   create: {
+     *     // ... data to create a PromptVotes
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the PromptVotes we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends PromptVotesUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, PromptVotesUpsertArgs<ExtArgs>>
+    ): Prisma__PromptVotesClient<$Result.GetResult<Prisma.$PromptVotesPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of PromptVotes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PromptVotesCountArgs} args - Arguments to filter PromptVotes to count.
+     * @example
+     * // Count the number of PromptVotes
+     * const count = await prisma.promptVotes.count({
+     *   where: {
+     *     // ... the filter for the PromptVotes we want to count
+     *   }
+     * })
+    **/
+    count<T extends PromptVotesCountArgs>(
+      args?: Subset<T, PromptVotesCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PromptVotesCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a PromptVotes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PromptVotesAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PromptVotesAggregateArgs>(args: Subset<T, PromptVotesAggregateArgs>): Prisma.PrismaPromise<GetPromptVotesAggregateType<T>>
+
+    /**
+     * Group by PromptVotes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PromptVotesGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PromptVotesGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PromptVotesGroupByArgs['orderBy'] }
+        : { orderBy?: PromptVotesGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PromptVotesGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPromptVotesGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the PromptVotes model
+   */
+  readonly fields: PromptVotesFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for PromptVotes.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PromptVotesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    prompt<T extends PromptsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PromptsDefaultArgs<ExtArgs>>): Prisma__PromptsClient<$Result.GetResult<Prisma.$PromptsPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the PromptVotes model
+   */ 
+  interface PromptVotesFieldRefs {
+    readonly id: FieldRef<"PromptVotes", 'String'>
+    readonly userId: FieldRef<"PromptVotes", 'String'>
+    readonly promptId: FieldRef<"PromptVotes", 'String'>
+    readonly createdAt: FieldRef<"PromptVotes", 'DateTime'>
+    readonly upvote: FieldRef<"PromptVotes", 'Boolean'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * PromptVotes findUnique
+   */
+  export type PromptVotesFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PromptVotes
+     */
+    select?: PromptVotesSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PromptVotesInclude<ExtArgs> | null
+    /**
+     * Filter, which PromptVotes to fetch.
+     */
+    where: PromptVotesWhereUniqueInput
+  }
+
+
+  /**
+   * PromptVotes findUniqueOrThrow
+   */
+  export type PromptVotesFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PromptVotes
+     */
+    select?: PromptVotesSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PromptVotesInclude<ExtArgs> | null
+    /**
+     * Filter, which PromptVotes to fetch.
+     */
+    where: PromptVotesWhereUniqueInput
+  }
+
+
+  /**
+   * PromptVotes findFirst
+   */
+  export type PromptVotesFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PromptVotes
+     */
+    select?: PromptVotesSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PromptVotesInclude<ExtArgs> | null
+    /**
+     * Filter, which PromptVotes to fetch.
+     */
+    where?: PromptVotesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PromptVotes to fetch.
+     */
+    orderBy?: PromptVotesOrderByWithRelationInput | PromptVotesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PromptVotes.
+     */
+    cursor?: PromptVotesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PromptVotes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PromptVotes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PromptVotes.
+     */
+    distinct?: PromptVotesScalarFieldEnum | PromptVotesScalarFieldEnum[]
+  }
+
+
+  /**
+   * PromptVotes findFirstOrThrow
+   */
+  export type PromptVotesFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PromptVotes
+     */
+    select?: PromptVotesSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PromptVotesInclude<ExtArgs> | null
+    /**
+     * Filter, which PromptVotes to fetch.
+     */
+    where?: PromptVotesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PromptVotes to fetch.
+     */
+    orderBy?: PromptVotesOrderByWithRelationInput | PromptVotesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PromptVotes.
+     */
+    cursor?: PromptVotesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PromptVotes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PromptVotes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PromptVotes.
+     */
+    distinct?: PromptVotesScalarFieldEnum | PromptVotesScalarFieldEnum[]
+  }
+
+
+  /**
+   * PromptVotes findMany
+   */
+  export type PromptVotesFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PromptVotes
+     */
+    select?: PromptVotesSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PromptVotesInclude<ExtArgs> | null
+    /**
+     * Filter, which PromptVotes to fetch.
+     */
+    where?: PromptVotesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PromptVotes to fetch.
+     */
+    orderBy?: PromptVotesOrderByWithRelationInput | PromptVotesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing PromptVotes.
+     */
+    cursor?: PromptVotesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PromptVotes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PromptVotes.
+     */
+    skip?: number
+    distinct?: PromptVotesScalarFieldEnum | PromptVotesScalarFieldEnum[]
+  }
+
+
+  /**
+   * PromptVotes create
+   */
+  export type PromptVotesCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PromptVotes
+     */
+    select?: PromptVotesSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PromptVotesInclude<ExtArgs> | null
+    /**
+     * The data needed to create a PromptVotes.
+     */
+    data: XOR<PromptVotesCreateInput, PromptVotesUncheckedCreateInput>
+  }
+
+
+  /**
+   * PromptVotes update
+   */
+  export type PromptVotesUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PromptVotes
+     */
+    select?: PromptVotesSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PromptVotesInclude<ExtArgs> | null
+    /**
+     * The data needed to update a PromptVotes.
+     */
+    data: XOR<PromptVotesUpdateInput, PromptVotesUncheckedUpdateInput>
+    /**
+     * Choose, which PromptVotes to update.
+     */
+    where: PromptVotesWhereUniqueInput
+  }
+
+
+  /**
+   * PromptVotes updateMany
+   */
+  export type PromptVotesUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update PromptVotes.
+     */
+    data: XOR<PromptVotesUpdateManyMutationInput, PromptVotesUncheckedUpdateManyInput>
+    /**
+     * Filter which PromptVotes to update
+     */
+    where?: PromptVotesWhereInput
+  }
+
+
+  /**
+   * PromptVotes upsert
+   */
+  export type PromptVotesUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PromptVotes
+     */
+    select?: PromptVotesSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PromptVotesInclude<ExtArgs> | null
+    /**
+     * The filter to search for the PromptVotes to update in case it exists.
+     */
+    where: PromptVotesWhereUniqueInput
+    /**
+     * In case the PromptVotes found by the `where` argument doesn't exist, create a new PromptVotes with this data.
+     */
+    create: XOR<PromptVotesCreateInput, PromptVotesUncheckedCreateInput>
+    /**
+     * In case the PromptVotes was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PromptVotesUpdateInput, PromptVotesUncheckedUpdateInput>
+  }
+
+
+  /**
+   * PromptVotes delete
+   */
+  export type PromptVotesDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PromptVotes
+     */
+    select?: PromptVotesSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PromptVotesInclude<ExtArgs> | null
+    /**
+     * Filter which PromptVotes to delete.
+     */
+    where: PromptVotesWhereUniqueInput
+  }
+
+
+  /**
+   * PromptVotes deleteMany
+   */
+  export type PromptVotesDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PromptVotes to delete
+     */
+    where?: PromptVotesWhereInput
+  }
+
+
+  /**
+   * PromptVotes without action
+   */
+  export type PromptVotesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PromptVotes
+     */
+    select?: PromptVotesSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PromptVotesInclude<ExtArgs> | null
+  }
+
+
+
+  /**
+   * Model Comments
+   */
+
+  export type AggregateComments = {
+    _count: CommentsCountAggregateOutputType | null
+    _min: CommentsMinAggregateOutputType | null
+    _max: CommentsMaxAggregateOutputType | null
+  }
+
+  export type CommentsMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    promptId: string | null
+    comment: string | null
+    createdAt: Date | null
+  }
+
+  export type CommentsMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    promptId: string | null
+    comment: string | null
+    createdAt: Date | null
+  }
+
+  export type CommentsCountAggregateOutputType = {
+    id: number
+    userId: number
+    promptId: number
+    comment: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type CommentsMinAggregateInputType = {
+    id?: true
+    userId?: true
+    promptId?: true
+    comment?: true
+    createdAt?: true
+  }
+
+  export type CommentsMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    promptId?: true
+    comment?: true
+    createdAt?: true
+  }
+
+  export type CommentsCountAggregateInputType = {
+    id?: true
+    userId?: true
+    promptId?: true
+    comment?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type CommentsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Comments to aggregate.
+     */
+    where?: CommentsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Comments to fetch.
+     */
+    orderBy?: CommentsOrderByWithRelationInput | CommentsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CommentsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Comments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Comments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Comments
+    **/
+    _count?: true | CommentsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CommentsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CommentsMaxAggregateInputType
+  }
+
+  export type GetCommentsAggregateType<T extends CommentsAggregateArgs> = {
+        [P in keyof T & keyof AggregateComments]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateComments[P]>
+      : GetScalarType<T[P], AggregateComments[P]>
+  }
+
+
+
+
+  export type CommentsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CommentsWhereInput
+    orderBy?: CommentsOrderByWithAggregationInput | CommentsOrderByWithAggregationInput[]
+    by: CommentsScalarFieldEnum[] | CommentsScalarFieldEnum
+    having?: CommentsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CommentsCountAggregateInputType | true
+    _min?: CommentsMinAggregateInputType
+    _max?: CommentsMaxAggregateInputType
+  }
+
+  export type CommentsGroupByOutputType = {
+    id: string
+    userId: string
+    promptId: string
+    comment: string
+    createdAt: Date
+    _count: CommentsCountAggregateOutputType | null
+    _min: CommentsMinAggregateOutputType | null
+    _max: CommentsMaxAggregateOutputType | null
+  }
+
+  type GetCommentsGroupByPayload<T extends CommentsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CommentsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CommentsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CommentsGroupByOutputType[P]>
+            : GetScalarType<T[P], CommentsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CommentsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    promptId?: boolean
+    comment?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    prompt?: boolean | PromptsDefaultArgs<ExtArgs>
+    CommentVotes?: boolean | Comments$CommentVotesArgs<ExtArgs>
+    CommentReplies?: boolean | Comments$CommentRepliesArgs<ExtArgs>
+    _count?: boolean | CommentsCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["comments"]>
+
+  export type CommentsSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    promptId?: boolean
+    comment?: boolean
+    createdAt?: boolean
+  }
+
+  export type CommentsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    prompt?: boolean | PromptsDefaultArgs<ExtArgs>
+    CommentVotes?: boolean | Comments$CommentVotesArgs<ExtArgs>
+    CommentReplies?: boolean | Comments$CommentRepliesArgs<ExtArgs>
+    _count?: boolean | CommentsCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+
+  export type $CommentsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Comments"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      prompt: Prisma.$PromptsPayload<ExtArgs>
+      CommentVotes: Prisma.$CommentVotesPayload<ExtArgs>[]
+      CommentReplies: Prisma.$CommentRepliesPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      promptId: string
+      comment: string
+      createdAt: Date
+    }, ExtArgs["result"]["comments"]>
+    composites: {}
+  }
+
+
+  type CommentsGetPayload<S extends boolean | null | undefined | CommentsDefaultArgs> = $Result.GetResult<Prisma.$CommentsPayload, S>
+
+  type CommentsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<CommentsFindManyArgs, 'select' | 'include' | 'distinct' > & {
+      select?: CommentsCountAggregateInputType | true
+    }
+
+  export interface CommentsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Comments'], meta: { name: 'Comments' } }
+    /**
+     * Find zero or one Comments that matches the filter.
+     * @param {CommentsFindUniqueArgs} args - Arguments to find a Comments
+     * @example
+     * // Get one Comments
+     * const comments = await prisma.comments.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends CommentsFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, CommentsFindUniqueArgs<ExtArgs>>
+    ): Prisma__CommentsClient<$Result.GetResult<Prisma.$CommentsPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one Comments that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {CommentsFindUniqueOrThrowArgs} args - Arguments to find a Comments
+     * @example
+     * // Get one Comments
+     * const comments = await prisma.comments.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends CommentsFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, CommentsFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__CommentsClient<$Result.GetResult<Prisma.$CommentsPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first Comments that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommentsFindFirstArgs} args - Arguments to find a Comments
+     * @example
+     * // Get one Comments
+     * const comments = await prisma.comments.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends CommentsFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, CommentsFindFirstArgs<ExtArgs>>
+    ): Prisma__CommentsClient<$Result.GetResult<Prisma.$CommentsPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first Comments that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommentsFindFirstOrThrowArgs} args - Arguments to find a Comments
+     * @example
+     * // Get one Comments
+     * const comments = await prisma.comments.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends CommentsFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, CommentsFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__CommentsClient<$Result.GetResult<Prisma.$CommentsPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more Comments that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommentsFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Comments
+     * const comments = await prisma.comments.findMany()
+     * 
+     * // Get first 10 Comments
+     * const comments = await prisma.comments.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const commentsWithIdOnly = await prisma.comments.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends CommentsFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, CommentsFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommentsPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a Comments.
+     * @param {CommentsCreateArgs} args - Arguments to create a Comments.
+     * @example
+     * // Create one Comments
+     * const Comments = await prisma.comments.create({
+     *   data: {
+     *     // ... data to create a Comments
+     *   }
+     * })
+     * 
+    **/
+    create<T extends CommentsCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, CommentsCreateArgs<ExtArgs>>
+    ): Prisma__CommentsClient<$Result.GetResult<Prisma.$CommentsPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Delete a Comments.
+     * @param {CommentsDeleteArgs} args - Arguments to delete one Comments.
+     * @example
+     * // Delete one Comments
+     * const Comments = await prisma.comments.delete({
+     *   where: {
+     *     // ... filter to delete one Comments
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends CommentsDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, CommentsDeleteArgs<ExtArgs>>
+    ): Prisma__CommentsClient<$Result.GetResult<Prisma.$CommentsPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one Comments.
+     * @param {CommentsUpdateArgs} args - Arguments to update one Comments.
+     * @example
+     * // Update one Comments
+     * const comments = await prisma.comments.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends CommentsUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, CommentsUpdateArgs<ExtArgs>>
+    ): Prisma__CommentsClient<$Result.GetResult<Prisma.$CommentsPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more Comments.
+     * @param {CommentsDeleteManyArgs} args - Arguments to filter Comments to delete.
+     * @example
+     * // Delete a few Comments
+     * const { count } = await prisma.comments.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends CommentsDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, CommentsDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Comments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommentsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Comments
+     * const comments = await prisma.comments.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends CommentsUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, CommentsUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Comments.
+     * @param {CommentsUpsertArgs} args - Arguments to update or create a Comments.
+     * @example
+     * // Update or create a Comments
+     * const comments = await prisma.comments.upsert({
+     *   create: {
+     *     // ... data to create a Comments
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Comments we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends CommentsUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, CommentsUpsertArgs<ExtArgs>>
+    ): Prisma__CommentsClient<$Result.GetResult<Prisma.$CommentsPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of Comments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommentsCountArgs} args - Arguments to filter Comments to count.
+     * @example
+     * // Count the number of Comments
+     * const count = await prisma.comments.count({
+     *   where: {
+     *     // ... the filter for the Comments we want to count
+     *   }
+     * })
+    **/
+    count<T extends CommentsCountArgs>(
+      args?: Subset<T, CommentsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CommentsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Comments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommentsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CommentsAggregateArgs>(args: Subset<T, CommentsAggregateArgs>): Prisma.PrismaPromise<GetCommentsAggregateType<T>>
+
+    /**
+     * Group by Comments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommentsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CommentsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CommentsGroupByArgs['orderBy'] }
+        : { orderBy?: CommentsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CommentsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCommentsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Comments model
+   */
+  readonly fields: CommentsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Comments.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CommentsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    prompt<T extends PromptsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PromptsDefaultArgs<ExtArgs>>): Prisma__PromptsClient<$Result.GetResult<Prisma.$PromptsPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    CommentVotes<T extends Comments$CommentVotesArgs<ExtArgs> = {}>(args?: Subset<T, Comments$CommentVotesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommentVotesPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    CommentReplies<T extends Comments$CommentRepliesArgs<ExtArgs> = {}>(args?: Subset<T, Comments$CommentRepliesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommentRepliesPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the Comments model
+   */ 
+  interface CommentsFieldRefs {
+    readonly id: FieldRef<"Comments", 'String'>
+    readonly userId: FieldRef<"Comments", 'String'>
+    readonly promptId: FieldRef<"Comments", 'String'>
+    readonly comment: FieldRef<"Comments", 'String'>
+    readonly createdAt: FieldRef<"Comments", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * Comments findUnique
+   */
+  export type CommentsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comments
+     */
+    select?: CommentsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CommentsInclude<ExtArgs> | null
+    /**
+     * Filter, which Comments to fetch.
+     */
+    where: CommentsWhereUniqueInput
+  }
+
+
+  /**
+   * Comments findUniqueOrThrow
+   */
+  export type CommentsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comments
+     */
+    select?: CommentsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CommentsInclude<ExtArgs> | null
+    /**
+     * Filter, which Comments to fetch.
+     */
+    where: CommentsWhereUniqueInput
+  }
+
+
+  /**
+   * Comments findFirst
+   */
+  export type CommentsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comments
+     */
+    select?: CommentsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CommentsInclude<ExtArgs> | null
+    /**
+     * Filter, which Comments to fetch.
+     */
+    where?: CommentsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Comments to fetch.
+     */
+    orderBy?: CommentsOrderByWithRelationInput | CommentsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Comments.
+     */
+    cursor?: CommentsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Comments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Comments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Comments.
+     */
+    distinct?: CommentsScalarFieldEnum | CommentsScalarFieldEnum[]
+  }
+
+
+  /**
+   * Comments findFirstOrThrow
+   */
+  export type CommentsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comments
+     */
+    select?: CommentsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CommentsInclude<ExtArgs> | null
+    /**
+     * Filter, which Comments to fetch.
+     */
+    where?: CommentsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Comments to fetch.
+     */
+    orderBy?: CommentsOrderByWithRelationInput | CommentsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Comments.
+     */
+    cursor?: CommentsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Comments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Comments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Comments.
+     */
+    distinct?: CommentsScalarFieldEnum | CommentsScalarFieldEnum[]
+  }
+
+
+  /**
+   * Comments findMany
+   */
+  export type CommentsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comments
+     */
+    select?: CommentsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CommentsInclude<ExtArgs> | null
+    /**
+     * Filter, which Comments to fetch.
+     */
+    where?: CommentsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Comments to fetch.
+     */
+    orderBy?: CommentsOrderByWithRelationInput | CommentsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Comments.
+     */
+    cursor?: CommentsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Comments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Comments.
+     */
+    skip?: number
+    distinct?: CommentsScalarFieldEnum | CommentsScalarFieldEnum[]
+  }
+
+
+  /**
+   * Comments create
+   */
+  export type CommentsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comments
+     */
+    select?: CommentsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CommentsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Comments.
+     */
+    data: XOR<CommentsCreateInput, CommentsUncheckedCreateInput>
+  }
+
+
+  /**
+   * Comments update
+   */
+  export type CommentsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comments
+     */
+    select?: CommentsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CommentsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Comments.
+     */
+    data: XOR<CommentsUpdateInput, CommentsUncheckedUpdateInput>
+    /**
+     * Choose, which Comments to update.
+     */
+    where: CommentsWhereUniqueInput
+  }
+
+
+  /**
+   * Comments updateMany
+   */
+  export type CommentsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Comments.
+     */
+    data: XOR<CommentsUpdateManyMutationInput, CommentsUncheckedUpdateManyInput>
+    /**
+     * Filter which Comments to update
+     */
+    where?: CommentsWhereInput
+  }
+
+
+  /**
+   * Comments upsert
+   */
+  export type CommentsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comments
+     */
+    select?: CommentsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CommentsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Comments to update in case it exists.
+     */
+    where: CommentsWhereUniqueInput
+    /**
+     * In case the Comments found by the `where` argument doesn't exist, create a new Comments with this data.
+     */
+    create: XOR<CommentsCreateInput, CommentsUncheckedCreateInput>
+    /**
+     * In case the Comments was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CommentsUpdateInput, CommentsUncheckedUpdateInput>
+  }
+
+
+  /**
+   * Comments delete
+   */
+  export type CommentsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comments
+     */
+    select?: CommentsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CommentsInclude<ExtArgs> | null
+    /**
+     * Filter which Comments to delete.
+     */
+    where: CommentsWhereUniqueInput
+  }
+
+
+  /**
+   * Comments deleteMany
+   */
+  export type CommentsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Comments to delete
+     */
+    where?: CommentsWhereInput
+  }
+
+
+  /**
+   * Comments.CommentVotes
+   */
+  export type Comments$CommentVotesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommentVotes
+     */
+    select?: CommentVotesSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CommentVotesInclude<ExtArgs> | null
+    where?: CommentVotesWhereInput
+    orderBy?: CommentVotesOrderByWithRelationInput | CommentVotesOrderByWithRelationInput[]
+    cursor?: CommentVotesWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CommentVotesScalarFieldEnum | CommentVotesScalarFieldEnum[]
+  }
+
+
+  /**
+   * Comments.CommentReplies
+   */
+  export type Comments$CommentRepliesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommentReplies
+     */
+    select?: CommentRepliesSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CommentRepliesInclude<ExtArgs> | null
+    where?: CommentRepliesWhereInput
+    orderBy?: CommentRepliesOrderByWithRelationInput | CommentRepliesOrderByWithRelationInput[]
+    cursor?: CommentRepliesWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CommentRepliesScalarFieldEnum | CommentRepliesScalarFieldEnum[]
+  }
+
+
+  /**
+   * Comments without action
+   */
+  export type CommentsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comments
+     */
+    select?: CommentsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CommentsInclude<ExtArgs> | null
+  }
+
+
+
+  /**
+   * Model CommentVotes
+   */
+
+  export type AggregateCommentVotes = {
+    _count: CommentVotesCountAggregateOutputType | null
+    _min: CommentVotesMinAggregateOutputType | null
+    _max: CommentVotesMaxAggregateOutputType | null
+  }
+
+  export type CommentVotesMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    commentId: string | null
+    createdAt: Date | null
+    upvote: boolean | null
+  }
+
+  export type CommentVotesMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    commentId: string | null
+    createdAt: Date | null
+    upvote: boolean | null
+  }
+
+  export type CommentVotesCountAggregateOutputType = {
+    id: number
+    userId: number
+    commentId: number
+    createdAt: number
+    upvote: number
+    _all: number
+  }
+
+
+  export type CommentVotesMinAggregateInputType = {
+    id?: true
+    userId?: true
+    commentId?: true
+    createdAt?: true
+    upvote?: true
+  }
+
+  export type CommentVotesMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    commentId?: true
+    createdAt?: true
+    upvote?: true
+  }
+
+  export type CommentVotesCountAggregateInputType = {
+    id?: true
+    userId?: true
+    commentId?: true
+    createdAt?: true
+    upvote?: true
+    _all?: true
+  }
+
+  export type CommentVotesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CommentVotes to aggregate.
+     */
+    where?: CommentVotesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CommentVotes to fetch.
+     */
+    orderBy?: CommentVotesOrderByWithRelationInput | CommentVotesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CommentVotesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CommentVotes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CommentVotes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned CommentVotes
+    **/
+    _count?: true | CommentVotesCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CommentVotesMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CommentVotesMaxAggregateInputType
+  }
+
+  export type GetCommentVotesAggregateType<T extends CommentVotesAggregateArgs> = {
+        [P in keyof T & keyof AggregateCommentVotes]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCommentVotes[P]>
+      : GetScalarType<T[P], AggregateCommentVotes[P]>
+  }
+
+
+
+
+  export type CommentVotesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CommentVotesWhereInput
+    orderBy?: CommentVotesOrderByWithAggregationInput | CommentVotesOrderByWithAggregationInput[]
+    by: CommentVotesScalarFieldEnum[] | CommentVotesScalarFieldEnum
+    having?: CommentVotesScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CommentVotesCountAggregateInputType | true
+    _min?: CommentVotesMinAggregateInputType
+    _max?: CommentVotesMaxAggregateInputType
+  }
+
+  export type CommentVotesGroupByOutputType = {
+    id: string
+    userId: string
+    commentId: string
+    createdAt: Date
+    upvote: boolean
+    _count: CommentVotesCountAggregateOutputType | null
+    _min: CommentVotesMinAggregateOutputType | null
+    _max: CommentVotesMaxAggregateOutputType | null
+  }
+
+  type GetCommentVotesGroupByPayload<T extends CommentVotesGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CommentVotesGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CommentVotesGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CommentVotesGroupByOutputType[P]>
+            : GetScalarType<T[P], CommentVotesGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CommentVotesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    commentId?: boolean
+    createdAt?: boolean
+    upvote?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    comment?: boolean | CommentsDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["commentVotes"]>
+
+  export type CommentVotesSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    commentId?: boolean
+    createdAt?: boolean
+    upvote?: boolean
+  }
+
+  export type CommentVotesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    comment?: boolean | CommentsDefaultArgs<ExtArgs>
+  }
+
+
+  export type $CommentVotesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "CommentVotes"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      comment: Prisma.$CommentsPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      commentId: string
+      createdAt: Date
+      upvote: boolean
+    }, ExtArgs["result"]["commentVotes"]>
+    composites: {}
+  }
+
+
+  type CommentVotesGetPayload<S extends boolean | null | undefined | CommentVotesDefaultArgs> = $Result.GetResult<Prisma.$CommentVotesPayload, S>
+
+  type CommentVotesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<CommentVotesFindManyArgs, 'select' | 'include' | 'distinct' > & {
+      select?: CommentVotesCountAggregateInputType | true
+    }
+
+  export interface CommentVotesDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CommentVotes'], meta: { name: 'CommentVotes' } }
+    /**
+     * Find zero or one CommentVotes that matches the filter.
+     * @param {CommentVotesFindUniqueArgs} args - Arguments to find a CommentVotes
+     * @example
+     * // Get one CommentVotes
+     * const commentVotes = await prisma.commentVotes.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends CommentVotesFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, CommentVotesFindUniqueArgs<ExtArgs>>
+    ): Prisma__CommentVotesClient<$Result.GetResult<Prisma.$CommentVotesPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one CommentVotes that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {CommentVotesFindUniqueOrThrowArgs} args - Arguments to find a CommentVotes
+     * @example
+     * // Get one CommentVotes
+     * const commentVotes = await prisma.commentVotes.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends CommentVotesFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, CommentVotesFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__CommentVotesClient<$Result.GetResult<Prisma.$CommentVotesPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first CommentVotes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommentVotesFindFirstArgs} args - Arguments to find a CommentVotes
+     * @example
+     * // Get one CommentVotes
+     * const commentVotes = await prisma.commentVotes.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends CommentVotesFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, CommentVotesFindFirstArgs<ExtArgs>>
+    ): Prisma__CommentVotesClient<$Result.GetResult<Prisma.$CommentVotesPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first CommentVotes that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommentVotesFindFirstOrThrowArgs} args - Arguments to find a CommentVotes
+     * @example
+     * // Get one CommentVotes
+     * const commentVotes = await prisma.commentVotes.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends CommentVotesFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, CommentVotesFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__CommentVotesClient<$Result.GetResult<Prisma.$CommentVotesPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more CommentVotes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommentVotesFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all CommentVotes
+     * const commentVotes = await prisma.commentVotes.findMany()
+     * 
+     * // Get first 10 CommentVotes
+     * const commentVotes = await prisma.commentVotes.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const commentVotesWithIdOnly = await prisma.commentVotes.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends CommentVotesFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, CommentVotesFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommentVotesPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a CommentVotes.
+     * @param {CommentVotesCreateArgs} args - Arguments to create a CommentVotes.
+     * @example
+     * // Create one CommentVotes
+     * const CommentVotes = await prisma.commentVotes.create({
+     *   data: {
+     *     // ... data to create a CommentVotes
+     *   }
+     * })
+     * 
+    **/
+    create<T extends CommentVotesCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, CommentVotesCreateArgs<ExtArgs>>
+    ): Prisma__CommentVotesClient<$Result.GetResult<Prisma.$CommentVotesPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Delete a CommentVotes.
+     * @param {CommentVotesDeleteArgs} args - Arguments to delete one CommentVotes.
+     * @example
+     * // Delete one CommentVotes
+     * const CommentVotes = await prisma.commentVotes.delete({
+     *   where: {
+     *     // ... filter to delete one CommentVotes
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends CommentVotesDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, CommentVotesDeleteArgs<ExtArgs>>
+    ): Prisma__CommentVotesClient<$Result.GetResult<Prisma.$CommentVotesPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one CommentVotes.
+     * @param {CommentVotesUpdateArgs} args - Arguments to update one CommentVotes.
+     * @example
+     * // Update one CommentVotes
+     * const commentVotes = await prisma.commentVotes.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends CommentVotesUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, CommentVotesUpdateArgs<ExtArgs>>
+    ): Prisma__CommentVotesClient<$Result.GetResult<Prisma.$CommentVotesPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more CommentVotes.
+     * @param {CommentVotesDeleteManyArgs} args - Arguments to filter CommentVotes to delete.
+     * @example
+     * // Delete a few CommentVotes
+     * const { count } = await prisma.commentVotes.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends CommentVotesDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, CommentVotesDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CommentVotes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommentVotesUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many CommentVotes
+     * const commentVotes = await prisma.commentVotes.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends CommentVotesUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, CommentVotesUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one CommentVotes.
+     * @param {CommentVotesUpsertArgs} args - Arguments to update or create a CommentVotes.
+     * @example
+     * // Update or create a CommentVotes
+     * const commentVotes = await prisma.commentVotes.upsert({
+     *   create: {
+     *     // ... data to create a CommentVotes
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the CommentVotes we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends CommentVotesUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, CommentVotesUpsertArgs<ExtArgs>>
+    ): Prisma__CommentVotesClient<$Result.GetResult<Prisma.$CommentVotesPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of CommentVotes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommentVotesCountArgs} args - Arguments to filter CommentVotes to count.
+     * @example
+     * // Count the number of CommentVotes
+     * const count = await prisma.commentVotes.count({
+     *   where: {
+     *     // ... the filter for the CommentVotes we want to count
+     *   }
+     * })
+    **/
+    count<T extends CommentVotesCountArgs>(
+      args?: Subset<T, CommentVotesCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CommentVotesCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a CommentVotes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommentVotesAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CommentVotesAggregateArgs>(args: Subset<T, CommentVotesAggregateArgs>): Prisma.PrismaPromise<GetCommentVotesAggregateType<T>>
+
+    /**
+     * Group by CommentVotes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommentVotesGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CommentVotesGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CommentVotesGroupByArgs['orderBy'] }
+        : { orderBy?: CommentVotesGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CommentVotesGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCommentVotesGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the CommentVotes model
+   */
+  readonly fields: CommentVotesFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for CommentVotes.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CommentVotesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    comment<T extends CommentsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CommentsDefaultArgs<ExtArgs>>): Prisma__CommentsClient<$Result.GetResult<Prisma.$CommentsPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the CommentVotes model
+   */ 
+  interface CommentVotesFieldRefs {
+    readonly id: FieldRef<"CommentVotes", 'String'>
+    readonly userId: FieldRef<"CommentVotes", 'String'>
+    readonly commentId: FieldRef<"CommentVotes", 'String'>
+    readonly createdAt: FieldRef<"CommentVotes", 'DateTime'>
+    readonly upvote: FieldRef<"CommentVotes", 'Boolean'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * CommentVotes findUnique
+   */
+  export type CommentVotesFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommentVotes
+     */
+    select?: CommentVotesSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CommentVotesInclude<ExtArgs> | null
+    /**
+     * Filter, which CommentVotes to fetch.
+     */
+    where: CommentVotesWhereUniqueInput
+  }
+
+
+  /**
+   * CommentVotes findUniqueOrThrow
+   */
+  export type CommentVotesFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommentVotes
+     */
+    select?: CommentVotesSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CommentVotesInclude<ExtArgs> | null
+    /**
+     * Filter, which CommentVotes to fetch.
+     */
+    where: CommentVotesWhereUniqueInput
+  }
+
+
+  /**
+   * CommentVotes findFirst
+   */
+  export type CommentVotesFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommentVotes
+     */
+    select?: CommentVotesSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CommentVotesInclude<ExtArgs> | null
+    /**
+     * Filter, which CommentVotes to fetch.
+     */
+    where?: CommentVotesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CommentVotes to fetch.
+     */
+    orderBy?: CommentVotesOrderByWithRelationInput | CommentVotesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CommentVotes.
+     */
+    cursor?: CommentVotesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CommentVotes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CommentVotes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CommentVotes.
+     */
+    distinct?: CommentVotesScalarFieldEnum | CommentVotesScalarFieldEnum[]
+  }
+
+
+  /**
+   * CommentVotes findFirstOrThrow
+   */
+  export type CommentVotesFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommentVotes
+     */
+    select?: CommentVotesSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CommentVotesInclude<ExtArgs> | null
+    /**
+     * Filter, which CommentVotes to fetch.
+     */
+    where?: CommentVotesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CommentVotes to fetch.
+     */
+    orderBy?: CommentVotesOrderByWithRelationInput | CommentVotesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CommentVotes.
+     */
+    cursor?: CommentVotesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CommentVotes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CommentVotes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CommentVotes.
+     */
+    distinct?: CommentVotesScalarFieldEnum | CommentVotesScalarFieldEnum[]
+  }
+
+
+  /**
+   * CommentVotes findMany
+   */
+  export type CommentVotesFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommentVotes
+     */
+    select?: CommentVotesSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CommentVotesInclude<ExtArgs> | null
+    /**
+     * Filter, which CommentVotes to fetch.
+     */
+    where?: CommentVotesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CommentVotes to fetch.
+     */
+    orderBy?: CommentVotesOrderByWithRelationInput | CommentVotesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing CommentVotes.
+     */
+    cursor?: CommentVotesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CommentVotes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CommentVotes.
+     */
+    skip?: number
+    distinct?: CommentVotesScalarFieldEnum | CommentVotesScalarFieldEnum[]
+  }
+
+
+  /**
+   * CommentVotes create
+   */
+  export type CommentVotesCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommentVotes
+     */
+    select?: CommentVotesSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CommentVotesInclude<ExtArgs> | null
+    /**
+     * The data needed to create a CommentVotes.
+     */
+    data: XOR<CommentVotesCreateInput, CommentVotesUncheckedCreateInput>
+  }
+
+
+  /**
+   * CommentVotes update
+   */
+  export type CommentVotesUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommentVotes
+     */
+    select?: CommentVotesSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CommentVotesInclude<ExtArgs> | null
+    /**
+     * The data needed to update a CommentVotes.
+     */
+    data: XOR<CommentVotesUpdateInput, CommentVotesUncheckedUpdateInput>
+    /**
+     * Choose, which CommentVotes to update.
+     */
+    where: CommentVotesWhereUniqueInput
+  }
+
+
+  /**
+   * CommentVotes updateMany
+   */
+  export type CommentVotesUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update CommentVotes.
+     */
+    data: XOR<CommentVotesUpdateManyMutationInput, CommentVotesUncheckedUpdateManyInput>
+    /**
+     * Filter which CommentVotes to update
+     */
+    where?: CommentVotesWhereInput
+  }
+
+
+  /**
+   * CommentVotes upsert
+   */
+  export type CommentVotesUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommentVotes
+     */
+    select?: CommentVotesSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CommentVotesInclude<ExtArgs> | null
+    /**
+     * The filter to search for the CommentVotes to update in case it exists.
+     */
+    where: CommentVotesWhereUniqueInput
+    /**
+     * In case the CommentVotes found by the `where` argument doesn't exist, create a new CommentVotes with this data.
+     */
+    create: XOR<CommentVotesCreateInput, CommentVotesUncheckedCreateInput>
+    /**
+     * In case the CommentVotes was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CommentVotesUpdateInput, CommentVotesUncheckedUpdateInput>
+  }
+
+
+  /**
+   * CommentVotes delete
+   */
+  export type CommentVotesDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommentVotes
+     */
+    select?: CommentVotesSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CommentVotesInclude<ExtArgs> | null
+    /**
+     * Filter which CommentVotes to delete.
+     */
+    where: CommentVotesWhereUniqueInput
+  }
+
+
+  /**
+   * CommentVotes deleteMany
+   */
+  export type CommentVotesDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CommentVotes to delete
+     */
+    where?: CommentVotesWhereInput
+  }
+
+
+  /**
+   * CommentVotes without action
+   */
+  export type CommentVotesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommentVotes
+     */
+    select?: CommentVotesSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CommentVotesInclude<ExtArgs> | null
+  }
+
+
+
+  /**
+   * Model CommentReplies
+   */
+
+  export type AggregateCommentReplies = {
+    _count: CommentRepliesCountAggregateOutputType | null
+    _min: CommentRepliesMinAggregateOutputType | null
+    _max: CommentRepliesMaxAggregateOutputType | null
+  }
+
+  export type CommentRepliesMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    commentId: string | null
+    reply: string | null
+    createdAt: Date | null
+  }
+
+  export type CommentRepliesMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    commentId: string | null
+    reply: string | null
+    createdAt: Date | null
+  }
+
+  export type CommentRepliesCountAggregateOutputType = {
+    id: number
+    userId: number
+    commentId: number
+    reply: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type CommentRepliesMinAggregateInputType = {
+    id?: true
+    userId?: true
+    commentId?: true
+    reply?: true
+    createdAt?: true
+  }
+
+  export type CommentRepliesMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    commentId?: true
+    reply?: true
+    createdAt?: true
+  }
+
+  export type CommentRepliesCountAggregateInputType = {
+    id?: true
+    userId?: true
+    commentId?: true
+    reply?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type CommentRepliesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CommentReplies to aggregate.
+     */
+    where?: CommentRepliesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CommentReplies to fetch.
+     */
+    orderBy?: CommentRepliesOrderByWithRelationInput | CommentRepliesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CommentRepliesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CommentReplies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CommentReplies.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned CommentReplies
+    **/
+    _count?: true | CommentRepliesCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CommentRepliesMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CommentRepliesMaxAggregateInputType
+  }
+
+  export type GetCommentRepliesAggregateType<T extends CommentRepliesAggregateArgs> = {
+        [P in keyof T & keyof AggregateCommentReplies]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCommentReplies[P]>
+      : GetScalarType<T[P], AggregateCommentReplies[P]>
+  }
+
+
+
+
+  export type CommentRepliesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CommentRepliesWhereInput
+    orderBy?: CommentRepliesOrderByWithAggregationInput | CommentRepliesOrderByWithAggregationInput[]
+    by: CommentRepliesScalarFieldEnum[] | CommentRepliesScalarFieldEnum
+    having?: CommentRepliesScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CommentRepliesCountAggregateInputType | true
+    _min?: CommentRepliesMinAggregateInputType
+    _max?: CommentRepliesMaxAggregateInputType
+  }
+
+  export type CommentRepliesGroupByOutputType = {
+    id: string
+    userId: string
+    commentId: string
+    reply: string
+    createdAt: Date
+    _count: CommentRepliesCountAggregateOutputType | null
+    _min: CommentRepliesMinAggregateOutputType | null
+    _max: CommentRepliesMaxAggregateOutputType | null
+  }
+
+  type GetCommentRepliesGroupByPayload<T extends CommentRepliesGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CommentRepliesGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CommentRepliesGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CommentRepliesGroupByOutputType[P]>
+            : GetScalarType<T[P], CommentRepliesGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CommentRepliesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    commentId?: boolean
+    reply?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    comment?: boolean | CommentsDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["commentReplies"]>
+
+  export type CommentRepliesSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    commentId?: boolean
+    reply?: boolean
+    createdAt?: boolean
+  }
+
+  export type CommentRepliesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    comment?: boolean | CommentsDefaultArgs<ExtArgs>
+  }
+
+
+  export type $CommentRepliesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "CommentReplies"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      comment: Prisma.$CommentsPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      commentId: string
+      reply: string
+      createdAt: Date
+    }, ExtArgs["result"]["commentReplies"]>
+    composites: {}
+  }
+
+
+  type CommentRepliesGetPayload<S extends boolean | null | undefined | CommentRepliesDefaultArgs> = $Result.GetResult<Prisma.$CommentRepliesPayload, S>
+
+  type CommentRepliesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<CommentRepliesFindManyArgs, 'select' | 'include' | 'distinct' > & {
+      select?: CommentRepliesCountAggregateInputType | true
+    }
+
+  export interface CommentRepliesDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CommentReplies'], meta: { name: 'CommentReplies' } }
+    /**
+     * Find zero or one CommentReplies that matches the filter.
+     * @param {CommentRepliesFindUniqueArgs} args - Arguments to find a CommentReplies
+     * @example
+     * // Get one CommentReplies
+     * const commentReplies = await prisma.commentReplies.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends CommentRepliesFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, CommentRepliesFindUniqueArgs<ExtArgs>>
+    ): Prisma__CommentRepliesClient<$Result.GetResult<Prisma.$CommentRepliesPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one CommentReplies that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {CommentRepliesFindUniqueOrThrowArgs} args - Arguments to find a CommentReplies
+     * @example
+     * // Get one CommentReplies
+     * const commentReplies = await prisma.commentReplies.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends CommentRepliesFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, CommentRepliesFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__CommentRepliesClient<$Result.GetResult<Prisma.$CommentRepliesPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first CommentReplies that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommentRepliesFindFirstArgs} args - Arguments to find a CommentReplies
+     * @example
+     * // Get one CommentReplies
+     * const commentReplies = await prisma.commentReplies.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends CommentRepliesFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, CommentRepliesFindFirstArgs<ExtArgs>>
+    ): Prisma__CommentRepliesClient<$Result.GetResult<Prisma.$CommentRepliesPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first CommentReplies that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommentRepliesFindFirstOrThrowArgs} args - Arguments to find a CommentReplies
+     * @example
+     * // Get one CommentReplies
+     * const commentReplies = await prisma.commentReplies.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends CommentRepliesFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, CommentRepliesFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__CommentRepliesClient<$Result.GetResult<Prisma.$CommentRepliesPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more CommentReplies that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommentRepliesFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all CommentReplies
+     * const commentReplies = await prisma.commentReplies.findMany()
+     * 
+     * // Get first 10 CommentReplies
+     * const commentReplies = await prisma.commentReplies.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const commentRepliesWithIdOnly = await prisma.commentReplies.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends CommentRepliesFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, CommentRepliesFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommentRepliesPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a CommentReplies.
+     * @param {CommentRepliesCreateArgs} args - Arguments to create a CommentReplies.
+     * @example
+     * // Create one CommentReplies
+     * const CommentReplies = await prisma.commentReplies.create({
+     *   data: {
+     *     // ... data to create a CommentReplies
+     *   }
+     * })
+     * 
+    **/
+    create<T extends CommentRepliesCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, CommentRepliesCreateArgs<ExtArgs>>
+    ): Prisma__CommentRepliesClient<$Result.GetResult<Prisma.$CommentRepliesPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Delete a CommentReplies.
+     * @param {CommentRepliesDeleteArgs} args - Arguments to delete one CommentReplies.
+     * @example
+     * // Delete one CommentReplies
+     * const CommentReplies = await prisma.commentReplies.delete({
+     *   where: {
+     *     // ... filter to delete one CommentReplies
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends CommentRepliesDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, CommentRepliesDeleteArgs<ExtArgs>>
+    ): Prisma__CommentRepliesClient<$Result.GetResult<Prisma.$CommentRepliesPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one CommentReplies.
+     * @param {CommentRepliesUpdateArgs} args - Arguments to update one CommentReplies.
+     * @example
+     * // Update one CommentReplies
+     * const commentReplies = await prisma.commentReplies.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends CommentRepliesUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, CommentRepliesUpdateArgs<ExtArgs>>
+    ): Prisma__CommentRepliesClient<$Result.GetResult<Prisma.$CommentRepliesPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more CommentReplies.
+     * @param {CommentRepliesDeleteManyArgs} args - Arguments to filter CommentReplies to delete.
+     * @example
+     * // Delete a few CommentReplies
+     * const { count } = await prisma.commentReplies.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends CommentRepliesDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, CommentRepliesDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CommentReplies.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommentRepliesUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many CommentReplies
+     * const commentReplies = await prisma.commentReplies.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends CommentRepliesUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, CommentRepliesUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one CommentReplies.
+     * @param {CommentRepliesUpsertArgs} args - Arguments to update or create a CommentReplies.
+     * @example
+     * // Update or create a CommentReplies
+     * const commentReplies = await prisma.commentReplies.upsert({
+     *   create: {
+     *     // ... data to create a CommentReplies
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the CommentReplies we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends CommentRepliesUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, CommentRepliesUpsertArgs<ExtArgs>>
+    ): Prisma__CommentRepliesClient<$Result.GetResult<Prisma.$CommentRepliesPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of CommentReplies.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommentRepliesCountArgs} args - Arguments to filter CommentReplies to count.
+     * @example
+     * // Count the number of CommentReplies
+     * const count = await prisma.commentReplies.count({
+     *   where: {
+     *     // ... the filter for the CommentReplies we want to count
+     *   }
+     * })
+    **/
+    count<T extends CommentRepliesCountArgs>(
+      args?: Subset<T, CommentRepliesCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CommentRepliesCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a CommentReplies.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommentRepliesAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CommentRepliesAggregateArgs>(args: Subset<T, CommentRepliesAggregateArgs>): Prisma.PrismaPromise<GetCommentRepliesAggregateType<T>>
+
+    /**
+     * Group by CommentReplies.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommentRepliesGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CommentRepliesGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CommentRepliesGroupByArgs['orderBy'] }
+        : { orderBy?: CommentRepliesGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CommentRepliesGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCommentRepliesGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the CommentReplies model
+   */
+  readonly fields: CommentRepliesFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for CommentReplies.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CommentRepliesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    comment<T extends CommentsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CommentsDefaultArgs<ExtArgs>>): Prisma__CommentsClient<$Result.GetResult<Prisma.$CommentsPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the CommentReplies model
+   */ 
+  interface CommentRepliesFieldRefs {
+    readonly id: FieldRef<"CommentReplies", 'String'>
+    readonly userId: FieldRef<"CommentReplies", 'String'>
+    readonly commentId: FieldRef<"CommentReplies", 'String'>
+    readonly reply: FieldRef<"CommentReplies", 'String'>
+    readonly createdAt: FieldRef<"CommentReplies", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * CommentReplies findUnique
+   */
+  export type CommentRepliesFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommentReplies
+     */
+    select?: CommentRepliesSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CommentRepliesInclude<ExtArgs> | null
+    /**
+     * Filter, which CommentReplies to fetch.
+     */
+    where: CommentRepliesWhereUniqueInput
+  }
+
+
+  /**
+   * CommentReplies findUniqueOrThrow
+   */
+  export type CommentRepliesFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommentReplies
+     */
+    select?: CommentRepliesSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CommentRepliesInclude<ExtArgs> | null
+    /**
+     * Filter, which CommentReplies to fetch.
+     */
+    where: CommentRepliesWhereUniqueInput
+  }
+
+
+  /**
+   * CommentReplies findFirst
+   */
+  export type CommentRepliesFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommentReplies
+     */
+    select?: CommentRepliesSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CommentRepliesInclude<ExtArgs> | null
+    /**
+     * Filter, which CommentReplies to fetch.
+     */
+    where?: CommentRepliesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CommentReplies to fetch.
+     */
+    orderBy?: CommentRepliesOrderByWithRelationInput | CommentRepliesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CommentReplies.
+     */
+    cursor?: CommentRepliesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CommentReplies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CommentReplies.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CommentReplies.
+     */
+    distinct?: CommentRepliesScalarFieldEnum | CommentRepliesScalarFieldEnum[]
+  }
+
+
+  /**
+   * CommentReplies findFirstOrThrow
+   */
+  export type CommentRepliesFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommentReplies
+     */
+    select?: CommentRepliesSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CommentRepliesInclude<ExtArgs> | null
+    /**
+     * Filter, which CommentReplies to fetch.
+     */
+    where?: CommentRepliesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CommentReplies to fetch.
+     */
+    orderBy?: CommentRepliesOrderByWithRelationInput | CommentRepliesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CommentReplies.
+     */
+    cursor?: CommentRepliesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CommentReplies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CommentReplies.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CommentReplies.
+     */
+    distinct?: CommentRepliesScalarFieldEnum | CommentRepliesScalarFieldEnum[]
+  }
+
+
+  /**
+   * CommentReplies findMany
+   */
+  export type CommentRepliesFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommentReplies
+     */
+    select?: CommentRepliesSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CommentRepliesInclude<ExtArgs> | null
+    /**
+     * Filter, which CommentReplies to fetch.
+     */
+    where?: CommentRepliesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CommentReplies to fetch.
+     */
+    orderBy?: CommentRepliesOrderByWithRelationInput | CommentRepliesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing CommentReplies.
+     */
+    cursor?: CommentRepliesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CommentReplies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CommentReplies.
+     */
+    skip?: number
+    distinct?: CommentRepliesScalarFieldEnum | CommentRepliesScalarFieldEnum[]
+  }
+
+
+  /**
+   * CommentReplies create
+   */
+  export type CommentRepliesCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommentReplies
+     */
+    select?: CommentRepliesSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CommentRepliesInclude<ExtArgs> | null
+    /**
+     * The data needed to create a CommentReplies.
+     */
+    data: XOR<CommentRepliesCreateInput, CommentRepliesUncheckedCreateInput>
+  }
+
+
+  /**
+   * CommentReplies update
+   */
+  export type CommentRepliesUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommentReplies
+     */
+    select?: CommentRepliesSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CommentRepliesInclude<ExtArgs> | null
+    /**
+     * The data needed to update a CommentReplies.
+     */
+    data: XOR<CommentRepliesUpdateInput, CommentRepliesUncheckedUpdateInput>
+    /**
+     * Choose, which CommentReplies to update.
+     */
+    where: CommentRepliesWhereUniqueInput
+  }
+
+
+  /**
+   * CommentReplies updateMany
+   */
+  export type CommentRepliesUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update CommentReplies.
+     */
+    data: XOR<CommentRepliesUpdateManyMutationInput, CommentRepliesUncheckedUpdateManyInput>
+    /**
+     * Filter which CommentReplies to update
+     */
+    where?: CommentRepliesWhereInput
+  }
+
+
+  /**
+   * CommentReplies upsert
+   */
+  export type CommentRepliesUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommentReplies
+     */
+    select?: CommentRepliesSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CommentRepliesInclude<ExtArgs> | null
+    /**
+     * The filter to search for the CommentReplies to update in case it exists.
+     */
+    where: CommentRepliesWhereUniqueInput
+    /**
+     * In case the CommentReplies found by the `where` argument doesn't exist, create a new CommentReplies with this data.
+     */
+    create: XOR<CommentRepliesCreateInput, CommentRepliesUncheckedCreateInput>
+    /**
+     * In case the CommentReplies was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CommentRepliesUpdateInput, CommentRepliesUncheckedUpdateInput>
+  }
+
+
+  /**
+   * CommentReplies delete
+   */
+  export type CommentRepliesDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommentReplies
+     */
+    select?: CommentRepliesSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CommentRepliesInclude<ExtArgs> | null
+    /**
+     * Filter which CommentReplies to delete.
+     */
+    where: CommentRepliesWhereUniqueInput
+  }
+
+
+  /**
+   * CommentReplies deleteMany
+   */
+  export type CommentRepliesDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CommentReplies to delete
+     */
+    where?: CommentRepliesWhereInput
+  }
+
+
+  /**
+   * CommentReplies without action
+   */
+  export type CommentRepliesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommentReplies
+     */
+    select?: CommentRepliesSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CommentRepliesInclude<ExtArgs> | null
+  }
+
+
+
+  /**
    * Enums
    */
 
@@ -13197,7 +18339,8 @@ export namespace Prisma {
     dateEdited: 'dateEdited',
     deleted: 'deleted',
     authorId: 'authorId',
-    json: 'json'
+    json: 'json',
+    downloadCount: 'downloadCount'
   };
 
   export type PromptsScalarFieldEnum = (typeof PromptsScalarFieldEnum)[keyof typeof PromptsScalarFieldEnum]
@@ -13269,6 +18412,14 @@ export namespace Prisma {
   export type WorldInfoSearchScalarFieldEnum = (typeof WorldInfoSearchScalarFieldEnum)[keyof typeof WorldInfoSearchScalarFieldEnum]
 
 
+  export const TagSearchScalarFieldEnum: {
+    id: 'id',
+    text: 'text'
+  };
+
+  export type TagSearchScalarFieldEnum = (typeof TagSearchScalarFieldEnum)[keyof typeof TagSearchScalarFieldEnum]
+
+
   export const AccountScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
@@ -13334,6 +18485,50 @@ export namespace Prisma {
   };
 
   export type TagsPromptsMapScalarFieldEnum = (typeof TagsPromptsMapScalarFieldEnum)[keyof typeof TagsPromptsMapScalarFieldEnum]
+
+
+  export const PromptVotesScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    promptId: 'promptId',
+    createdAt: 'createdAt',
+    upvote: 'upvote'
+  };
+
+  export type PromptVotesScalarFieldEnum = (typeof PromptVotesScalarFieldEnum)[keyof typeof PromptVotesScalarFieldEnum]
+
+
+  export const CommentsScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    promptId: 'promptId',
+    comment: 'comment',
+    createdAt: 'createdAt'
+  };
+
+  export type CommentsScalarFieldEnum = (typeof CommentsScalarFieldEnum)[keyof typeof CommentsScalarFieldEnum]
+
+
+  export const CommentVotesScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    commentId: 'commentId',
+    createdAt: 'createdAt',
+    upvote: 'upvote'
+  };
+
+  export type CommentVotesScalarFieldEnum = (typeof CommentVotesScalarFieldEnum)[keyof typeof CommentVotesScalarFieldEnum]
+
+
+  export const CommentRepliesScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    commentId: 'commentId',
+    reply: 'reply',
+    createdAt: 'createdAt'
+  };
+
+  export type CommentRepliesScalarFieldEnum = (typeof CommentRepliesScalarFieldEnum)[keyof typeof CommentRepliesScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -13427,9 +18622,12 @@ export namespace Prisma {
     deleted?: BoolFilter<"Prompts"> | boolean
     authorId?: StringNullableFilter<"Prompts"> | string | null
     json?: StringNullableFilter<"Prompts"> | string | null
+    downloadCount?: IntFilter<"Prompts"> | number
     tagsFull?: TagsPromptsMapListRelationFilter
     worldInfos?: WorldInfosListRelationFilter
     author?: XOR<UserNullableRelationFilter, UserWhereInput> | null
+    PromptVotes?: PromptVotesListRelationFilter
+    Comments?: CommentsListRelationFilter
   }
 
   export type PromptsOrderByWithRelationInput = {
@@ -13454,9 +18652,12 @@ export namespace Prisma {
     deleted?: SortOrder
     authorId?: SortOrderInput | SortOrder
     json?: SortOrderInput | SortOrder
+    downloadCount?: SortOrder
     tagsFull?: TagsPromptsMapOrderByRelationAggregateInput
     worldInfos?: WorldInfosOrderByRelationAggregateInput
     author?: UserOrderByWithRelationInput
+    PromptVotes?: PromptVotesOrderByRelationAggregateInput
+    Comments?: CommentsOrderByRelationAggregateInput
   }
 
   export type PromptsWhereUniqueInput = Prisma.AtLeast<{
@@ -13484,9 +18685,12 @@ export namespace Prisma {
     deleted?: BoolFilter<"Prompts"> | boolean
     authorId?: StringNullableFilter<"Prompts"> | string | null
     json?: StringNullableFilter<"Prompts"> | string | null
+    downloadCount?: IntFilter<"Prompts"> | number
     tagsFull?: TagsPromptsMapListRelationFilter
     worldInfos?: WorldInfosListRelationFilter
     author?: XOR<UserNullableRelationFilter, UserWhereInput> | null
+    PromptVotes?: PromptVotesListRelationFilter
+    Comments?: CommentsListRelationFilter
   }, "id">
 
   export type PromptsOrderByWithAggregationInput = {
@@ -13511,6 +18715,7 @@ export namespace Prisma {
     deleted?: SortOrder
     authorId?: SortOrderInput | SortOrder
     json?: SortOrderInput | SortOrder
+    downloadCount?: SortOrder
     _count?: PromptsCountOrderByAggregateInput
     _avg?: PromptsAvgOrderByAggregateInput
     _max?: PromptsMaxOrderByAggregateInput
@@ -13543,6 +18748,7 @@ export namespace Prisma {
     deleted?: BoolWithAggregatesFilter<"Prompts"> | boolean
     authorId?: StringNullableWithAggregatesFilter<"Prompts"> | string | null
     json?: StringNullableWithAggregatesFilter<"Prompts"> | string | null
+    downloadCount?: IntWithAggregatesFilter<"Prompts"> | number
   }
 
   export type WorldInfosWhereInput = {
@@ -13879,6 +19085,45 @@ export namespace Prisma {
     text?: StringWithAggregatesFilter<"WorldInfoSearch"> | string
   }
 
+  export type TagSearchWhereInput = {
+    AND?: TagSearchWhereInput | TagSearchWhereInput[]
+    OR?: TagSearchWhereInput[]
+    NOT?: TagSearchWhereInput | TagSearchWhereInput[]
+    id?: IntFilter<"TagSearch"> | number
+    text?: StringFilter<"TagSearch"> | string
+  }
+
+  export type TagSearchOrderByWithRelationInput = {
+    id?: SortOrder
+    text?: SortOrder
+  }
+
+  export type TagSearchWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: TagSearchWhereInput | TagSearchWhereInput[]
+    OR?: TagSearchWhereInput[]
+    NOT?: TagSearchWhereInput | TagSearchWhereInput[]
+    text?: StringFilter<"TagSearch"> | string
+  }, "id">
+
+  export type TagSearchOrderByWithAggregationInput = {
+    id?: SortOrder
+    text?: SortOrder
+    _count?: TagSearchCountOrderByAggregateInput
+    _avg?: TagSearchAvgOrderByAggregateInput
+    _max?: TagSearchMaxOrderByAggregateInput
+    _min?: TagSearchMinOrderByAggregateInput
+    _sum?: TagSearchSumOrderByAggregateInput
+  }
+
+  export type TagSearchScalarWhereWithAggregatesInput = {
+    AND?: TagSearchScalarWhereWithAggregatesInput | TagSearchScalarWhereWithAggregatesInput[]
+    OR?: TagSearchScalarWhereWithAggregatesInput[]
+    NOT?: TagSearchScalarWhereWithAggregatesInput | TagSearchScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"TagSearch"> | number
+    text?: StringWithAggregatesFilter<"TagSearch"> | string
+  }
+
   export type AccountWhereInput = {
     AND?: AccountWhereInput | AccountWhereInput[]
     OR?: AccountWhereInput[]
@@ -14036,6 +19281,10 @@ export namespace Prisma {
     accounts?: AccountListRelationFilter
     sessions?: SessionListRelationFilter
     Prompts?: PromptsListRelationFilter
+    PromptVotes?: PromptVotesListRelationFilter
+    Comments?: CommentsListRelationFilter
+    CommentVotes?: CommentVotesListRelationFilter
+    CommentReplies?: CommentRepliesListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -14049,6 +19298,10 @@ export namespace Prisma {
     accounts?: AccountOrderByRelationAggregateInput
     sessions?: SessionOrderByRelationAggregateInput
     Prompts?: PromptsOrderByRelationAggregateInput
+    PromptVotes?: PromptVotesOrderByRelationAggregateInput
+    Comments?: CommentsOrderByRelationAggregateInput
+    CommentVotes?: CommentVotesOrderByRelationAggregateInput
+    CommentReplies?: CommentRepliesOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -14065,6 +19318,10 @@ export namespace Prisma {
     accounts?: AccountListRelationFilter
     sessions?: SessionListRelationFilter
     Prompts?: PromptsListRelationFilter
+    PromptVotes?: PromptVotesListRelationFilter
+    Comments?: CommentsListRelationFilter
+    CommentVotes?: CommentVotesListRelationFilter
+    CommentReplies?: CommentRepliesListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -14225,6 +19482,246 @@ export namespace Prisma {
     promptID?: StringWithAggregatesFilter<"TagsPromptsMap"> | string
   }
 
+  export type PromptVotesWhereInput = {
+    AND?: PromptVotesWhereInput | PromptVotesWhereInput[]
+    OR?: PromptVotesWhereInput[]
+    NOT?: PromptVotesWhereInput | PromptVotesWhereInput[]
+    id?: StringFilter<"PromptVotes"> | string
+    userId?: StringFilter<"PromptVotes"> | string
+    promptId?: StringFilter<"PromptVotes"> | string
+    createdAt?: DateTimeFilter<"PromptVotes"> | Date | string
+    upvote?: BoolFilter<"PromptVotes"> | boolean
+    user?: XOR<UserRelationFilter, UserWhereInput>
+    prompt?: XOR<PromptsRelationFilter, PromptsWhereInput>
+  }
+
+  export type PromptVotesOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    promptId?: SortOrder
+    createdAt?: SortOrder
+    upvote?: SortOrder
+    user?: UserOrderByWithRelationInput
+    prompt?: PromptsOrderByWithRelationInput
+  }
+
+  export type PromptVotesWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    userId_promptId?: PromptVotesUserIdPromptIdCompoundUniqueInput
+    AND?: PromptVotesWhereInput | PromptVotesWhereInput[]
+    OR?: PromptVotesWhereInput[]
+    NOT?: PromptVotesWhereInput | PromptVotesWhereInput[]
+    userId?: StringFilter<"PromptVotes"> | string
+    promptId?: StringFilter<"PromptVotes"> | string
+    createdAt?: DateTimeFilter<"PromptVotes"> | Date | string
+    upvote?: BoolFilter<"PromptVotes"> | boolean
+    user?: XOR<UserRelationFilter, UserWhereInput>
+    prompt?: XOR<PromptsRelationFilter, PromptsWhereInput>
+  }, "id" | "userId_promptId">
+
+  export type PromptVotesOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    promptId?: SortOrder
+    createdAt?: SortOrder
+    upvote?: SortOrder
+    _count?: PromptVotesCountOrderByAggregateInput
+    _max?: PromptVotesMaxOrderByAggregateInput
+    _min?: PromptVotesMinOrderByAggregateInput
+  }
+
+  export type PromptVotesScalarWhereWithAggregatesInput = {
+    AND?: PromptVotesScalarWhereWithAggregatesInput | PromptVotesScalarWhereWithAggregatesInput[]
+    OR?: PromptVotesScalarWhereWithAggregatesInput[]
+    NOT?: PromptVotesScalarWhereWithAggregatesInput | PromptVotesScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"PromptVotes"> | string
+    userId?: StringWithAggregatesFilter<"PromptVotes"> | string
+    promptId?: StringWithAggregatesFilter<"PromptVotes"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"PromptVotes"> | Date | string
+    upvote?: BoolWithAggregatesFilter<"PromptVotes"> | boolean
+  }
+
+  export type CommentsWhereInput = {
+    AND?: CommentsWhereInput | CommentsWhereInput[]
+    OR?: CommentsWhereInput[]
+    NOT?: CommentsWhereInput | CommentsWhereInput[]
+    id?: StringFilter<"Comments"> | string
+    userId?: StringFilter<"Comments"> | string
+    promptId?: StringFilter<"Comments"> | string
+    comment?: StringFilter<"Comments"> | string
+    createdAt?: DateTimeFilter<"Comments"> | Date | string
+    user?: XOR<UserRelationFilter, UserWhereInput>
+    prompt?: XOR<PromptsRelationFilter, PromptsWhereInput>
+    CommentVotes?: CommentVotesListRelationFilter
+    CommentReplies?: CommentRepliesListRelationFilter
+  }
+
+  export type CommentsOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    promptId?: SortOrder
+    comment?: SortOrder
+    createdAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+    prompt?: PromptsOrderByWithRelationInput
+    CommentVotes?: CommentVotesOrderByRelationAggregateInput
+    CommentReplies?: CommentRepliesOrderByRelationAggregateInput
+  }
+
+  export type CommentsWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: CommentsWhereInput | CommentsWhereInput[]
+    OR?: CommentsWhereInput[]
+    NOT?: CommentsWhereInput | CommentsWhereInput[]
+    userId?: StringFilter<"Comments"> | string
+    promptId?: StringFilter<"Comments"> | string
+    comment?: StringFilter<"Comments"> | string
+    createdAt?: DateTimeFilter<"Comments"> | Date | string
+    user?: XOR<UserRelationFilter, UserWhereInput>
+    prompt?: XOR<PromptsRelationFilter, PromptsWhereInput>
+    CommentVotes?: CommentVotesListRelationFilter
+    CommentReplies?: CommentRepliesListRelationFilter
+  }, "id">
+
+  export type CommentsOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    promptId?: SortOrder
+    comment?: SortOrder
+    createdAt?: SortOrder
+    _count?: CommentsCountOrderByAggregateInput
+    _max?: CommentsMaxOrderByAggregateInput
+    _min?: CommentsMinOrderByAggregateInput
+  }
+
+  export type CommentsScalarWhereWithAggregatesInput = {
+    AND?: CommentsScalarWhereWithAggregatesInput | CommentsScalarWhereWithAggregatesInput[]
+    OR?: CommentsScalarWhereWithAggregatesInput[]
+    NOT?: CommentsScalarWhereWithAggregatesInput | CommentsScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Comments"> | string
+    userId?: StringWithAggregatesFilter<"Comments"> | string
+    promptId?: StringWithAggregatesFilter<"Comments"> | string
+    comment?: StringWithAggregatesFilter<"Comments"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Comments"> | Date | string
+  }
+
+  export type CommentVotesWhereInput = {
+    AND?: CommentVotesWhereInput | CommentVotesWhereInput[]
+    OR?: CommentVotesWhereInput[]
+    NOT?: CommentVotesWhereInput | CommentVotesWhereInput[]
+    id?: StringFilter<"CommentVotes"> | string
+    userId?: StringFilter<"CommentVotes"> | string
+    commentId?: StringFilter<"CommentVotes"> | string
+    createdAt?: DateTimeFilter<"CommentVotes"> | Date | string
+    upvote?: BoolFilter<"CommentVotes"> | boolean
+    user?: XOR<UserRelationFilter, UserWhereInput>
+    comment?: XOR<CommentsRelationFilter, CommentsWhereInput>
+  }
+
+  export type CommentVotesOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    commentId?: SortOrder
+    createdAt?: SortOrder
+    upvote?: SortOrder
+    user?: UserOrderByWithRelationInput
+    comment?: CommentsOrderByWithRelationInput
+  }
+
+  export type CommentVotesWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    userId_commentId?: CommentVotesUserIdCommentIdCompoundUniqueInput
+    AND?: CommentVotesWhereInput | CommentVotesWhereInput[]
+    OR?: CommentVotesWhereInput[]
+    NOT?: CommentVotesWhereInput | CommentVotesWhereInput[]
+    userId?: StringFilter<"CommentVotes"> | string
+    commentId?: StringFilter<"CommentVotes"> | string
+    createdAt?: DateTimeFilter<"CommentVotes"> | Date | string
+    upvote?: BoolFilter<"CommentVotes"> | boolean
+    user?: XOR<UserRelationFilter, UserWhereInput>
+    comment?: XOR<CommentsRelationFilter, CommentsWhereInput>
+  }, "id" | "userId_commentId">
+
+  export type CommentVotesOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    commentId?: SortOrder
+    createdAt?: SortOrder
+    upvote?: SortOrder
+    _count?: CommentVotesCountOrderByAggregateInput
+    _max?: CommentVotesMaxOrderByAggregateInput
+    _min?: CommentVotesMinOrderByAggregateInput
+  }
+
+  export type CommentVotesScalarWhereWithAggregatesInput = {
+    AND?: CommentVotesScalarWhereWithAggregatesInput | CommentVotesScalarWhereWithAggregatesInput[]
+    OR?: CommentVotesScalarWhereWithAggregatesInput[]
+    NOT?: CommentVotesScalarWhereWithAggregatesInput | CommentVotesScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"CommentVotes"> | string
+    userId?: StringWithAggregatesFilter<"CommentVotes"> | string
+    commentId?: StringWithAggregatesFilter<"CommentVotes"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"CommentVotes"> | Date | string
+    upvote?: BoolWithAggregatesFilter<"CommentVotes"> | boolean
+  }
+
+  export type CommentRepliesWhereInput = {
+    AND?: CommentRepliesWhereInput | CommentRepliesWhereInput[]
+    OR?: CommentRepliesWhereInput[]
+    NOT?: CommentRepliesWhereInput | CommentRepliesWhereInput[]
+    id?: StringFilter<"CommentReplies"> | string
+    userId?: StringFilter<"CommentReplies"> | string
+    commentId?: StringFilter<"CommentReplies"> | string
+    reply?: StringFilter<"CommentReplies"> | string
+    createdAt?: DateTimeFilter<"CommentReplies"> | Date | string
+    user?: XOR<UserRelationFilter, UserWhereInput>
+    comment?: XOR<CommentsRelationFilter, CommentsWhereInput>
+  }
+
+  export type CommentRepliesOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    commentId?: SortOrder
+    reply?: SortOrder
+    createdAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+    comment?: CommentsOrderByWithRelationInput
+  }
+
+  export type CommentRepliesWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: CommentRepliesWhereInput | CommentRepliesWhereInput[]
+    OR?: CommentRepliesWhereInput[]
+    NOT?: CommentRepliesWhereInput | CommentRepliesWhereInput[]
+    userId?: StringFilter<"CommentReplies"> | string
+    commentId?: StringFilter<"CommentReplies"> | string
+    reply?: StringFilter<"CommentReplies"> | string
+    createdAt?: DateTimeFilter<"CommentReplies"> | Date | string
+    user?: XOR<UserRelationFilter, UserWhereInput>
+    comment?: XOR<CommentsRelationFilter, CommentsWhereInput>
+  }, "id">
+
+  export type CommentRepliesOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    commentId?: SortOrder
+    reply?: SortOrder
+    createdAt?: SortOrder
+    _count?: CommentRepliesCountOrderByAggregateInput
+    _max?: CommentRepliesMaxOrderByAggregateInput
+    _min?: CommentRepliesMinOrderByAggregateInput
+  }
+
+  export type CommentRepliesScalarWhereWithAggregatesInput = {
+    AND?: CommentRepliesScalarWhereWithAggregatesInput | CommentRepliesScalarWhereWithAggregatesInput[]
+    OR?: CommentRepliesScalarWhereWithAggregatesInput[]
+    NOT?: CommentRepliesScalarWhereWithAggregatesInput | CommentRepliesScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"CommentReplies"> | string
+    userId?: StringWithAggregatesFilter<"CommentReplies"> | string
+    commentId?: StringWithAggregatesFilter<"CommentReplies"> | string
+    reply?: StringWithAggregatesFilter<"CommentReplies"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"CommentReplies"> | Date | string
+  }
+
   export type PromptsCreateInput = {
     id?: string
     aetherId?: number | null
@@ -14246,9 +19743,12 @@ export namespace Prisma {
     dateEdited?: string | null
     deleted?: boolean
     json?: string | null
+    downloadCount?: number
     tagsFull?: TagsPromptsMapCreateNestedManyWithoutPromptInput
     worldInfos?: WorldInfosCreateNestedManyWithoutPromptsInput
     author?: UserCreateNestedOneWithoutPromptsInput
+    PromptVotes?: PromptVotesCreateNestedManyWithoutPromptInput
+    Comments?: CommentsCreateNestedManyWithoutPromptInput
   }
 
   export type PromptsUncheckedCreateInput = {
@@ -14273,8 +19773,11 @@ export namespace Prisma {
     deleted?: boolean
     authorId?: string | null
     json?: string | null
+    downloadCount?: number
     tagsFull?: TagsPromptsMapUncheckedCreateNestedManyWithoutPromptInput
     worldInfos?: WorldInfosUncheckedCreateNestedManyWithoutPromptsInput
+    PromptVotes?: PromptVotesUncheckedCreateNestedManyWithoutPromptInput
+    Comments?: CommentsUncheckedCreateNestedManyWithoutPromptInput
   }
 
   export type PromptsUpdateInput = {
@@ -14298,9 +19801,12 @@ export namespace Prisma {
     dateEdited?: NullableStringFieldUpdateOperationsInput | string | null
     deleted?: BoolFieldUpdateOperationsInput | boolean
     json?: NullableStringFieldUpdateOperationsInput | string | null
+    downloadCount?: IntFieldUpdateOperationsInput | number
     tagsFull?: TagsPromptsMapUpdateManyWithoutPromptNestedInput
     worldInfos?: WorldInfosUpdateManyWithoutPromptsNestedInput
     author?: UserUpdateOneWithoutPromptsNestedInput
+    PromptVotes?: PromptVotesUpdateManyWithoutPromptNestedInput
+    Comments?: CommentsUpdateManyWithoutPromptNestedInput
   }
 
   export type PromptsUncheckedUpdateInput = {
@@ -14325,8 +19831,11 @@ export namespace Prisma {
     deleted?: BoolFieldUpdateOperationsInput | boolean
     authorId?: NullableStringFieldUpdateOperationsInput | string | null
     json?: NullableStringFieldUpdateOperationsInput | string | null
+    downloadCount?: IntFieldUpdateOperationsInput | number
     tagsFull?: TagsPromptsMapUncheckedUpdateManyWithoutPromptNestedInput
     worldInfos?: WorldInfosUncheckedUpdateManyWithoutPromptsNestedInput
+    PromptVotes?: PromptVotesUncheckedUpdateManyWithoutPromptNestedInput
+    Comments?: CommentsUncheckedUpdateManyWithoutPromptNestedInput
   }
 
   export type PromptsUpdateManyMutationInput = {
@@ -14350,6 +19859,7 @@ export namespace Prisma {
     dateEdited?: NullableStringFieldUpdateOperationsInput | string | null
     deleted?: BoolFieldUpdateOperationsInput | boolean
     json?: NullableStringFieldUpdateOperationsInput | string | null
+    downloadCount?: IntFieldUpdateOperationsInput | number
   }
 
   export type PromptsUncheckedUpdateManyInput = {
@@ -14374,6 +19884,7 @@ export namespace Prisma {
     deleted?: BoolFieldUpdateOperationsInput | boolean
     authorId?: NullableStringFieldUpdateOperationsInput | string | null
     json?: NullableStringFieldUpdateOperationsInput | string | null
+    downloadCount?: IntFieldUpdateOperationsInput | number
   }
 
   export type WorldInfosCreateInput = {
@@ -14672,6 +20183,33 @@ export namespace Prisma {
     text?: StringFieldUpdateOperationsInput | string
   }
 
+  export type TagSearchCreateInput = {
+    text: string
+  }
+
+  export type TagSearchUncheckedCreateInput = {
+    id?: number
+    text: string
+  }
+
+  export type TagSearchUpdateInput = {
+    text?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type TagSearchUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    text?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type TagSearchUpdateManyMutationInput = {
+    text?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type TagSearchUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    text?: StringFieldUpdateOperationsInput | string
+  }
+
   export type AccountCreateInput = {
     id?: string
     type: string
@@ -14813,6 +20351,10 @@ export namespace Prisma {
     accounts?: AccountCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
     Prompts?: PromptsCreateNestedManyWithoutAuthorInput
+    PromptVotes?: PromptVotesCreateNestedManyWithoutUserInput
+    Comments?: CommentsCreateNestedManyWithoutUserInput
+    CommentVotes?: CommentVotesCreateNestedManyWithoutUserInput
+    CommentReplies?: CommentRepliesCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -14826,6 +20368,10 @@ export namespace Prisma {
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     Prompts?: PromptsUncheckedCreateNestedManyWithoutAuthorInput
+    PromptVotes?: PromptVotesUncheckedCreateNestedManyWithoutUserInput
+    Comments?: CommentsUncheckedCreateNestedManyWithoutUserInput
+    CommentVotes?: CommentVotesUncheckedCreateNestedManyWithoutUserInput
+    CommentReplies?: CommentRepliesUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -14839,6 +20385,10 @@ export namespace Prisma {
     accounts?: AccountUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
     Prompts?: PromptsUpdateManyWithoutAuthorNestedInput
+    PromptVotes?: PromptVotesUpdateManyWithoutUserNestedInput
+    Comments?: CommentsUpdateManyWithoutUserNestedInput
+    CommentVotes?: CommentVotesUpdateManyWithoutUserNestedInput
+    CommentReplies?: CommentRepliesUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -14852,6 +20402,10 @@ export namespace Prisma {
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     Prompts?: PromptsUncheckedUpdateManyWithoutAuthorNestedInput
+    PromptVotes?: PromptVotesUncheckedUpdateManyWithoutUserNestedInput
+    Comments?: CommentsUncheckedUpdateManyWithoutUserNestedInput
+    CommentVotes?: CommentVotesUncheckedUpdateManyWithoutUserNestedInput
+    CommentReplies?: CommentRepliesUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUpdateManyMutationInput = {
@@ -14979,6 +20533,198 @@ export namespace Prisma {
     promptID?: StringFieldUpdateOperationsInput | string
   }
 
+  export type PromptVotesCreateInput = {
+    id?: string
+    createdAt?: Date | string
+    upvote: boolean
+    user: UserCreateNestedOneWithoutPromptVotesInput
+    prompt: PromptsCreateNestedOneWithoutPromptVotesInput
+  }
+
+  export type PromptVotesUncheckedCreateInput = {
+    id?: string
+    userId: string
+    promptId: string
+    createdAt?: Date | string
+    upvote: boolean
+  }
+
+  export type PromptVotesUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    upvote?: BoolFieldUpdateOperationsInput | boolean
+    user?: UserUpdateOneRequiredWithoutPromptVotesNestedInput
+    prompt?: PromptsUpdateOneRequiredWithoutPromptVotesNestedInput
+  }
+
+  export type PromptVotesUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    promptId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    upvote?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type PromptVotesUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    upvote?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type PromptVotesUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    promptId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    upvote?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type CommentsCreateInput = {
+    id?: string
+    comment: string
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutCommentsInput
+    prompt: PromptsCreateNestedOneWithoutCommentsInput
+    CommentVotes?: CommentVotesCreateNestedManyWithoutCommentInput
+    CommentReplies?: CommentRepliesCreateNestedManyWithoutCommentInput
+  }
+
+  export type CommentsUncheckedCreateInput = {
+    id?: string
+    userId: string
+    promptId: string
+    comment: string
+    createdAt?: Date | string
+    CommentVotes?: CommentVotesUncheckedCreateNestedManyWithoutCommentInput
+    CommentReplies?: CommentRepliesUncheckedCreateNestedManyWithoutCommentInput
+  }
+
+  export type CommentsUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    comment?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutCommentsNestedInput
+    prompt?: PromptsUpdateOneRequiredWithoutCommentsNestedInput
+    CommentVotes?: CommentVotesUpdateManyWithoutCommentNestedInput
+    CommentReplies?: CommentRepliesUpdateManyWithoutCommentNestedInput
+  }
+
+  export type CommentsUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    promptId?: StringFieldUpdateOperationsInput | string
+    comment?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    CommentVotes?: CommentVotesUncheckedUpdateManyWithoutCommentNestedInput
+    CommentReplies?: CommentRepliesUncheckedUpdateManyWithoutCommentNestedInput
+  }
+
+  export type CommentsUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    comment?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CommentsUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    promptId?: StringFieldUpdateOperationsInput | string
+    comment?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CommentVotesCreateInput = {
+    id?: string
+    createdAt?: Date | string
+    upvote: boolean
+    user: UserCreateNestedOneWithoutCommentVotesInput
+    comment: CommentsCreateNestedOneWithoutCommentVotesInput
+  }
+
+  export type CommentVotesUncheckedCreateInput = {
+    id?: string
+    userId: string
+    commentId: string
+    createdAt?: Date | string
+    upvote: boolean
+  }
+
+  export type CommentVotesUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    upvote?: BoolFieldUpdateOperationsInput | boolean
+    user?: UserUpdateOneRequiredWithoutCommentVotesNestedInput
+    comment?: CommentsUpdateOneRequiredWithoutCommentVotesNestedInput
+  }
+
+  export type CommentVotesUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    commentId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    upvote?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type CommentVotesUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    upvote?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type CommentVotesUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    commentId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    upvote?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type CommentRepliesCreateInput = {
+    id?: string
+    reply: string
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutCommentRepliesInput
+    comment: CommentsCreateNestedOneWithoutCommentRepliesInput
+  }
+
+  export type CommentRepliesUncheckedCreateInput = {
+    id?: string
+    userId: string
+    commentId: string
+    reply: string
+    createdAt?: Date | string
+  }
+
+  export type CommentRepliesUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    reply?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutCommentRepliesNestedInput
+    comment?: CommentsUpdateOneRequiredWithoutCommentRepliesNestedInput
+  }
+
+  export type CommentRepliesUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    commentId?: StringFieldUpdateOperationsInput | string
+    reply?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CommentRepliesUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    reply?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CommentRepliesUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    commentId?: StringFieldUpdateOperationsInput | string
+    reply?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[]
@@ -15058,6 +20804,18 @@ export namespace Prisma {
     isNot?: UserWhereInput | null
   }
 
+  export type PromptVotesListRelationFilter = {
+    every?: PromptVotesWhereInput
+    some?: PromptVotesWhereInput
+    none?: PromptVotesWhereInput
+  }
+
+  export type CommentsListRelationFilter = {
+    every?: CommentsWhereInput
+    some?: CommentsWhereInput
+    none?: CommentsWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -15068,6 +20826,14 @@ export namespace Prisma {
   }
 
   export type WorldInfosOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type PromptVotesOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type CommentsOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -15093,11 +20859,13 @@ export namespace Prisma {
     deleted?: SortOrder
     authorId?: SortOrder
     json?: SortOrder
+    downloadCount?: SortOrder
   }
 
   export type PromptsAvgOrderByAggregateInput = {
     aetherId?: SortOrder
     nsfw?: SortOrder
+    downloadCount?: SortOrder
   }
 
   export type PromptsMaxOrderByAggregateInput = {
@@ -15122,6 +20890,7 @@ export namespace Prisma {
     deleted?: SortOrder
     authorId?: SortOrder
     json?: SortOrder
+    downloadCount?: SortOrder
   }
 
   export type PromptsMinOrderByAggregateInput = {
@@ -15146,11 +20915,13 @@ export namespace Prisma {
     deleted?: SortOrder
     authorId?: SortOrder
     json?: SortOrder
+    downloadCount?: SortOrder
   }
 
   export type PromptsSumOrderByAggregateInput = {
     aetherId?: SortOrder
     nsfw?: SortOrder
+    downloadCount?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -15454,6 +21225,29 @@ export namespace Prisma {
     id?: SortOrder
   }
 
+  export type TagSearchCountOrderByAggregateInput = {
+    id?: SortOrder
+    text?: SortOrder
+  }
+
+  export type TagSearchAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type TagSearchMaxOrderByAggregateInput = {
+    id?: SortOrder
+    text?: SortOrder
+  }
+
+  export type TagSearchMinOrderByAggregateInput = {
+    id?: SortOrder
+    text?: SortOrder
+  }
+
+  export type TagSearchSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
   export type UserRelationFilter = {
     is?: UserWhereInput
     isNot?: UserWhereInput
@@ -15592,6 +21386,18 @@ export namespace Prisma {
     none?: PromptsWhereInput
   }
 
+  export type CommentVotesListRelationFilter = {
+    every?: CommentVotesWhereInput
+    some?: CommentVotesWhereInput
+    none?: CommentVotesWhereInput
+  }
+
+  export type CommentRepliesListRelationFilter = {
+    every?: CommentRepliesWhereInput
+    some?: CommentRepliesWhereInput
+    none?: CommentRepliesWhereInput
+  }
+
   export type AccountOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -15601,6 +21407,14 @@ export namespace Prisma {
   }
 
   export type PromptsOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type CommentVotesOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type CommentRepliesOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -15714,6 +21528,117 @@ export namespace Prisma {
     promptID?: SortOrder
   }
 
+  export type PromptVotesUserIdPromptIdCompoundUniqueInput = {
+    userId: string
+    promptId: string
+  }
+
+  export type PromptVotesCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    promptId?: SortOrder
+    createdAt?: SortOrder
+    upvote?: SortOrder
+  }
+
+  export type PromptVotesMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    promptId?: SortOrder
+    createdAt?: SortOrder
+    upvote?: SortOrder
+  }
+
+  export type PromptVotesMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    promptId?: SortOrder
+    createdAt?: SortOrder
+    upvote?: SortOrder
+  }
+
+  export type CommentsCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    promptId?: SortOrder
+    comment?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type CommentsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    promptId?: SortOrder
+    comment?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type CommentsMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    promptId?: SortOrder
+    comment?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type CommentsRelationFilter = {
+    is?: CommentsWhereInput
+    isNot?: CommentsWhereInput
+  }
+
+  export type CommentVotesUserIdCommentIdCompoundUniqueInput = {
+    userId: string
+    commentId: string
+  }
+
+  export type CommentVotesCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    commentId?: SortOrder
+    createdAt?: SortOrder
+    upvote?: SortOrder
+  }
+
+  export type CommentVotesMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    commentId?: SortOrder
+    createdAt?: SortOrder
+    upvote?: SortOrder
+  }
+
+  export type CommentVotesMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    commentId?: SortOrder
+    createdAt?: SortOrder
+    upvote?: SortOrder
+  }
+
+  export type CommentRepliesCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    commentId?: SortOrder
+    reply?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type CommentRepliesMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    commentId?: SortOrder
+    reply?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type CommentRepliesMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    commentId?: SortOrder
+    reply?: SortOrder
+    createdAt?: SortOrder
+  }
+
   export type TagsPromptsMapCreateNestedManyWithoutPromptInput = {
     create?: XOR<TagsPromptsMapCreateWithoutPromptInput, TagsPromptsMapUncheckedCreateWithoutPromptInput> | TagsPromptsMapCreateWithoutPromptInput[] | TagsPromptsMapUncheckedCreateWithoutPromptInput[]
     connectOrCreate?: TagsPromptsMapCreateOrConnectWithoutPromptInput | TagsPromptsMapCreateOrConnectWithoutPromptInput[]
@@ -15732,6 +21657,18 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
+  export type PromptVotesCreateNestedManyWithoutPromptInput = {
+    create?: XOR<PromptVotesCreateWithoutPromptInput, PromptVotesUncheckedCreateWithoutPromptInput> | PromptVotesCreateWithoutPromptInput[] | PromptVotesUncheckedCreateWithoutPromptInput[]
+    connectOrCreate?: PromptVotesCreateOrConnectWithoutPromptInput | PromptVotesCreateOrConnectWithoutPromptInput[]
+    connect?: PromptVotesWhereUniqueInput | PromptVotesWhereUniqueInput[]
+  }
+
+  export type CommentsCreateNestedManyWithoutPromptInput = {
+    create?: XOR<CommentsCreateWithoutPromptInput, CommentsUncheckedCreateWithoutPromptInput> | CommentsCreateWithoutPromptInput[] | CommentsUncheckedCreateWithoutPromptInput[]
+    connectOrCreate?: CommentsCreateOrConnectWithoutPromptInput | CommentsCreateOrConnectWithoutPromptInput[]
+    connect?: CommentsWhereUniqueInput | CommentsWhereUniqueInput[]
+  }
+
   export type TagsPromptsMapUncheckedCreateNestedManyWithoutPromptInput = {
     create?: XOR<TagsPromptsMapCreateWithoutPromptInput, TagsPromptsMapUncheckedCreateWithoutPromptInput> | TagsPromptsMapCreateWithoutPromptInput[] | TagsPromptsMapUncheckedCreateWithoutPromptInput[]
     connectOrCreate?: TagsPromptsMapCreateOrConnectWithoutPromptInput | TagsPromptsMapCreateOrConnectWithoutPromptInput[]
@@ -15742,6 +21679,18 @@ export namespace Prisma {
     create?: XOR<WorldInfosCreateWithoutPromptsInput, WorldInfosUncheckedCreateWithoutPromptsInput> | WorldInfosCreateWithoutPromptsInput[] | WorldInfosUncheckedCreateWithoutPromptsInput[]
     connectOrCreate?: WorldInfosCreateOrConnectWithoutPromptsInput | WorldInfosCreateOrConnectWithoutPromptsInput[]
     connect?: WorldInfosWhereUniqueInput | WorldInfosWhereUniqueInput[]
+  }
+
+  export type PromptVotesUncheckedCreateNestedManyWithoutPromptInput = {
+    create?: XOR<PromptVotesCreateWithoutPromptInput, PromptVotesUncheckedCreateWithoutPromptInput> | PromptVotesCreateWithoutPromptInput[] | PromptVotesUncheckedCreateWithoutPromptInput[]
+    connectOrCreate?: PromptVotesCreateOrConnectWithoutPromptInput | PromptVotesCreateOrConnectWithoutPromptInput[]
+    connect?: PromptVotesWhereUniqueInput | PromptVotesWhereUniqueInput[]
+  }
+
+  export type CommentsUncheckedCreateNestedManyWithoutPromptInput = {
+    create?: XOR<CommentsCreateWithoutPromptInput, CommentsUncheckedCreateWithoutPromptInput> | CommentsCreateWithoutPromptInput[] | CommentsUncheckedCreateWithoutPromptInput[]
+    connectOrCreate?: CommentsCreateOrConnectWithoutPromptInput | CommentsCreateOrConnectWithoutPromptInput[]
+    connect?: CommentsWhereUniqueInput | CommentsWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -15812,6 +21761,32 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPromptsInput, UserUpdateWithoutPromptsInput>, UserUncheckedUpdateWithoutPromptsInput>
   }
 
+  export type PromptVotesUpdateManyWithoutPromptNestedInput = {
+    create?: XOR<PromptVotesCreateWithoutPromptInput, PromptVotesUncheckedCreateWithoutPromptInput> | PromptVotesCreateWithoutPromptInput[] | PromptVotesUncheckedCreateWithoutPromptInput[]
+    connectOrCreate?: PromptVotesCreateOrConnectWithoutPromptInput | PromptVotesCreateOrConnectWithoutPromptInput[]
+    upsert?: PromptVotesUpsertWithWhereUniqueWithoutPromptInput | PromptVotesUpsertWithWhereUniqueWithoutPromptInput[]
+    set?: PromptVotesWhereUniqueInput | PromptVotesWhereUniqueInput[]
+    disconnect?: PromptVotesWhereUniqueInput | PromptVotesWhereUniqueInput[]
+    delete?: PromptVotesWhereUniqueInput | PromptVotesWhereUniqueInput[]
+    connect?: PromptVotesWhereUniqueInput | PromptVotesWhereUniqueInput[]
+    update?: PromptVotesUpdateWithWhereUniqueWithoutPromptInput | PromptVotesUpdateWithWhereUniqueWithoutPromptInput[]
+    updateMany?: PromptVotesUpdateManyWithWhereWithoutPromptInput | PromptVotesUpdateManyWithWhereWithoutPromptInput[]
+    deleteMany?: PromptVotesScalarWhereInput | PromptVotesScalarWhereInput[]
+  }
+
+  export type CommentsUpdateManyWithoutPromptNestedInput = {
+    create?: XOR<CommentsCreateWithoutPromptInput, CommentsUncheckedCreateWithoutPromptInput> | CommentsCreateWithoutPromptInput[] | CommentsUncheckedCreateWithoutPromptInput[]
+    connectOrCreate?: CommentsCreateOrConnectWithoutPromptInput | CommentsCreateOrConnectWithoutPromptInput[]
+    upsert?: CommentsUpsertWithWhereUniqueWithoutPromptInput | CommentsUpsertWithWhereUniqueWithoutPromptInput[]
+    set?: CommentsWhereUniqueInput | CommentsWhereUniqueInput[]
+    disconnect?: CommentsWhereUniqueInput | CommentsWhereUniqueInput[]
+    delete?: CommentsWhereUniqueInput | CommentsWhereUniqueInput[]
+    connect?: CommentsWhereUniqueInput | CommentsWhereUniqueInput[]
+    update?: CommentsUpdateWithWhereUniqueWithoutPromptInput | CommentsUpdateWithWhereUniqueWithoutPromptInput[]
+    updateMany?: CommentsUpdateManyWithWhereWithoutPromptInput | CommentsUpdateManyWithWhereWithoutPromptInput[]
+    deleteMany?: CommentsScalarWhereInput | CommentsScalarWhereInput[]
+  }
+
   export type TagsPromptsMapUncheckedUpdateManyWithoutPromptNestedInput = {
     create?: XOR<TagsPromptsMapCreateWithoutPromptInput, TagsPromptsMapUncheckedCreateWithoutPromptInput> | TagsPromptsMapCreateWithoutPromptInput[] | TagsPromptsMapUncheckedCreateWithoutPromptInput[]
     connectOrCreate?: TagsPromptsMapCreateOrConnectWithoutPromptInput | TagsPromptsMapCreateOrConnectWithoutPromptInput[]
@@ -15836,6 +21811,32 @@ export namespace Prisma {
     update?: WorldInfosUpdateWithWhereUniqueWithoutPromptsInput | WorldInfosUpdateWithWhereUniqueWithoutPromptsInput[]
     updateMany?: WorldInfosUpdateManyWithWhereWithoutPromptsInput | WorldInfosUpdateManyWithWhereWithoutPromptsInput[]
     deleteMany?: WorldInfosScalarWhereInput | WorldInfosScalarWhereInput[]
+  }
+
+  export type PromptVotesUncheckedUpdateManyWithoutPromptNestedInput = {
+    create?: XOR<PromptVotesCreateWithoutPromptInput, PromptVotesUncheckedCreateWithoutPromptInput> | PromptVotesCreateWithoutPromptInput[] | PromptVotesUncheckedCreateWithoutPromptInput[]
+    connectOrCreate?: PromptVotesCreateOrConnectWithoutPromptInput | PromptVotesCreateOrConnectWithoutPromptInput[]
+    upsert?: PromptVotesUpsertWithWhereUniqueWithoutPromptInput | PromptVotesUpsertWithWhereUniqueWithoutPromptInput[]
+    set?: PromptVotesWhereUniqueInput | PromptVotesWhereUniqueInput[]
+    disconnect?: PromptVotesWhereUniqueInput | PromptVotesWhereUniqueInput[]
+    delete?: PromptVotesWhereUniqueInput | PromptVotesWhereUniqueInput[]
+    connect?: PromptVotesWhereUniqueInput | PromptVotesWhereUniqueInput[]
+    update?: PromptVotesUpdateWithWhereUniqueWithoutPromptInput | PromptVotesUpdateWithWhereUniqueWithoutPromptInput[]
+    updateMany?: PromptVotesUpdateManyWithWhereWithoutPromptInput | PromptVotesUpdateManyWithWhereWithoutPromptInput[]
+    deleteMany?: PromptVotesScalarWhereInput | PromptVotesScalarWhereInput[]
+  }
+
+  export type CommentsUncheckedUpdateManyWithoutPromptNestedInput = {
+    create?: XOR<CommentsCreateWithoutPromptInput, CommentsUncheckedCreateWithoutPromptInput> | CommentsCreateWithoutPromptInput[] | CommentsUncheckedCreateWithoutPromptInput[]
+    connectOrCreate?: CommentsCreateOrConnectWithoutPromptInput | CommentsCreateOrConnectWithoutPromptInput[]
+    upsert?: CommentsUpsertWithWhereUniqueWithoutPromptInput | CommentsUpsertWithWhereUniqueWithoutPromptInput[]
+    set?: CommentsWhereUniqueInput | CommentsWhereUniqueInput[]
+    disconnect?: CommentsWhereUniqueInput | CommentsWhereUniqueInput[]
+    delete?: CommentsWhereUniqueInput | CommentsWhereUniqueInput[]
+    connect?: CommentsWhereUniqueInput | CommentsWhereUniqueInput[]
+    update?: CommentsUpdateWithWhereUniqueWithoutPromptInput | CommentsUpdateWithWhereUniqueWithoutPromptInput[]
+    updateMany?: CommentsUpdateManyWithWhereWithoutPromptInput | CommentsUpdateManyWithWhereWithoutPromptInput[]
+    deleteMany?: CommentsScalarWhereInput | CommentsScalarWhereInput[]
   }
 
   export type PromptsCreateNestedOneWithoutWorldInfosInput = {
@@ -15954,6 +21955,30 @@ export namespace Prisma {
     connect?: PromptsWhereUniqueInput | PromptsWhereUniqueInput[]
   }
 
+  export type PromptVotesCreateNestedManyWithoutUserInput = {
+    create?: XOR<PromptVotesCreateWithoutUserInput, PromptVotesUncheckedCreateWithoutUserInput> | PromptVotesCreateWithoutUserInput[] | PromptVotesUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: PromptVotesCreateOrConnectWithoutUserInput | PromptVotesCreateOrConnectWithoutUserInput[]
+    connect?: PromptVotesWhereUniqueInput | PromptVotesWhereUniqueInput[]
+  }
+
+  export type CommentsCreateNestedManyWithoutUserInput = {
+    create?: XOR<CommentsCreateWithoutUserInput, CommentsUncheckedCreateWithoutUserInput> | CommentsCreateWithoutUserInput[] | CommentsUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CommentsCreateOrConnectWithoutUserInput | CommentsCreateOrConnectWithoutUserInput[]
+    connect?: CommentsWhereUniqueInput | CommentsWhereUniqueInput[]
+  }
+
+  export type CommentVotesCreateNestedManyWithoutUserInput = {
+    create?: XOR<CommentVotesCreateWithoutUserInput, CommentVotesUncheckedCreateWithoutUserInput> | CommentVotesCreateWithoutUserInput[] | CommentVotesUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CommentVotesCreateOrConnectWithoutUserInput | CommentVotesCreateOrConnectWithoutUserInput[]
+    connect?: CommentVotesWhereUniqueInput | CommentVotesWhereUniqueInput[]
+  }
+
+  export type CommentRepliesCreateNestedManyWithoutUserInput = {
+    create?: XOR<CommentRepliesCreateWithoutUserInput, CommentRepliesUncheckedCreateWithoutUserInput> | CommentRepliesCreateWithoutUserInput[] | CommentRepliesUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CommentRepliesCreateOrConnectWithoutUserInput | CommentRepliesCreateOrConnectWithoutUserInput[]
+    connect?: CommentRepliesWhereUniqueInput | CommentRepliesWhereUniqueInput[]
+  }
+
   export type AccountUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -15970,6 +21995,30 @@ export namespace Prisma {
     create?: XOR<PromptsCreateWithoutAuthorInput, PromptsUncheckedCreateWithoutAuthorInput> | PromptsCreateWithoutAuthorInput[] | PromptsUncheckedCreateWithoutAuthorInput[]
     connectOrCreate?: PromptsCreateOrConnectWithoutAuthorInput | PromptsCreateOrConnectWithoutAuthorInput[]
     connect?: PromptsWhereUniqueInput | PromptsWhereUniqueInput[]
+  }
+
+  export type PromptVotesUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<PromptVotesCreateWithoutUserInput, PromptVotesUncheckedCreateWithoutUserInput> | PromptVotesCreateWithoutUserInput[] | PromptVotesUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: PromptVotesCreateOrConnectWithoutUserInput | PromptVotesCreateOrConnectWithoutUserInput[]
+    connect?: PromptVotesWhereUniqueInput | PromptVotesWhereUniqueInput[]
+  }
+
+  export type CommentsUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<CommentsCreateWithoutUserInput, CommentsUncheckedCreateWithoutUserInput> | CommentsCreateWithoutUserInput[] | CommentsUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CommentsCreateOrConnectWithoutUserInput | CommentsCreateOrConnectWithoutUserInput[]
+    connect?: CommentsWhereUniqueInput | CommentsWhereUniqueInput[]
+  }
+
+  export type CommentVotesUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<CommentVotesCreateWithoutUserInput, CommentVotesUncheckedCreateWithoutUserInput> | CommentVotesCreateWithoutUserInput[] | CommentVotesUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CommentVotesCreateOrConnectWithoutUserInput | CommentVotesCreateOrConnectWithoutUserInput[]
+    connect?: CommentVotesWhereUniqueInput | CommentVotesWhereUniqueInput[]
+  }
+
+  export type CommentRepliesUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<CommentRepliesCreateWithoutUserInput, CommentRepliesUncheckedCreateWithoutUserInput> | CommentRepliesCreateWithoutUserInput[] | CommentRepliesUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CommentRepliesCreateOrConnectWithoutUserInput | CommentRepliesCreateOrConnectWithoutUserInput[]
+    connect?: CommentRepliesWhereUniqueInput | CommentRepliesWhereUniqueInput[]
   }
 
   export type NullableDateTimeFieldUpdateOperationsInput = {
@@ -16015,6 +22064,58 @@ export namespace Prisma {
     deleteMany?: PromptsScalarWhereInput | PromptsScalarWhereInput[]
   }
 
+  export type PromptVotesUpdateManyWithoutUserNestedInput = {
+    create?: XOR<PromptVotesCreateWithoutUserInput, PromptVotesUncheckedCreateWithoutUserInput> | PromptVotesCreateWithoutUserInput[] | PromptVotesUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: PromptVotesCreateOrConnectWithoutUserInput | PromptVotesCreateOrConnectWithoutUserInput[]
+    upsert?: PromptVotesUpsertWithWhereUniqueWithoutUserInput | PromptVotesUpsertWithWhereUniqueWithoutUserInput[]
+    set?: PromptVotesWhereUniqueInput | PromptVotesWhereUniqueInput[]
+    disconnect?: PromptVotesWhereUniqueInput | PromptVotesWhereUniqueInput[]
+    delete?: PromptVotesWhereUniqueInput | PromptVotesWhereUniqueInput[]
+    connect?: PromptVotesWhereUniqueInput | PromptVotesWhereUniqueInput[]
+    update?: PromptVotesUpdateWithWhereUniqueWithoutUserInput | PromptVotesUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: PromptVotesUpdateManyWithWhereWithoutUserInput | PromptVotesUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: PromptVotesScalarWhereInput | PromptVotesScalarWhereInput[]
+  }
+
+  export type CommentsUpdateManyWithoutUserNestedInput = {
+    create?: XOR<CommentsCreateWithoutUserInput, CommentsUncheckedCreateWithoutUserInput> | CommentsCreateWithoutUserInput[] | CommentsUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CommentsCreateOrConnectWithoutUserInput | CommentsCreateOrConnectWithoutUserInput[]
+    upsert?: CommentsUpsertWithWhereUniqueWithoutUserInput | CommentsUpsertWithWhereUniqueWithoutUserInput[]
+    set?: CommentsWhereUniqueInput | CommentsWhereUniqueInput[]
+    disconnect?: CommentsWhereUniqueInput | CommentsWhereUniqueInput[]
+    delete?: CommentsWhereUniqueInput | CommentsWhereUniqueInput[]
+    connect?: CommentsWhereUniqueInput | CommentsWhereUniqueInput[]
+    update?: CommentsUpdateWithWhereUniqueWithoutUserInput | CommentsUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: CommentsUpdateManyWithWhereWithoutUserInput | CommentsUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: CommentsScalarWhereInput | CommentsScalarWhereInput[]
+  }
+
+  export type CommentVotesUpdateManyWithoutUserNestedInput = {
+    create?: XOR<CommentVotesCreateWithoutUserInput, CommentVotesUncheckedCreateWithoutUserInput> | CommentVotesCreateWithoutUserInput[] | CommentVotesUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CommentVotesCreateOrConnectWithoutUserInput | CommentVotesCreateOrConnectWithoutUserInput[]
+    upsert?: CommentVotesUpsertWithWhereUniqueWithoutUserInput | CommentVotesUpsertWithWhereUniqueWithoutUserInput[]
+    set?: CommentVotesWhereUniqueInput | CommentVotesWhereUniqueInput[]
+    disconnect?: CommentVotesWhereUniqueInput | CommentVotesWhereUniqueInput[]
+    delete?: CommentVotesWhereUniqueInput | CommentVotesWhereUniqueInput[]
+    connect?: CommentVotesWhereUniqueInput | CommentVotesWhereUniqueInput[]
+    update?: CommentVotesUpdateWithWhereUniqueWithoutUserInput | CommentVotesUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: CommentVotesUpdateManyWithWhereWithoutUserInput | CommentVotesUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: CommentVotesScalarWhereInput | CommentVotesScalarWhereInput[]
+  }
+
+  export type CommentRepliesUpdateManyWithoutUserNestedInput = {
+    create?: XOR<CommentRepliesCreateWithoutUserInput, CommentRepliesUncheckedCreateWithoutUserInput> | CommentRepliesCreateWithoutUserInput[] | CommentRepliesUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CommentRepliesCreateOrConnectWithoutUserInput | CommentRepliesCreateOrConnectWithoutUserInput[]
+    upsert?: CommentRepliesUpsertWithWhereUniqueWithoutUserInput | CommentRepliesUpsertWithWhereUniqueWithoutUserInput[]
+    set?: CommentRepliesWhereUniqueInput | CommentRepliesWhereUniqueInput[]
+    disconnect?: CommentRepliesWhereUniqueInput | CommentRepliesWhereUniqueInput[]
+    delete?: CommentRepliesWhereUniqueInput | CommentRepliesWhereUniqueInput[]
+    connect?: CommentRepliesWhereUniqueInput | CommentRepliesWhereUniqueInput[]
+    update?: CommentRepliesUpdateWithWhereUniqueWithoutUserInput | CommentRepliesUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: CommentRepliesUpdateManyWithWhereWithoutUserInput | CommentRepliesUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: CommentRepliesScalarWhereInput | CommentRepliesScalarWhereInput[]
+  }
+
   export type AccountUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -16052,6 +22153,58 @@ export namespace Prisma {
     update?: PromptsUpdateWithWhereUniqueWithoutAuthorInput | PromptsUpdateWithWhereUniqueWithoutAuthorInput[]
     updateMany?: PromptsUpdateManyWithWhereWithoutAuthorInput | PromptsUpdateManyWithWhereWithoutAuthorInput[]
     deleteMany?: PromptsScalarWhereInput | PromptsScalarWhereInput[]
+  }
+
+  export type PromptVotesUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<PromptVotesCreateWithoutUserInput, PromptVotesUncheckedCreateWithoutUserInput> | PromptVotesCreateWithoutUserInput[] | PromptVotesUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: PromptVotesCreateOrConnectWithoutUserInput | PromptVotesCreateOrConnectWithoutUserInput[]
+    upsert?: PromptVotesUpsertWithWhereUniqueWithoutUserInput | PromptVotesUpsertWithWhereUniqueWithoutUserInput[]
+    set?: PromptVotesWhereUniqueInput | PromptVotesWhereUniqueInput[]
+    disconnect?: PromptVotesWhereUniqueInput | PromptVotesWhereUniqueInput[]
+    delete?: PromptVotesWhereUniqueInput | PromptVotesWhereUniqueInput[]
+    connect?: PromptVotesWhereUniqueInput | PromptVotesWhereUniqueInput[]
+    update?: PromptVotesUpdateWithWhereUniqueWithoutUserInput | PromptVotesUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: PromptVotesUpdateManyWithWhereWithoutUserInput | PromptVotesUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: PromptVotesScalarWhereInput | PromptVotesScalarWhereInput[]
+  }
+
+  export type CommentsUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<CommentsCreateWithoutUserInput, CommentsUncheckedCreateWithoutUserInput> | CommentsCreateWithoutUserInput[] | CommentsUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CommentsCreateOrConnectWithoutUserInput | CommentsCreateOrConnectWithoutUserInput[]
+    upsert?: CommentsUpsertWithWhereUniqueWithoutUserInput | CommentsUpsertWithWhereUniqueWithoutUserInput[]
+    set?: CommentsWhereUniqueInput | CommentsWhereUniqueInput[]
+    disconnect?: CommentsWhereUniqueInput | CommentsWhereUniqueInput[]
+    delete?: CommentsWhereUniqueInput | CommentsWhereUniqueInput[]
+    connect?: CommentsWhereUniqueInput | CommentsWhereUniqueInput[]
+    update?: CommentsUpdateWithWhereUniqueWithoutUserInput | CommentsUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: CommentsUpdateManyWithWhereWithoutUserInput | CommentsUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: CommentsScalarWhereInput | CommentsScalarWhereInput[]
+  }
+
+  export type CommentVotesUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<CommentVotesCreateWithoutUserInput, CommentVotesUncheckedCreateWithoutUserInput> | CommentVotesCreateWithoutUserInput[] | CommentVotesUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CommentVotesCreateOrConnectWithoutUserInput | CommentVotesCreateOrConnectWithoutUserInput[]
+    upsert?: CommentVotesUpsertWithWhereUniqueWithoutUserInput | CommentVotesUpsertWithWhereUniqueWithoutUserInput[]
+    set?: CommentVotesWhereUniqueInput | CommentVotesWhereUniqueInput[]
+    disconnect?: CommentVotesWhereUniqueInput | CommentVotesWhereUniqueInput[]
+    delete?: CommentVotesWhereUniqueInput | CommentVotesWhereUniqueInput[]
+    connect?: CommentVotesWhereUniqueInput | CommentVotesWhereUniqueInput[]
+    update?: CommentVotesUpdateWithWhereUniqueWithoutUserInput | CommentVotesUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: CommentVotesUpdateManyWithWhereWithoutUserInput | CommentVotesUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: CommentVotesScalarWhereInput | CommentVotesScalarWhereInput[]
+  }
+
+  export type CommentRepliesUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<CommentRepliesCreateWithoutUserInput, CommentRepliesUncheckedCreateWithoutUserInput> | CommentRepliesCreateWithoutUserInput[] | CommentRepliesUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CommentRepliesCreateOrConnectWithoutUserInput | CommentRepliesCreateOrConnectWithoutUserInput[]
+    upsert?: CommentRepliesUpsertWithWhereUniqueWithoutUserInput | CommentRepliesUpsertWithWhereUniqueWithoutUserInput[]
+    set?: CommentRepliesWhereUniqueInput | CommentRepliesWhereUniqueInput[]
+    disconnect?: CommentRepliesWhereUniqueInput | CommentRepliesWhereUniqueInput[]
+    delete?: CommentRepliesWhereUniqueInput | CommentRepliesWhereUniqueInput[]
+    connect?: CommentRepliesWhereUniqueInput | CommentRepliesWhereUniqueInput[]
+    update?: CommentRepliesUpdateWithWhereUniqueWithoutUserInput | CommentRepliesUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: CommentRepliesUpdateManyWithWhereWithoutUserInput | CommentRepliesUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: CommentRepliesScalarWhereInput | CommentRepliesScalarWhereInput[]
   }
 
   export type TagsPromptsMapCreateNestedManyWithoutTagInput = {
@@ -16118,6 +22271,194 @@ export namespace Prisma {
     upsert?: PromptsUpsertWithoutTagsFullInput
     connect?: PromptsWhereUniqueInput
     update?: XOR<XOR<PromptsUpdateToOneWithWhereWithoutTagsFullInput, PromptsUpdateWithoutTagsFullInput>, PromptsUncheckedUpdateWithoutTagsFullInput>
+  }
+
+  export type UserCreateNestedOneWithoutPromptVotesInput = {
+    create?: XOR<UserCreateWithoutPromptVotesInput, UserUncheckedCreateWithoutPromptVotesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutPromptVotesInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type PromptsCreateNestedOneWithoutPromptVotesInput = {
+    create?: XOR<PromptsCreateWithoutPromptVotesInput, PromptsUncheckedCreateWithoutPromptVotesInput>
+    connectOrCreate?: PromptsCreateOrConnectWithoutPromptVotesInput
+    connect?: PromptsWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutPromptVotesNestedInput = {
+    create?: XOR<UserCreateWithoutPromptVotesInput, UserUncheckedCreateWithoutPromptVotesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutPromptVotesInput
+    upsert?: UserUpsertWithoutPromptVotesInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPromptVotesInput, UserUpdateWithoutPromptVotesInput>, UserUncheckedUpdateWithoutPromptVotesInput>
+  }
+
+  export type PromptsUpdateOneRequiredWithoutPromptVotesNestedInput = {
+    create?: XOR<PromptsCreateWithoutPromptVotesInput, PromptsUncheckedCreateWithoutPromptVotesInput>
+    connectOrCreate?: PromptsCreateOrConnectWithoutPromptVotesInput
+    upsert?: PromptsUpsertWithoutPromptVotesInput
+    connect?: PromptsWhereUniqueInput
+    update?: XOR<XOR<PromptsUpdateToOneWithWhereWithoutPromptVotesInput, PromptsUpdateWithoutPromptVotesInput>, PromptsUncheckedUpdateWithoutPromptVotesInput>
+  }
+
+  export type UserCreateNestedOneWithoutCommentsInput = {
+    create?: XOR<UserCreateWithoutCommentsInput, UserUncheckedCreateWithoutCommentsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCommentsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type PromptsCreateNestedOneWithoutCommentsInput = {
+    create?: XOR<PromptsCreateWithoutCommentsInput, PromptsUncheckedCreateWithoutCommentsInput>
+    connectOrCreate?: PromptsCreateOrConnectWithoutCommentsInput
+    connect?: PromptsWhereUniqueInput
+  }
+
+  export type CommentVotesCreateNestedManyWithoutCommentInput = {
+    create?: XOR<CommentVotesCreateWithoutCommentInput, CommentVotesUncheckedCreateWithoutCommentInput> | CommentVotesCreateWithoutCommentInput[] | CommentVotesUncheckedCreateWithoutCommentInput[]
+    connectOrCreate?: CommentVotesCreateOrConnectWithoutCommentInput | CommentVotesCreateOrConnectWithoutCommentInput[]
+    connect?: CommentVotesWhereUniqueInput | CommentVotesWhereUniqueInput[]
+  }
+
+  export type CommentRepliesCreateNestedManyWithoutCommentInput = {
+    create?: XOR<CommentRepliesCreateWithoutCommentInput, CommentRepliesUncheckedCreateWithoutCommentInput> | CommentRepliesCreateWithoutCommentInput[] | CommentRepliesUncheckedCreateWithoutCommentInput[]
+    connectOrCreate?: CommentRepliesCreateOrConnectWithoutCommentInput | CommentRepliesCreateOrConnectWithoutCommentInput[]
+    connect?: CommentRepliesWhereUniqueInput | CommentRepliesWhereUniqueInput[]
+  }
+
+  export type CommentVotesUncheckedCreateNestedManyWithoutCommentInput = {
+    create?: XOR<CommentVotesCreateWithoutCommentInput, CommentVotesUncheckedCreateWithoutCommentInput> | CommentVotesCreateWithoutCommentInput[] | CommentVotesUncheckedCreateWithoutCommentInput[]
+    connectOrCreate?: CommentVotesCreateOrConnectWithoutCommentInput | CommentVotesCreateOrConnectWithoutCommentInput[]
+    connect?: CommentVotesWhereUniqueInput | CommentVotesWhereUniqueInput[]
+  }
+
+  export type CommentRepliesUncheckedCreateNestedManyWithoutCommentInput = {
+    create?: XOR<CommentRepliesCreateWithoutCommentInput, CommentRepliesUncheckedCreateWithoutCommentInput> | CommentRepliesCreateWithoutCommentInput[] | CommentRepliesUncheckedCreateWithoutCommentInput[]
+    connectOrCreate?: CommentRepliesCreateOrConnectWithoutCommentInput | CommentRepliesCreateOrConnectWithoutCommentInput[]
+    connect?: CommentRepliesWhereUniqueInput | CommentRepliesWhereUniqueInput[]
+  }
+
+  export type UserUpdateOneRequiredWithoutCommentsNestedInput = {
+    create?: XOR<UserCreateWithoutCommentsInput, UserUncheckedCreateWithoutCommentsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCommentsInput
+    upsert?: UserUpsertWithoutCommentsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCommentsInput, UserUpdateWithoutCommentsInput>, UserUncheckedUpdateWithoutCommentsInput>
+  }
+
+  export type PromptsUpdateOneRequiredWithoutCommentsNestedInput = {
+    create?: XOR<PromptsCreateWithoutCommentsInput, PromptsUncheckedCreateWithoutCommentsInput>
+    connectOrCreate?: PromptsCreateOrConnectWithoutCommentsInput
+    upsert?: PromptsUpsertWithoutCommentsInput
+    connect?: PromptsWhereUniqueInput
+    update?: XOR<XOR<PromptsUpdateToOneWithWhereWithoutCommentsInput, PromptsUpdateWithoutCommentsInput>, PromptsUncheckedUpdateWithoutCommentsInput>
+  }
+
+  export type CommentVotesUpdateManyWithoutCommentNestedInput = {
+    create?: XOR<CommentVotesCreateWithoutCommentInput, CommentVotesUncheckedCreateWithoutCommentInput> | CommentVotesCreateWithoutCommentInput[] | CommentVotesUncheckedCreateWithoutCommentInput[]
+    connectOrCreate?: CommentVotesCreateOrConnectWithoutCommentInput | CommentVotesCreateOrConnectWithoutCommentInput[]
+    upsert?: CommentVotesUpsertWithWhereUniqueWithoutCommentInput | CommentVotesUpsertWithWhereUniqueWithoutCommentInput[]
+    set?: CommentVotesWhereUniqueInput | CommentVotesWhereUniqueInput[]
+    disconnect?: CommentVotesWhereUniqueInput | CommentVotesWhereUniqueInput[]
+    delete?: CommentVotesWhereUniqueInput | CommentVotesWhereUniqueInput[]
+    connect?: CommentVotesWhereUniqueInput | CommentVotesWhereUniqueInput[]
+    update?: CommentVotesUpdateWithWhereUniqueWithoutCommentInput | CommentVotesUpdateWithWhereUniqueWithoutCommentInput[]
+    updateMany?: CommentVotesUpdateManyWithWhereWithoutCommentInput | CommentVotesUpdateManyWithWhereWithoutCommentInput[]
+    deleteMany?: CommentVotesScalarWhereInput | CommentVotesScalarWhereInput[]
+  }
+
+  export type CommentRepliesUpdateManyWithoutCommentNestedInput = {
+    create?: XOR<CommentRepliesCreateWithoutCommentInput, CommentRepliesUncheckedCreateWithoutCommentInput> | CommentRepliesCreateWithoutCommentInput[] | CommentRepliesUncheckedCreateWithoutCommentInput[]
+    connectOrCreate?: CommentRepliesCreateOrConnectWithoutCommentInput | CommentRepliesCreateOrConnectWithoutCommentInput[]
+    upsert?: CommentRepliesUpsertWithWhereUniqueWithoutCommentInput | CommentRepliesUpsertWithWhereUniqueWithoutCommentInput[]
+    set?: CommentRepliesWhereUniqueInput | CommentRepliesWhereUniqueInput[]
+    disconnect?: CommentRepliesWhereUniqueInput | CommentRepliesWhereUniqueInput[]
+    delete?: CommentRepliesWhereUniqueInput | CommentRepliesWhereUniqueInput[]
+    connect?: CommentRepliesWhereUniqueInput | CommentRepliesWhereUniqueInput[]
+    update?: CommentRepliesUpdateWithWhereUniqueWithoutCommentInput | CommentRepliesUpdateWithWhereUniqueWithoutCommentInput[]
+    updateMany?: CommentRepliesUpdateManyWithWhereWithoutCommentInput | CommentRepliesUpdateManyWithWhereWithoutCommentInput[]
+    deleteMany?: CommentRepliesScalarWhereInput | CommentRepliesScalarWhereInput[]
+  }
+
+  export type CommentVotesUncheckedUpdateManyWithoutCommentNestedInput = {
+    create?: XOR<CommentVotesCreateWithoutCommentInput, CommentVotesUncheckedCreateWithoutCommentInput> | CommentVotesCreateWithoutCommentInput[] | CommentVotesUncheckedCreateWithoutCommentInput[]
+    connectOrCreate?: CommentVotesCreateOrConnectWithoutCommentInput | CommentVotesCreateOrConnectWithoutCommentInput[]
+    upsert?: CommentVotesUpsertWithWhereUniqueWithoutCommentInput | CommentVotesUpsertWithWhereUniqueWithoutCommentInput[]
+    set?: CommentVotesWhereUniqueInput | CommentVotesWhereUniqueInput[]
+    disconnect?: CommentVotesWhereUniqueInput | CommentVotesWhereUniqueInput[]
+    delete?: CommentVotesWhereUniqueInput | CommentVotesWhereUniqueInput[]
+    connect?: CommentVotesWhereUniqueInput | CommentVotesWhereUniqueInput[]
+    update?: CommentVotesUpdateWithWhereUniqueWithoutCommentInput | CommentVotesUpdateWithWhereUniqueWithoutCommentInput[]
+    updateMany?: CommentVotesUpdateManyWithWhereWithoutCommentInput | CommentVotesUpdateManyWithWhereWithoutCommentInput[]
+    deleteMany?: CommentVotesScalarWhereInput | CommentVotesScalarWhereInput[]
+  }
+
+  export type CommentRepliesUncheckedUpdateManyWithoutCommentNestedInput = {
+    create?: XOR<CommentRepliesCreateWithoutCommentInput, CommentRepliesUncheckedCreateWithoutCommentInput> | CommentRepliesCreateWithoutCommentInput[] | CommentRepliesUncheckedCreateWithoutCommentInput[]
+    connectOrCreate?: CommentRepliesCreateOrConnectWithoutCommentInput | CommentRepliesCreateOrConnectWithoutCommentInput[]
+    upsert?: CommentRepliesUpsertWithWhereUniqueWithoutCommentInput | CommentRepliesUpsertWithWhereUniqueWithoutCommentInput[]
+    set?: CommentRepliesWhereUniqueInput | CommentRepliesWhereUniqueInput[]
+    disconnect?: CommentRepliesWhereUniqueInput | CommentRepliesWhereUniqueInput[]
+    delete?: CommentRepliesWhereUniqueInput | CommentRepliesWhereUniqueInput[]
+    connect?: CommentRepliesWhereUniqueInput | CommentRepliesWhereUniqueInput[]
+    update?: CommentRepliesUpdateWithWhereUniqueWithoutCommentInput | CommentRepliesUpdateWithWhereUniqueWithoutCommentInput[]
+    updateMany?: CommentRepliesUpdateManyWithWhereWithoutCommentInput | CommentRepliesUpdateManyWithWhereWithoutCommentInput[]
+    deleteMany?: CommentRepliesScalarWhereInput | CommentRepliesScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutCommentVotesInput = {
+    create?: XOR<UserCreateWithoutCommentVotesInput, UserUncheckedCreateWithoutCommentVotesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCommentVotesInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type CommentsCreateNestedOneWithoutCommentVotesInput = {
+    create?: XOR<CommentsCreateWithoutCommentVotesInput, CommentsUncheckedCreateWithoutCommentVotesInput>
+    connectOrCreate?: CommentsCreateOrConnectWithoutCommentVotesInput
+    connect?: CommentsWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutCommentVotesNestedInput = {
+    create?: XOR<UserCreateWithoutCommentVotesInput, UserUncheckedCreateWithoutCommentVotesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCommentVotesInput
+    upsert?: UserUpsertWithoutCommentVotesInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCommentVotesInput, UserUpdateWithoutCommentVotesInput>, UserUncheckedUpdateWithoutCommentVotesInput>
+  }
+
+  export type CommentsUpdateOneRequiredWithoutCommentVotesNestedInput = {
+    create?: XOR<CommentsCreateWithoutCommentVotesInput, CommentsUncheckedCreateWithoutCommentVotesInput>
+    connectOrCreate?: CommentsCreateOrConnectWithoutCommentVotesInput
+    upsert?: CommentsUpsertWithoutCommentVotesInput
+    connect?: CommentsWhereUniqueInput
+    update?: XOR<XOR<CommentsUpdateToOneWithWhereWithoutCommentVotesInput, CommentsUpdateWithoutCommentVotesInput>, CommentsUncheckedUpdateWithoutCommentVotesInput>
+  }
+
+  export type UserCreateNestedOneWithoutCommentRepliesInput = {
+    create?: XOR<UserCreateWithoutCommentRepliesInput, UserUncheckedCreateWithoutCommentRepliesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCommentRepliesInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type CommentsCreateNestedOneWithoutCommentRepliesInput = {
+    create?: XOR<CommentsCreateWithoutCommentRepliesInput, CommentsUncheckedCreateWithoutCommentRepliesInput>
+    connectOrCreate?: CommentsCreateOrConnectWithoutCommentRepliesInput
+    connect?: CommentsWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutCommentRepliesNestedInput = {
+    create?: XOR<UserCreateWithoutCommentRepliesInput, UserUncheckedCreateWithoutCommentRepliesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCommentRepliesInput
+    upsert?: UserUpsertWithoutCommentRepliesInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCommentRepliesInput, UserUpdateWithoutCommentRepliesInput>, UserUncheckedUpdateWithoutCommentRepliesInput>
+  }
+
+  export type CommentsUpdateOneRequiredWithoutCommentRepliesNestedInput = {
+    create?: XOR<CommentsCreateWithoutCommentRepliesInput, CommentsUncheckedCreateWithoutCommentRepliesInput>
+    connectOrCreate?: CommentsCreateOrConnectWithoutCommentRepliesInput
+    upsert?: CommentsUpsertWithoutCommentRepliesInput
+    connect?: CommentsWhereUniqueInput
+    update?: XOR<XOR<CommentsUpdateToOneWithWhereWithoutCommentRepliesInput, CommentsUpdateWithoutCommentRepliesInput>, CommentsUncheckedUpdateWithoutCommentRepliesInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -16386,6 +22727,10 @@ export namespace Prisma {
     dateCreated?: Date | string
     accounts?: AccountCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
+    PromptVotes?: PromptVotesCreateNestedManyWithoutUserInput
+    Comments?: CommentsCreateNestedManyWithoutUserInput
+    CommentVotes?: CommentVotesCreateNestedManyWithoutUserInput
+    CommentReplies?: CommentRepliesCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPromptsInput = {
@@ -16398,11 +22743,57 @@ export namespace Prisma {
     dateCreated?: Date | string
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    PromptVotes?: PromptVotesUncheckedCreateNestedManyWithoutUserInput
+    Comments?: CommentsUncheckedCreateNestedManyWithoutUserInput
+    CommentVotes?: CommentVotesUncheckedCreateNestedManyWithoutUserInput
+    CommentReplies?: CommentRepliesUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPromptsInput = {
     where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutPromptsInput, UserUncheckedCreateWithoutPromptsInput>
+  }
+
+  export type PromptVotesCreateWithoutPromptInput = {
+    id?: string
+    createdAt?: Date | string
+    upvote: boolean
+    user: UserCreateNestedOneWithoutPromptVotesInput
+  }
+
+  export type PromptVotesUncheckedCreateWithoutPromptInput = {
+    id?: string
+    userId: string
+    createdAt?: Date | string
+    upvote: boolean
+  }
+
+  export type PromptVotesCreateOrConnectWithoutPromptInput = {
+    where: PromptVotesWhereUniqueInput
+    create: XOR<PromptVotesCreateWithoutPromptInput, PromptVotesUncheckedCreateWithoutPromptInput>
+  }
+
+  export type CommentsCreateWithoutPromptInput = {
+    id?: string
+    comment: string
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutCommentsInput
+    CommentVotes?: CommentVotesCreateNestedManyWithoutCommentInput
+    CommentReplies?: CommentRepliesCreateNestedManyWithoutCommentInput
+  }
+
+  export type CommentsUncheckedCreateWithoutPromptInput = {
+    id?: string
+    userId: string
+    comment: string
+    createdAt?: Date | string
+    CommentVotes?: CommentVotesUncheckedCreateNestedManyWithoutCommentInput
+    CommentReplies?: CommentRepliesUncheckedCreateNestedManyWithoutCommentInput
+  }
+
+  export type CommentsCreateOrConnectWithoutPromptInput = {
+    where: CommentsWhereUniqueInput
+    create: XOR<CommentsCreateWithoutPromptInput, CommentsUncheckedCreateWithoutPromptInput>
   }
 
   export type TagsPromptsMapUpsertWithWhereUniqueWithoutPromptInput = {
@@ -16480,6 +22871,10 @@ export namespace Prisma {
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
+    PromptVotes?: PromptVotesUpdateManyWithoutUserNestedInput
+    Comments?: CommentsUpdateManyWithoutUserNestedInput
+    CommentVotes?: CommentVotesUpdateManyWithoutUserNestedInput
+    CommentReplies?: CommentRepliesUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPromptsInput = {
@@ -16492,6 +22887,64 @@ export namespace Prisma {
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    PromptVotes?: PromptVotesUncheckedUpdateManyWithoutUserNestedInput
+    Comments?: CommentsUncheckedUpdateManyWithoutUserNestedInput
+    CommentVotes?: CommentVotesUncheckedUpdateManyWithoutUserNestedInput
+    CommentReplies?: CommentRepliesUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type PromptVotesUpsertWithWhereUniqueWithoutPromptInput = {
+    where: PromptVotesWhereUniqueInput
+    update: XOR<PromptVotesUpdateWithoutPromptInput, PromptVotesUncheckedUpdateWithoutPromptInput>
+    create: XOR<PromptVotesCreateWithoutPromptInput, PromptVotesUncheckedCreateWithoutPromptInput>
+  }
+
+  export type PromptVotesUpdateWithWhereUniqueWithoutPromptInput = {
+    where: PromptVotesWhereUniqueInput
+    data: XOR<PromptVotesUpdateWithoutPromptInput, PromptVotesUncheckedUpdateWithoutPromptInput>
+  }
+
+  export type PromptVotesUpdateManyWithWhereWithoutPromptInput = {
+    where: PromptVotesScalarWhereInput
+    data: XOR<PromptVotesUpdateManyMutationInput, PromptVotesUncheckedUpdateManyWithoutPromptInput>
+  }
+
+  export type PromptVotesScalarWhereInput = {
+    AND?: PromptVotesScalarWhereInput | PromptVotesScalarWhereInput[]
+    OR?: PromptVotesScalarWhereInput[]
+    NOT?: PromptVotesScalarWhereInput | PromptVotesScalarWhereInput[]
+    id?: StringFilter<"PromptVotes"> | string
+    userId?: StringFilter<"PromptVotes"> | string
+    promptId?: StringFilter<"PromptVotes"> | string
+    createdAt?: DateTimeFilter<"PromptVotes"> | Date | string
+    upvote?: BoolFilter<"PromptVotes"> | boolean
+  }
+
+  export type CommentsUpsertWithWhereUniqueWithoutPromptInput = {
+    where: CommentsWhereUniqueInput
+    update: XOR<CommentsUpdateWithoutPromptInput, CommentsUncheckedUpdateWithoutPromptInput>
+    create: XOR<CommentsCreateWithoutPromptInput, CommentsUncheckedCreateWithoutPromptInput>
+  }
+
+  export type CommentsUpdateWithWhereUniqueWithoutPromptInput = {
+    where: CommentsWhereUniqueInput
+    data: XOR<CommentsUpdateWithoutPromptInput, CommentsUncheckedUpdateWithoutPromptInput>
+  }
+
+  export type CommentsUpdateManyWithWhereWithoutPromptInput = {
+    where: CommentsScalarWhereInput
+    data: XOR<CommentsUpdateManyMutationInput, CommentsUncheckedUpdateManyWithoutPromptInput>
+  }
+
+  export type CommentsScalarWhereInput = {
+    AND?: CommentsScalarWhereInput | CommentsScalarWhereInput[]
+    OR?: CommentsScalarWhereInput[]
+    NOT?: CommentsScalarWhereInput | CommentsScalarWhereInput[]
+    id?: StringFilter<"Comments"> | string
+    userId?: StringFilter<"Comments"> | string
+    promptId?: StringFilter<"Comments"> | string
+    comment?: StringFilter<"Comments"> | string
+    createdAt?: DateTimeFilter<"Comments"> | Date | string
   }
 
   export type PromptsCreateWithoutWorldInfosInput = {
@@ -16515,8 +22968,11 @@ export namespace Prisma {
     dateEdited?: string | null
     deleted?: boolean
     json?: string | null
+    downloadCount?: number
     tagsFull?: TagsPromptsMapCreateNestedManyWithoutPromptInput
     author?: UserCreateNestedOneWithoutPromptsInput
+    PromptVotes?: PromptVotesCreateNestedManyWithoutPromptInput
+    Comments?: CommentsCreateNestedManyWithoutPromptInput
   }
 
   export type PromptsUncheckedCreateWithoutWorldInfosInput = {
@@ -16541,7 +22997,10 @@ export namespace Prisma {
     deleted?: boolean
     authorId?: string | null
     json?: string | null
+    downloadCount?: number
     tagsFull?: TagsPromptsMapUncheckedCreateNestedManyWithoutPromptInput
+    PromptVotes?: PromptVotesUncheckedCreateNestedManyWithoutPromptInput
+    Comments?: CommentsUncheckedCreateNestedManyWithoutPromptInput
   }
 
   export type PromptsCreateOrConnectWithoutWorldInfosInput = {
@@ -16581,8 +23040,11 @@ export namespace Prisma {
     dateEdited?: NullableStringFieldUpdateOperationsInput | string | null
     deleted?: BoolFieldUpdateOperationsInput | boolean
     json?: NullableStringFieldUpdateOperationsInput | string | null
+    downloadCount?: IntFieldUpdateOperationsInput | number
     tagsFull?: TagsPromptsMapUpdateManyWithoutPromptNestedInput
     author?: UserUpdateOneWithoutPromptsNestedInput
+    PromptVotes?: PromptVotesUpdateManyWithoutPromptNestedInput
+    Comments?: CommentsUpdateManyWithoutPromptNestedInput
   }
 
   export type PromptsUncheckedUpdateWithoutWorldInfosInput = {
@@ -16607,7 +23069,10 @@ export namespace Prisma {
     deleted?: BoolFieldUpdateOperationsInput | boolean
     authorId?: NullableStringFieldUpdateOperationsInput | string | null
     json?: NullableStringFieldUpdateOperationsInput | string | null
+    downloadCount?: IntFieldUpdateOperationsInput | number
     tagsFull?: TagsPromptsMapUncheckedUpdateManyWithoutPromptNestedInput
+    PromptVotes?: PromptVotesUncheckedUpdateManyWithoutPromptNestedInput
+    Comments?: CommentsUncheckedUpdateManyWithoutPromptNestedInput
   }
 
   export type AetherWorldInfosCreateWithoutPromptsInput = {
@@ -16765,6 +23230,10 @@ export namespace Prisma {
     dateCreated?: Date | string
     sessions?: SessionCreateNestedManyWithoutUserInput
     Prompts?: PromptsCreateNestedManyWithoutAuthorInput
+    PromptVotes?: PromptVotesCreateNestedManyWithoutUserInput
+    Comments?: CommentsCreateNestedManyWithoutUserInput
+    CommentVotes?: CommentVotesCreateNestedManyWithoutUserInput
+    CommentReplies?: CommentRepliesCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAccountsInput = {
@@ -16777,6 +23246,10 @@ export namespace Prisma {
     dateCreated?: Date | string
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     Prompts?: PromptsUncheckedCreateNestedManyWithoutAuthorInput
+    PromptVotes?: PromptVotesUncheckedCreateNestedManyWithoutUserInput
+    Comments?: CommentsUncheckedCreateNestedManyWithoutUserInput
+    CommentVotes?: CommentVotesUncheckedCreateNestedManyWithoutUserInput
+    CommentReplies?: CommentRepliesUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAccountsInput = {
@@ -16805,6 +23278,10 @@ export namespace Prisma {
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     sessions?: SessionUpdateManyWithoutUserNestedInput
     Prompts?: PromptsUpdateManyWithoutAuthorNestedInput
+    PromptVotes?: PromptVotesUpdateManyWithoutUserNestedInput
+    Comments?: CommentsUpdateManyWithoutUserNestedInput
+    CommentVotes?: CommentVotesUpdateManyWithoutUserNestedInput
+    CommentReplies?: CommentRepliesUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -16817,6 +23294,10 @@ export namespace Prisma {
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     Prompts?: PromptsUncheckedUpdateManyWithoutAuthorNestedInput
+    PromptVotes?: PromptVotesUncheckedUpdateManyWithoutUserNestedInput
+    Comments?: CommentsUncheckedUpdateManyWithoutUserNestedInput
+    CommentVotes?: CommentVotesUncheckedUpdateManyWithoutUserNestedInput
+    CommentReplies?: CommentRepliesUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutSessionsInput = {
@@ -16829,6 +23310,10 @@ export namespace Prisma {
     dateCreated?: Date | string
     accounts?: AccountCreateNestedManyWithoutUserInput
     Prompts?: PromptsCreateNestedManyWithoutAuthorInput
+    PromptVotes?: PromptVotesCreateNestedManyWithoutUserInput
+    Comments?: CommentsCreateNestedManyWithoutUserInput
+    CommentVotes?: CommentVotesCreateNestedManyWithoutUserInput
+    CommentReplies?: CommentRepliesCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSessionsInput = {
@@ -16841,6 +23326,10 @@ export namespace Prisma {
     dateCreated?: Date | string
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     Prompts?: PromptsUncheckedCreateNestedManyWithoutAuthorInput
+    PromptVotes?: PromptVotesUncheckedCreateNestedManyWithoutUserInput
+    Comments?: CommentsUncheckedCreateNestedManyWithoutUserInput
+    CommentVotes?: CommentVotesUncheckedCreateNestedManyWithoutUserInput
+    CommentReplies?: CommentRepliesUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSessionsInput = {
@@ -16869,6 +23358,10 @@ export namespace Prisma {
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUpdateManyWithoutUserNestedInput
     Prompts?: PromptsUpdateManyWithoutAuthorNestedInput
+    PromptVotes?: PromptVotesUpdateManyWithoutUserNestedInput
+    Comments?: CommentsUpdateManyWithoutUserNestedInput
+    CommentVotes?: CommentVotesUpdateManyWithoutUserNestedInput
+    CommentReplies?: CommentRepliesUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -16881,6 +23374,10 @@ export namespace Prisma {
     dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     Prompts?: PromptsUncheckedUpdateManyWithoutAuthorNestedInput
+    PromptVotes?: PromptVotesUncheckedUpdateManyWithoutUserNestedInput
+    Comments?: CommentsUncheckedUpdateManyWithoutUserNestedInput
+    CommentVotes?: CommentVotesUncheckedUpdateManyWithoutUserNestedInput
+    CommentReplies?: CommentRepliesUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type AccountCreateWithoutUserInput = {
@@ -16954,8 +23451,11 @@ export namespace Prisma {
     dateEdited?: string | null
     deleted?: boolean
     json?: string | null
+    downloadCount?: number
     tagsFull?: TagsPromptsMapCreateNestedManyWithoutPromptInput
     worldInfos?: WorldInfosCreateNestedManyWithoutPromptsInput
+    PromptVotes?: PromptVotesCreateNestedManyWithoutPromptInput
+    Comments?: CommentsCreateNestedManyWithoutPromptInput
   }
 
   export type PromptsUncheckedCreateWithoutAuthorInput = {
@@ -16979,13 +23479,96 @@ export namespace Prisma {
     dateEdited?: string | null
     deleted?: boolean
     json?: string | null
+    downloadCount?: number
     tagsFull?: TagsPromptsMapUncheckedCreateNestedManyWithoutPromptInput
     worldInfos?: WorldInfosUncheckedCreateNestedManyWithoutPromptsInput
+    PromptVotes?: PromptVotesUncheckedCreateNestedManyWithoutPromptInput
+    Comments?: CommentsUncheckedCreateNestedManyWithoutPromptInput
   }
 
   export type PromptsCreateOrConnectWithoutAuthorInput = {
     where: PromptsWhereUniqueInput
     create: XOR<PromptsCreateWithoutAuthorInput, PromptsUncheckedCreateWithoutAuthorInput>
+  }
+
+  export type PromptVotesCreateWithoutUserInput = {
+    id?: string
+    createdAt?: Date | string
+    upvote: boolean
+    prompt: PromptsCreateNestedOneWithoutPromptVotesInput
+  }
+
+  export type PromptVotesUncheckedCreateWithoutUserInput = {
+    id?: string
+    promptId: string
+    createdAt?: Date | string
+    upvote: boolean
+  }
+
+  export type PromptVotesCreateOrConnectWithoutUserInput = {
+    where: PromptVotesWhereUniqueInput
+    create: XOR<PromptVotesCreateWithoutUserInput, PromptVotesUncheckedCreateWithoutUserInput>
+  }
+
+  export type CommentsCreateWithoutUserInput = {
+    id?: string
+    comment: string
+    createdAt?: Date | string
+    prompt: PromptsCreateNestedOneWithoutCommentsInput
+    CommentVotes?: CommentVotesCreateNestedManyWithoutCommentInput
+    CommentReplies?: CommentRepliesCreateNestedManyWithoutCommentInput
+  }
+
+  export type CommentsUncheckedCreateWithoutUserInput = {
+    id?: string
+    promptId: string
+    comment: string
+    createdAt?: Date | string
+    CommentVotes?: CommentVotesUncheckedCreateNestedManyWithoutCommentInput
+    CommentReplies?: CommentRepliesUncheckedCreateNestedManyWithoutCommentInput
+  }
+
+  export type CommentsCreateOrConnectWithoutUserInput = {
+    where: CommentsWhereUniqueInput
+    create: XOR<CommentsCreateWithoutUserInput, CommentsUncheckedCreateWithoutUserInput>
+  }
+
+  export type CommentVotesCreateWithoutUserInput = {
+    id?: string
+    createdAt?: Date | string
+    upvote: boolean
+    comment: CommentsCreateNestedOneWithoutCommentVotesInput
+  }
+
+  export type CommentVotesUncheckedCreateWithoutUserInput = {
+    id?: string
+    commentId: string
+    createdAt?: Date | string
+    upvote: boolean
+  }
+
+  export type CommentVotesCreateOrConnectWithoutUserInput = {
+    where: CommentVotesWhereUniqueInput
+    create: XOR<CommentVotesCreateWithoutUserInput, CommentVotesUncheckedCreateWithoutUserInput>
+  }
+
+  export type CommentRepliesCreateWithoutUserInput = {
+    id?: string
+    reply: string
+    createdAt?: Date | string
+    comment: CommentsCreateNestedOneWithoutCommentRepliesInput
+  }
+
+  export type CommentRepliesUncheckedCreateWithoutUserInput = {
+    id?: string
+    commentId: string
+    reply: string
+    createdAt?: Date | string
+  }
+
+  export type CommentRepliesCreateOrConnectWithoutUserInput = {
+    where: CommentRepliesWhereUniqueInput
+    create: XOR<CommentRepliesCreateWithoutUserInput, CommentRepliesUncheckedCreateWithoutUserInput>
   }
 
   export type AccountUpsertWithWhereUniqueWithoutUserInput = {
@@ -17089,6 +23672,93 @@ export namespace Prisma {
     deleted?: BoolFilter<"Prompts"> | boolean
     authorId?: StringNullableFilter<"Prompts"> | string | null
     json?: StringNullableFilter<"Prompts"> | string | null
+    downloadCount?: IntFilter<"Prompts"> | number
+  }
+
+  export type PromptVotesUpsertWithWhereUniqueWithoutUserInput = {
+    where: PromptVotesWhereUniqueInput
+    update: XOR<PromptVotesUpdateWithoutUserInput, PromptVotesUncheckedUpdateWithoutUserInput>
+    create: XOR<PromptVotesCreateWithoutUserInput, PromptVotesUncheckedCreateWithoutUserInput>
+  }
+
+  export type PromptVotesUpdateWithWhereUniqueWithoutUserInput = {
+    where: PromptVotesWhereUniqueInput
+    data: XOR<PromptVotesUpdateWithoutUserInput, PromptVotesUncheckedUpdateWithoutUserInput>
+  }
+
+  export type PromptVotesUpdateManyWithWhereWithoutUserInput = {
+    where: PromptVotesScalarWhereInput
+    data: XOR<PromptVotesUpdateManyMutationInput, PromptVotesUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type CommentsUpsertWithWhereUniqueWithoutUserInput = {
+    where: CommentsWhereUniqueInput
+    update: XOR<CommentsUpdateWithoutUserInput, CommentsUncheckedUpdateWithoutUserInput>
+    create: XOR<CommentsCreateWithoutUserInput, CommentsUncheckedCreateWithoutUserInput>
+  }
+
+  export type CommentsUpdateWithWhereUniqueWithoutUserInput = {
+    where: CommentsWhereUniqueInput
+    data: XOR<CommentsUpdateWithoutUserInput, CommentsUncheckedUpdateWithoutUserInput>
+  }
+
+  export type CommentsUpdateManyWithWhereWithoutUserInput = {
+    where: CommentsScalarWhereInput
+    data: XOR<CommentsUpdateManyMutationInput, CommentsUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type CommentVotesUpsertWithWhereUniqueWithoutUserInput = {
+    where: CommentVotesWhereUniqueInput
+    update: XOR<CommentVotesUpdateWithoutUserInput, CommentVotesUncheckedUpdateWithoutUserInput>
+    create: XOR<CommentVotesCreateWithoutUserInput, CommentVotesUncheckedCreateWithoutUserInput>
+  }
+
+  export type CommentVotesUpdateWithWhereUniqueWithoutUserInput = {
+    where: CommentVotesWhereUniqueInput
+    data: XOR<CommentVotesUpdateWithoutUserInput, CommentVotesUncheckedUpdateWithoutUserInput>
+  }
+
+  export type CommentVotesUpdateManyWithWhereWithoutUserInput = {
+    where: CommentVotesScalarWhereInput
+    data: XOR<CommentVotesUpdateManyMutationInput, CommentVotesUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type CommentVotesScalarWhereInput = {
+    AND?: CommentVotesScalarWhereInput | CommentVotesScalarWhereInput[]
+    OR?: CommentVotesScalarWhereInput[]
+    NOT?: CommentVotesScalarWhereInput | CommentVotesScalarWhereInput[]
+    id?: StringFilter<"CommentVotes"> | string
+    userId?: StringFilter<"CommentVotes"> | string
+    commentId?: StringFilter<"CommentVotes"> | string
+    createdAt?: DateTimeFilter<"CommentVotes"> | Date | string
+    upvote?: BoolFilter<"CommentVotes"> | boolean
+  }
+
+  export type CommentRepliesUpsertWithWhereUniqueWithoutUserInput = {
+    where: CommentRepliesWhereUniqueInput
+    update: XOR<CommentRepliesUpdateWithoutUserInput, CommentRepliesUncheckedUpdateWithoutUserInput>
+    create: XOR<CommentRepliesCreateWithoutUserInput, CommentRepliesUncheckedCreateWithoutUserInput>
+  }
+
+  export type CommentRepliesUpdateWithWhereUniqueWithoutUserInput = {
+    where: CommentRepliesWhereUniqueInput
+    data: XOR<CommentRepliesUpdateWithoutUserInput, CommentRepliesUncheckedUpdateWithoutUserInput>
+  }
+
+  export type CommentRepliesUpdateManyWithWhereWithoutUserInput = {
+    where: CommentRepliesScalarWhereInput
+    data: XOR<CommentRepliesUpdateManyMutationInput, CommentRepliesUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type CommentRepliesScalarWhereInput = {
+    AND?: CommentRepliesScalarWhereInput | CommentRepliesScalarWhereInput[]
+    OR?: CommentRepliesScalarWhereInput[]
+    NOT?: CommentRepliesScalarWhereInput | CommentRepliesScalarWhereInput[]
+    id?: StringFilter<"CommentReplies"> | string
+    userId?: StringFilter<"CommentReplies"> | string
+    commentId?: StringFilter<"CommentReplies"> | string
+    reply?: StringFilter<"CommentReplies"> | string
+    createdAt?: DateTimeFilter<"CommentReplies"> | Date | string
   }
 
   export type TagsPromptsMapCreateWithoutTagInput = {
@@ -17158,8 +23828,11 @@ export namespace Prisma {
     dateEdited?: string | null
     deleted?: boolean
     json?: string | null
+    downloadCount?: number
     worldInfos?: WorldInfosCreateNestedManyWithoutPromptsInput
     author?: UserCreateNestedOneWithoutPromptsInput
+    PromptVotes?: PromptVotesCreateNestedManyWithoutPromptInput
+    Comments?: CommentsCreateNestedManyWithoutPromptInput
   }
 
   export type PromptsUncheckedCreateWithoutTagsFullInput = {
@@ -17184,7 +23857,10 @@ export namespace Prisma {
     deleted?: boolean
     authorId?: string | null
     json?: string | null
+    downloadCount?: number
     worldInfos?: WorldInfosUncheckedCreateNestedManyWithoutPromptsInput
+    PromptVotes?: PromptVotesUncheckedCreateNestedManyWithoutPromptInput
+    Comments?: CommentsUncheckedCreateNestedManyWithoutPromptInput
   }
 
   export type PromptsCreateOrConnectWithoutTagsFullInput = {
@@ -17247,8 +23923,11 @@ export namespace Prisma {
     dateEdited?: NullableStringFieldUpdateOperationsInput | string | null
     deleted?: BoolFieldUpdateOperationsInput | boolean
     json?: NullableStringFieldUpdateOperationsInput | string | null
+    downloadCount?: IntFieldUpdateOperationsInput | number
     worldInfos?: WorldInfosUpdateManyWithoutPromptsNestedInput
     author?: UserUpdateOneWithoutPromptsNestedInput
+    PromptVotes?: PromptVotesUpdateManyWithoutPromptNestedInput
+    Comments?: CommentsUpdateManyWithoutPromptNestedInput
   }
 
   export type PromptsUncheckedUpdateWithoutTagsFullInput = {
@@ -17273,7 +23952,760 @@ export namespace Prisma {
     deleted?: BoolFieldUpdateOperationsInput | boolean
     authorId?: NullableStringFieldUpdateOperationsInput | string | null
     json?: NullableStringFieldUpdateOperationsInput | string | null
+    downloadCount?: IntFieldUpdateOperationsInput | number
     worldInfos?: WorldInfosUncheckedUpdateManyWithoutPromptsNestedInput
+    PromptVotes?: PromptVotesUncheckedUpdateManyWithoutPromptNestedInput
+    Comments?: CommentsUncheckedUpdateManyWithoutPromptNestedInput
+  }
+
+  export type UserCreateWithoutPromptVotesInput = {
+    id?: string
+    name?: string | null
+    publicName?: string | null
+    email: string
+    emailVerified?: Date | string | null
+    image?: string | null
+    dateCreated?: Date | string
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    Prompts?: PromptsCreateNestedManyWithoutAuthorInput
+    Comments?: CommentsCreateNestedManyWithoutUserInput
+    CommentVotes?: CommentVotesCreateNestedManyWithoutUserInput
+    CommentReplies?: CommentRepliesCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutPromptVotesInput = {
+    id?: string
+    name?: string | null
+    publicName?: string | null
+    email: string
+    emailVerified?: Date | string | null
+    image?: string | null
+    dateCreated?: Date | string
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    Prompts?: PromptsUncheckedCreateNestedManyWithoutAuthorInput
+    Comments?: CommentsUncheckedCreateNestedManyWithoutUserInput
+    CommentVotes?: CommentVotesUncheckedCreateNestedManyWithoutUserInput
+    CommentReplies?: CommentRepliesUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutPromptVotesInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutPromptVotesInput, UserUncheckedCreateWithoutPromptVotesInput>
+  }
+
+  export type PromptsCreateWithoutPromptVotesInput = {
+    id?: string
+    aetherId?: number | null
+    authorsNote?: string | null
+    description?: string | null
+    memory?: string | null
+    nsfw: number
+    parentId?: string | null
+    promptContent: string
+    publishDate?: string | null
+    quests?: string | null
+    tags: string
+    title: string
+    scriptZip?: Buffer | null
+    novelAiScenario?: string | null
+    holoAiScenario?: string | null
+    correlationId: string
+    dateCreated: string
+    dateEdited?: string | null
+    deleted?: boolean
+    json?: string | null
+    downloadCount?: number
+    tagsFull?: TagsPromptsMapCreateNestedManyWithoutPromptInput
+    worldInfos?: WorldInfosCreateNestedManyWithoutPromptsInput
+    author?: UserCreateNestedOneWithoutPromptsInput
+    Comments?: CommentsCreateNestedManyWithoutPromptInput
+  }
+
+  export type PromptsUncheckedCreateWithoutPromptVotesInput = {
+    id?: string
+    aetherId?: number | null
+    authorsNote?: string | null
+    description?: string | null
+    memory?: string | null
+    nsfw: number
+    parentId?: string | null
+    promptContent: string
+    publishDate?: string | null
+    quests?: string | null
+    tags: string
+    title: string
+    scriptZip?: Buffer | null
+    novelAiScenario?: string | null
+    holoAiScenario?: string | null
+    correlationId: string
+    dateCreated: string
+    dateEdited?: string | null
+    deleted?: boolean
+    authorId?: string | null
+    json?: string | null
+    downloadCount?: number
+    tagsFull?: TagsPromptsMapUncheckedCreateNestedManyWithoutPromptInput
+    worldInfos?: WorldInfosUncheckedCreateNestedManyWithoutPromptsInput
+    Comments?: CommentsUncheckedCreateNestedManyWithoutPromptInput
+  }
+
+  export type PromptsCreateOrConnectWithoutPromptVotesInput = {
+    where: PromptsWhereUniqueInput
+    create: XOR<PromptsCreateWithoutPromptVotesInput, PromptsUncheckedCreateWithoutPromptVotesInput>
+  }
+
+  export type UserUpsertWithoutPromptVotesInput = {
+    update: XOR<UserUpdateWithoutPromptVotesInput, UserUncheckedUpdateWithoutPromptVotesInput>
+    create: XOR<UserCreateWithoutPromptVotesInput, UserUncheckedCreateWithoutPromptVotesInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutPromptVotesInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutPromptVotesInput, UserUncheckedUpdateWithoutPromptVotesInput>
+  }
+
+  export type UserUpdateWithoutPromptVotesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    publicName?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    Prompts?: PromptsUpdateManyWithoutAuthorNestedInput
+    Comments?: CommentsUpdateManyWithoutUserNestedInput
+    CommentVotes?: CommentVotesUpdateManyWithoutUserNestedInput
+    CommentReplies?: CommentRepliesUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutPromptVotesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    publicName?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    Prompts?: PromptsUncheckedUpdateManyWithoutAuthorNestedInput
+    Comments?: CommentsUncheckedUpdateManyWithoutUserNestedInput
+    CommentVotes?: CommentVotesUncheckedUpdateManyWithoutUserNestedInput
+    CommentReplies?: CommentRepliesUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type PromptsUpsertWithoutPromptVotesInput = {
+    update: XOR<PromptsUpdateWithoutPromptVotesInput, PromptsUncheckedUpdateWithoutPromptVotesInput>
+    create: XOR<PromptsCreateWithoutPromptVotesInput, PromptsUncheckedCreateWithoutPromptVotesInput>
+    where?: PromptsWhereInput
+  }
+
+  export type PromptsUpdateToOneWithWhereWithoutPromptVotesInput = {
+    where?: PromptsWhereInput
+    data: XOR<PromptsUpdateWithoutPromptVotesInput, PromptsUncheckedUpdateWithoutPromptVotesInput>
+  }
+
+  export type PromptsUpdateWithoutPromptVotesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    aetherId?: NullableIntFieldUpdateOperationsInput | number | null
+    authorsNote?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    memory?: NullableStringFieldUpdateOperationsInput | string | null
+    nsfw?: IntFieldUpdateOperationsInput | number
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    promptContent?: StringFieldUpdateOperationsInput | string
+    publishDate?: NullableStringFieldUpdateOperationsInput | string | null
+    quests?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    scriptZip?: NullableBytesFieldUpdateOperationsInput | Buffer | null
+    novelAiScenario?: NullableStringFieldUpdateOperationsInput | string | null
+    holoAiScenario?: NullableStringFieldUpdateOperationsInput | string | null
+    correlationId?: StringFieldUpdateOperationsInput | string
+    dateCreated?: StringFieldUpdateOperationsInput | string
+    dateEdited?: NullableStringFieldUpdateOperationsInput | string | null
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+    json?: NullableStringFieldUpdateOperationsInput | string | null
+    downloadCount?: IntFieldUpdateOperationsInput | number
+    tagsFull?: TagsPromptsMapUpdateManyWithoutPromptNestedInput
+    worldInfos?: WorldInfosUpdateManyWithoutPromptsNestedInput
+    author?: UserUpdateOneWithoutPromptsNestedInput
+    Comments?: CommentsUpdateManyWithoutPromptNestedInput
+  }
+
+  export type PromptsUncheckedUpdateWithoutPromptVotesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    aetherId?: NullableIntFieldUpdateOperationsInput | number | null
+    authorsNote?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    memory?: NullableStringFieldUpdateOperationsInput | string | null
+    nsfw?: IntFieldUpdateOperationsInput | number
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    promptContent?: StringFieldUpdateOperationsInput | string
+    publishDate?: NullableStringFieldUpdateOperationsInput | string | null
+    quests?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    scriptZip?: NullableBytesFieldUpdateOperationsInput | Buffer | null
+    novelAiScenario?: NullableStringFieldUpdateOperationsInput | string | null
+    holoAiScenario?: NullableStringFieldUpdateOperationsInput | string | null
+    correlationId?: StringFieldUpdateOperationsInput | string
+    dateCreated?: StringFieldUpdateOperationsInput | string
+    dateEdited?: NullableStringFieldUpdateOperationsInput | string | null
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+    authorId?: NullableStringFieldUpdateOperationsInput | string | null
+    json?: NullableStringFieldUpdateOperationsInput | string | null
+    downloadCount?: IntFieldUpdateOperationsInput | number
+    tagsFull?: TagsPromptsMapUncheckedUpdateManyWithoutPromptNestedInput
+    worldInfos?: WorldInfosUncheckedUpdateManyWithoutPromptsNestedInput
+    Comments?: CommentsUncheckedUpdateManyWithoutPromptNestedInput
+  }
+
+  export type UserCreateWithoutCommentsInput = {
+    id?: string
+    name?: string | null
+    publicName?: string | null
+    email: string
+    emailVerified?: Date | string | null
+    image?: string | null
+    dateCreated?: Date | string
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    Prompts?: PromptsCreateNestedManyWithoutAuthorInput
+    PromptVotes?: PromptVotesCreateNestedManyWithoutUserInput
+    CommentVotes?: CommentVotesCreateNestedManyWithoutUserInput
+    CommentReplies?: CommentRepliesCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutCommentsInput = {
+    id?: string
+    name?: string | null
+    publicName?: string | null
+    email: string
+    emailVerified?: Date | string | null
+    image?: string | null
+    dateCreated?: Date | string
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    Prompts?: PromptsUncheckedCreateNestedManyWithoutAuthorInput
+    PromptVotes?: PromptVotesUncheckedCreateNestedManyWithoutUserInput
+    CommentVotes?: CommentVotesUncheckedCreateNestedManyWithoutUserInput
+    CommentReplies?: CommentRepliesUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutCommentsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutCommentsInput, UserUncheckedCreateWithoutCommentsInput>
+  }
+
+  export type PromptsCreateWithoutCommentsInput = {
+    id?: string
+    aetherId?: number | null
+    authorsNote?: string | null
+    description?: string | null
+    memory?: string | null
+    nsfw: number
+    parentId?: string | null
+    promptContent: string
+    publishDate?: string | null
+    quests?: string | null
+    tags: string
+    title: string
+    scriptZip?: Buffer | null
+    novelAiScenario?: string | null
+    holoAiScenario?: string | null
+    correlationId: string
+    dateCreated: string
+    dateEdited?: string | null
+    deleted?: boolean
+    json?: string | null
+    downloadCount?: number
+    tagsFull?: TagsPromptsMapCreateNestedManyWithoutPromptInput
+    worldInfos?: WorldInfosCreateNestedManyWithoutPromptsInput
+    author?: UserCreateNestedOneWithoutPromptsInput
+    PromptVotes?: PromptVotesCreateNestedManyWithoutPromptInput
+  }
+
+  export type PromptsUncheckedCreateWithoutCommentsInput = {
+    id?: string
+    aetherId?: number | null
+    authorsNote?: string | null
+    description?: string | null
+    memory?: string | null
+    nsfw: number
+    parentId?: string | null
+    promptContent: string
+    publishDate?: string | null
+    quests?: string | null
+    tags: string
+    title: string
+    scriptZip?: Buffer | null
+    novelAiScenario?: string | null
+    holoAiScenario?: string | null
+    correlationId: string
+    dateCreated: string
+    dateEdited?: string | null
+    deleted?: boolean
+    authorId?: string | null
+    json?: string | null
+    downloadCount?: number
+    tagsFull?: TagsPromptsMapUncheckedCreateNestedManyWithoutPromptInput
+    worldInfos?: WorldInfosUncheckedCreateNestedManyWithoutPromptsInput
+    PromptVotes?: PromptVotesUncheckedCreateNestedManyWithoutPromptInput
+  }
+
+  export type PromptsCreateOrConnectWithoutCommentsInput = {
+    where: PromptsWhereUniqueInput
+    create: XOR<PromptsCreateWithoutCommentsInput, PromptsUncheckedCreateWithoutCommentsInput>
+  }
+
+  export type CommentVotesCreateWithoutCommentInput = {
+    id?: string
+    createdAt?: Date | string
+    upvote: boolean
+    user: UserCreateNestedOneWithoutCommentVotesInput
+  }
+
+  export type CommentVotesUncheckedCreateWithoutCommentInput = {
+    id?: string
+    userId: string
+    createdAt?: Date | string
+    upvote: boolean
+  }
+
+  export type CommentVotesCreateOrConnectWithoutCommentInput = {
+    where: CommentVotesWhereUniqueInput
+    create: XOR<CommentVotesCreateWithoutCommentInput, CommentVotesUncheckedCreateWithoutCommentInput>
+  }
+
+  export type CommentRepliesCreateWithoutCommentInput = {
+    id?: string
+    reply: string
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutCommentRepliesInput
+  }
+
+  export type CommentRepliesUncheckedCreateWithoutCommentInput = {
+    id?: string
+    userId: string
+    reply: string
+    createdAt?: Date | string
+  }
+
+  export type CommentRepliesCreateOrConnectWithoutCommentInput = {
+    where: CommentRepliesWhereUniqueInput
+    create: XOR<CommentRepliesCreateWithoutCommentInput, CommentRepliesUncheckedCreateWithoutCommentInput>
+  }
+
+  export type UserUpsertWithoutCommentsInput = {
+    update: XOR<UserUpdateWithoutCommentsInput, UserUncheckedUpdateWithoutCommentsInput>
+    create: XOR<UserCreateWithoutCommentsInput, UserUncheckedCreateWithoutCommentsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutCommentsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutCommentsInput, UserUncheckedUpdateWithoutCommentsInput>
+  }
+
+  export type UserUpdateWithoutCommentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    publicName?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    Prompts?: PromptsUpdateManyWithoutAuthorNestedInput
+    PromptVotes?: PromptVotesUpdateManyWithoutUserNestedInput
+    CommentVotes?: CommentVotesUpdateManyWithoutUserNestedInput
+    CommentReplies?: CommentRepliesUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutCommentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    publicName?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    Prompts?: PromptsUncheckedUpdateManyWithoutAuthorNestedInput
+    PromptVotes?: PromptVotesUncheckedUpdateManyWithoutUserNestedInput
+    CommentVotes?: CommentVotesUncheckedUpdateManyWithoutUserNestedInput
+    CommentReplies?: CommentRepliesUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type PromptsUpsertWithoutCommentsInput = {
+    update: XOR<PromptsUpdateWithoutCommentsInput, PromptsUncheckedUpdateWithoutCommentsInput>
+    create: XOR<PromptsCreateWithoutCommentsInput, PromptsUncheckedCreateWithoutCommentsInput>
+    where?: PromptsWhereInput
+  }
+
+  export type PromptsUpdateToOneWithWhereWithoutCommentsInput = {
+    where?: PromptsWhereInput
+    data: XOR<PromptsUpdateWithoutCommentsInput, PromptsUncheckedUpdateWithoutCommentsInput>
+  }
+
+  export type PromptsUpdateWithoutCommentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    aetherId?: NullableIntFieldUpdateOperationsInput | number | null
+    authorsNote?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    memory?: NullableStringFieldUpdateOperationsInput | string | null
+    nsfw?: IntFieldUpdateOperationsInput | number
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    promptContent?: StringFieldUpdateOperationsInput | string
+    publishDate?: NullableStringFieldUpdateOperationsInput | string | null
+    quests?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    scriptZip?: NullableBytesFieldUpdateOperationsInput | Buffer | null
+    novelAiScenario?: NullableStringFieldUpdateOperationsInput | string | null
+    holoAiScenario?: NullableStringFieldUpdateOperationsInput | string | null
+    correlationId?: StringFieldUpdateOperationsInput | string
+    dateCreated?: StringFieldUpdateOperationsInput | string
+    dateEdited?: NullableStringFieldUpdateOperationsInput | string | null
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+    json?: NullableStringFieldUpdateOperationsInput | string | null
+    downloadCount?: IntFieldUpdateOperationsInput | number
+    tagsFull?: TagsPromptsMapUpdateManyWithoutPromptNestedInput
+    worldInfos?: WorldInfosUpdateManyWithoutPromptsNestedInput
+    author?: UserUpdateOneWithoutPromptsNestedInput
+    PromptVotes?: PromptVotesUpdateManyWithoutPromptNestedInput
+  }
+
+  export type PromptsUncheckedUpdateWithoutCommentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    aetherId?: NullableIntFieldUpdateOperationsInput | number | null
+    authorsNote?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    memory?: NullableStringFieldUpdateOperationsInput | string | null
+    nsfw?: IntFieldUpdateOperationsInput | number
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    promptContent?: StringFieldUpdateOperationsInput | string
+    publishDate?: NullableStringFieldUpdateOperationsInput | string | null
+    quests?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    scriptZip?: NullableBytesFieldUpdateOperationsInput | Buffer | null
+    novelAiScenario?: NullableStringFieldUpdateOperationsInput | string | null
+    holoAiScenario?: NullableStringFieldUpdateOperationsInput | string | null
+    correlationId?: StringFieldUpdateOperationsInput | string
+    dateCreated?: StringFieldUpdateOperationsInput | string
+    dateEdited?: NullableStringFieldUpdateOperationsInput | string | null
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+    authorId?: NullableStringFieldUpdateOperationsInput | string | null
+    json?: NullableStringFieldUpdateOperationsInput | string | null
+    downloadCount?: IntFieldUpdateOperationsInput | number
+    tagsFull?: TagsPromptsMapUncheckedUpdateManyWithoutPromptNestedInput
+    worldInfos?: WorldInfosUncheckedUpdateManyWithoutPromptsNestedInput
+    PromptVotes?: PromptVotesUncheckedUpdateManyWithoutPromptNestedInput
+  }
+
+  export type CommentVotesUpsertWithWhereUniqueWithoutCommentInput = {
+    where: CommentVotesWhereUniqueInput
+    update: XOR<CommentVotesUpdateWithoutCommentInput, CommentVotesUncheckedUpdateWithoutCommentInput>
+    create: XOR<CommentVotesCreateWithoutCommentInput, CommentVotesUncheckedCreateWithoutCommentInput>
+  }
+
+  export type CommentVotesUpdateWithWhereUniqueWithoutCommentInput = {
+    where: CommentVotesWhereUniqueInput
+    data: XOR<CommentVotesUpdateWithoutCommentInput, CommentVotesUncheckedUpdateWithoutCommentInput>
+  }
+
+  export type CommentVotesUpdateManyWithWhereWithoutCommentInput = {
+    where: CommentVotesScalarWhereInput
+    data: XOR<CommentVotesUpdateManyMutationInput, CommentVotesUncheckedUpdateManyWithoutCommentInput>
+  }
+
+  export type CommentRepliesUpsertWithWhereUniqueWithoutCommentInput = {
+    where: CommentRepliesWhereUniqueInput
+    update: XOR<CommentRepliesUpdateWithoutCommentInput, CommentRepliesUncheckedUpdateWithoutCommentInput>
+    create: XOR<CommentRepliesCreateWithoutCommentInput, CommentRepliesUncheckedCreateWithoutCommentInput>
+  }
+
+  export type CommentRepliesUpdateWithWhereUniqueWithoutCommentInput = {
+    where: CommentRepliesWhereUniqueInput
+    data: XOR<CommentRepliesUpdateWithoutCommentInput, CommentRepliesUncheckedUpdateWithoutCommentInput>
+  }
+
+  export type CommentRepliesUpdateManyWithWhereWithoutCommentInput = {
+    where: CommentRepliesScalarWhereInput
+    data: XOR<CommentRepliesUpdateManyMutationInput, CommentRepliesUncheckedUpdateManyWithoutCommentInput>
+  }
+
+  export type UserCreateWithoutCommentVotesInput = {
+    id?: string
+    name?: string | null
+    publicName?: string | null
+    email: string
+    emailVerified?: Date | string | null
+    image?: string | null
+    dateCreated?: Date | string
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    Prompts?: PromptsCreateNestedManyWithoutAuthorInput
+    PromptVotes?: PromptVotesCreateNestedManyWithoutUserInput
+    Comments?: CommentsCreateNestedManyWithoutUserInput
+    CommentReplies?: CommentRepliesCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutCommentVotesInput = {
+    id?: string
+    name?: string | null
+    publicName?: string | null
+    email: string
+    emailVerified?: Date | string | null
+    image?: string | null
+    dateCreated?: Date | string
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    Prompts?: PromptsUncheckedCreateNestedManyWithoutAuthorInput
+    PromptVotes?: PromptVotesUncheckedCreateNestedManyWithoutUserInput
+    Comments?: CommentsUncheckedCreateNestedManyWithoutUserInput
+    CommentReplies?: CommentRepliesUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutCommentVotesInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutCommentVotesInput, UserUncheckedCreateWithoutCommentVotesInput>
+  }
+
+  export type CommentsCreateWithoutCommentVotesInput = {
+    id?: string
+    comment: string
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutCommentsInput
+    prompt: PromptsCreateNestedOneWithoutCommentsInput
+    CommentReplies?: CommentRepliesCreateNestedManyWithoutCommentInput
+  }
+
+  export type CommentsUncheckedCreateWithoutCommentVotesInput = {
+    id?: string
+    userId: string
+    promptId: string
+    comment: string
+    createdAt?: Date | string
+    CommentReplies?: CommentRepliesUncheckedCreateNestedManyWithoutCommentInput
+  }
+
+  export type CommentsCreateOrConnectWithoutCommentVotesInput = {
+    where: CommentsWhereUniqueInput
+    create: XOR<CommentsCreateWithoutCommentVotesInput, CommentsUncheckedCreateWithoutCommentVotesInput>
+  }
+
+  export type UserUpsertWithoutCommentVotesInput = {
+    update: XOR<UserUpdateWithoutCommentVotesInput, UserUncheckedUpdateWithoutCommentVotesInput>
+    create: XOR<UserCreateWithoutCommentVotesInput, UserUncheckedCreateWithoutCommentVotesInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutCommentVotesInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutCommentVotesInput, UserUncheckedUpdateWithoutCommentVotesInput>
+  }
+
+  export type UserUpdateWithoutCommentVotesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    publicName?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    Prompts?: PromptsUpdateManyWithoutAuthorNestedInput
+    PromptVotes?: PromptVotesUpdateManyWithoutUserNestedInput
+    Comments?: CommentsUpdateManyWithoutUserNestedInput
+    CommentReplies?: CommentRepliesUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutCommentVotesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    publicName?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    Prompts?: PromptsUncheckedUpdateManyWithoutAuthorNestedInput
+    PromptVotes?: PromptVotesUncheckedUpdateManyWithoutUserNestedInput
+    Comments?: CommentsUncheckedUpdateManyWithoutUserNestedInput
+    CommentReplies?: CommentRepliesUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type CommentsUpsertWithoutCommentVotesInput = {
+    update: XOR<CommentsUpdateWithoutCommentVotesInput, CommentsUncheckedUpdateWithoutCommentVotesInput>
+    create: XOR<CommentsCreateWithoutCommentVotesInput, CommentsUncheckedCreateWithoutCommentVotesInput>
+    where?: CommentsWhereInput
+  }
+
+  export type CommentsUpdateToOneWithWhereWithoutCommentVotesInput = {
+    where?: CommentsWhereInput
+    data: XOR<CommentsUpdateWithoutCommentVotesInput, CommentsUncheckedUpdateWithoutCommentVotesInput>
+  }
+
+  export type CommentsUpdateWithoutCommentVotesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    comment?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutCommentsNestedInput
+    prompt?: PromptsUpdateOneRequiredWithoutCommentsNestedInput
+    CommentReplies?: CommentRepliesUpdateManyWithoutCommentNestedInput
+  }
+
+  export type CommentsUncheckedUpdateWithoutCommentVotesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    promptId?: StringFieldUpdateOperationsInput | string
+    comment?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    CommentReplies?: CommentRepliesUncheckedUpdateManyWithoutCommentNestedInput
+  }
+
+  export type UserCreateWithoutCommentRepliesInput = {
+    id?: string
+    name?: string | null
+    publicName?: string | null
+    email: string
+    emailVerified?: Date | string | null
+    image?: string | null
+    dateCreated?: Date | string
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    Prompts?: PromptsCreateNestedManyWithoutAuthorInput
+    PromptVotes?: PromptVotesCreateNestedManyWithoutUserInput
+    Comments?: CommentsCreateNestedManyWithoutUserInput
+    CommentVotes?: CommentVotesCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutCommentRepliesInput = {
+    id?: string
+    name?: string | null
+    publicName?: string | null
+    email: string
+    emailVerified?: Date | string | null
+    image?: string | null
+    dateCreated?: Date | string
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    Prompts?: PromptsUncheckedCreateNestedManyWithoutAuthorInput
+    PromptVotes?: PromptVotesUncheckedCreateNestedManyWithoutUserInput
+    Comments?: CommentsUncheckedCreateNestedManyWithoutUserInput
+    CommentVotes?: CommentVotesUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutCommentRepliesInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutCommentRepliesInput, UserUncheckedCreateWithoutCommentRepliesInput>
+  }
+
+  export type CommentsCreateWithoutCommentRepliesInput = {
+    id?: string
+    comment: string
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutCommentsInput
+    prompt: PromptsCreateNestedOneWithoutCommentsInput
+    CommentVotes?: CommentVotesCreateNestedManyWithoutCommentInput
+  }
+
+  export type CommentsUncheckedCreateWithoutCommentRepliesInput = {
+    id?: string
+    userId: string
+    promptId: string
+    comment: string
+    createdAt?: Date | string
+    CommentVotes?: CommentVotesUncheckedCreateNestedManyWithoutCommentInput
+  }
+
+  export type CommentsCreateOrConnectWithoutCommentRepliesInput = {
+    where: CommentsWhereUniqueInput
+    create: XOR<CommentsCreateWithoutCommentRepliesInput, CommentsUncheckedCreateWithoutCommentRepliesInput>
+  }
+
+  export type UserUpsertWithoutCommentRepliesInput = {
+    update: XOR<UserUpdateWithoutCommentRepliesInput, UserUncheckedUpdateWithoutCommentRepliesInput>
+    create: XOR<UserCreateWithoutCommentRepliesInput, UserUncheckedCreateWithoutCommentRepliesInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutCommentRepliesInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutCommentRepliesInput, UserUncheckedUpdateWithoutCommentRepliesInput>
+  }
+
+  export type UserUpdateWithoutCommentRepliesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    publicName?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    Prompts?: PromptsUpdateManyWithoutAuthorNestedInput
+    PromptVotes?: PromptVotesUpdateManyWithoutUserNestedInput
+    Comments?: CommentsUpdateManyWithoutUserNestedInput
+    CommentVotes?: CommentVotesUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutCommentRepliesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    publicName?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    dateCreated?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    Prompts?: PromptsUncheckedUpdateManyWithoutAuthorNestedInput
+    PromptVotes?: PromptVotesUncheckedUpdateManyWithoutUserNestedInput
+    Comments?: CommentsUncheckedUpdateManyWithoutUserNestedInput
+    CommentVotes?: CommentVotesUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type CommentsUpsertWithoutCommentRepliesInput = {
+    update: XOR<CommentsUpdateWithoutCommentRepliesInput, CommentsUncheckedUpdateWithoutCommentRepliesInput>
+    create: XOR<CommentsCreateWithoutCommentRepliesInput, CommentsUncheckedCreateWithoutCommentRepliesInput>
+    where?: CommentsWhereInput
+  }
+
+  export type CommentsUpdateToOneWithWhereWithoutCommentRepliesInput = {
+    where?: CommentsWhereInput
+    data: XOR<CommentsUpdateWithoutCommentRepliesInput, CommentsUncheckedUpdateWithoutCommentRepliesInput>
+  }
+
+  export type CommentsUpdateWithoutCommentRepliesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    comment?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutCommentsNestedInput
+    prompt?: PromptsUpdateOneRequiredWithoutCommentsNestedInput
+    CommentVotes?: CommentVotesUpdateManyWithoutCommentNestedInput
+  }
+
+  export type CommentsUncheckedUpdateWithoutCommentRepliesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    promptId?: StringFieldUpdateOperationsInput | string
+    comment?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    CommentVotes?: CommentVotesUncheckedUpdateManyWithoutCommentNestedInput
   }
 
   export type TagsPromptsMapUpdateWithoutPromptInput = {
@@ -17316,6 +24748,52 @@ export namespace Prisma {
     correlationId?: StringFieldUpdateOperationsInput | string
     dateCreated?: StringFieldUpdateOperationsInput | string
     dateEdited?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type PromptVotesUpdateWithoutPromptInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    upvote?: BoolFieldUpdateOperationsInput | boolean
+    user?: UserUpdateOneRequiredWithoutPromptVotesNestedInput
+  }
+
+  export type PromptVotesUncheckedUpdateWithoutPromptInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    upvote?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type PromptVotesUncheckedUpdateManyWithoutPromptInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    upvote?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type CommentsUpdateWithoutPromptInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    comment?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutCommentsNestedInput
+    CommentVotes?: CommentVotesUpdateManyWithoutCommentNestedInput
+    CommentReplies?: CommentRepliesUpdateManyWithoutCommentNestedInput
+  }
+
+  export type CommentsUncheckedUpdateWithoutPromptInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    comment?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    CommentVotes?: CommentVotesUncheckedUpdateManyWithoutCommentNestedInput
+    CommentReplies?: CommentRepliesUncheckedUpdateManyWithoutCommentNestedInput
+  }
+
+  export type CommentsUncheckedUpdateManyWithoutPromptInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    comment?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AetherWorldInfosUpdateWithoutPromptsInput = {
@@ -17425,8 +24903,11 @@ export namespace Prisma {
     dateEdited?: NullableStringFieldUpdateOperationsInput | string | null
     deleted?: BoolFieldUpdateOperationsInput | boolean
     json?: NullableStringFieldUpdateOperationsInput | string | null
+    downloadCount?: IntFieldUpdateOperationsInput | number
     tagsFull?: TagsPromptsMapUpdateManyWithoutPromptNestedInput
     worldInfos?: WorldInfosUpdateManyWithoutPromptsNestedInput
+    PromptVotes?: PromptVotesUpdateManyWithoutPromptNestedInput
+    Comments?: CommentsUpdateManyWithoutPromptNestedInput
   }
 
   export type PromptsUncheckedUpdateWithoutAuthorInput = {
@@ -17450,8 +24931,11 @@ export namespace Prisma {
     dateEdited?: NullableStringFieldUpdateOperationsInput | string | null
     deleted?: BoolFieldUpdateOperationsInput | boolean
     json?: NullableStringFieldUpdateOperationsInput | string | null
+    downloadCount?: IntFieldUpdateOperationsInput | number
     tagsFull?: TagsPromptsMapUncheckedUpdateManyWithoutPromptNestedInput
     worldInfos?: WorldInfosUncheckedUpdateManyWithoutPromptsNestedInput
+    PromptVotes?: PromptVotesUncheckedUpdateManyWithoutPromptNestedInput
+    Comments?: CommentsUncheckedUpdateManyWithoutPromptNestedInput
   }
 
   export type PromptsUncheckedUpdateManyWithoutAuthorInput = {
@@ -17475,6 +24959,95 @@ export namespace Prisma {
     dateEdited?: NullableStringFieldUpdateOperationsInput | string | null
     deleted?: BoolFieldUpdateOperationsInput | boolean
     json?: NullableStringFieldUpdateOperationsInput | string | null
+    downloadCount?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type PromptVotesUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    upvote?: BoolFieldUpdateOperationsInput | boolean
+    prompt?: PromptsUpdateOneRequiredWithoutPromptVotesNestedInput
+  }
+
+  export type PromptVotesUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    promptId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    upvote?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type PromptVotesUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    promptId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    upvote?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type CommentsUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    comment?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    prompt?: PromptsUpdateOneRequiredWithoutCommentsNestedInput
+    CommentVotes?: CommentVotesUpdateManyWithoutCommentNestedInput
+    CommentReplies?: CommentRepliesUpdateManyWithoutCommentNestedInput
+  }
+
+  export type CommentsUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    promptId?: StringFieldUpdateOperationsInput | string
+    comment?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    CommentVotes?: CommentVotesUncheckedUpdateManyWithoutCommentNestedInput
+    CommentReplies?: CommentRepliesUncheckedUpdateManyWithoutCommentNestedInput
+  }
+
+  export type CommentsUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    promptId?: StringFieldUpdateOperationsInput | string
+    comment?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CommentVotesUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    upvote?: BoolFieldUpdateOperationsInput | boolean
+    comment?: CommentsUpdateOneRequiredWithoutCommentVotesNestedInput
+  }
+
+  export type CommentVotesUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    commentId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    upvote?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type CommentVotesUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    commentId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    upvote?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type CommentRepliesUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    reply?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    comment?: CommentsUpdateOneRequiredWithoutCommentRepliesNestedInput
+  }
+
+  export type CommentRepliesUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    commentId?: StringFieldUpdateOperationsInput | string
+    reply?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CommentRepliesUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    commentId?: StringFieldUpdateOperationsInput | string
+    reply?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type TagsPromptsMapUpdateWithoutTagInput = {
@@ -17487,6 +25060,48 @@ export namespace Prisma {
 
   export type TagsPromptsMapUncheckedUpdateManyWithoutTagInput = {
     promptID?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CommentVotesUpdateWithoutCommentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    upvote?: BoolFieldUpdateOperationsInput | boolean
+    user?: UserUpdateOneRequiredWithoutCommentVotesNestedInput
+  }
+
+  export type CommentVotesUncheckedUpdateWithoutCommentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    upvote?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type CommentVotesUncheckedUpdateManyWithoutCommentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    upvote?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type CommentRepliesUpdateWithoutCommentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    reply?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutCommentRepliesNestedInput
+  }
+
+  export type CommentRepliesUncheckedUpdateWithoutCommentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    reply?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CommentRepliesUncheckedUpdateManyWithoutCommentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    reply?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 
@@ -17510,6 +25125,10 @@ export namespace Prisma {
      * @deprecated Use TagsCountOutputTypeDefaultArgs instead
      */
     export type TagsCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = TagsCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use CommentsCountOutputTypeDefaultArgs instead
+     */
+    export type CommentsCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = CommentsCountOutputTypeDefaultArgs<ExtArgs>
     /**
      * @deprecated Use PromptsDefaultArgs instead
      */
@@ -17535,6 +25154,10 @@ export namespace Prisma {
      */
     export type WorldInfoSearchArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = WorldInfoSearchDefaultArgs<ExtArgs>
     /**
+     * @deprecated Use TagSearchDefaultArgs instead
+     */
+    export type TagSearchArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = TagSearchDefaultArgs<ExtArgs>
+    /**
      * @deprecated Use AccountDefaultArgs instead
      */
     export type AccountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = AccountDefaultArgs<ExtArgs>
@@ -17558,6 +25181,22 @@ export namespace Prisma {
      * @deprecated Use TagsPromptsMapDefaultArgs instead
      */
     export type TagsPromptsMapArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = TagsPromptsMapDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use PromptVotesDefaultArgs instead
+     */
+    export type PromptVotesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = PromptVotesDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use CommentsDefaultArgs instead
+     */
+    export type CommentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = CommentsDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use CommentVotesDefaultArgs instead
+     */
+    export type CommentVotesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = CommentVotesDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use CommentRepliesDefaultArgs instead
+     */
+    export type CommentRepliesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = CommentRepliesDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

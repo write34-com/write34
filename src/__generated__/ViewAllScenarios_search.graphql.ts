@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<9e525e83ffa01d58ea1c9d4affd436ab>>
+ * @generated SignedSource<<ba8816a20c2f9a048333f4cc24f17824>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -17,10 +17,13 @@ export type ViewAllScenarios_search$data = {
         readonly node: {
           readonly dateCreated: string;
           readonly description: string | null | undefined;
+          readonly downvotes: number;
           readonly id: string;
+          readonly isVotedByUser: string;
           readonly nsfw: boolean;
           readonly tags: string;
           readonly title: string;
+          readonly upvotes: number;
         };
       } | null | undefined>;
     };
@@ -164,6 +167,27 @@ return {
                       "alias": null,
                       "args": null,
                       "kind": "ScalarField",
+                      "name": "upvotes",
+                      "storageKey": null
+                    },
+                    {
+                      "alias": null,
+                      "args": null,
+                      "kind": "ScalarField",
+                      "name": "downvotes",
+                      "storageKey": null
+                    },
+                    {
+                      "alias": null,
+                      "args": null,
+                      "kind": "ScalarField",
+                      "name": "isVotedByUser",
+                      "storageKey": null
+                    },
+                    {
+                      "alias": null,
+                      "args": null,
+                      "kind": "ScalarField",
                       "name": "__typename",
                       "storageKey": null
                     }
@@ -217,6 +241,6 @@ return {
 };
 })();
 
-(node as any).hash = "b6b1451cab1931adb02a18bb8180a285";
+(node as any).hash = "56070f279042409fc7ed93525c745b23";
 
 export default node;

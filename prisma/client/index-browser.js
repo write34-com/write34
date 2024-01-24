@@ -125,7 +125,8 @@ exports.Prisma.PromptsScalarFieldEnum = {
   dateEdited: 'dateEdited',
   deleted: 'deleted',
   authorId: 'authorId',
-  json: 'json'
+  json: 'json',
+  downloadCount: 'downloadCount'
 };
 
 exports.Prisma.WorldInfosScalarFieldEnum = {
@@ -179,6 +180,11 @@ exports.Prisma.WorldInfoSearchScalarFieldEnum = {
   text: 'text'
 };
 
+exports.Prisma.TagSearchScalarFieldEnum = {
+  id: 'id',
+  text: 'text'
+};
+
 exports.Prisma.AccountScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -228,6 +234,38 @@ exports.Prisma.TagsPromptsMapScalarFieldEnum = {
   promptID: 'promptID'
 };
 
+exports.Prisma.PromptVotesScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  promptId: 'promptId',
+  createdAt: 'createdAt',
+  upvote: 'upvote'
+};
+
+exports.Prisma.CommentsScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  promptId: 'promptId',
+  comment: 'comment',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.CommentVotesScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  commentId: 'commentId',
+  createdAt: 'createdAt',
+  upvote: 'upvote'
+};
+
+exports.Prisma.CommentRepliesScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  commentId: 'commentId',
+  reply: 'reply',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -246,12 +284,17 @@ exports.Prisma.ModelName = {
   AetherWorldInfos: 'AetherWorldInfos',
   PromptSearch: 'PromptSearch',
   WorldInfoSearch: 'WorldInfoSearch',
+  TagSearch: 'TagSearch',
   Account: 'Account',
   Session: 'Session',
   User: 'User',
   VerificationToken: 'VerificationToken',
   Tags: 'Tags',
-  TagsPromptsMap: 'TagsPromptsMap'
+  TagsPromptsMap: 'TagsPromptsMap',
+  PromptVotes: 'PromptVotes',
+  Comments: 'Comments',
+  CommentVotes: 'CommentVotes',
+  CommentReplies: 'CommentReplies'
 };
 
 /**

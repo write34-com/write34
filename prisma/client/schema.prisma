@@ -41,14 +41,18 @@ model Prompts {
   deleted         Boolean @default(false)
   authorId        String?
   json            String?
+  downloadCount   Int     @default(0)
 
-  tagsFull   TagsPromptsMap[] @relation("PromptTagMap")
-  worldInfos WorldInfos[]     @relation("PromptWorldInfo")
-  author     User?            @relation(fields: [authorId], references: [id])
+  tagsFull    TagsPromptsMap[] @relation("PromptTagMap")
+  worldInfos  WorldInfos[]     @relation("PromptWorldInfo")
+  author      User?            @relation(fields: [authorId], references: [id])
+  PromptVotes PromptVotes[]
+  Comments    Comments[]
 
   @@index([aetherId], name: "IX_Prompts_AetherId")
   @@index([correlationId], name: "IX_Prompts_CorrelationId")
   @@index([parentId], name: "IX_Prompts_ParentId")
+  @@index([downloadCount])
 }
 
 model WorldInfos {
@@ -118,6 +122,11 @@ model WorldInfoSearch {
   text String
 }
 
+model TagSearch {
+  id   Int    @id @default(autoincrement())
+  text String
+}
+
 model Account {
   id                String  @id @default(cuid())
   userId            String
@@ -146,16 +155,23 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
-  name          String?
-  publicName    String?
-  email         String    @unique
-  emailVerified DateTime?
-  image         String?
-  accounts      Account[]
-  sessions      Session[]
-  dateCreated   DateTime  @default(now())
-  Prompts       Prompts[]
+  id             String           @id @default(cuid())
+  name           String?
+  publicName     String?
+  email          String           @unique
+  emailVerified  DateTime?
+  image          String?
+  accounts       Account[]
+  sessions       Session[]
+  dateCreated    DateTime         @default(now())
+  Prompts        Prompts[]
+  PromptVotes    PromptVotes[]
+  Comments       Comments[]
+  CommentVotes   CommentVotes[]
+  CommentReplies CommentReplies[]
+
+  @@index([name])
+  @@index([publicName])
 }
 
 model VerificationToken {
@@ -184,4 +200,67 @@ model TagsPromptsMap {
   prompt Prompts @relation("PromptTagMap", fields: [promptID], references: [id], onDelete: Cascade)
 
   @@unique([tagId, promptID])
+}
+
+model PromptVotes {
+  id        String   @id @default(cuid())
+  userId    String
+  promptId  String
+  createdAt DateTime @default(now())
+  upvote    Boolean
+
+  user   User    @relation(fields: [userId], references: [id])
+  prompt Prompts @relation(fields: [promptId], references: [id])
+
+  @@unique([userId, promptId])
+  @@index([userId])
+  @@index([promptId])
+  @@index([createdAt])
+}
+
+model Comments {
+  id        String   @id @default(cuid())
+  userId    String
+  promptId  String
+  comment   String
+  createdAt DateTime @default(now())
+
+  user           User             @relation(fields: [userId], references: [id])
+  prompt         Prompts          @relation(fields: [promptId], references: [id])
+  CommentVotes   CommentVotes[]
+  CommentReplies CommentReplies[]
+
+  @@index([userId])
+  @@index([promptId])
+  @@index([createdAt])
+}
+
+model CommentVotes {
+  id        String   @id @default(cuid())
+  userId    String
+  commentId String
+  createdAt DateTime @default(now())
+  upvote    Boolean
+
+  user    User     @relation(fields: [userId], references: [id])
+  comment Comments @relation(fields: [commentId], references: [id])
+
+  @@unique([userId, commentId])
+  @@index([userId])
+  @@index([commentId])
+  @@index([createdAt])
+}
+
+model CommentReplies {
+  id        String   @id @default(cuid())
+  userId    String
+  commentId String
+  reply     String
+  createdAt DateTime @default(now())
+
+  user    User     @relation(fields: [userId], references: [id])
+  comment Comments @relation(fields: [commentId], references: [id])
+
+  @@index([userId])
+  @@index([commentId])
 }

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<3d2fda1753146eccaee144a55c668011>>
+ * @generated SignedSource<<a30044976201e5533071379317717e80>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -17,7 +17,7 @@ export type pageUpdateUserMutation$data = {
   readonly updateUser: {
     readonly email: string;
     readonly id: string;
-    readonly name: string | null | undefined;
+    readonly name: string;
     readonly publicName: string | null | undefined;
   };
 };

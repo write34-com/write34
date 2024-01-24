@@ -9,6 +9,7 @@ import {ViewAllScenariosQuery} from "@/__generated__/ViewAllScenariosQuery.graph
 import Link from "next/link";
 import {ViewAllScenarios_search$key} from "@/__generated__/ViewAllScenarios_search.graphql";
 import React from "react";
+import UpvoteDownvote from "@/components/UpvoteDownvote";
 
 const HomePageQuery = graphql`
     query ViewAllScenariosQuery($count: Int!, $cursor: String) {
@@ -34,6 +35,9 @@ export function Results(queryRef: ViewAllScenarios_search$key) {
                             tags
                             nsfw
                             dateCreated
+                            upvotes
+                            downvotes
+                            isVotedByUser
                         }
                     }
                 }
@@ -46,42 +50,60 @@ export function Results(queryRef: ViewAllScenarios_search$key) {
       <div
         className="mx-auto mt-8 grid max-w-2xl grid-cols-1 gap-x-4 gap-y-16 border-t border-gray-200 pt-10 sm:mt-8 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3 bg-gray-200 dark:bg-gray-900">
         {data.search?.prompts?.edges?.map((edge) => {
-          const link = '/scenarios/' + atob(edge?.node?.id || '').replace('PromptsSearch:', '');
+          const prompt = edge?.node;
+
+          if (!prompt) {
+            return null;
+          }
+
+          const promptId = atob(prompt.id || '').replace('PromptsSearch:', '');
+
+          const link = '/scenarios/' + promptId;
 
           return (
-              <Link key={edge?.node?.id}
-                  href={link}>
-            <article
+            <article key={prompt.id}
                      className="flex max-w-xl flex-col items-start justify-between p-3 pb-0 rounded-xl border-gray-200 border-b bg-gray-200 dark:bg-gray-800">
-              <div className="flex items-center gap-x-4 text-xs">
-                <time dateTime={edge?.node?.dateCreated || undefined} className="text-gray-400">
-                  {edge?.node?.dateCreated.slice(0, 10)}
-                </time>
-                <div
-                  className="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100 dark:bg-gray-700 dark:text-gray-50"
-                >
-                  {edge?.node?.nsfw ? 'NSFW' : 'SFW'}
+              <Link href={link}>
+                <div className="flex items-center gap-x-4 text-xs">
+                  <time dateTime={prompt.dateCreated} className="text-gray-400">
+                    {prompt.dateCreated.slice(0, 10)}
+                  </time>
+                  <div
+                    className="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100 dark:bg-gray-700 dark:text-gray-50"
+                  >
+                    {prompt.nsfw ? 'NSFW' : 'SFW'}
+                  </div>
                 </div>
-              </div>
-              <div className="group relative">
-                <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600 dark:text-gray-100">
-                  <span className="absolute inset-0"/>
-                  {edge?.node?.title}
-                </h3>
-                <p
-                  className="mt-5 line-clamp-3 text-sm leading-6 text-gray-600 dark:text-gray-400">{edge?.node?.description}</p>
-              </div>
-              <div className="relative mt-8 flex items-center gap-x-4">
-                {/*<img src={post.author.imageUrl} alt="" className="h-10 w-10 rounded-full bg-gray-50" />*/}
-                <div className="text-sm leading-6">
-                  <p className="font-semibold text-gray-900 dark:bg-gray-900 dark:text-gray-100">
+                <div className="group relative">
+                  <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600 dark:text-gray-100">
                     <span className="absolute inset-0"/>
-                    {/*{edge?.node?.id}*/}
-                  </p>
+                    {prompt.title}
+                  </h3>
+                  <p
+                    className="mt-5 line-clamp-3 text-sm leading-6 text-gray-600 dark:text-gray-400">{prompt.description}</p>
                 </div>
+                <div className="relative mt-8 flex items-center gap-x-4">
+                  {/*<img src={post.author.imageUrl} alt="" className="h-10 w-10 rounded-full bg-gray-50" />*/}
+                  <div className="text-sm leading-6">
+                    <p className="font-semibold text-gray-900 dark:bg-gray-900 dark:text-gray-100">
+                      <span className="absolute inset-0"/>
+                      {/*{edge?.node?.id}*/}
+                    </p>
+                  </div>
+                </div>
+
+              </Link>
+
+              <div className="pb-3 -mt-2">
+                <UpvoteDownvote
+                  initialUpvotes={prompt.upvotes}
+                  initialDownvotes={prompt.downvotes}
+                  promptId={promptId}
+                  isUpvoted={prompt.isVotedByUser === 'up'}
+                  isDownvoted={prompt.isVotedByUser === 'down'}
+                />
               </div>
             </article>
-              </Link>
           );
         })}
       </div>

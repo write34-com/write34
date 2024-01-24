@@ -1,5 +1,5 @@
 /* eslint-disable */
-import type { Prisma, Prompts, WorldInfos, AetherPrompts, AetherWorldInfos, PromptSearch, WorldInfoSearch, Account, Session, User, VerificationToken, Tags, TagsPromptsMap } from "./client";
+import type { Prisma, Prompts, WorldInfos, AetherPrompts, AetherWorldInfos, PromptSearch, WorldInfoSearch, TagSearch, Account, Session, User, VerificationToken, Tags, TagsPromptsMap, PromptVotes, Comments, CommentVotes, CommentReplies } from "./client";
 export default interface PrismaTypes {
     Prompts: {
         Name: "Prompts";
@@ -11,8 +11,8 @@ export default interface PrismaTypes {
         Where: Prisma.PromptsWhereInput;
         Create: {};
         Update: {};
-        RelationName: "tagsFull" | "worldInfos" | "author";
-        ListRelations: "tagsFull" | "worldInfos";
+        RelationName: "tagsFull" | "worldInfos" | "author" | "PromptVotes" | "Comments";
+        ListRelations: "tagsFull" | "worldInfos" | "PromptVotes" | "Comments";
         Relations: {
             tagsFull: {
                 Shape: TagsPromptsMap[];
@@ -25,6 +25,14 @@ export default interface PrismaTypes {
             author: {
                 Shape: User | null;
                 Name: "User";
+            };
+            PromptVotes: {
+                Shape: PromptVotes[];
+                Name: "PromptVotes";
+            };
+            Comments: {
+                Shape: Comments[];
+                Name: "Comments";
             };
         };
     };
@@ -113,6 +121,20 @@ export default interface PrismaTypes {
         ListRelations: never;
         Relations: {};
     };
+    TagSearch: {
+        Name: "TagSearch";
+        Shape: TagSearch;
+        Include: never;
+        Select: Prisma.TagSearchSelect;
+        OrderBy: Prisma.TagSearchOrderByWithRelationInput;
+        WhereUnique: Prisma.TagSearchWhereUniqueInput;
+        Where: Prisma.TagSearchWhereInput;
+        Create: {};
+        Update: {};
+        RelationName: never;
+        ListRelations: never;
+        Relations: {};
+    };
     Account: {
         Name: "Account";
         Shape: Account;
@@ -161,8 +183,8 @@ export default interface PrismaTypes {
         Where: Prisma.UserWhereInput;
         Create: {};
         Update: {};
-        RelationName: "accounts" | "sessions" | "Prompts";
-        ListRelations: "accounts" | "sessions" | "Prompts";
+        RelationName: "accounts" | "sessions" | "Prompts" | "PromptVotes" | "Comments" | "CommentVotes" | "CommentReplies";
+        ListRelations: "accounts" | "sessions" | "Prompts" | "PromptVotes" | "Comments" | "CommentVotes" | "CommentReplies";
         Relations: {
             accounts: {
                 Shape: Account[];
@@ -175,6 +197,22 @@ export default interface PrismaTypes {
             Prompts: {
                 Shape: Prompts[];
                 Name: "Prompts";
+            };
+            PromptVotes: {
+                Shape: PromptVotes[];
+                Name: "PromptVotes";
+            };
+            Comments: {
+                Shape: Comments[];
+                Name: "Comments";
+            };
+            CommentVotes: {
+                Shape: CommentVotes[];
+                Name: "CommentVotes";
+            };
+            CommentReplies: {
+                Shape: CommentReplies[];
+                Name: "CommentReplies";
             };
         };
     };
@@ -231,6 +269,106 @@ export default interface PrismaTypes {
             prompt: {
                 Shape: Prompts;
                 Name: "Prompts";
+            };
+        };
+    };
+    PromptVotes: {
+        Name: "PromptVotes";
+        Shape: PromptVotes;
+        Include: Prisma.PromptVotesInclude;
+        Select: Prisma.PromptVotesSelect;
+        OrderBy: Prisma.PromptVotesOrderByWithRelationInput;
+        WhereUnique: Prisma.PromptVotesWhereUniqueInput;
+        Where: Prisma.PromptVotesWhereInput;
+        Create: {};
+        Update: {};
+        RelationName: "user" | "prompt";
+        ListRelations: never;
+        Relations: {
+            user: {
+                Shape: User;
+                Name: "User";
+            };
+            prompt: {
+                Shape: Prompts;
+                Name: "Prompts";
+            };
+        };
+    };
+    Comments: {
+        Name: "Comments";
+        Shape: Comments;
+        Include: Prisma.CommentsInclude;
+        Select: Prisma.CommentsSelect;
+        OrderBy: Prisma.CommentsOrderByWithRelationInput;
+        WhereUnique: Prisma.CommentsWhereUniqueInput;
+        Where: Prisma.CommentsWhereInput;
+        Create: {};
+        Update: {};
+        RelationName: "user" | "prompt" | "CommentVotes" | "CommentReplies";
+        ListRelations: "CommentVotes" | "CommentReplies";
+        Relations: {
+            user: {
+                Shape: User;
+                Name: "User";
+            };
+            prompt: {
+                Shape: Prompts;
+                Name: "Prompts";
+            };
+            CommentVotes: {
+                Shape: CommentVotes[];
+                Name: "CommentVotes";
+            };
+            CommentReplies: {
+                Shape: CommentReplies[];
+                Name: "CommentReplies";
+            };
+        };
+    };
+    CommentVotes: {
+        Name: "CommentVotes";
+        Shape: CommentVotes;
+        Include: Prisma.CommentVotesInclude;
+        Select: Prisma.CommentVotesSelect;
+        OrderBy: Prisma.CommentVotesOrderByWithRelationInput;
+        WhereUnique: Prisma.CommentVotesWhereUniqueInput;
+        Where: Prisma.CommentVotesWhereInput;
+        Create: {};
+        Update: {};
+        RelationName: "user" | "comment";
+        ListRelations: never;
+        Relations: {
+            user: {
+                Shape: User;
+                Name: "User";
+            };
+            comment: {
+                Shape: Comments;
+                Name: "Comments";
+            };
+        };
+    };
+    CommentReplies: {
+        Name: "CommentReplies";
+        Shape: CommentReplies;
+        Include: Prisma.CommentRepliesInclude;
+        Select: Prisma.CommentRepliesSelect;
+        OrderBy: Prisma.CommentRepliesOrderByWithRelationInput;
+        WhereUnique: Prisma.CommentRepliesWhereUniqueInput;
+        Where: Prisma.CommentRepliesWhereInput;
+        Create: {};
+        Update: {};
+        RelationName: "user" | "comment";
+        ListRelations: never;
+        Relations: {
+            user: {
+                Shape: User;
+                Name: "User";
+            };
+            comment: {
+                Shape: Comments;
+                Name: "Comments";
             };
         };
     };

@@ -122,22 +122,22 @@ CREATE VIRTUAL TABLE promptSearch USING fts5
 
 CREATE TRIGGER promptSearch_ai AFTER INSERT ON Prompts
 BEGIN
-    INSERT INTO promptSearch (id, description, memory, promptContent, tags, title, nsfw)
-    VALUES (new.id, new.description, new.memory, new.promptContent, new.tags, new.title, new.nsfw);
+    INSERT INTO promptSearch (rowid, id, description, memory, promptContent, tags, title, nsfw)
+    VALUES (new.rowid, new.id, new.description, new.memory, new.promptContent, new.tags, new.title, new.nsfw);
 END;
 
 CREATE TRIGGER promptSearch_ad AFTER DELETE ON Prompts
 BEGIN
-    INSERT INTO promptSearch (promptSearch, id, description, memory, promptContent, tags, title, nsfw)
-    VALUES ('delete', old.id, old.description, old.memory, old.promptContent, old.tags, old.title, old.nsfw);
+    INSERT INTO promptSearch (promptSearch, rowid, id, description, memory, promptContent, tags, title, nsfw)
+    VALUES ('delete', old.ROWID, old.id, old.description, old.memory, old.promptContent, old.tags, old.title, old.nsfw);
 END;
 
 CREATE TRIGGER promptSearch_au AFTER UPDATE ON Prompts
 BEGIN
-    INSERT INTO promptSearch (promptSearch, id, description, memory, promptContent, tags, title, nsfw)
-    VALUES ('delete', old.id, old.description, old.memory, old.promptContent, old.tags, old.title, old.nsfw);
-    INSERT INTO promptSearch (id, description, memory, promptContent, tags, title, nsfw)
-    VALUES (new.id, new.description, new.memory, new.promptContent, new.tags, new.title, new.nsfw);
+    INSERT INTO promptSearch (promptSearch, rowid, id, description, memory, promptContent, tags, title, nsfw)
+    VALUES ('delete', old.ROWID, old.id, old.description, old.memory, old.promptContent, old.tags, old.title, old.nsfw);
+    INSERT INTO promptSearch (rowid, id, description, memory, promptContent, tags, title, nsfw)
+    VALUES (new.rowid, new.id, new.description, new.memory, new.promptContent, new.tags, new.title, new.nsfw);
 END;
 
 CREATE VIRTUAL TABLE worldInfoSearch USING fts5
@@ -152,24 +152,24 @@ CREATE VIRTUAL TABLE worldInfoSearch USING fts5
 -- Create Trigger
 CREATE TRIGGER worldInfoSearch_ai AFTER INSERT ON WorldInfos
 BEGIN
-    INSERT INTO worldInfoSearch (id, entry, keys)
-    VALUES (new.id, new.entry, new.keys);
+    INSERT INTO worldInfoSearch (rowid, id, entry, keys)
+    VALUES (new.rowid, new.id, new.entry, new.keys);
 END;
 
 -- Create Trigger
 CREATE TRIGGER worldInfoSearch_ad AFTER DELETE ON WorldInfos
 BEGIN
-    INSERT INTO worldInfoSearch (worldInfoSearch, rowid, entry, keys)
-    VALUES ('delete', old.id, old.entry, old.keys);
+    INSERT INTO worldInfoSearch (worldInfoSearch, rowid, id, entry, keys)
+    VALUES ('delete', old.rowid, old.id, old.entry, old.keys);
 END;
 
 -- Create Trigger
 CREATE TRIGGER worldInfoSearch_au AFTER UPDATE ON WorldInfos
 BEGIN
-    INSERT INTO worldInfoSearch (worldInfoSearch, rowid, entry, keys)
-    VALUES ('delete', old.id, old.entry, old.keys);
-    INSERT INTO worldInfoSearch (id, entry, keys)
-    VALUES (new.id, new.entry, new.keys);
+    INSERT INTO worldInfoSearch (worldInfoSearch, rowid, id, entry, keys)
+    VALUES ('delete', old.rowid, old.id, old.entry, old.keys);
+    INSERT INTO worldInfoSearch (rowid, id, entry, keys)
+    VALUES (new.rowid, new.id, new.entry, new.keys);
 END;
 
 -----

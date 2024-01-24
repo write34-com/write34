@@ -110,6 +110,55 @@ const Prompts = builder.prismaNode('Prompts', {
         // TODO: Figure out how to do many-to-many JOINs in Pothos
         // tags: t.relation('tagsPromptsMap'),
         worldInfos: t.relation('worldInfos'),
+        upvotes: t.int({
+            resolve: (parent) => {
+                // Count the number of upvotes in the database and return the total
+                const promptId = parent.id;
+
+                return db.promptVotes.count({
+                    where: {
+                        promptId: promptId,
+                        upvote: true,
+                    }
+                });
+            }
+        }),
+        downvotes: t.int({
+            resolve: (parent) => {
+                // Count the number of downvotes in the database and return the total
+                const promptId = parent.id;
+
+                return db.promptVotes.count({
+                    where: {
+                        promptId: promptId,
+                        upvote: false,
+                    }
+                });
+            }
+        }),
+        isVotedByUser: t.string({
+            resolve: async (parent, args, ctx, info) => {
+                if (!ctx.currentUser) {
+                    return 'none';
+                }
+
+                const loggedInUser = ctx.currentUser.id;
+
+                const upvote = await db.promptVotes.findFirst({
+                    where: {
+                        userId: loggedInUser,
+                        promptId: parent.id,
+                    }
+                });
+
+                if (!upvote) {
+                    return 'none';
+                }
+
+                return upvote.upvote ? 'up' : 'down';
+            }
+        }),
+        comments: t.relation('Comments'),
     }),
 });
 
@@ -186,6 +235,54 @@ const PromptsSearch = builder.prismaNode('Prompts', {
                 return Number(nsfw) !== 0;
             },
         }),
+        upvotes: t.int({
+            resolve: (parent) => {
+                // Count the number of upvotes in the database and return the total
+                const promptId = parent.id;
+
+                return db.promptVotes.count({
+                    where: {
+                        promptId: promptId,
+                        upvote: true,
+                    }
+                });
+            }
+        }),
+        downvotes: t.int({
+            resolve: (parent) => {
+                // Count the number of downvotes in the database and return the total
+                const promptId = parent.id;
+
+                return db.promptVotes.count({
+                    where: {
+                        promptId: promptId,
+                        upvote: false,
+                    }
+                });
+            }
+        }),
+        isVotedByUser: t.string({
+            resolve: async (parent, args, ctx, info) => {
+                if (!ctx.currentUser) {
+                    return 'none';
+                }
+
+                const loggedInUser = ctx.currentUser.id;
+
+                const upvote = await db.promptVotes.findFirst({
+                    where: {
+                        userId: loggedInUser,
+                        promptId: parent.id,
+                    }
+                });
+
+                if (!upvote) {
+                    return 'none';
+                }
+
+                return upvote.upvote ? 'up' : 'down';
+            }
+        }),
     })
 });
 
@@ -195,8 +292,18 @@ builder.prismaNode('User', {
         email: t.exposeString('email', {
             nullable: false,
         }),
-        name: t.exposeString('name', {
-            nullable: true,
+        name: t.string({
+            resolve: async (parent, args, ctx, info) => {
+                if (!ctx.currentUser) {
+                    return parent.publicName || 'Anonymous';
+                }
+
+                if (ctx.currentUser.id === parent.id) {
+                    return parent.name || 'Anonymous';
+                }
+
+                return 'Anonymous';
+            }
         }),
         image: t.exposeString('image', {
             nullable: true,
@@ -204,21 +311,6 @@ builder.prismaNode('User', {
         publicName: t.exposeString('publicName', {
             nullable: true,
         }),
-        // dateCreated: t.exposeString('dateCreated', {
-        //     nullable: false,
-        // }),
-        // name: t.exposeString('name', {
-        //     nullable: false,
-        // }),
-        // picture: t.exposeString('picture', {
-        //     nullable: false,
-        // }),
-        // dateCreated: t.exposeString('dateCreated', {
-        //     nullable: false,
-        // }),
-
-        // prompts: t.relation('prompts'),
-        // worldInfos: t.relation('worldInfos'),
     })
 });
 
@@ -272,6 +364,26 @@ const TopTags = builder.objectType(TopTagsResult, {
             nullable: true
         }),
     }),
+});
+
+const Comments = builder.prismaNode('Comments', {
+id: {field: 'id'},
+    fields: (t) => ({
+        userId: t.exposeID('userId', {
+            nullable: false,
+        }),
+        promptId: t.exposeID('promptId', {
+            nullable: false,
+        }),
+        comment: t.exposeString('comment', {
+            nullable: false,
+        }),
+        // @ts-ignore
+        createdAt: t.exposeString('createdAt', {
+            nullable: false,
+        }),
+        user: t.relation('user'),
+    })
 });
 
 // Empty class because this is just the object we expose on the GraphQL server to hold different search types
@@ -551,6 +663,51 @@ builder.mutationType({
                 });
             },
         }),
+        votePrompt: t.boolean({
+            args: {
+                promptId: t.arg.string({ required: true }),
+                setVoteState: t.arg.boolean({ required: false }),
+            },
+            resolve: async (root, { promptId, setVoteState }, ctx, info) => {
+                if (!ctx.currentUser) {
+                    throw new Error("No user found, please login");
+                }
+
+                const loggedInUser = ctx.currentUser.id;
+
+                // Check if the user has already voted for the prompt
+                const promptVote = await db.promptVotes.findFirst({
+                    where: {
+                        userId: loggedInUser,
+                        promptId: promptId,
+                    }
+                });
+
+                // If the user has already voted the prompt, then remove the vote
+                if (promptVote) {
+                    await db.promptVotes.delete({
+                        where: {
+                            id: promptVote.id,
+                        }
+                    });
+                }
+
+                // The user is "un-voting", so do nothing.
+                if (setVoteState === null || setVoteState === undefined) {
+                    return true;
+                }
+
+                await db.promptVotes.create({
+                    data: {
+                        userId: loggedInUser,
+                        promptId: promptId,
+                        upvote: setVoteState,
+                    }
+                });
+
+                return true;
+            }
+        })
     }),
 });
 
