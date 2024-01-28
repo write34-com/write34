@@ -21,7 +21,8 @@ const ScenarioRating: React.FC<ScenarioRatingProps> = ({
                                                          promptId,
                                                          userRating,
                                                        }) => {
-  const [localRating, setLocalRating] = useState(userRating || globalRating);
+  const [localTotalRatings, setLocalTotalRatings] = useState(totalRatings || 0);
+  const [localRating, setLocalRating] = useState(userRating || 0);
   const [votePrompt, isInFlight] = useMutation(UpvoteMutation);
 
   useEffect(() => {
@@ -30,6 +31,7 @@ const ScenarioRating: React.FC<ScenarioRatingProps> = ({
 
   const handleRatingChange = (newRating: number) => {
     setLocalRating(newRating);
+    setLocalTotalRatings(globalRating + 1);
     votePrompt({
       variables: {
         promptId,
@@ -47,9 +49,9 @@ const ScenarioRating: React.FC<ScenarioRatingProps> = ({
             type="radio"
             name={`rating-${star}`}
             className={classnames('mask mask-star', {
-              'bg-yellow-400': userRating && Math.round(userRating / 10) >= star,
-              'bg-gray-300': !userRating || Math.round(userRating / 10) < star,
-              'bg-gray-500': totalRatings === 0 || Math.round(localRating / 10) < star,
+              'bg-yellow-400': localRating && Math.round(localRating / 10) >= star,
+              'bg-gray-300': !localRating || Math.round(localRating / 10) < star,
+              'bg-gray-500': localTotalRatings === 0 || Math.round(globalRating / 10) < star,
             })}
             checked={Math.round(localRating / 10) === star}
             onChange={() => handleRatingChange(star * 10)}
@@ -58,7 +60,7 @@ const ScenarioRating: React.FC<ScenarioRatingProps> = ({
         ))}
       </div>
       <div className="text-xs text-gray-400">
-        {totalRatings === 0 ? 'No ratings yet' : `${totalRatings} rating${totalRatings === 1 ? '' : 's'}`}
+        {localTotalRatings === 0 ? 'No ratings yet' : `${localTotalRatings} rating${localTotalRatings === 1 ? '' : 's'}`}
       </div>
     </div>
   );
