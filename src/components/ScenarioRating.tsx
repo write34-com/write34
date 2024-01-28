@@ -31,7 +31,7 @@ const ScenarioRating: React.FC<ScenarioRatingProps> = ({
 
   const handleRatingChange = (newRating: number) => {
     setLocalRating(newRating);
-    setLocalTotalRatings(globalRating + 1);
+    setLocalTotalRatings(totalRatings + 1);
     votePrompt({
       variables: {
         promptId,
