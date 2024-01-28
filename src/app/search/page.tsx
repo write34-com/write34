@@ -39,7 +39,7 @@ export default async function SearchPage(props: {
 
     return (
         <div>
-            {<SearchClientComponent queryRef={preloadedQuery} />}
+            <SearchClientComponent queryRef={preloadedQuery} />
         </div>
     );
 }

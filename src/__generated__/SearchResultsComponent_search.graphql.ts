@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<c8868b536b8a9d0021f1ba00c44260f1>>
+ * @generated SignedSource<<55bd5b5ef307a616d3be87c55cafc516>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -16,13 +16,13 @@ export type SearchResultsComponent_search$data = {
       readonly edges: ReadonlyArray<{
         readonly node: {
           readonly description: string | null | undefined;
-          readonly downvotes: number;
           readonly id: string;
-          readonly isVotedByUser: string;
           readonly nsfw: boolean;
+          readonly rating: number;
           readonly tags: string;
           readonly title: string;
-          readonly upvotes: number;
+          readonly totalRatings: number;
+          readonly userRating: number | null | undefined;
         };
       } | null | undefined>;
     };
@@ -176,21 +176,21 @@ return {
                       "alias": null,
                       "args": null,
                       "kind": "ScalarField",
-                      "name": "upvotes",
+                      "name": "rating",
                       "storageKey": null
                     },
                     {
                       "alias": null,
                       "args": null,
                       "kind": "ScalarField",
-                      "name": "downvotes",
+                      "name": "totalRatings",
                       "storageKey": null
                     },
                     {
                       "alias": null,
                       "args": null,
                       "kind": "ScalarField",
-                      "name": "isVotedByUser",
+                      "name": "userRating",
                       "storageKey": null
                     },
                     {
@@ -250,6 +250,6 @@ return {
 };
 })();
 
-(node as any).hash = "c625b2b1c106f371c498a936afabcfe0";
+(node as any).hash = "e630badf21fcf82270e45b86cd24f164";
 
 export default node;

@@ -6,6 +6,16 @@ import scenarioComponentViewQueryGraphql, {
     scenarioComponentViewQuery
 } from "@/__generated__/scenarioComponentViewQuery.graphql";
 import {Metadata, ResolvingMetadata} from "next";
+import {getServerSession} from "next-auth";
+import {auth} from "@/lib/auth";
+
+type SessionData = {
+    user: {
+        image: string,
+        name: string,
+        email: string,
+    }
+}
 
 export const generateStaticParams = (async () => {
 
@@ -41,6 +51,8 @@ export async function generateMetadata(
 export default async function ScenarioPage({ params }: {
     params: { scenario: string };
 }) {
+    const session = await getServerSession<any, SessionData>(auth as any);
+
     const preloadedQuery = await loadSerializableQuery<
         typeof scenarioComponentViewQueryGraphql,
         scenarioComponentViewQuery
@@ -50,4 +62,3 @@ export default async function ScenarioPage({ params }: {
 
     return <ScenarioClientComponent preloadedQuery={preloadedQuery} />;
 }
-

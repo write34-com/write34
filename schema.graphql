@@ -19,7 +19,7 @@ scalar JSON
 
 type Mutation {
   updateUser(newName: String, newPublicName: String): User!
-  votePrompt(promptId: String!, setVoteState: Boolean): Boolean!
+  votePrompt(promptId: String!, setRating: Float): Boolean!
 }
 
 interface Node {
@@ -41,10 +41,9 @@ type Prompts implements Node {
   dateCreated: String!
   dateEdited: String
   description: String
-  downvotes: Int!
+  downloadCount: Int!
   holoAiScenario: String
   id: ID!
-  isVotedByUser: String!
   memory: String
   novelAiScenario: String
   nsfw: Boolean!
@@ -52,9 +51,11 @@ type Prompts implements Node {
   promptContent: String!
   publishDate: String
   quests: String
+  rating: Float!
   tags: String!
   title: String!
-  upvotes: Int!
+  totalRatings: Int!
+  userRating: Int
   worldInfos: [WorldInfos!]!
 }
 
@@ -63,16 +64,16 @@ type PromptsSearch implements Node {
   dateCreated: String!
   dateEdited: String
   description: String
-  downvotes: Int!
   id: ID!
-  isVotedByUser: String!
   memory: String
   nsfw: Boolean!
   promptContent: String!
   publishDate: String
+  rating: Float!
   tags: String!
   title: String!
-  upvotes: Int!
+  totalRatings: Int!
+  userRating: Int
 }
 
 type Query {

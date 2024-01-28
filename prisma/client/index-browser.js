@@ -239,7 +239,7 @@ exports.Prisma.PromptVotesScalarFieldEnum = {
   userId: 'userId',
   promptId: 'promptId',
   createdAt: 'createdAt',
-  upvote: 'upvote'
+  rating: 'rating'
 };
 
 exports.Prisma.CommentsScalarFieldEnum = {

@@ -43,6 +43,26 @@ const builder = new SchemaBuilder<{
     },
 });
 
+function convertBigInt<
+  T extends { int: (options: { resolve: (parent: B) => number }) => any },
+  B extends { count: bigint }
+> (t: T) {
+    return t.int({
+        resolve: (parent: B) => {
+            // Assuming `parent.count` is the BigInt
+            const count = parent.count;
+
+            // Check if the value is within the safe integer range
+            if (count <= Number.MAX_SAFE_INTEGER) {
+                return Number(count);
+            } else {
+                // Handle the case where the number is too large
+                throw new Error("Count exceeds the safe integer limit");
+            }
+        },
+    });
+}
+
 builder.addScalarType('JSON', JSONResolver);
 builder.addScalarType('Date', DateResolver);
 
@@ -107,10 +127,33 @@ const Prompts = builder.prismaNode('Prompts', {
         dateEdited: t.exposeString('dateEdited', {
             nullable: true,
         }),
+        downloadCount: t.exposeInt('downloadCount', {
+            nullable: false,
+        }),
         // TODO: Figure out how to do many-to-many JOINs in Pothos
         // tags: t.relation('tagsPromptsMap'),
         worldInfos: t.relation('worldInfos'),
-        upvotes: t.int({
+        rating: t.float({
+            resolve: async (parent) => {
+                // Count the number of upvotes in the database and return the total
+                const promptId = parent.id;
+
+                const ratings = await db.promptVotes.findMany({
+                    where: {
+                        promptId: promptId,
+                    }
+                });
+
+                if (ratings.length === 0) {
+                    return 0;
+                }
+
+                // Average the ratings
+                return ratings.reduce((a, b) => a + b.rating, 0) / ratings.length;
+            }
+        }),
+        // TODO: Dedupe this code
+        totalRatings: t.int({
             resolve: (parent) => {
                 // Count the number of upvotes in the database and return the total
                 const promptId = parent.id;
@@ -118,44 +161,31 @@ const Prompts = builder.prismaNode('Prompts', {
                 return db.promptVotes.count({
                     where: {
                         promptId: promptId,
-                        upvote: true,
                     }
                 });
             }
         }),
-        downvotes: t.int({
-            resolve: (parent) => {
-                // Count the number of downvotes in the database and return the total
-                const promptId = parent.id;
-
-                return db.promptVotes.count({
-                    where: {
-                        promptId: promptId,
-                        upvote: false,
-                    }
-                });
-            }
-        }),
-        isVotedByUser: t.string({
+        userRating: t.int({
+            nullable: true,
             resolve: async (parent, args, ctx, info) => {
                 if (!ctx.currentUser) {
-                    return 'none';
+                    return null;
                 }
 
                 const loggedInUser = ctx.currentUser.id;
 
-                const upvote = await db.promptVotes.findFirst({
+                const rating = await db.promptVotes.findFirst({
                     where: {
                         userId: loggedInUser,
                         promptId: parent.id,
                     }
                 });
 
-                if (!upvote) {
-                    return 'none';
+                if (!rating) {
+                    return null;
                 }
 
-                return upvote.upvote ? 'up' : 'down';
+                return rating.rating;
             }
         }),
         comments: t.relation('Comments'),
@@ -235,7 +265,27 @@ const PromptsSearch = builder.prismaNode('Prompts', {
                 return Number(nsfw) !== 0;
             },
         }),
-        upvotes: t.int({
+        rating: t.float({
+            resolve: async (parent) => {
+                // Count the number of upvotes in the database and return the total
+                const promptId = parent.id;
+
+                const ratings = await db.promptVotes.findMany({
+                    where: {
+                        promptId: promptId,
+                    }
+                });
+
+                if (ratings.length === 0) {
+                    return 0;
+                }
+
+                // Average the ratings
+                return ratings.reduce((a, b) => a + b.rating, 0) / ratings.length;
+            }
+        }),
+        // TODO: Dedupe this code
+        totalRatings: t.int({
             resolve: (parent) => {
                 // Count the number of upvotes in the database and return the total
                 const promptId = parent.id;
@@ -243,44 +293,31 @@ const PromptsSearch = builder.prismaNode('Prompts', {
                 return db.promptVotes.count({
                     where: {
                         promptId: promptId,
-                        upvote: true,
                     }
                 });
             }
         }),
-        downvotes: t.int({
-            resolve: (parent) => {
-                // Count the number of downvotes in the database and return the total
-                const promptId = parent.id;
-
-                return db.promptVotes.count({
-                    where: {
-                        promptId: promptId,
-                        upvote: false,
-                    }
-                });
-            }
-        }),
-        isVotedByUser: t.string({
+        userRating: t.int({
+            nullable: true,
             resolve: async (parent, args, ctx, info) => {
                 if (!ctx.currentUser) {
-                    return 'none';
+                    return null;
                 }
 
                 const loggedInUser = ctx.currentUser.id;
 
-                const upvote = await db.promptVotes.findFirst({
+                const rating = await db.promptVotes.findFirst({
                     where: {
                         userId: loggedInUser,
                         promptId: parent.id,
                     }
                 });
 
-                if (!upvote) {
-                    return 'none';
+                if (!rating) {
+                    return null;
                 }
 
-                return upvote.upvote ? 'up' : 'down';
+                return rating.rating;
             }
         }),
     })
@@ -343,20 +380,7 @@ const TopTags = builder.objectType(TopTagsResult, {
     fields: (t) => ({
         // SQLite exposes BigInt as the response to the query, so we to convert it.
         // TODO: Move this to a utility if we see this again
-        count: t.int({
-            resolve: (parent) => {
-                // Assuming `parent.count` is the BigInt
-                const count = parent.count;
-
-                // Check if the value is within the safe integer range
-                if (count <= Number.MAX_SAFE_INTEGER) {
-                    return Number(count);
-                } else {
-                    // Handle the case where the number is too large
-                    throw new Error("Count exceeds the safe integer limit");
-                }
-            },
-        }),
+        count: convertBigInt(t as any),
         name: t.exposeString('name', {
             nullable: false,
         }),
@@ -666,9 +690,9 @@ builder.mutationType({
         votePrompt: t.boolean({
             args: {
                 promptId: t.arg.string({ required: true }),
-                setVoteState: t.arg.boolean({ required: false }),
+                setRating: t.arg.float({ required: false }),
             },
-            resolve: async (root, { promptId, setVoteState }, ctx, info) => {
+            resolve: async (root, { promptId, setRating }, ctx, info) => {
                 if (!ctx.currentUser) {
                     throw new Error("No user found, please login");
                 }
@@ -693,7 +717,7 @@ builder.mutationType({
                 }
 
                 // The user is "un-voting", so do nothing.
-                if (setVoteState === null || setVoteState === undefined) {
+                if (setRating === null || setRating === undefined) {
                     return true;
                 }
 
@@ -701,7 +725,7 @@ builder.mutationType({
                     data: {
                         userId: loggedInUser,
                         promptId: promptId,
-                        upvote: setVoteState,
+                        rating: setRating,
                     }
                 });
 

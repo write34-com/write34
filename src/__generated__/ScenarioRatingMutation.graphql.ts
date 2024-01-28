@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<4d5351981fd09bc513ee3cf9c64391ac>>
+ * @generated SignedSource<<abd41538e60f4e4c004d17fc83b3f4a9>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,16 +9,16 @@
 // @ts-nocheck
 
 import type { ConcreteRequest, Mutation } from 'relay-runtime';
-export type UpvoteDownvoteUpdoteMutation$variables = {
+export type ScenarioRatingMutation$variables = {
   promptId: string;
-  setVoteState?: boolean | null | undefined;
+  setRating?: number | null | undefined;
 };
-export type UpvoteDownvoteUpdoteMutation$data = {
+export type ScenarioRatingMutation$data = {
   readonly votePrompt: boolean;
 };
-export type UpvoteDownvoteUpdoteMutation = {
-  response: UpvoteDownvoteUpdoteMutation$data;
-  variables: UpvoteDownvoteUpdoteMutation$variables;
+export type ScenarioRatingMutation = {
+  response: ScenarioRatingMutation$data;
+  variables: ScenarioRatingMutation$variables;
 };
 
 const node: ConcreteRequest = (function(){
@@ -31,7 +31,7 @@ var v0 = [
   {
     "defaultValue": null,
     "kind": "LocalArgument",
-    "name": "setVoteState"
+    "name": "setRating"
   }
 ],
 v1 = [
@@ -45,8 +45,8 @@ v1 = [
       },
       {
         "kind": "Variable",
-        "name": "setVoteState",
-        "variableName": "setVoteState"
+        "name": "setRating",
+        "variableName": "setRating"
       }
     ],
     "kind": "ScalarField",
@@ -59,7 +59,7 @@ return {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "UpvoteDownvoteUpdoteMutation",
+    "name": "ScenarioRatingMutation",
     "selections": (v1/*: any*/),
     "type": "Mutation",
     "abstractKey": null
@@ -68,20 +68,20 @@ return {
   "operation": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "UpvoteDownvoteUpdoteMutation",
+    "name": "ScenarioRatingMutation",
     "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "a8fdb058e12243d880fee0d23f9e76bf",
+    "cacheID": "d04cb65dea11bad7b028656e87ebe9cc",
     "id": null,
     "metadata": {},
-    "name": "UpvoteDownvoteUpdoteMutation",
+    "name": "ScenarioRatingMutation",
     "operationKind": "mutation",
-    "text": "mutation UpvoteDownvoteUpdoteMutation(\n  $promptId: String!\n  $setVoteState: Boolean\n) {\n  votePrompt(promptId: $promptId, setVoteState: $setVoteState)\n}\n"
+    "text": "mutation ScenarioRatingMutation(\n  $promptId: String!\n  $setRating: Float\n) {\n  votePrompt(promptId: $promptId, setRating: $setRating)\n}\n"
   }
 };
 })();
 
-(node as any).hash = "1135aa25eb2447d4486df865531cadd9";
+(node as any).hash = "958e9aa458456d3032360fb67a5209fe";
 
 export default node;

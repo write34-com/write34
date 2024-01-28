@@ -207,7 +207,7 @@ model PromptVotes {
   userId    String
   promptId  String
   createdAt DateTime @default(now())
-  upvote    Boolean
+  rating    Int
 
   user   User    @relation(fields: [userId], references: [id])
   prompt Prompts @relation(fields: [promptId], references: [id])
@@ -216,6 +216,7 @@ model PromptVotes {
   @@index([userId])
   @@index([promptId])
   @@index([createdAt])
+  @@index([rating])
 }
 
 model Comments {

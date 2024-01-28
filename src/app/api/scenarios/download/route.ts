@@ -343,6 +343,15 @@ export async function GET(
     // Pretty print the JSON
     const response = new NextResponse(JSON.stringify(scenario, null, 2));
 
+    await db.prompts.update({
+        where: {
+            id: prompt.id
+        },
+        data: {
+            downloadCount: prompt.downloadCount + 1
+        }
+    });
+
     // Set headers to force download.
     response.headers.set('Content-Type', 'application/json');
     response.headers.set('Content-Disposition', `attachment; filename=${filename}.scenario`);

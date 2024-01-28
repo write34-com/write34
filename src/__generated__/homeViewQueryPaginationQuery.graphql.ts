@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<e746c39b277f25b3d43163fd5cd300b0>>
+ * @generated SignedSource<<b2e90e95fdd8620d8de087f3ecd41586>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -157,21 +157,21 @@ return {
                         "alias": null,
                         "args": null,
                         "kind": "ScalarField",
-                        "name": "upvotes",
+                        "name": "rating",
                         "storageKey": null
                       },
                       {
                         "alias": null,
                         "args": null,
                         "kind": "ScalarField",
-                        "name": "downvotes",
+                        "name": "totalRatings",
                         "storageKey": null
                       },
                       {
                         "alias": null,
                         "args": null,
                         "kind": "ScalarField",
-                        "name": "isVotedByUser",
+                        "name": "userRating",
                         "storageKey": null
                       },
                       {
@@ -240,16 +240,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "cb6a5438ea4c8f06abff4f61c71ec640",
+    "cacheID": "ccbd15bc6a4fd29fcd8336184e4ef3fd",
     "id": null,
     "metadata": {},
     "name": "homeViewQueryPaginationQuery",
     "operationKind": "query",
-    "text": "query homeViewQueryPaginationQuery(\n  $count: Int\n  $cursor: String\n) {\n  ...ViewAllScenarios_search\n}\n\nfragment ViewAllScenarios_search on Query {\n  search {\n    prompts(first: $count, after: $cursor, query: \"\", nsfw: false) {\n      edges {\n        node {\n          id\n          title\n          description\n          tags\n          nsfw\n          dateCreated\n          upvotes\n          downvotes\n          isVotedByUser\n          __typename\n        }\n        cursor\n      }\n      pageInfo {\n        endCursor\n        hasNextPage\n      }\n    }\n  }\n}\n"
+    "text": "query homeViewQueryPaginationQuery(\n  $count: Int\n  $cursor: String\n) {\n  ...ViewAllScenarios_search\n}\n\nfragment ViewAllScenarios_search on Query {\n  search {\n    prompts(first: $count, after: $cursor, query: \"\", nsfw: false) {\n      edges {\n        node {\n          id\n          title\n          description\n          tags\n          nsfw\n          dateCreated\n          rating\n          totalRatings\n          userRating\n          __typename\n        }\n        cursor\n      }\n      pageInfo {\n        endCursor\n        hasNextPage\n      }\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "56070f279042409fc7ed93525c745b23";
+(node as any).hash = "144f01d95367e4f8d307bd7569725f1f";
 
 export default node;

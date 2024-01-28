@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<60425598907f147b0fe65af1f352bd8d>>
+ * @generated SignedSource<<e956da379d32c5fb304421bde0033344>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -183,21 +183,21 @@ return {
                         "alias": null,
                         "args": null,
                         "kind": "ScalarField",
-                        "name": "upvotes",
+                        "name": "rating",
                         "storageKey": null
                       },
                       {
                         "alias": null,
                         "args": null,
                         "kind": "ScalarField",
-                        "name": "downvotes",
+                        "name": "totalRatings",
                         "storageKey": null
                       },
                       {
                         "alias": null,
                         "args": null,
                         "kind": "ScalarField",
-                        "name": "isVotedByUser",
+                        "name": "userRating",
                         "storageKey": null
                       },
                       {
@@ -267,12 +267,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "10a361c4b9e223a581d992ff6508f4ab",
+    "cacheID": "0bae8a414e608b61fd5d620713e10f76",
     "id": null,
     "metadata": {},
     "name": "searchComponentViewQuery",
     "operationKind": "query",
-    "text": "query searchComponentViewQuery(\n  $query: String\n  $count: Int!\n  $cursor: String\n  $tags: [String!]\n  $nsfw: Boolean\n) {\n  ...SearchResultsComponent_search\n}\n\nfragment SearchResultsComponent_search on Query {\n  search {\n    prompts(first: $count, after: $cursor, query: $query, tags: $tags, nsfw: $nsfw) {\n      edges {\n        node {\n          id\n          title\n          description\n          tags\n          nsfw\n          upvotes\n          downvotes\n          isVotedByUser\n          __typename\n        }\n        cursor\n      }\n      pageInfo {\n        endCursor\n        hasNextPage\n      }\n    }\n  }\n}\n"
+    "text": "query searchComponentViewQuery(\n  $query: String\n  $count: Int!\n  $cursor: String\n  $tags: [String!]\n  $nsfw: Boolean\n) {\n  ...SearchResultsComponent_search\n}\n\nfragment SearchResultsComponent_search on Query {\n  search {\n    prompts(first: $count, after: $cursor, query: $query, tags: $tags, nsfw: $nsfw) {\n      edges {\n        node {\n          id\n          title\n          description\n          tags\n          nsfw\n          rating\n          totalRatings\n          userRating\n          __typename\n        }\n        cursor\n      }\n      pageInfo {\n        endCursor\n        hasNextPage\n      }\n    }\n  }\n}\n"
   }
 };
 })();

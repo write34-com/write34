@@ -9,7 +9,7 @@ import {ViewAllScenariosQuery} from "@/__generated__/ViewAllScenariosQuery.graph
 import Link from "next/link";
 import {ViewAllScenarios_search$key} from "@/__generated__/ViewAllScenarios_search.graphql";
 import React from "react";
-import UpvoteDownvote from "@/components/UpvoteDownvote";
+import ScenarioRating from "@/components/ScenarioRating";
 
 const HomePageQuery = graphql`
     query ViewAllScenariosQuery($count: Int!, $cursor: String) {
@@ -35,9 +35,9 @@ export function Results(queryRef: ViewAllScenarios_search$key) {
                             tags
                             nsfw
                             dateCreated
-                            upvotes
-                            downvotes
-                            isVotedByUser
+                            rating
+                            totalRatings
+                            userRating
                         }
                     }
                 }
@@ -95,12 +95,11 @@ export function Results(queryRef: ViewAllScenarios_search$key) {
               </Link>
 
               <div className="pb-3 -mt-2">
-                <UpvoteDownvote
-                  initialUpvotes={prompt.upvotes}
-                  initialDownvotes={prompt.downvotes}
+                <ScenarioRating
+                  globalRating={prompt.rating}
+                  totalRatings={prompt.totalRatings}
                   promptId={promptId}
-                  isUpvoted={prompt.isVotedByUser === 'up'}
-                  isDownvoted={prompt.isVotedByUser === 'down'}
+                  userRating={prompt.userRating}
                 />
               </div>
             </article>

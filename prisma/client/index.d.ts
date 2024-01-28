@@ -14679,8 +14679,18 @@ export namespace Prisma {
 
   export type AggregatePromptVotes = {
     _count: PromptVotesCountAggregateOutputType | null
+    _avg: PromptVotesAvgAggregateOutputType | null
+    _sum: PromptVotesSumAggregateOutputType | null
     _min: PromptVotesMinAggregateOutputType | null
     _max: PromptVotesMaxAggregateOutputType | null
+  }
+
+  export type PromptVotesAvgAggregateOutputType = {
+    rating: number | null
+  }
+
+  export type PromptVotesSumAggregateOutputType = {
+    rating: number | null
   }
 
   export type PromptVotesMinAggregateOutputType = {
@@ -14688,7 +14698,7 @@ export namespace Prisma {
     userId: string | null
     promptId: string | null
     createdAt: Date | null
-    upvote: boolean | null
+    rating: number | null
   }
 
   export type PromptVotesMaxAggregateOutputType = {
@@ -14696,7 +14706,7 @@ export namespace Prisma {
     userId: string | null
     promptId: string | null
     createdAt: Date | null
-    upvote: boolean | null
+    rating: number | null
   }
 
   export type PromptVotesCountAggregateOutputType = {
@@ -14704,17 +14714,25 @@ export namespace Prisma {
     userId: number
     promptId: number
     createdAt: number
-    upvote: number
+    rating: number
     _all: number
   }
 
+
+  export type PromptVotesAvgAggregateInputType = {
+    rating?: true
+  }
+
+  export type PromptVotesSumAggregateInputType = {
+    rating?: true
+  }
 
   export type PromptVotesMinAggregateInputType = {
     id?: true
     userId?: true
     promptId?: true
     createdAt?: true
-    upvote?: true
+    rating?: true
   }
 
   export type PromptVotesMaxAggregateInputType = {
@@ -14722,7 +14740,7 @@ export namespace Prisma {
     userId?: true
     promptId?: true
     createdAt?: true
-    upvote?: true
+    rating?: true
   }
 
   export type PromptVotesCountAggregateInputType = {
@@ -14730,7 +14748,7 @@ export namespace Prisma {
     userId?: true
     promptId?: true
     createdAt?: true
-    upvote?: true
+    rating?: true
     _all?: true
   }
 
@@ -14772,6 +14790,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: PromptVotesAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: PromptVotesSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: PromptVotesMinAggregateInputType
@@ -14802,6 +14832,8 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: PromptVotesCountAggregateInputType | true
+    _avg?: PromptVotesAvgAggregateInputType
+    _sum?: PromptVotesSumAggregateInputType
     _min?: PromptVotesMinAggregateInputType
     _max?: PromptVotesMaxAggregateInputType
   }
@@ -14811,8 +14843,10 @@ export namespace Prisma {
     userId: string
     promptId: string
     createdAt: Date
-    upvote: boolean
+    rating: number
     _count: PromptVotesCountAggregateOutputType | null
+    _avg: PromptVotesAvgAggregateOutputType | null
+    _sum: PromptVotesSumAggregateOutputType | null
     _min: PromptVotesMinAggregateOutputType | null
     _max: PromptVotesMaxAggregateOutputType | null
   }
@@ -14836,7 +14870,7 @@ export namespace Prisma {
     userId?: boolean
     promptId?: boolean
     createdAt?: boolean
-    upvote?: boolean
+    rating?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     prompt?: boolean | PromptsDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["promptVotes"]>
@@ -14846,7 +14880,7 @@ export namespace Prisma {
     userId?: boolean
     promptId?: boolean
     createdAt?: boolean
-    upvote?: boolean
+    rating?: boolean
   }
 
   export type PromptVotesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -14866,7 +14900,7 @@ export namespace Prisma {
       userId: string
       promptId: string
       createdAt: Date
-      upvote: boolean
+      rating: number
     }, ExtArgs["result"]["promptVotes"]>
     composites: {}
   }
@@ -15252,7 +15286,7 @@ export namespace Prisma {
     readonly userId: FieldRef<"PromptVotes", 'String'>
     readonly promptId: FieldRef<"PromptVotes", 'String'>
     readonly createdAt: FieldRef<"PromptVotes", 'DateTime'>
-    readonly upvote: FieldRef<"PromptVotes", 'Boolean'>
+    readonly rating: FieldRef<"PromptVotes", 'Int'>
   }
     
 
@@ -18492,7 +18526,7 @@ export namespace Prisma {
     userId: 'userId',
     promptId: 'promptId',
     createdAt: 'createdAt',
-    upvote: 'upvote'
+    rating: 'rating'
   };
 
   export type PromptVotesScalarFieldEnum = (typeof PromptVotesScalarFieldEnum)[keyof typeof PromptVotesScalarFieldEnum]
@@ -19490,7 +19524,7 @@ export namespace Prisma {
     userId?: StringFilter<"PromptVotes"> | string
     promptId?: StringFilter<"PromptVotes"> | string
     createdAt?: DateTimeFilter<"PromptVotes"> | Date | string
-    upvote?: BoolFilter<"PromptVotes"> | boolean
+    rating?: IntFilter<"PromptVotes"> | number
     user?: XOR<UserRelationFilter, UserWhereInput>
     prompt?: XOR<PromptsRelationFilter, PromptsWhereInput>
   }
@@ -19500,7 +19534,7 @@ export namespace Prisma {
     userId?: SortOrder
     promptId?: SortOrder
     createdAt?: SortOrder
-    upvote?: SortOrder
+    rating?: SortOrder
     user?: UserOrderByWithRelationInput
     prompt?: PromptsOrderByWithRelationInput
   }
@@ -19514,7 +19548,7 @@ export namespace Prisma {
     userId?: StringFilter<"PromptVotes"> | string
     promptId?: StringFilter<"PromptVotes"> | string
     createdAt?: DateTimeFilter<"PromptVotes"> | Date | string
-    upvote?: BoolFilter<"PromptVotes"> | boolean
+    rating?: IntFilter<"PromptVotes"> | number
     user?: XOR<UserRelationFilter, UserWhereInput>
     prompt?: XOR<PromptsRelationFilter, PromptsWhereInput>
   }, "id" | "userId_promptId">
@@ -19524,10 +19558,12 @@ export namespace Prisma {
     userId?: SortOrder
     promptId?: SortOrder
     createdAt?: SortOrder
-    upvote?: SortOrder
+    rating?: SortOrder
     _count?: PromptVotesCountOrderByAggregateInput
+    _avg?: PromptVotesAvgOrderByAggregateInput
     _max?: PromptVotesMaxOrderByAggregateInput
     _min?: PromptVotesMinOrderByAggregateInput
+    _sum?: PromptVotesSumOrderByAggregateInput
   }
 
   export type PromptVotesScalarWhereWithAggregatesInput = {
@@ -19538,7 +19574,7 @@ export namespace Prisma {
     userId?: StringWithAggregatesFilter<"PromptVotes"> | string
     promptId?: StringWithAggregatesFilter<"PromptVotes"> | string
     createdAt?: DateTimeWithAggregatesFilter<"PromptVotes"> | Date | string
-    upvote?: BoolWithAggregatesFilter<"PromptVotes"> | boolean
+    rating?: IntWithAggregatesFilter<"PromptVotes"> | number
   }
 
   export type CommentsWhereInput = {
@@ -20536,7 +20572,7 @@ export namespace Prisma {
   export type PromptVotesCreateInput = {
     id?: string
     createdAt?: Date | string
-    upvote: boolean
+    rating: number
     user: UserCreateNestedOneWithoutPromptVotesInput
     prompt: PromptsCreateNestedOneWithoutPromptVotesInput
   }
@@ -20546,13 +20582,13 @@ export namespace Prisma {
     userId: string
     promptId: string
     createdAt?: Date | string
-    upvote: boolean
+    rating: number
   }
 
   export type PromptVotesUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    upvote?: BoolFieldUpdateOperationsInput | boolean
+    rating?: IntFieldUpdateOperationsInput | number
     user?: UserUpdateOneRequiredWithoutPromptVotesNestedInput
     prompt?: PromptsUpdateOneRequiredWithoutPromptVotesNestedInput
   }
@@ -20562,13 +20598,13 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     promptId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    upvote?: BoolFieldUpdateOperationsInput | boolean
+    rating?: IntFieldUpdateOperationsInput | number
   }
 
   export type PromptVotesUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    upvote?: BoolFieldUpdateOperationsInput | boolean
+    rating?: IntFieldUpdateOperationsInput | number
   }
 
   export type PromptVotesUncheckedUpdateManyInput = {
@@ -20576,7 +20612,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     promptId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    upvote?: BoolFieldUpdateOperationsInput | boolean
+    rating?: IntFieldUpdateOperationsInput | number
   }
 
   export type CommentsCreateInput = {
@@ -21538,7 +21574,11 @@ export namespace Prisma {
     userId?: SortOrder
     promptId?: SortOrder
     createdAt?: SortOrder
-    upvote?: SortOrder
+    rating?: SortOrder
+  }
+
+  export type PromptVotesAvgOrderByAggregateInput = {
+    rating?: SortOrder
   }
 
   export type PromptVotesMaxOrderByAggregateInput = {
@@ -21546,7 +21586,7 @@ export namespace Prisma {
     userId?: SortOrder
     promptId?: SortOrder
     createdAt?: SortOrder
-    upvote?: SortOrder
+    rating?: SortOrder
   }
 
   export type PromptVotesMinOrderByAggregateInput = {
@@ -21554,7 +21594,11 @@ export namespace Prisma {
     userId?: SortOrder
     promptId?: SortOrder
     createdAt?: SortOrder
-    upvote?: SortOrder
+    rating?: SortOrder
+  }
+
+  export type PromptVotesSumOrderByAggregateInput = {
+    rating?: SortOrder
   }
 
   export type CommentsCountOrderByAggregateInput = {
@@ -22757,7 +22801,7 @@ export namespace Prisma {
   export type PromptVotesCreateWithoutPromptInput = {
     id?: string
     createdAt?: Date | string
-    upvote: boolean
+    rating: number
     user: UserCreateNestedOneWithoutPromptVotesInput
   }
 
@@ -22765,7 +22809,7 @@ export namespace Prisma {
     id?: string
     userId: string
     createdAt?: Date | string
-    upvote: boolean
+    rating: number
   }
 
   export type PromptVotesCreateOrConnectWithoutPromptInput = {
@@ -22917,7 +22961,7 @@ export namespace Prisma {
     userId?: StringFilter<"PromptVotes"> | string
     promptId?: StringFilter<"PromptVotes"> | string
     createdAt?: DateTimeFilter<"PromptVotes"> | Date | string
-    upvote?: BoolFilter<"PromptVotes"> | boolean
+    rating?: IntFilter<"PromptVotes"> | number
   }
 
   export type CommentsUpsertWithWhereUniqueWithoutPromptInput = {
@@ -23494,7 +23538,7 @@ export namespace Prisma {
   export type PromptVotesCreateWithoutUserInput = {
     id?: string
     createdAt?: Date | string
-    upvote: boolean
+    rating: number
     prompt: PromptsCreateNestedOneWithoutPromptVotesInput
   }
 
@@ -23502,7 +23546,7 @@ export namespace Prisma {
     id?: string
     promptId: string
     createdAt?: Date | string
-    upvote: boolean
+    rating: number
   }
 
   export type PromptVotesCreateOrConnectWithoutUserInput = {
@@ -24753,7 +24797,7 @@ export namespace Prisma {
   export type PromptVotesUpdateWithoutPromptInput = {
     id?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    upvote?: BoolFieldUpdateOperationsInput | boolean
+    rating?: IntFieldUpdateOperationsInput | number
     user?: UserUpdateOneRequiredWithoutPromptVotesNestedInput
   }
 
@@ -24761,14 +24805,14 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    upvote?: BoolFieldUpdateOperationsInput | boolean
+    rating?: IntFieldUpdateOperationsInput | number
   }
 
   export type PromptVotesUncheckedUpdateManyWithoutPromptInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    upvote?: BoolFieldUpdateOperationsInput | boolean
+    rating?: IntFieldUpdateOperationsInput | number
   }
 
   export type CommentsUpdateWithoutPromptInput = {
@@ -24965,7 +25009,7 @@ export namespace Prisma {
   export type PromptVotesUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    upvote?: BoolFieldUpdateOperationsInput | boolean
+    rating?: IntFieldUpdateOperationsInput | number
     prompt?: PromptsUpdateOneRequiredWithoutPromptVotesNestedInput
   }
 
@@ -24973,14 +25017,14 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     promptId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    upvote?: BoolFieldUpdateOperationsInput | boolean
+    rating?: IntFieldUpdateOperationsInput | number
   }
 
   export type PromptVotesUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     promptId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    upvote?: BoolFieldUpdateOperationsInput | boolean
+    rating?: IntFieldUpdateOperationsInput | number
   }
 
   export type CommentsUpdateWithoutUserInput = {

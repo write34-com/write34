@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<426940bb166932bcaccd3a5b491ef629>>
+ * @generated SignedSource<<20708b18889222ae725a2c17ae8e1273>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -157,21 +157,21 @@ return {
                         "alias": null,
                         "args": null,
                         "kind": "ScalarField",
-                        "name": "upvotes",
+                        "name": "rating",
                         "storageKey": null
                       },
                       {
                         "alias": null,
                         "args": null,
                         "kind": "ScalarField",
-                        "name": "downvotes",
+                        "name": "totalRatings",
                         "storageKey": null
                       },
                       {
                         "alias": null,
                         "args": null,
                         "kind": "ScalarField",
-                        "name": "isVotedByUser",
+                        "name": "userRating",
                         "storageKey": null
                       },
                       {
@@ -240,12 +240,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "deba75430b88562437fbc151dc078357",
+    "cacheID": "6c38035847b4e548d7f479da857b0027",
     "id": null,
     "metadata": {},
     "name": "ViewAllScenariosQuery",
     "operationKind": "query",
-    "text": "query ViewAllScenariosQuery(\n  $count: Int!\n  $cursor: String\n) {\n  ...ViewAllScenarios_search\n}\n\nfragment ViewAllScenarios_search on Query {\n  search {\n    prompts(first: $count, after: $cursor, query: \"\", nsfw: false) {\n      edges {\n        node {\n          id\n          title\n          description\n          tags\n          nsfw\n          dateCreated\n          upvotes\n          downvotes\n          isVotedByUser\n          __typename\n        }\n        cursor\n      }\n      pageInfo {\n        endCursor\n        hasNextPage\n      }\n    }\n  }\n}\n"
+    "text": "query ViewAllScenariosQuery(\n  $count: Int!\n  $cursor: String\n) {\n  ...ViewAllScenarios_search\n}\n\nfragment ViewAllScenarios_search on Query {\n  search {\n    prompts(first: $count, after: $cursor, query: \"\", nsfw: false) {\n      edges {\n        node {\n          id\n          title\n          description\n          tags\n          nsfw\n          dateCreated\n          rating\n          totalRatings\n          userRating\n          __typename\n        }\n        cursor\n      }\n      pageInfo {\n        endCursor\n        hasNextPage\n      }\n    }\n  }\n}\n"
   }
 };
 })();

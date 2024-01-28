@@ -2,9 +2,10 @@ import {
   graphql, PreloadedQuery,
   usePreloadedQuery,
 } from "react-relay";
-import {Fragment, Suspense} from "react";
+import React, {Fragment, Suspense} from "react";
 import {PaperClipIcon} from '@heroicons/react/20/solid';
 import {scenarioComponentViewQuery} from "@/__generated__/scenarioComponentViewQuery.graphql";
+import ScenarioRating from "@/components/ScenarioRating";
 
 const ScenarioQuery = graphql`
     query scenarioComponentViewQuery($scenario: ID!) {
@@ -21,6 +22,10 @@ const ScenarioQuery = graphql`
             tags
             authorsNote
             memory
+            downloadCount
+            rating
+            totalRatings
+            userRating
             worldInfos {
                 id
                 entry
@@ -44,6 +49,10 @@ function formatContent(content: string) {
       {line}
     </div>
   ));
+}
+
+function formatNumberWithCommas(number: number) {
+  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 async function copyScenarioToClipboard(id: string) {
@@ -115,8 +124,17 @@ export default function ScenarioComponent(props: { queryRef: PreloadedQuery<scen
                 )}
               Created: {prompt.dateCreated.slice(0, 10)}
             </span>
+
+            <div className="mt-4 pb-4 pt-10">
+              <ScenarioRating
+                globalRating={prompt.rating}
+                totalRatings={prompt.totalRatings}
+                promptId={promptId}
+                userRating={prompt.userRating}
+              />
+            </div>
           </div>
-          <div className="border-t border-gray-100 dark:border-gray-700 pt-10">
+          <div className="border-t border-gray-100 dark:border-gray-700">
             <dl className="divide-y divide-gray-100 dark:divide-gray-700">
               <div
                 className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0 border-b border-gray-100 dark:border-gray-700">
@@ -232,6 +250,16 @@ export default function ScenarioComponent(props: { queryRef: PreloadedQuery<scen
                   </dd>
                 </div>
               )}
+              <div
+                className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0 border-b border-gray-100 dark:border-gray-700">
+                <dt className="text-sm font-medium leading-6 text-gray-900 dark:text-gray-50">
+                  Download Count: <span className="font-bold">
+                    {formatNumberWithCommas(prompt.downloadCount)}
+                  </span>
+                </dt>
+                <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0 dark:text-gray-300">
+                </dd>
+              </div>
             </dl>
             <div className="mt-10 pt-6 flex justify-right border-t border-gray-100 dark:border-gray-700">
               {/* Download Button */}

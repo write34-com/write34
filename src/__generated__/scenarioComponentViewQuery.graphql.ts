@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<d396c4ac3d633cfb3c010a2a5a451c63>>
+ * @generated SignedSource<<8a592b78ea454c821a7d10208184f908>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -19,13 +19,17 @@ export type scenarioComponentViewQuery$data = {
     readonly dateCreated: string;
     readonly dateEdited: string | null | undefined;
     readonly description: string | null | undefined;
+    readonly downloadCount: number;
     readonly id: string;
     readonly memory: string | null | undefined;
     readonly nsfw: boolean;
     readonly promptContent: string;
     readonly publishDate: string | null | undefined;
+    readonly rating: number;
     readonly tags: string;
     readonly title: string;
+    readonly totalRatings: number;
+    readonly userRating: number | null | undefined;
     readonly worldInfos: ReadonlyArray<{
       readonly entry: string;
       readonly id: string;
@@ -149,6 +153,34 @@ v2 = [
       {
         "alias": null,
         "args": null,
+        "kind": "ScalarField",
+        "name": "downloadCount",
+        "storageKey": null
+      },
+      {
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "rating",
+        "storageKey": null
+      },
+      {
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "totalRatings",
+        "storageKey": null
+      },
+      {
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "userRating",
+        "storageKey": null
+      },
+      {
+        "alias": null,
+        "args": null,
         "concreteType": "WorldInfos",
         "kind": "LinkedField",
         "name": "worldInfos",
@@ -194,16 +226,16 @@ return {
     "selections": (v2/*: any*/)
   },
   "params": {
-    "cacheID": "3c0a450ee29b49b9f7793a7890d074af",
+    "cacheID": "880d5974b421d1f9fbe01174c6b49cea",
     "id": null,
     "metadata": {},
     "name": "scenarioComponentViewQuery",
     "operationKind": "query",
-    "text": "query scenarioComponentViewQuery(\n  $scenario: ID!\n) {\n  prompt(id: $scenario) {\n    id\n    aetherId\n    title\n    description\n    dateCreated\n    dateEdited\n    publishDate\n    promptContent\n    nsfw\n    tags\n    authorsNote\n    memory\n    worldInfos {\n      id\n      entry\n      keys\n    }\n  }\n}\n"
+    "text": "query scenarioComponentViewQuery(\n  $scenario: ID!\n) {\n  prompt(id: $scenario) {\n    id\n    aetherId\n    title\n    description\n    dateCreated\n    dateEdited\n    publishDate\n    promptContent\n    nsfw\n    tags\n    authorsNote\n    memory\n    downloadCount\n    rating\n    totalRatings\n    userRating\n    worldInfos {\n      id\n      entry\n      keys\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "072b9b4eb080bc04676f34e526b15103";
+(node as any).hash = "129cf28fb28001ff4d26e70f54ba769f";
 
 export default node;

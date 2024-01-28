@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<ba8816a20c2f9a048333f4cc24f17824>>
+ * @generated SignedSource<<4d1724485ea7d1466c2ee9147b03eac9>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -17,13 +17,13 @@ export type ViewAllScenarios_search$data = {
         readonly node: {
           readonly dateCreated: string;
           readonly description: string | null | undefined;
-          readonly downvotes: number;
           readonly id: string;
-          readonly isVotedByUser: string;
           readonly nsfw: boolean;
+          readonly rating: number;
           readonly tags: string;
           readonly title: string;
-          readonly upvotes: number;
+          readonly totalRatings: number;
+          readonly userRating: number | null | undefined;
         };
       } | null | undefined>;
     };
@@ -167,21 +167,21 @@ return {
                       "alias": null,
                       "args": null,
                       "kind": "ScalarField",
-                      "name": "upvotes",
+                      "name": "rating",
                       "storageKey": null
                     },
                     {
                       "alias": null,
                       "args": null,
                       "kind": "ScalarField",
-                      "name": "downvotes",
+                      "name": "totalRatings",
                       "storageKey": null
                     },
                     {
                       "alias": null,
                       "args": null,
                       "kind": "ScalarField",
-                      "name": "isVotedByUser",
+                      "name": "userRating",
                       "storageKey": null
                     },
                     {
@@ -241,6 +241,6 @@ return {
 };
 })();
 
-(node as any).hash = "56070f279042409fc7ed93525c745b23";
+(node as any).hash = "144f01d95367e4f8d307bd7569725f1f";
 
 export default node;

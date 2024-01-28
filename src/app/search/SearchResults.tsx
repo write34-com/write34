@@ -6,7 +6,7 @@ import {
 import Link from "next/link";
 import {searchComponentViewQuery} from "@/__generated__/searchComponentViewQuery.graphql";
 import LoadingSearch from "@/app/search/loading";
-import UpvoteDownvote from '@/components/UpvoteDownvote';
+import ScenarioRating from '@/components/ScenarioRating';
 
 interface SearchResultsProps {
   queryRef: SearchResultsComponent_search$key
@@ -28,9 +28,9 @@ function SearchResults({queryRef}: SearchResultsProps) {
                             description
                             tags
                             nsfw
-                            upvotes
-                            downvotes
-                            isVotedByUser
+                            rating
+                            totalRatings
+                            userRating
                         }
                     }
                 }
@@ -125,12 +125,11 @@ function SearchResults({queryRef}: SearchResultsProps) {
                   </div>
                 </Link>
                 <div className="pt-2 mt-1 border-gray-500 border-t">
-                  <UpvoteDownvote
-                    initialUpvotes={prompt.upvotes}
-                    initialDownvotes={prompt.downvotes}
+                  <ScenarioRating
+                    globalRating={prompt.rating}
+                    totalRatings={prompt.totalRatings}
                     promptId={promptId}
-                    isUpvoted={prompt.isVotedByUser === 'up'}
-                    isDownvoted={prompt.isVotedByUser === 'down'}
+                    userRating={prompt.userRating}
                   />
                 </div>
               </div>

@@ -3,10 +3,7 @@ import ViewAllScenariosQueryNode, {
   ViewAllScenariosQuery,
 } from "../__generated__/ViewAllScenariosQuery.graphql";
 import ViewAllScenariosClientComponent from "./ViewAllScenariosClientComponent";
-import {getServerSession} from "next-auth";
-import {auth} from "@/lib/auth";
 import {Metadata, ResolvingMetadata} from "next";
-import {decodeDocument} from "@/lib/novelai-scenario-decoder/decode";
 
 export async function generateMetadata(
   props: {},
