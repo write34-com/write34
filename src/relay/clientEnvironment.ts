@@ -9,6 +9,7 @@ import {
     GraphQLResponse,
     CacheConfig,
 } from "relay-runtime";
+import {SerializablePreloadedQuery} from "@/relay/loadSerializableQuery";
 
 const IS_SERVER = typeof window === typeof undefined;
 const CACHE_TTL = 5 * 1000; // 5 seconds, to resolve preloaded results
@@ -73,7 +74,7 @@ export async function networkFetch(
     return json;
 }
 
-export const responseCache: QueryResponseCache | null = IS_SERVER
+export const globalResponseCache: QueryResponseCache | null = IS_SERVER
     ? null
     : new QueryResponseCache({
         size: 100,
@@ -81,43 +82,59 @@ export const responseCache: QueryResponseCache | null = IS_SERVER
     });
 
 
-export function fetchQuery(
-    request: RequestParameters,
-    variables: Variables,
-    cacheConfig: CacheConfig
-    // uploadables,
-) {
-    const isQuery = request.operationKind === "query";
-    const cacheKey = request.id ?? request.cacheID;
-    const forceFetch = cacheConfig && cacheConfig.force;
-    if (responseCache != null && isQuery && !forceFetch) {
-        const fromCache = responseCache.get(cacheKey, variables);
-        if (fromCache != null) {
-            return Promise.resolve(fromCache);
+export function setupFetchQuery(localResponseCache: QueryResponseCache | null ) {
+    const responseCache = localResponseCache || globalResponseCache;
+
+    return function fetchQuery(
+      request: RequestParameters,
+      variables: Variables,
+      cacheConfig: CacheConfig
+    ) {
+        const isQuery = request.operationKind === "query";
+        const cacheKey = request.id ?? request.cacheID;
+        const forceFetch = cacheConfig && cacheConfig.force;
+        if (responseCache != null && isQuery && !forceFetch) {
+            const fromCache = responseCache.get(cacheKey, variables);
+            if (fromCache != null) {
+                return Promise.resolve(fromCache);
+            }
         }
-    }
 
-    const baseurl = process.env.NEXTAUTH_URL || '';
+        const baseurl = process.env.NEXTAUTH_URL || '';
 
-    return fetch(baseurl + '/api/graphql', {
-        method: 'POST',
-        headers: {
-            // Add authentication and other headers here
-            'content-type': 'application/json'
-        },
-        body: JSON.stringify({
-            query: request.text, // GraphQL text from input
-            variables,
-        }),
-    }).then(response => {
-        return response.json();
-    });
+        return fetch(baseurl + '/api/graphql', {
+            method: 'POST',
+            headers: {
+                // Add authentication and other headers here
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({
+                query: request.text, // GraphQL text from input
+                variables,
+            }),
+        }).then(response => {
+            return response.json();
+        });
+    };
 }
 
-function createEnvironment() {
+function createEnvironment(preloadedQuery?: SerializablePreloadedQuery<any, any>) {
+    const responseCache = new QueryResponseCache({
+        size: 100,
+        ttl: CACHE_TTL,
+    });
+
+    if (preloadedQuery) {
+        responseCache.set(
+            preloadedQuery.params.id ?? preloadedQuery.params.cacheID,
+            preloadedQuery.variables,
+            preloadedQuery.response
+        );
+    }
+
     return new Environment({
         // network: createNetwork(),
-        network:  Network.create(fetchQuery),
+        network: Network.create(setupFetchQuery(responseCache)),
         store: new Store(RecordSource.create()),
         isServer: IS_SERVER,
     });
@@ -125,9 +142,10 @@ function createEnvironment() {
 
 export const environment = createEnvironment();
 
-export function getCurrentEnvironment() {
+export function getCurrentEnvironment(preloadedQuery?: SerializablePreloadedQuery<any, any>) {
+    // TODO: Figure out how to pass cookies to this
     if (IS_SERVER) {
-        return createEnvironment();
+        return createEnvironment(preloadedQuery);
     }
 
     return environment;

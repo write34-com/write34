@@ -4,7 +4,7 @@
 import { useMemo } from "react";
 import { PreloadedQuery, PreloadFetchPolicy } from "react-relay";
 import { ConcreteRequest, IEnvironment, OperationType } from "relay-runtime";
-import { responseCache } from "./clientEnvironment";
+import { globalResponseCache } from "./clientEnvironment";
 import { SerializablePreloadedQuery } from "./loadSerializableQuery";
 
 // This hook convert serializable preloaded query
@@ -45,7 +45,7 @@ function writePreloadedQueryToCache<
 >(preloadedQueryObject: SerializablePreloadedQuery<TRequest, TQuery>) {
     const cacheKey =
         preloadedQueryObject.params.id ?? preloadedQueryObject.params.cacheID;
-    responseCache?.set(
+    globalResponseCache?.set(
         cacheKey,
         preloadedQueryObject.variables,
         preloadedQueryObject.response

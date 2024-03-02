@@ -15,7 +15,7 @@ const SearchClientComponent = (props: {
     searchComponentViewQuery>;
 }) => {
 
-  const environment = getCurrentEnvironment();
+  const environment = getCurrentEnvironment(props.queryRef);
 
   const queryRef = useSerializablePreloadedQuery(
     environment,

@@ -53,7 +53,7 @@ async function importNovelAIScenarioVersion3(scenario: NovelAIScenarioVersion3, 
       data: {
         title,
         description,
-        tags: tags.filter((tag) => tag).join(', '),
+        tags: tagsFromId.map(tag => tag.name).filter((tag) => tag).join(', '),
         dateCreated: convertDateToISOString(new Date()),
         dateEdited: convertDateToISOString(new Date()),
         publishDate: convertDateToISOString(new Date()),

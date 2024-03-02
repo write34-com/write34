@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {graphql, useMutation} from "react-relay";
 import classnames from "classnames";
+import {useSession} from "next-auth/react";
 
 interface ScenarioRatingProps {
   globalRating: number;
@@ -22,12 +23,14 @@ const ScenarioRating: React.FC<ScenarioRatingProps> = ({
                                                          userRating,
                                                        }) => {
   const [localTotalRatings, setLocalTotalRatings] = useState(totalRatings || 0);
-  const [localRating, setLocalRating] = useState(userRating || 0);
+  const [localRating, setLocalRating] = useState(userRating);
   const [votePrompt, isInFlight] = useMutation(UpvoteMutation);
 
+  const session = useSession();
+
   useEffect(() => {
-    setLocalRating(userRating || globalRating);
-  }, [userRating, globalRating]);
+    setLocalRating(userRating);
+  }, [userRating]);
 
   const handleRatingChange = (newRating: number) => {
     setLocalRating(newRating);
@@ -55,9 +58,9 @@ const ScenarioRating: React.FC<ScenarioRatingProps> = ({
               'bg-gray-300': !localRating || Math.round(localRating / 10) < star,
               'bg-gray-500': localTotalRatings === 0 || Math.round(globalRating / 10) < star,
             })}
-            checked={Math.round(localRating / 10) === star}
+            checked={localRating ? Math.round(localRating / 10) === star : false}
             onChange={() => handleRatingChange(star * 10)}
-            disabled={isInFlight}
+            disabled={isInFlight || !session}
           />
         ))}
       </div>

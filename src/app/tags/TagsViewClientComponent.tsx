@@ -14,7 +14,7 @@ const TagsViewClientComponent = (props: {
     typeof TagsViewComponentGetAllTagsQueryGraphql,
     TagsViewComponentGetAllTagsQuery>;
 }) => {
-  const environment = getCurrentEnvironment();
+  const environment = getCurrentEnvironment(props.preloadedQuery);
   const queryRef = useSerializablePreloadedQuery(
     environment,
     props.preloadedQuery

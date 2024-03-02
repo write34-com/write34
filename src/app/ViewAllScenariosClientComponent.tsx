@@ -14,7 +14,7 @@ import {decodeDocument} from "@/lib/novelai-scenario-decoder/decode";
 const ViewAllScenariosClientComponent = (props: {
     preloadedQuery: SerializablePreloadedQuery<typeof ViewAllScenariosQueryNode, ViewAllScenariosQuery>;
 }) => {
-    const environment = getCurrentEnvironment();
+    const environment = getCurrentEnvironment(props.preloadedQuery);
     const queryRef = useSerializablePreloadedQuery(environment, props.preloadedQuery);
 
     return (

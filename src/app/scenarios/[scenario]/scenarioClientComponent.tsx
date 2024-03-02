@@ -7,15 +7,15 @@ import ScenarioComponent from '@/app/scenarios/[scenario]/scenarioComponent';
 import scenarioComponentViewQueryGraphql, {
     scenarioComponentViewQuery
 } from '@/__generated__/scenarioComponentViewQuery.graphql';
-import {getCurrentEnvironment} from '@/relay/clientEnvironment';
+import {getCurrentEnvironment} from "@/relay/clientEnvironment";
 
 const ScenarioClientComponent = (props: {
     preloadedQuery: SerializablePreloadedQuery<typeof scenarioComponentViewQueryGraphql, scenarioComponentViewQuery>;
 }) => {
-    const environment = getCurrentEnvironment();
+    const environment = getCurrentEnvironment(props.preloadedQuery);
     const queryRef = useSerializablePreloadedQuery(
         environment,
-        props.preloadedQuery
+        props.preloadedQuery,
     );
 
     return (

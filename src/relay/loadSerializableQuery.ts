@@ -5,7 +5,11 @@ import {
     VariablesOf,
 } from "relay-runtime";
 import { ConcreteRequest } from "relay-runtime/lib/util/RelayConcreteNode";
-import {fetchQuery, networkFetch, retryRequest} from "./clientEnvironment";
+import {networkFetch, retryRequest} from "./clientEnvironment";
+import {serverFetchQuery} from "@/relay/serverEnvironment";
+import {cookies} from "next/headers";
+
+const IS_SERVER = typeof window === typeof undefined;
 
 export interface SerializablePreloadedQuery<
     TRequest extends ConcreteRequest,
@@ -27,7 +31,10 @@ export default async function loadSerializableQuery<
     variables: VariablesOf<TQuery>
 ): Promise<SerializablePreloadedQuery<TRequest, TQuery>> {
 
-    const response = await retryRequest(() => networkFetch(params, variables));
+    const networkFetchRequest = IS_SERVER ? serverFetchQuery(cookies().toString()) : networkFetch;
+
+    const response = await retryRequest(() => networkFetchRequest(params, variables));
+
     return {
         params,
         variables,
