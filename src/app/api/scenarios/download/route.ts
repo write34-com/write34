@@ -263,8 +263,8 @@ export async function GET(
     const filename = prompt.title.replace(/[^a-z0-9]/gi, '_');
 
 
-    // If there is a novelAiScenario, return it as-is.
-    if (prompt.novelAiScenario) {
+    // If there is a novelAiScenario, and the user specifies the query param, return scenario as-is.
+    if (prompt.novelAiScenario && searchParams.get('raw-scenario') === 'true') {
 
         // Pretty print the JSON
         // TODO: Decide if we thinking parsing and prettifying the JSON is worth it. I'm lazy tho, so send back as-is. #yolo

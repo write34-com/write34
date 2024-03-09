@@ -127,7 +127,7 @@ export default function EditScenarioFieldComponent(props: EditScenarioFieldCompo
     if (props.fieldName === 'title') {
       return (
         <input type="text"
-               className="input input-bordered input-sm dark:text-gray-700"
+               className="input input-bordered input-sm dark:text-gray-200"
                value={newContent}
                onChange={(e) => setNewContent(e.target.value)}/>
       );
@@ -136,7 +136,7 @@ export default function EditScenarioFieldComponent(props: EditScenarioFieldCompo
     if (props.fieldName === 'description' || props.fieldName === 'promptContent' || props.fieldName === 'memory' || props.fieldName === 'authorsNote') {
       return (
         <textarea
-          className="textarea textarea-bordered flex-auto w-96 h-44 dark:text-gray-700"
+          className="textarea textarea-bordered flex-auto w-96 h-44 dark:text-gray-200"
           value={newContent}
           onChange={(e) => setNewContent(e.target.value)}/>
       );
