@@ -4,6 +4,8 @@ This is the code that backs https://write34.com
 
 It is a website for sharing NovelAI prompts. The prompts are pulled from [AetherRoom](https://aetherroom.club) from the SQLite database they share.
 
+Come hang out with us on [Discord](https://discord.gg/AUHWf6fFad)!
+
 ## Contributing
 
 This is a NextJS app built with the default Next template. It uses TypeScript, React, Prisma, SQLite, Pothos, and Tailwind CSS with Daisy UI.
