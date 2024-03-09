@@ -188,6 +188,21 @@ const Prompts = builder.prismaNode('Prompts', {
                 return rating.rating;
             }
         }),
+        isUserAuthor: t.boolean({
+            resolve: async (parent, args, ctx, info) => {
+                if (!ctx.currentUser) {
+                    return false;
+                }
+
+                const promptAuthor = await db.prompts.findFirst({
+                    where: {
+                        id: parent.id,
+                    }
+                });
+
+                return ctx.currentUser.id === promptAuthor?.authorId;
+            }
+        }),
         comments: t.relation('Comments'),
     }),
 });
@@ -662,6 +677,102 @@ builder.queryType({
 builder.mutationType({
     fields: (t) => ({
         // Define other mutations here
+        updatePrompt: t.prismaField({
+            type: 'Prompts',
+            args: {
+                id: t.arg.id({required: true}),
+                title: t.arg.string({required: false}),
+                description: t.arg.string({required: false}),
+                promptContent: t.arg.string({required: false}),
+                memory: t.arg.string({required: false}),
+                authorsNote: t.arg.string({required: false}),
+                nsfw: t.arg.boolean({required: false}),
+                // tags: t.arg.string({required: false}),
+            },
+            resolve: async (query, root, {
+                id,
+                title,
+                description,
+                promptContent,
+                memory,
+                authorsNote,
+                nsfw,
+                // tags
+            }, ctx, info) => {
+                if (!ctx.currentUser) {
+                    throw new Error("No user found");
+                }
+
+                if (typeof id !== 'string') {
+                    throw new Error("Invalid ID");
+                }
+
+                const loggedInUser = ctx.currentUser.id;
+
+                const prompt = await db.prompts.findUnique({
+                    where: {
+                        id: id,
+                    }
+                });
+
+                if (!prompt) {
+                    throw new Error("Prompt not found");
+                }
+
+                // TODO: Add admin overrides and a more advanced permissions system
+                if (prompt.authorId !== loggedInUser) {
+                    throw new Error("You are not the author of this prompt");
+                }
+
+                const newPromptData: {
+                    title?: string,
+                    description?: string,
+                    promptContent?: string,
+                    memory?: string,
+                    authorsNote?: string,
+                    nsfw?: number,
+                    publishDate?: string,
+                    tags?: string
+                } = {};
+
+                if (title) {
+                    newPromptData.title = title;
+                }
+
+                if (description) {
+                    newPromptData.description = description;
+                }
+
+                if (promptContent) {
+                    newPromptData.promptContent = promptContent;
+                }
+
+                if (memory) {
+                    newPromptData.memory = memory;
+                }
+
+                if (authorsNote) {
+                    newPromptData.authorsNote = authorsNote;
+                }
+
+                if (nsfw !== undefined && nsfw !== null) {
+                    newPromptData.nsfw = nsfw ? 1 : 0;
+                }
+
+                // if (tags) {
+                //     newPromptData.tags = tags;
+                // }
+
+                // Perform the update operation using Prisma client
+                return db.prompts.update({
+                    ...query,
+                    where: {id: id},
+                    data: {
+                        ...newPromptData,
+                    },
+                });
+            }
+        }),
         updateUser: t.prismaField({
             type: 'User',
             args: {

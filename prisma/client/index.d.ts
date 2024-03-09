@@ -3,7 +3,7 @@
  * Client
 **/
 
-import * as runtime from './runtime/library';
+import * as runtime from './runtime/library.js';
 import $Types = runtime.Types // general types
 import $Public = runtime.Types.Public
 import $Utils = runtime.Types.Utils
@@ -447,8 +447,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 5.7.0
-   * Query Engine version: 79fb5193cf0a8fdbef536e4b4a159cad677ab1b9
+   * Prisma Client JS version: 5.10.2
+   * Query Engine version: 5a9203d0590c951969e85a7d07215503f4672eb9
    */
   export type PrismaVersion = {
     client: string
@@ -2008,6 +2008,16 @@ export namespace Prisma {
      * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/logging#the-log-option).
      */
     log?: (LogLevel | LogDefinition)[]
+    /**
+     * The default values for transactionOptions
+     * maxWait ?= 2000
+     * timeout ?= 5000
+     */
+    transactionOptions?: {
+      maxWait?: number
+      timeout?: number
+      isolationLevel?: Prisma.TransactionIsolationLevel
+    }
   }
 
   /* Types for Logging */
@@ -2794,7 +2804,7 @@ export namespace Prisma {
   type PromptsGetPayload<S extends boolean | null | undefined | PromptsDefaultArgs> = $Result.GetResult<Prisma.$PromptsPayload, S>
 
   type PromptsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<PromptsFindManyArgs, 'select' | 'include' | 'distinct' > & {
+    Omit<PromptsFindManyArgs, 'select' | 'include' | 'distinct'> & {
       select?: PromptsCountAggregateInputType | true
     }
 
@@ -3873,7 +3883,7 @@ export namespace Prisma {
   type WorldInfosGetPayload<S extends boolean | null | undefined | WorldInfosDefaultArgs> = $Result.GetResult<Prisma.$WorldInfosPayload, S>
 
   type WorldInfosCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<WorldInfosFindManyArgs, 'select' | 'include' | 'distinct' > & {
+    Omit<WorldInfosFindManyArgs, 'select' | 'include' | 'distinct'> & {
       select?: WorldInfosCountAggregateInputType | true
     }
 
@@ -4926,7 +4936,7 @@ export namespace Prisma {
   type AetherPromptsGetPayload<S extends boolean | null | undefined | AetherPromptsDefaultArgs> = $Result.GetResult<Prisma.$AetherPromptsPayload, S>
 
   type AetherPromptsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<AetherPromptsFindManyArgs, 'select' | 'include' | 'distinct' > & {
+    Omit<AetherPromptsFindManyArgs, 'select' | 'include' | 'distinct'> & {
       select?: AetherPromptsCountAggregateInputType | true
     }
 
@@ -5907,7 +5917,7 @@ export namespace Prisma {
   type AetherWorldInfosGetPayload<S extends boolean | null | undefined | AetherWorldInfosDefaultArgs> = $Result.GetResult<Prisma.$AetherWorldInfosPayload, S>
 
   type AetherWorldInfosCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<AetherWorldInfosFindManyArgs, 'select' | 'include' | 'distinct' > & {
+    Omit<AetherWorldInfosFindManyArgs, 'select' | 'include' | 'distinct'> & {
       select?: AetherWorldInfosCountAggregateInputType | true
     }
 
@@ -6796,7 +6806,7 @@ export namespace Prisma {
   type PromptSearchGetPayload<S extends boolean | null | undefined | PromptSearchDefaultArgs> = $Result.GetResult<Prisma.$PromptSearchPayload, S>
 
   type PromptSearchCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<PromptSearchFindManyArgs, 'select' | 'include' | 'distinct' > & {
+    Omit<PromptSearchFindManyArgs, 'select' | 'include' | 'distinct'> & {
       select?: PromptSearchCountAggregateInputType | true
     }
 
@@ -7639,7 +7649,7 @@ export namespace Prisma {
   type WorldInfoSearchGetPayload<S extends boolean | null | undefined | WorldInfoSearchDefaultArgs> = $Result.GetResult<Prisma.$WorldInfoSearchPayload, S>
 
   type WorldInfoSearchCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<WorldInfoSearchFindManyArgs, 'select' | 'include' | 'distinct' > & {
+    Omit<WorldInfoSearchFindManyArgs, 'select' | 'include' | 'distinct'> & {
       select?: WorldInfoSearchCountAggregateInputType | true
     }
 
@@ -8482,7 +8492,7 @@ export namespace Prisma {
   type TagSearchGetPayload<S extends boolean | null | undefined | TagSearchDefaultArgs> = $Result.GetResult<Prisma.$TagSearchPayload, S>
 
   type TagSearchCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<TagSearchFindManyArgs, 'select' | 'include' | 'distinct' > & {
+    Omit<TagSearchFindManyArgs, 'select' | 'include' | 'distinct'> & {
       select?: TagSearchCountAggregateInputType | true
     }
 
@@ -9432,7 +9442,7 @@ export namespace Prisma {
   type AccountGetPayload<S extends boolean | null | undefined | AccountDefaultArgs> = $Result.GetResult<Prisma.$AccountPayload, S>
 
   type AccountCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<AccountFindManyArgs, 'select' | 'include' | 'distinct' > & {
+    Omit<AccountFindManyArgs, 'select' | 'include' | 'distinct'> & {
       select?: AccountCountAggregateInputType | true
     }
 
@@ -10319,7 +10329,7 @@ export namespace Prisma {
   type SessionGetPayload<S extends boolean | null | undefined | SessionDefaultArgs> = $Result.GetResult<Prisma.$SessionPayload, S>
 
   type SessionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<SessionFindManyArgs, 'select' | 'include' | 'distinct' > & {
+    Omit<SessionFindManyArgs, 'select' | 'include' | 'distinct'> & {
       select?: SessionCountAggregateInputType | true
     }
 
@@ -11248,7 +11258,7 @@ export namespace Prisma {
   type UserGetPayload<S extends boolean | null | undefined | UserDefaultArgs> = $Result.GetResult<Prisma.$UserPayload, S>
 
   type UserCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<UserFindManyArgs, 'select' | 'include' | 'distinct' > & {
+    Omit<UserFindManyArgs, 'select' | 'include' | 'distinct'> & {
       select?: UserCountAggregateInputType | true
     }
 
@@ -12272,7 +12282,7 @@ export namespace Prisma {
   type VerificationTokenGetPayload<S extends boolean | null | undefined | VerificationTokenDefaultArgs> = $Result.GetResult<Prisma.$VerificationTokenPayload, S>
 
   type VerificationTokenCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<VerificationTokenFindManyArgs, 'select' | 'include' | 'distinct' > & {
+    Omit<VerificationTokenFindManyArgs, 'select' | 'include' | 'distinct'> & {
       select?: VerificationTokenCountAggregateInputType | true
     }
 
@@ -13101,7 +13111,7 @@ export namespace Prisma {
   type TagsGetPayload<S extends boolean | null | undefined | TagsDefaultArgs> = $Result.GetResult<Prisma.$TagsPayload, S>
 
   type TagsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<TagsFindManyArgs, 'select' | 'include' | 'distinct' > & {
+    Omit<TagsFindManyArgs, 'select' | 'include' | 'distinct'> & {
       select?: TagsCountAggregateInputType | true
     }
 
@@ -13983,7 +13993,7 @@ export namespace Prisma {
   type TagsPromptsMapGetPayload<S extends boolean | null | undefined | TagsPromptsMapDefaultArgs> = $Result.GetResult<Prisma.$TagsPromptsMapPayload, S>
 
   type TagsPromptsMapCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<TagsPromptsMapFindManyArgs, 'select' | 'include' | 'distinct' > & {
+    Omit<TagsPromptsMapFindManyArgs, 'select' | 'include' | 'distinct'> & {
       select?: TagsPromptsMapCountAggregateInputType | true
     }
 
@@ -14909,7 +14919,7 @@ export namespace Prisma {
   type PromptVotesGetPayload<S extends boolean | null | undefined | PromptVotesDefaultArgs> = $Result.GetResult<Prisma.$PromptVotesPayload, S>
 
   type PromptVotesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<PromptVotesFindManyArgs, 'select' | 'include' | 'distinct' > & {
+    Omit<PromptVotesFindManyArgs, 'select' | 'include' | 'distinct'> & {
       select?: PromptVotesCountAggregateInputType | true
     }
 
@@ -15812,7 +15822,7 @@ export namespace Prisma {
   type CommentsGetPayload<S extends boolean | null | undefined | CommentsDefaultArgs> = $Result.GetResult<Prisma.$CommentsPayload, S>
 
   type CommentsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<CommentsFindManyArgs, 'select' | 'include' | 'distinct' > & {
+    Omit<CommentsFindManyArgs, 'select' | 'include' | 'distinct'> & {
       select?: CommentsCountAggregateInputType | true
     }
 
@@ -16753,7 +16763,7 @@ export namespace Prisma {
   type CommentVotesGetPayload<S extends boolean | null | undefined | CommentVotesDefaultArgs> = $Result.GetResult<Prisma.$CommentVotesPayload, S>
 
   type CommentVotesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<CommentVotesFindManyArgs, 'select' | 'include' | 'distinct' > & {
+    Omit<CommentVotesFindManyArgs, 'select' | 'include' | 'distinct'> & {
       select?: CommentVotesCountAggregateInputType | true
     }
 
@@ -17648,7 +17658,7 @@ export namespace Prisma {
   type CommentRepliesGetPayload<S extends boolean | null | undefined | CommentRepliesDefaultArgs> = $Result.GetResult<Prisma.$CommentRepliesPayload, S>
 
   type CommentRepliesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<CommentRepliesFindManyArgs, 'select' | 'include' | 'distinct' > & {
+    Omit<CommentRepliesFindManyArgs, 'select' | 'include' | 'distinct'> & {
       select?: CommentRepliesCountAggregateInputType | true
     }
 

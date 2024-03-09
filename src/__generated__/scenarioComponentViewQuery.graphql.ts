@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<8a592b78ea454c821a7d10208184f908>>
+ * @generated SignedSource<<7566c93256304e5cc4dfe702b3c7b431>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -21,6 +21,7 @@ export type scenarioComponentViewQuery$data = {
     readonly description: string | null | undefined;
     readonly downloadCount: number;
     readonly id: string;
+    readonly isUserAuthor: boolean;
     readonly memory: string | null | undefined;
     readonly nsfw: boolean;
     readonly promptContent: string;
@@ -181,6 +182,13 @@ v2 = [
       {
         "alias": null,
         "args": null,
+        "kind": "ScalarField",
+        "name": "isUserAuthor",
+        "storageKey": null
+      },
+      {
+        "alias": null,
+        "args": null,
         "concreteType": "WorldInfos",
         "kind": "LinkedField",
         "name": "worldInfos",
@@ -226,16 +234,16 @@ return {
     "selections": (v2/*: any*/)
   },
   "params": {
-    "cacheID": "880d5974b421d1f9fbe01174c6b49cea",
+    "cacheID": "26840d2d2458752d0ead6a9901270592",
     "id": null,
     "metadata": {},
     "name": "scenarioComponentViewQuery",
     "operationKind": "query",
-    "text": "query scenarioComponentViewQuery(\n  $scenario: ID!\n) {\n  prompt(id: $scenario) {\n    id\n    aetherId\n    title\n    description\n    dateCreated\n    dateEdited\n    publishDate\n    promptContent\n    nsfw\n    tags\n    authorsNote\n    memory\n    downloadCount\n    rating\n    totalRatings\n    userRating\n    worldInfos {\n      id\n      entry\n      keys\n    }\n  }\n}\n"
+    "text": "query scenarioComponentViewQuery(\n  $scenario: ID!\n) {\n  prompt(id: $scenario) {\n    id\n    aetherId\n    title\n    description\n    dateCreated\n    dateEdited\n    publishDate\n    promptContent\n    nsfw\n    tags\n    authorsNote\n    memory\n    downloadCount\n    rating\n    totalRatings\n    userRating\n    isUserAuthor\n    worldInfos {\n      id\n      entry\n      keys\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "129cf28fb28001ff4d26e70f54ba769f";
+(node as any).hash = "383dbf95b03be6368fffa4be9df882e6";
 
 export default node;

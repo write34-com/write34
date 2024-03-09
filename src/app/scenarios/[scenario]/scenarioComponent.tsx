@@ -6,6 +6,7 @@ import React, {Fragment, Suspense} from "react";
 import {PaperClipIcon} from '@heroicons/react/20/solid';
 import {scenarioComponentViewQuery} from "@/__generated__/scenarioComponentViewQuery.graphql";
 import ScenarioRating from "@/components/ScenarioRating";
+import EditScenarioFieldComponent from "@/app/scenarios/[scenario]/EditScenarioFieldComponent";
 
 const ScenarioQuery = graphql`
     query scenarioComponentViewQuery($scenario: ID!) {
@@ -26,6 +27,7 @@ const ScenarioQuery = graphql`
             rating
             totalRatings
             userRating
+            isUserAuthor
             worldInfos {
                 id
                 entry
@@ -107,9 +109,10 @@ export default function ScenarioComponent(props: { queryRef: PreloadedQuery<scen
       <div className="bg-white dark:bg-gray-900 dark:text-gray-100 py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="px-4 sm:px-0">
-            <div className="text-xl text-base font-semibold leading-7 text-gray-900 dark:text-gray-50">
-              {prompt.title}
-            </div>
+            <EditScenarioFieldComponent
+              className="text-xl text-base font-semibold leading-7 text-gray-900 dark:text-gray-50"
+              promptId={promptId} isUserAuthor={prompt.isUserAuthor} currentContent={prompt.title} fieldName="title">
+            </EditScenarioFieldComponent>
             <span className="mt-8 mb-1 italic max-w-2xl text-xs leading-6 text-gray-500 dark:text-gray-300">
                 {prompt.aetherId && (
                   <Fragment>
@@ -141,9 +144,12 @@ export default function ScenarioComponent(props: { queryRef: PreloadedQuery<scen
                 <dt className="text-sm font-medium leading-6 text-gray-900 dark:text-gray-50">
                   Description
                 </dt>
-                <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0 dark:text-gray-300">
-                  {prompt.description ? formatContent(prompt.description) : '<No Description>'}
-                </dd>
+                <EditScenarioFieldComponent
+                  className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0 dark:text-gray-300"
+                  promptId={promptId}
+                  isUserAuthor={prompt.isUserAuthor}
+                  currentContent={prompt.description ? prompt.description : ''}
+                  fieldName="description" />
               </div>
               <div
                 className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0 border-b border-gray-100 dark:border-gray-700">
@@ -159,22 +165,12 @@ export default function ScenarioComponent(props: { queryRef: PreloadedQuery<scen
                 <dt className="text-sm font-medium leading-6 text-gray-900 dark:text-gray-50">
                   Prompt
                 </dt>
-                <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0 dark:text-gray-400">
-                  {prompt.promptContent.length < 300 && prompt.promptContent}
-                  {prompt.promptContent.length >= 300 && (
-                    <div className="collapse bg-base-200 dark:bg-base-800 rounded-box">
-                      <input type="checkbox"/>
-                      <div className="collapse-title text-sm text-gray-500 dark:text-gray-400 dark:bg-gray-800">
-                        <span className="line-clamp-3">{prompt.promptContent}</span>... [Click to expand]
-                      </div>
-                      <div className="collapse-content collapse-arrow dark:text-gray-50 dark:bg-gray-800">
-                        <div className="mt-1 mr-4 text-sm text-gray-500 dark:text-gray-300">
-                          {formatContent(prompt.promptContent)}
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                </dd>
+                <EditScenarioFieldComponent
+                  className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0 dark:text-gray-400"
+                  promptId={promptId}
+                  isUserAuthor={prompt.isUserAuthor}
+                  currentContent={prompt.promptContent}
+                  fieldName="promptContent" />
               </div>
               {prompt.authorsNote && (
                 <div
@@ -182,9 +178,12 @@ export default function ScenarioComponent(props: { queryRef: PreloadedQuery<scen
                   <dt className="text-sm font-medium leading-6 text-gray-900 dark:text-gray-50">
                     Author Notes
                   </dt>
-                  <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0 dark:text-gray-300">
-                    {formatContent(prompt.authorsNote)}
-                  </dd>
+                  <EditScenarioFieldComponent
+                    className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0 dark:text-gray-300"
+                    promptId={promptId}
+                    isUserAuthor={prompt.isUserAuthor}
+                    currentContent={prompt.authorsNote}
+                    fieldName="authorsNote"/>
                 </div>
               )}
               {prompt.memory && (
@@ -193,9 +192,12 @@ export default function ScenarioComponent(props: { queryRef: PreloadedQuery<scen
                   <dt className="text-sm font-medium leading-6 text-gray-900 dark:text-gray-50">
                     Memory
                   </dt>
-                  <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0 dark:text-gray-300">
-                    {formatContent(prompt.memory)}
-                  </dd>
+                  <EditScenarioFieldComponent
+                    className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0 dark:text-gray-300"
+                    promptId={promptId}
+                    isUserAuthor={prompt.isUserAuthor}
+                    currentContent={prompt.memory}
+                    fieldName="memory"/>
                 </div>
               )}
               {/*<div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">*/}

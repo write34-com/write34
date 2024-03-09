@@ -18,6 +18,7 @@ The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://
 scalar JSON
 
 type Mutation {
+  updatePrompt(authorsNote: String, description: String, id: ID!, memory: String, nsfw: Boolean, promptContent: String, title: String): Prompts!
   updateUser(newName: String, newPublicName: String): User!
   votePrompt(promptId: String!, setRating: Float): Boolean!
 }
@@ -44,6 +45,7 @@ type Prompts implements Node {
   downloadCount: Int!
   holoAiScenario: String
   id: ID!
+  isUserAuthor: Boolean!
   memory: String
   novelAiScenario: String
   nsfw: Boolean!

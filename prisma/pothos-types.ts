@@ -17,22 +17,27 @@ export default interface PrismaTypes {
             tagsFull: {
                 Shape: TagsPromptsMap[];
                 Name: "TagsPromptsMap";
+                Nullable: false;
             };
             worldInfos: {
                 Shape: WorldInfos[];
                 Name: "WorldInfos";
+                Nullable: false;
             };
             author: {
                 Shape: User | null;
                 Name: "User";
+                Nullable: true;
             };
             PromptVotes: {
                 Shape: PromptVotes[];
                 Name: "PromptVotes";
+                Nullable: false;
             };
             Comments: {
                 Shape: Comments[];
                 Name: "Comments";
+                Nullable: false;
             };
         };
     };
@@ -52,6 +57,7 @@ export default interface PrismaTypes {
             prompts: {
                 Shape: Prompts;
                 Name: "Prompts";
+                Nullable: false;
             };
         };
     };
@@ -71,6 +77,7 @@ export default interface PrismaTypes {
             worldInfos: {
                 Shape: AetherWorldInfos[];
                 Name: "AetherWorldInfos";
+                Nullable: false;
             };
         };
     };
@@ -90,6 +97,7 @@ export default interface PrismaTypes {
             prompts: {
                 Shape: AetherPrompts;
                 Name: "AetherPrompts";
+                Nullable: false;
             };
         };
     };
@@ -151,6 +159,7 @@ export default interface PrismaTypes {
             user: {
                 Shape: User;
                 Name: "User";
+                Nullable: false;
             };
         };
     };
@@ -170,6 +179,7 @@ export default interface PrismaTypes {
             user: {
                 Shape: User;
                 Name: "User";
+                Nullable: false;
             };
         };
     };
@@ -189,30 +199,37 @@ export default interface PrismaTypes {
             accounts: {
                 Shape: Account[];
                 Name: "Account";
+                Nullable: false;
             };
             sessions: {
                 Shape: Session[];
                 Name: "Session";
+                Nullable: false;
             };
             Prompts: {
                 Shape: Prompts[];
                 Name: "Prompts";
+                Nullable: false;
             };
             PromptVotes: {
                 Shape: PromptVotes[];
                 Name: "PromptVotes";
+                Nullable: false;
             };
             Comments: {
                 Shape: Comments[];
                 Name: "Comments";
+                Nullable: false;
             };
             CommentVotes: {
                 Shape: CommentVotes[];
                 Name: "CommentVotes";
+                Nullable: false;
             };
             CommentReplies: {
                 Shape: CommentReplies[];
                 Name: "CommentReplies";
+                Nullable: false;
             };
         };
     };
@@ -246,6 +263,7 @@ export default interface PrismaTypes {
             tagPrompts: {
                 Shape: TagsPromptsMap[];
                 Name: "TagsPromptsMap";
+                Nullable: false;
             };
         };
     };
@@ -265,10 +283,12 @@ export default interface PrismaTypes {
             tag: {
                 Shape: Tags;
                 Name: "Tags";
+                Nullable: false;
             };
             prompt: {
                 Shape: Prompts;
                 Name: "Prompts";
+                Nullable: false;
             };
         };
     };
@@ -288,10 +308,12 @@ export default interface PrismaTypes {
             user: {
                 Shape: User;
                 Name: "User";
+                Nullable: false;
             };
             prompt: {
                 Shape: Prompts;
                 Name: "Prompts";
+                Nullable: false;
             };
         };
     };
@@ -311,18 +333,22 @@ export default interface PrismaTypes {
             user: {
                 Shape: User;
                 Name: "User";
+                Nullable: false;
             };
             prompt: {
                 Shape: Prompts;
                 Name: "Prompts";
+                Nullable: false;
             };
             CommentVotes: {
                 Shape: CommentVotes[];
                 Name: "CommentVotes";
+                Nullable: false;
             };
             CommentReplies: {
                 Shape: CommentReplies[];
                 Name: "CommentReplies";
+                Nullable: false;
             };
         };
     };
@@ -342,10 +368,12 @@ export default interface PrismaTypes {
             user: {
                 Shape: User;
                 Name: "User";
+                Nullable: false;
             };
             comment: {
                 Shape: Comments;
                 Name: "Comments";
+                Nullable: false;
             };
         };
     };
@@ -365,10 +393,12 @@ export default interface PrismaTypes {
             user: {
                 Shape: User;
                 Name: "User";
+                Nullable: false;
             };
             comment: {
                 Shape: Comments;
                 Name: "Comments";
+                Nullable: false;
             };
         };
     };
