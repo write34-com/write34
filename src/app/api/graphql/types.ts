@@ -268,6 +268,9 @@ const PromptsSearch = builder.prismaNode('Prompts', {
         publishDate: t.exposeString('publishDate', {
             nullable: true,
         }),
+        downloadCount: t.exposeInt('downloadCount', {
+            nullable: false,
+        }),
         nsfw: t.boolean({
             resolve: (parent) => {
                 // Assuming `parent.nsfw` is the boolean
@@ -440,22 +443,47 @@ builder.objectType(Search, {
                 tags: t.arg.stringList({required: false}),
                 nsfw: t.arg.boolean({required: false}),
                 order: t.arg.string({required: false}),
+                orderField: t.arg.string({required: false}),
             },
             // TODO: Clean this code up with types and maybe to feel less hacky
             resolve: async (parent, args, ctx, info) => {
                 const resolveOffset = await resolveOffsetConnection({args}, async ({limit, offset}) => {
                     // TODO: Figure out how to allow additional characters like dashes without crashing queryRaw
                     const searchTerm = args.query ? args.query.replace(/[\-@]/g, ' ').replace(/[^a-zA-Z0-9 _]/g, '').trim() : null;
+                    const searchOrder = (!args.order || args.order && args.order.toUpperCase() === 'DESC') ? 'DESC' : 'ASC';
+                    const searchOrderField = args.orderField === 'dateCreated' ? 'dateCreated' : 'downloadCount';
 
                     const nsfwFilter = args.nsfw === null ? [true, false] : [!!args.nsfw];
 
+                    /**
+                     * This is a painful hack to get around Prisma's lack of support for dynamic ORDER BY clauses.
+                     * It might come from Postgres not supporting templates in ORDER BY clauses, but I'm not sure.
+                     * Fortunately, this hack isn't the worst thing in the world. It's just annoying that we can't use
+                     * Prisma.sql to do this. I officially hate Prisma.
+                     */
+                    function getOrderByClause() {
+                        if (searchOrderField === 'dateCreated' && searchOrder === 'DESC') {
+                            return Prisma.sql`ORDER BY p.dateCreated DESC`;
+                        }
+                        if (searchOrderField === 'dateCreated' && searchOrder === 'ASC') {
+                            return Prisma.sql`ORDER BY p.dateCreated ASC`;
+                        }
+                        if (searchOrderField === 'downloadCount' && searchOrder === 'ASC') {
+                            return Prisma.sql`ORDER BY p.downloadCount ASC`;
+                        }
+                        if (searchOrderField === 'downloadCount' && searchOrder === 'DESC') {
+                            return Prisma.sql`ORDER BY p.downloadCount DESC`;
+                        }
+                        throw new Error('Unsupported query order type');
+                    }
+
                     // The "default" search when somebody hasn't plugged in any queries. More interesting than a blank page.
                     if (!searchTerm && (!args.tags || args.tags.length === 0)) {
-                        return db.$queryRaw`SELECT p.id, p.title, p.promptContent, p.description, p.tags, p.nsfw, p.dateCreated, p.dateEdited, p.publishDate
+                        return db.$queryRaw`SELECT p.id, p.title, p.promptContent, p.description, p.tags, p.nsfw, p.dateCreated as dateCreated, p.dateEdited, p.publishDate, p.downloadCount as downloadCount
                                             FROM Prompts p
                                             WHERE p.nsfw IN (${Prisma.join(nsfwFilter)})
                                                 AND p.deleted = false
-                                            ORDER BY p.dateCreated DESC
+                                            ${getOrderByClause()}
                                             LIMIT ${limit} OFFSET ${offset}`;
                     }
 
@@ -478,7 +506,7 @@ builder.objectType(Search, {
                                 )
                                 AND p.nsfw IN (${Prisma.join(nsfwFilter)})
                                 AND p.deleted = false
-                                ORDER BY p.dateCreated DESC
+                                ${getOrderByClause()}
                                 LIMIT ${limit} OFFSET ${offset}
                             `;
                         }
@@ -501,7 +529,7 @@ builder.objectType(Search, {
                                   AND p.deleted = false
                                 GROUP BY p.id
                                 HAVING COUNT(DISTINCT t.id) = ${positiveTags.length}
-                                ORDER BY p.dateCreated DESC
+                                ${getOrderByClause()}
                                 LIMIT ${limit} OFFSET ${offset}
                             `;
                         }
@@ -524,7 +552,7 @@ builder.objectType(Search, {
                               AND p.deleted = false
                             GROUP BY p.id
                             HAVING COUNT(DISTINCT t.id) = ${positiveTags.length}
-                            ORDER BY p.dateCreated DESC
+                            ${getOrderByClause()}
                         `;
 
                         // We can't call the next step with an empty array
@@ -534,25 +562,25 @@ builder.objectType(Search, {
 
                         // TODO: Get rid of the any because it's not necessary
                         // Search by text for all prompts that match the tags
-                        return db.$queryRaw`SELECT p.id, p.title, p.promptContent, p.description, p.tags, p.nsfw, prompts.dateCreated, prompts.dateEdited, prompts.publishDate
-                                            FROM "promptSearch" p
-                                            JOIN Prompts prompts ON p.id = prompts.id
+                        return db.$queryRaw`SELECT ps.id, ps.title, ps.promptContent, ps.description, ps.tags, ps.nsfw, p.dateCreated, p.dateEdited, p.publishDate, p.downloadCount
+                                            FROM "promptSearch" ps
+                                            JOIN Prompts p ON ps.id = p.id
                                             WHERE
-                                                p.id IN (${Prisma.join(allTagPrompts.map(p => p.id))})
+                                                ps.id IN (${Prisma.join(allTagPrompts.map(p => p.id))})
                                                 AND "promptSearch" MATCH ${searchTerm}
-                                                AND p.nsfw IN (${Prisma.join(nsfwFilter)})
-                                                AND prompts.deleted = false
-                                            ORDER BY prompts.dateCreated DESC
+                                                AND ps.nsfw IN (${Prisma.join(nsfwFilter)})
+                                                AND p.deleted = false
+                                            ${getOrderByClause()}
                                             LIMIT ${limit} OFFSET ${offset}`;
                     }
 
-                    return db.$queryRaw`SELECT p.id, p.title, p.promptContent, p.description, p.tags, p.nsfw, prompts.dateCreated, prompts.dateEdited, prompts.publishDate
-                                        FROM "promptSearch" p
-                                        JOIN Prompts prompts ON p.id = prompts.id
+                    return db.$queryRaw`SELECT ps.id, ps.title, ps.promptContent, ps.description, ps.tags, ps.nsfw, p.dateCreated, p.dateEdited, p.publishDate, p.downloadCount
+                                        FROM "promptSearch" ps
+                                        JOIN Prompts p ON ps.id = p.id
                                         WHERE "promptSearch" MATCH ${searchTerm}
-                                        AND p.nsfw IN (${Prisma.join(nsfwFilter)})
-                                        AND prompts.deleted = false
-                                        ORDER BY prompts.dateCreated DESC
+                                        AND ps.nsfw IN (${Prisma.join(nsfwFilter)})
+                                        AND p.deleted = false
+                                        ${getOrderByClause()}
                                         LIMIT ${limit} OFFSET ${offset}` as any;
                 });
                 return resolveOffset as any;

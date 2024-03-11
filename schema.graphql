@@ -66,6 +66,7 @@ type PromptsSearch implements Node {
   dateCreated: String!
   dateEdited: String
   description: String
+  downloadCount: Int!
   id: ID!
   memory: String
   nsfw: Boolean!
@@ -112,7 +113,7 @@ type QueryWorldInfosConnectionEdge {
 
 """Search results"""
 type Search {
-  prompts(after: String, before: String, first: Int, last: Int, nsfw: Boolean, order: String, query: String, tags: [String!]): SearchPromptsConnection!
+  prompts(after: String, before: String, first: Int, last: Int, nsfw: Boolean, order: String, orderField: String, query: String, tags: [String!]): SearchPromptsConnection!
 }
 
 type SearchPromptsConnection {

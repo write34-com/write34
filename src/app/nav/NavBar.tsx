@@ -11,7 +11,7 @@ export default function NavBar() {
           {/* TODO: Cleanup the dropdown menu to not use this hacky solution for splitting client/server code */}
           <li><LoginComponent /></li>
         </NavBarButtonClientComponent>
-        <Link className="btn btn-ghost hidden lg:flex" href="/">Scenarios</Link>
+        <Link className="btn btn-ghost hidden lg:flex" href="/scenarios/popular">Popular</Link>
         <Link className="btn btn-ghost hidden lg:flex" href="/tags">Tags</Link>
       </div>
       <div className="navbar-center">

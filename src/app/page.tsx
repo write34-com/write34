@@ -11,6 +11,7 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   return {
     title: 'NovelAI Scenarios & Prompts - write34',
+    description: 'Discover 1000s of scenarios and prompts to import into tools like NovelAI. Write34 is a community of writers sharing and creating scenarios for AI writing tools.',
   };
 }
 

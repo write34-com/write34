@@ -25,6 +25,3 @@ export default async function TagsViewPage({params}: {
 
   return <TagsViewClientComponent preloadedQuery={preloadedQuery}/>;
 }
-
-// export const runtime = 'edge';
-
